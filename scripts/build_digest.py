@@ -49,6 +49,12 @@ POLICY_FEEDS = {
     "PIB": "https://pib.gov.in/RssMain.aspx?ModId=6&Lang=1&Regid=3",
 }
 BSE_ANN = "https://api.bseindia.com/BseIndiaAPI/api/AnnSubCategoryGetData/w"
+NSE_RSS = {
+    "announcements": "https://nsearchives.nseindia.com/content/RSS/Online_announcements.xml",
+    "board": "https://nsearchives.nseindia.com/content/RSS/Board_Meetings.xml",
+    "actions": "https://nsearchives.nseindia.com/content/RSS/Corporate_action.xml",
+    "fii": "https://nsearchives.nseindia.com/content/RSS/Fii_dii_activity.xml",
+}
 BSE_FORTH = "https://api.bseindia.com/BseIndiaAPI/api/Corpforthresults/w"
 BSE_BOARD = "https://api.bseindia.com/BseIndiaAPI/api/BoardMeetings/w"
 NIFTY500_CSV = "https://archives.nseindia.com/content/indices/ind_nifty500list.csv"
@@ -137,6 +143,27 @@ def fetch_feeds(feeds, since):
             log(f"feed {name} FAILED: {ex}"); stat(name, False, 0, ex)
     return out
 
+def fetch_nse_rss(kind):
+    import feedparser
+    try:
+        r = get(NSE_RSS[kind], headers={"Referer": "https://www.nseindia.com/"})
+        entries = feedparser.parse(r.content).entries
+        stat(f"NSE RSS {kind}", len(entries) > 0, len(entries))
+        return entries
+    except Exception as ex:
+        stat(f"NSE RSS {kind}", False, 0, ex); return []
+
+def fetch_nse_announcements(since):
+    out = []
+    for e in fetch_nse_rss("announcements"):
+        title = clean(e.get("title")); desc = clean(e.get("summary", ""))[:300]
+        if not title:
+            continue
+        if re.search(r"(Trading Window|Compliance Certificate|Newspaper Publication|Reg\.? ?74|Investor Presentation|Analyst|Clarification|Record Date Intimation|Loss of Share Certificate|Closure of Trading)", title + " " + desc, re.I) and not re.search(r"(order|contract|acqui|merger|result|dividend|buyback|rating|guidance|bonus|split)", title + " " + desc, re.I):
+            continue
+        out.append({"source": "NSE filing", "title": f"{title}: {desc}" if desc and desc.lower() not in title.lower() else title, "summary": "", "link": e.get("link", ""), "when": None})
+    return out
+
 def fetch_bse(since):
     """BSE corporate announcements for the window. Returns raw headline rows."""
     out = []
@@ -201,6 +228,26 @@ def fetch_results_calendar(days=7):
                 break
         except Exception as ex:
             notes.append(f"{url.split('/')[-2]} err {str(ex)[:60]}")
+    if not out:
+        for e in fetch_nse_rss("board"):
+            title = clean(e.get("title")); desc = clean(e.get("summary", ""))
+            text = title + " " + desc
+            if not re.search(r"result", text, re.I):
+                continue
+            m = re.search(r"(\d{1,2}-[A-Za-z]{3}-\d{4}|\d{2}/\d{2}/\d{4}|\d{4}-\d{2}-\d{2})", desc) or re.search(r"(\d{1,2}-[A-Za-z]{3}-\d{4}|\d{2}/\d{2}/\d{4}|\d{4}-\d{2}-\d{2})", title)
+            if not m:
+                continue
+            ds = m.group(1); d = None
+            for fmt in ("%d-%b-%Y", "%d/%m/%Y", "%Y-%m-%d"):
+                try:
+                    d = dt.datetime.strptime(ds, fmt); break
+                except Exception:
+                    continue
+            if not d or not (d0.date() <= d.date() <= d1.date()):
+                continue
+            name = re.split(r"\s[-–:]\s|\(", title)[0].strip()
+            out.append({"name": name[:60], "date": d.strftime("%Y-%m-%d"), "purpose": "Results"})
+        notes.append(f"nse-rss:{len(out)}")
     if not out:
         try:
             r = get("https://www.moneycontrol.com/stocks/marketinfo/results-calendar/", headers={"Referer": "https://www.moneycontrol.com/"})
@@ -349,7 +396,7 @@ def fetch_global():
            "sec_it": "^CNXIT", "sec_auto": "^CNXAUTO", "sec_pharma": "^CNXPHARMA", "sec_metal": "^CNXMETAL", "sec_realty": "^CNXREALTY",
            "sec_fmcg": "^CNXFMCG", "sec_psubank": "^CNXPSUBANK", "sec_energy": "^CNXENERGY", "sec_infra": "^CNXINFRA", "sec_media": "^CNXMEDIA"}
     out = {}
-    alt = {"smallcap": ["^CNXSC", "NIFTYSMLCAP100.NS", "^NSMIDCP", "NIFTY_SMLCAP_100.NS"], "midcap": ["^NSEMDCP50", "NIFTYMIDCAP150.NS", "^CNXMIDCAP"]}
+    alt = {"smallcap": ["^CNXSC", "^CNXSMCP", "NIFTYSMLCAP100.NS", "NIFTY_SMLCAP_100.NS", "^NSMIDCP", "SMALLCAP.BO", "^BSESMC"], "midcap": ["^NSEMDCP50", "NIFTYMIDCAP150.NS", "^CNXMIDCAP", "^BSEMDC"]}
     try:
         for k, cands in alt.items():
             for c in cands:
@@ -392,7 +439,7 @@ def fetch_global():
             try:
                 if asof.tzinfo is None:
                     asof = asof.replace(tzinfo=dt.timezone.utc)
-                out["asOf"] = asof.astimezone(IST).strftime("%a %d %b %H:%M") + " IST" + (" (live)" if out.get("quoteNote") == "live" else " close")
+                out["asOf"] = (asof.astimezone(IST).strftime("%a %d %b %H:%M") + " IST (live)") if out.get("quoteNote") == "live" else (asof.strftime("%a %d %b") + " close")
             except Exception:
                 pass
     except Exception as ex:
@@ -481,24 +528,34 @@ def fetch_52w():
     # file has a few header lines before the real header
     start = next((i for i, l in enumerate(lines) if l.upper().startswith("SYMBOL")), 0)
     today = d.strftime("%d-%b-%Y") if d else ""
+    header = lines[start] if lines else ""
+    log(f"52w header: {header[:160]}")
     for row in csv.DictReader(io.StringIO("\n".join(lines[start:]))):
-        row = {k.strip(): (v or "").strip() for k, v in row.items() if k}
+        row = {k.strip().upper(): (v or "").strip() for k, v in row.items() if k}
         if row.get("SERIES", "EQ") not in ("EQ", "BE", ""):
             continue
         sym = row.get("SYMBOL")
-        hd = row.get("52_Week_High_Date") or row.get("52_WEEK_HIGH_DATE") or ""
-        ld = row.get("52_Week_Low_DT") or row.get("52_Week_Low_Date") or row.get("52_WEEK_LOW_DATE") or ""
+        hd = next((v for k, v in row.items() if "HIGH" in k and ("DATE" in k or "DT" in k)), "")
+        ld = next((v for k, v in row.items() if "LOW" in k and ("DATE" in k or "DT" in k)), "")
         if sym and today and hd.lower().startswith(today.lower()[:6]):
             highs.append(sym)
         if sym and today and ld.lower().startswith(today.lower()[:6]):
             lows.append(sym)
-    stat("52-week lists (NSE)", True, len(highs) + len(lows), f"for {d:%d %b}" if d else "")
+    stat("52-week lists (NSE)", True, len(highs) + len(lows), (f"for {d:%d %b}; " if d else "") + "cols: " + header[:90])
     return highs, lows
 
 def fetch_flows(raw):
     """FII/DII cash-market flows from the day's headlines (published by exchanges after close; reported widely)."""
     best = ""
-    for rr in raw:
+    for e in fetch_nse_rss("fii"):
+        text = clean(e.get("title")) + " " + clean(e.get("summary", ""))
+        f = re.search(r"FII[^\d-]{0,40}?(-?[\d,]+\.?\d*)", text); d = re.search(r"DII[^\d-]{0,40}?(-?[\d,]+\.?\d*)", text)
+        if f or d:
+            parts = []
+            if f: parts.append(f"FII {'' if f.group(1).startswith('-') else '+'}₹{f.group(1)} Cr")
+            if d: parts.append(f"DII {'' if d.group(1).startswith('-') else '+'}₹{d.group(1)} Cr")
+            best = " / ".join(parts) + " (NSE)"; break
+    for rr in ([] if best else raw):
         text = rr["title"] + " " + rr["summary"]
         f = re.search(r"FII[s]?[^.]{0,60}?(bought|buy|buying|sold|sell|selling|offload)[^.]{0,40}?(?:₹|Rs\.?|INR)\s?([\d,]+(?:\.\d+)?)\s*(crore|cr)", text, re.I)
         d = re.search(r"DII[s]?[^.]{0,60}?(bought|buy|buying|sold|sell|selling)[^.]{0,40}?(?:₹|Rs\.?|INR)\s?([\d,]+(?:\.\d+)?)\s*(crore|cr)", text, re.I)
@@ -515,6 +572,26 @@ def fetch_corp_actions(days=7):
     """Ex-dates for dividends, bonus, splits, rights in the next `days` days (BSE published corporate-actions API)."""
     d0 = now_ist(); d1 = d0 + dt.timedelta(days=days)
     out = []
+    for e in fetch_nse_rss("actions"):
+        title = clean(e.get("title")); desc = clean(e.get("summary", ""))
+        text = title + " " + desc
+        if not re.search(r"dividend|bonus|split|rights|buyback|buy back", text, re.I):
+            continue
+        m = re.search(r"(\d{1,2}-[A-Za-z]{3}-\d{4}|\d{2}/\d{2}/\d{4}|\d{4}-\d{2}-\d{2})", desc) or re.search(r"(\d{1,2}-[A-Za-z]{3}-\d{4}|\d{2}/\d{2}/\d{4}|\d{4}-\d{2}-\d{2})", title)
+        d = None
+        if m:
+            for fmt in ("%d-%b-%Y", "%d/%m/%Y", "%Y-%m-%d"):
+                try:
+                    d = dt.datetime.strptime(m.group(1), fmt); break
+                except Exception:
+                    continue
+        if d and not (d0.date() <= d.date() <= d1.date()):
+            continue
+        name = re.split(r"\s[-–:]\s|\(", title)[0].strip()
+        purpose = re.sub(r"^\s*" + re.escape(name) + r"\s*[-–:]?\s*", "", desc or title)[:90]
+        out.append({"sym": "", "name": name[:60], "purpose": purpose or "Corporate action", "exDate": d.strftime("%Y-%m-%d") if d else ""})
+    if out:
+        stat("Corporate actions (NSE RSS)", True, len(out)); return out[:60]
     try:
         h = {"Referer": "https://www.bseindia.com/", "Origin": "https://www.bseindia.com"}
         r = get("https://api.bseindia.com/BseIndiaAPI/api/CorporateAction/w", params={"scripcode": "", "Fdate": d0.strftime("%Y%m%d"), "TDate": d1.strftime("%Y%m%d"), "Purposecode": "", "strSearch": "S", "ddlcategorys": "E", "ddlindustrys": ""}, headers=h)
@@ -647,7 +724,7 @@ Return ONLY a JSON object: {{"items":[{{"category":"...","company":"...","fact":
 HEADLINES (source | title | summary):
 {rows}"""
 
-def pick_groq_models(key):
+def pick_groq_models(key, prefer="light"):
     """Ask Groq which models this key can use and order them by preference."""
     env = os.environ.get("GROQ_MODEL", "").strip()
     try:
@@ -657,7 +734,8 @@ def pick_groq_models(key):
     except Exception as ex:
         log(f"groq model list FAILED: {ex}"); ids = []
     log(f"groq models available: {ids}")
-    prefs = ["llama-4-maverick", "llama-4-scout", "llama-3.3-70b", "gpt-oss-120b", "qwen", "gpt-oss-20b", "llama-3.1-8b", "llama", "mixtral", "gemma"]
+    prefs = (["llama-3.1-8b", "gpt-oss-20b", "llama-4-scout", "qwen", "llama-3.3-70b", "gpt-oss-120b", "llama-4-maverick", "llama", "mixtral", "gemma"] if prefer == "light"
+             else ["llama-4-maverick", "llama-3.3-70b", "gpt-oss-120b", "llama-4-scout", "qwen", "gpt-oss-20b", "llama-3.1-8b", "llama", "mixtral", "gemma"])
     skip = ("whisper", "tts", "guard", "embed", "vision", "safeguard", "compound", "orpheus", "playai")
     cands = [i for i in ids if not any(k in i.lower() for k in skip)]
     ordered = []
@@ -785,7 +863,7 @@ def groq_brief(doc, key):
     for it in sorted(doc["items"], key=lambda i: -int(i.get("materiality") or 1))[:120]:
         rows.append(f"{it.get('category')} | {it.get('company')} | {it.get('cap','')} | {it.get('pct','')} | {str(it.get('fact',''))[:160]}")
     prompt = BRIEF_PROMPT.format(market={k: v for k, v in m.items() if k not in ("sectors", "breadth", "note")}, breadth=m.get("breadth", {}), sectors=m.get("sectors", {}), rows="\n".join(rows))
-    for model in pick_groq_models(key):
+    for model in pick_groq_models(key, prefer="big"):
         try:
             r = requests.post(GROQ_URL, json={"model": model, "temperature": 0.2, "response_format": {"type": "json_object"},
                                               "messages": [{"role": "user", "content": prompt}]},
@@ -831,7 +909,7 @@ def main():
         if args.mode in ("full", "orders", "results", "policy", "custom"):
             raw += fetch_feeds(NEWS_FEEDS, since)
             raw += fetch_feeds(GNEWS_FEEDS, since)
-            raw += fetch_bse(since)
+            raw += fetch_nse_announcements(since)
         if args.mode in ("full", "policy", "custom"):
             raw += fetch_feeds(POLICY_FEEDS, since)
         if args.mode in ("full", "movers", "custom"):
