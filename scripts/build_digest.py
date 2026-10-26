@@ -291,8 +291,9 @@ def fetch_global():
             sub = df[t].dropna(how="all")
             if len(sub) >= 2:
                 last, prev = float(sub.iloc[-1]["Close"]), float(sub.iloc[-2]["Close"])
-                pct = (last / prev - 1) * 100
-                out[k] = f"{last:,.{2 if last < 1000 else 0}f} ({pct:+.2f}%)"
+                pct = (last / prev - 1) * 100; chg = last - prev
+                dp = 2 if last < 1000 else 0
+                out[k] = f"{last:,.{dp}f} · {chg:+,.{dp}f} ({pct:+.2f}%)"
     except Exception as ex:
         log(f"global FAILED: {ex}")
     return out

@@ -52,7 +52,7 @@ main{padding-block:14px 110px;max-width:760px;margin:0 auto}
 .tile{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:10px 12px;min-width:0}
 .tile b{display:block;font-size:11px;font-weight:600;color:var(--muted);letter-spacing:.04em;text-transform:uppercase}
 .tile span{display:block;font-family:var(--mono);font-size:14px;font-variant-numeric:tabular-nums;margin-top:2px;overflow-wrap:anywhere}
-.tile .u{color:var(--up)} .tile .d{color:var(--down)}
+.tile .lvl{font-size:16px;font-weight:500;color:var(--fg)} .tile .chg{font-size:12px;margin-top:0} .tile .u{color:var(--up)} .tile .d{color:var(--down)}
 .note{grid-column:1/-1;font-size:13px;color:var(--muted);background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:10px 12px}
 .section{margin:20px 0 8px;display:flex;align-items:center;gap:8px}
 .section i{width:9px;height:9px;border-radius:50%;background:var(--c,var(--muted))}
@@ -171,7 +171,7 @@ footer{color:var(--muted);font-size:12px;margin-top:28px;line-height:1.5}
     el.hidden=false;
     const map=[["sensex","Sensex"],["nifty","Nifty 50"],["midcap","Midcap 50"],["smallcap","Smallcap 100"],["giftNifty","GIFT Nifty"],["sp500","S&P 500"],["nikkei","Nikkei"],["brent","Brent"],["usdinr","USD/INR"],["flows","FII / DII"]];
     const cls=v=>/\(\+/.test(v)?"u":/\(-|\(−/.test(v)?"d":"";
-    const tiles=map.filter(([k])=>m[k]).map(([k,l])=>`<div class="tile"><b>${l}</b><span class="${cls(String(m[k]))}">${esc(m[k])}</span></div>`);
+    const tiles=map.filter(([k])=>m[k]).map(([k,l])=>{ const v=String(m[k]); const parts=v.split(" · "); return `<div class="tile"><b>${l}</b><span class="lvl">${esc(parts[0])}</span>${parts[1]?`<span class="chg ${cls(v)}">${esc(parts[1])}</span>`:""}</div>`; });
     el.innerHTML=tiles.join("")+(m.note?`<div class="note">${esc(m.note)}</div>`:"");
   }
   function calendarList(list){
