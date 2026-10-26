@@ -42,6 +42,7 @@ GNEWS_FEEDS = {
     "Google News · stocks in focus": GNEWS.format(q="%22stocks+to+watch%22+OR+%22stocks+in+focus%22"),
     "Google News · ratings": GNEWS.format(q="(upgrade+OR+downgrade+OR+%22target+price%22+OR+%22initiates+coverage%22)+shares+brokerage"),
     "Google News · bulk deals": GNEWS.format(q="%22bulk+deal%22+OR+%22block+deal%22+shares"),
+    "Google News · FII DII": GNEWS.format(q="FII+DII+net+crore+(bought+OR+sold)"),
 }
 POLICY_FEEDS = {
     "RBI": "https://www.rbi.org.in/pressreleases_rss.xml",
@@ -53,7 +54,6 @@ NSE_RSS = {
     "announcements": "https://nsearchives.nseindia.com/content/RSS/Online_announcements.xml",
     "board": "https://nsearchives.nseindia.com/content/RSS/Board_Meetings.xml",
     "actions": "https://nsearchives.nseindia.com/content/RSS/Corporate_action.xml",
-    "fii": "https://nsearchives.nseindia.com/content/RSS/Fii_dii_activity.xml",
 }
 BSE_FORTH = "https://api.bseindia.com/BseIndiaAPI/api/Corpforthresults/w"
 BSE_BOARD = "https://api.bseindia.com/BseIndiaAPI/api/BoardMeetings/w"
@@ -526,7 +526,7 @@ def fetch_52w():
     highs, lows = [], []
     lines = text.splitlines()
     # file has a few header lines before the real header
-    start = next((i for i, l in enumerate(lines) if l.upper().startswith("SYMBOL")), 0)
+    start = next((i for i, l in enumerate(lines) if l.strip().strip('"').upper().startswith("SYMBOL")), 0)
     today = d.strftime("%d-%b-%Y") if d else ""
     header = lines[start] if lines else ""
     log(f"52w header: {header[:160]}")
@@ -547,7 +547,7 @@ def fetch_52w():
 def fetch_flows(raw):
     """FII/DII cash-market flows from the day's headlines (published by exchanges after close; reported widely)."""
     best = ""
-    for e in fetch_nse_rss("fii"):
+    for e in (fetch_nse_rss("fii") if "fii" in NSE_RSS else []):
         text = clean(e.get("title")) + " " + clean(e.get("summary", ""))
         f = re.search(r"FII[^\d-]{0,40}?(-?[\d,]+\.?\d*)", text); d = re.search(r"DII[^\d-]{0,40}?(-?[\d,]+\.?\d*)", text)
         if f or d:
@@ -588,7 +588,11 @@ def fetch_corp_actions(days=7):
         if d and not (d0.date() <= d.date() <= d1.date()):
             continue
         name = re.split(r"\s[-–:]\s|\(", title)[0].strip()
-        purpose = re.sub(r"^\s*" + re.escape(name) + r"\s*[-–:]?\s*", "", desc or title)[:90]
+        purpose = re.sub(r"^\s*" + re.escape(name) + r"\s*[-–:]?\s*", "", desc or title)
+        pm = re.search(r"PURPOSE\s*:\s*([^|]+)", purpose, re.I)
+        purpose = (pm.group(1).strip() if pm else purpose).strip()
+        purpose = purpose[:1].upper() + purpose[1:].lower() if purpose.isupper() else purpose
+        purpose = purpose[:90]
         out.append({"sym": "", "name": name[:60], "purpose": purpose or "Corporate action", "exDate": d.strftime("%Y-%m-%d") if d else ""})
     if out:
         stat("Corporate actions (NSE RSS)", True, len(out)); return out[:60]
@@ -734,7 +738,7 @@ def pick_groq_models(key, prefer="light"):
     except Exception as ex:
         log(f"groq model list FAILED: {ex}"); ids = []
     log(f"groq models available: {ids}")
-    prefs = (["llama-3.1-8b", "gpt-oss-20b", "llama-4-scout", "qwen", "llama-3.3-70b", "gpt-oss-120b", "llama-4-maverick", "llama", "mixtral", "gemma"] if prefer == "light"
+    prefs = (["llama-3.3-70b", "llama-4-scout", "gpt-oss-20b", "qwen", "llama-3.1-8b", "gpt-oss-120b", "llama-4-maverick", "llama", "mixtral", "gemma"] if prefer == "light"
              else ["llama-4-maverick", "llama-3.3-70b", "gpt-oss-120b", "llama-4-scout", "qwen", "gpt-oss-20b", "llama-3.1-8b", "llama", "mixtral", "gemma"])
     skip = ("whisper", "tts", "guard", "embed", "vision", "safeguard", "compound", "orpheus", "playai")
     cands = [i for i in ids if not any(k in i.lower() for k in skip)]
@@ -785,10 +789,29 @@ def groq_classify(raw, mode, query, key):
                     if not nxt:
                         errors.append(f"model {model} rejected: {r.text[:100]}"); break
                     log(f"groq model {model} rejected; switching to {nxt}"); model = nxt; continue
-                if r.status_code >= 400:
+                if r.status_code == 400 and "json" in r.text.lower():
+                    # model could not produce strict JSON: retry without response_format and parse leniently
+                    body.pop("response_format", None)
+                    r = requests.post(GROQ_URL, json=body, headers={"Authorization": f"Bearer {key}"}, timeout=120)
+                    if r.status_code >= 400:
+                        errors.append(f"{r.status_code}: {r.text[:140]}"); time.sleep(2); continue
+                elif r.status_code >= 400:
                     errors.append(f"{r.status_code}: {r.text[:140]}"); time.sleep(3); continue
                 content = r.json()["choices"][0]["message"]["content"]
-                got = json.loads(content).get("items", [])
+                content = content.strip().strip("`")
+                if content.startswith("json"):
+                    content = content[4:]
+                a, b = content.find("{"), content.rfind("}")
+                try:
+                    got = json.loads(content[a:b + 1]).get("items", [])
+                except Exception:
+                    # salvage individual objects
+                    got = []
+                    for mobj in re.finditer(r"\{[^{}]*\}", content):
+                        try:
+                            got.append(json.loads(mobj.group(0)))
+                        except Exception:
+                            pass
                 for it in got:
                     if it.get("category") in CATS and it.get("company") and it.get("fact"):
                         it["materiality"] = int(it.get("materiality") or 1)
