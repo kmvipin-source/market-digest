@@ -126,8 +126,11 @@ main{padding-block:14px 110px;max-width:760px;margin:0 auto}
 .lead .why{font-size:13.5px;margin-top:3px;line-height:1.45}
 .brief .fine{font-size:11px;color:var(--muted);margin-top:12px}
 .wsec{margin:10px 0 14px}
-.wrow{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:10px 12px;border-left:3px solid #ca8a04;margin-bottom:8px}
-.wtop{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}
+.wsec{display:flex;flex-direction:column;gap:6px}
+.wrow{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:9px 12px;border-left:3px solid #ca8a04;cursor:pointer}
+.wrow .nb{font-size:11px;background:#fff7e0;color:#92400e;border-radius:6px;padding:2px 7px;letter-spacing:.02em}
+.wtop{display:flex;align-items:center;gap:8px;flex-wrap:nowrap;min-width:0}
+.wtop .co{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .wtop .co{font-weight:700}
 .wtop .tk{font-family:var(--mono);font-size:11px;color:var(--muted)}
 .wtop .px{font-family:var(--mono);font-size:13px;margin-left:auto}
@@ -218,8 +221,8 @@ footer{color:var(--muted);font-size:12px;margin-top:28px;line-height:1.5}
 <script src="config.js"></script>
 <script>
 (function(){
-  const CATS=[["all","All"],["movers","Movers"],["results","Results"],["volume","Volume"],["deals","Deals"],["high52","52-wk"],["calendar","Calendar"],["orders","Orders"],["mna","M&A"],["ratings","Ratings"],["actions","Ex-dates"],["policy","Policy"],["global","Global"],["other","Other"]];
-  const CAT_LABEL=Object.fromEntries(CATS); const CAT_COLOR={deals:"#9d174d",high52:"#166534",ratings:"#1d4ed8",actions:"#6b7280",calendar:"var(--c-calendar)",results:"var(--c-results)",orders:"var(--c-orders)",mna:"var(--c-mna)",policy:"var(--c-policy)",movers:"var(--c-movers)",volume:"var(--c-volume)",global:"var(--c-global)",other:"var(--c-other)"};
+  const CATS=[["all","All"],["watch","Watchlist"],["movers","Movers"],["results","Results"],["volume","Volume"],["deals","Deals"],["high52","52-wk"],["calendar","Calendar"],["orders","Orders"],["mna","M&A"],["ratings","Ratings"],["actions","Ex-dates"],["policy","Policy"],["global","Global"],["other","Other"]];
+  const CAT_LABEL=Object.fromEntries(CATS); const CAT_COLOR={watch:"#ca8a04",deals:"#9d174d",high52:"#166534",ratings:"#1d4ed8",actions:"#6b7280",calendar:"var(--c-calendar)",results:"var(--c-results)",orders:"var(--c-orders)",mna:"var(--c-mna)",policy:"var(--c-policy)",movers:"var(--c-movers)",volume:"var(--c-volume)",global:"var(--c-global)",other:"var(--c-other)"};
   const $=id=>document.getElementById(id);
   let runs=[], current=null, cat="all", thr=10, q=""; const expanded=new Set(); let scrips={};
   fetch("data/scrips.json").then(r=>r.ok?r.json():{}).then(j=>{ scrips=j||{}; }).catch(()=>{});
@@ -258,7 +261,7 @@ footer{color:var(--muted);font-size:12px;margin-top:28px;line-height:1.5}
   }
   function renderCats(){
     const counts={all:0};
-    (current?.items||[]).forEach(it=>{ counts.all++; const k=vcat(it); counts[k]=(counts[k]||0)+1; });
+    (current?.items||[]).forEach(it=>{ counts.all++; const k=vcat(it); counts[k]=(counts[k]||0)+1; }); counts.watch=watch.length;
     $("cats").innerHTML=CATS.map(([k,l])=>`<button class="chip" type="button" data-cat="${k}" aria-pressed="${cat===k}" style="--c:${CAT_COLOR[k]||"var(--muted)"}">${k!=="all"?"<i></i>":""}${l}<span class="n">${counts[k]||0}</span></button>`).join("");
   }
   function renderMarket(){
@@ -304,6 +307,7 @@ footer{color:var(--muted);font-size:12px;margin-top:28px;line-height:1.5}
   function renderFeed(){
     const feed=$("feed");
     if(!current){ feed.innerHTML=`<div class="empty"><b>No digest yet</b>Tap <strong>Run now</strong> to build the first one, or wait for the weekday 8:10 AM run.</div>`; return; }
+    if(cat==="watch"){ feed.innerHTML=watch.length?"":`<div class="empty"><b>No stocks yet</b>Tap ★ at the top to add up to 15.</div>`; return; }
     const items=visibleItems();
     if(!items.length){ feed.innerHTML=`<div class="empty"><b>Nothing matches</b>Try another category, a lower movers threshold, or clear the search.</div>`; return; }
     if(cat!=="all"){ feed.innerHTML=`<div class="list">${items.map(card).join("")}</div>`; return; }
@@ -340,19 +344,25 @@ footer{color:var(--muted);font-size:12px;margin-top:28px;line-height:1.5}
         <div class="fine">Generated from the items below; information only, not investment advice.</div>
       </div>`;
   }
+  let wlOpen=true; try{ wlOpen=localStorage.getItem("md.wlopen")!=="0"; }catch(e){}
+  const wlExpanded=new Set();
   function renderWatch(){
     const el=$("watch"); $("wlCount").textContent=watch.length?watch.length:"";
-    if(!watch.length){ el.hidden=true; return; }
+    if(!watch.length||(cat!=="all"&&cat!=="watch")){ el.hidden=true; return; }
     el.hidden=false;
-    const prices=current?.prices||{};
+    const prices=current?.prices||{}; const full=cat==="watch";
+    let withNews=0;
     const rows=watch.map(w=>{
-      const p=prices[w.sym]; const name=w.name||(p&&p[0])||w.sym;
+      const p=prices[w.sym]; const name=(w.name||(p&&p[0])||w.sym).replace(/ Limited$/i,"");
       const news=(current?.items||[]).filter(it=>it.category!=="calendar"&&matchesWatch(it,w));
       const cal=(current?.items||[]).filter(it=>it.category==="calendar"&&matchesWatch(it,w));
-      const px=p?`<span class="px">₹${Number(p[1]).toLocaleString("en-IN")} <span class="${pctClass(p[2])}">${fmtPct(p[2])}</span>${p[3]>=3?` · vol ${p[3]}×`:""}</span>`:"";
-      return `<div class="wrow"><div class="wtop"><span class="co">${esc(name)}</span><span class="tk">${esc(w.sym)}</span>${px}</div>${cal.length?`<div class="wnone">Results: ${esc(cal[0].when||"")}</div>`:""}${news.length?`<div class="wnews">${news.map(it=>`<div><span class="tag">${esc(CAT_LABEL[it.category]||it.category)}</span>${esc(it.fact)}${it.source?` <span class="tk">· ${esc(it.source)}</span>`:""}</div>`).join("")}</div>`:`<div class="wnone">No news in this digest</div>`}</div>`;
+      if(news.length) withNews++;
+      const open=full||wlExpanded.has(w.sym);
+      const px=p?`<span class="px">₹${Number(p[1]).toLocaleString("en-IN")} <span class="${pctClass(p[2])}">${fmtPct(p[2])}</span></span>`:`<span class="px"></span>`;
+      const badge=news.length?`<span class="nb">${news.length} news</span>`:(cal.length?`<span class="nb">results ${esc(cal[0].when||"")}</span>`:"");
+      return `<div class="wrow ${open?"open":""}" data-sym="${esc(w.sym)}"><div class="wtop"><span class="co">${esc(name)}</span>${badge}${px}</div>${open?(news.length?`<div class="wnews">${news.map(it=>`<div><span class="tag">${esc(CAT_LABEL[it.category]||it.category)}</span>${esc(it.fact)}${it.source?` <span class="tk">· ${esc(it.source)}</span>`:""}</div>`).join("")}</div>`:`<div class="wnone">No news in this digest${cal.length?` · results ${esc(cal[0].when||"")}`:""}</div>`):""}</div>`;
     }).join("");
-    el.innerHTML=`<div class="section" style="--c:#ca8a04"><i></i><h2>Watchlist</h2><span class="n">${watch.length}</span></div><div class="wsec">${rows}</div>`;
+    el.innerHTML=`<div class="section" style="--c:#ca8a04"><i></i><h2>Watchlist</h2><span class="n">${watch.length}${withNews?` · ${withNews} with news`:""}</span><button class="open" type="button" id="wlToggle" aria-label="Collapse">${wlOpen||full?"▾":"▸"}</button></div>${(wlOpen||full)?`<div class="wsec">${rows}</div>`:""}`;
   }
   function renderAll(){ renderRunSel(); renderCats(); renderMarket(); renderBrief(); renderWatch(); renderFeed(); }
 
@@ -373,6 +383,7 @@ footer{color:var(--muted);font-size:12px;margin-top:28px;line-height:1.5}
     }catch(e){ renderAll(); renderStatus(false,"Couldn't load the digest index."); }
   }
 
+  $("watch").addEventListener("click",e=>{ if(e.target.closest("#wlToggle")){ wlOpen=!wlOpen; try{localStorage.setItem("md.wlopen",wlOpen?"1":"0");}catch(x){} renderWatch(); return; } const r=e.target.closest(".wrow[data-sym]"); if(r&&cat!=="watch"){ const s=r.dataset.sym; wlExpanded.has(s)?wlExpanded.delete(s):wlExpanded.add(s); renderWatch(); } });
   $("feed").addEventListener("click",e=>{ const m=e.target.closest("[data-more]"); const l=e.target.closest("[data-less]"); const o=e.target.closest(".open[data-cat]"); if(m){ expanded.add(m.dataset.more); renderFeed(); } else if(l){ expanded.delete(l.dataset.less); renderFeed(); const s=$("sec-"+l.dataset.less); if(s) s.scrollIntoView({block:"start"}); } else if(o){ cat=o.dataset.cat; try{localStorage.setItem("md.cat",cat)}catch(x){} renderCats(); renderFeed(); window.scrollTo({top:0}); } });
   $("cats").addEventListener("click",e=>{ const b=e.target.closest("[data-cat]"); if(!b) return; cat=b.dataset.cat; try{localStorage.setItem("md.cat",cat)}catch(x){} renderCats(); renderFeed(); });
   $("thr").addEventListener("click",e=>{ const b=e.target.closest("[data-t]"); if(!b) return; thr=+b.dataset.t; try{localStorage.setItem("md.thr",thr)}catch(x){} [...$("thr").children].forEach(c=>c.setAttribute("aria-pressed",c===b)); renderFeed(); });
