@@ -996,10 +996,7 @@ def main():
     items.sort(key=lambda i: (-i.get("materiality", 1), i["category"]))
 
     label_mode = {"full": "Full digest", "movers": "Movers", "orders": "Orders", "results": "Results", "policy": "Policy", "custom": "Custom: " + args.query[:40]}[args.mode]
-    run_id = f"{t0.strftime('%Y-%m-%d')}-{args.mode}"
-    n = 2
-    while (DATA / f"{run_id}.json").exists():
-        run_id = f"{t0.strftime('%Y-%m-%d')}-{args.mode}-{n}"; n += 1
+    run_id = f"{t0.strftime('%Y-%m-%d')}-{t0.strftime('%H%M')}-{args.mode}"
 
     market = {}
     if glob:

@@ -6,16 +6,16 @@
    "date": "2026-10-26",
    "generatedAt": "2026-10-26T15:42:37Z",
    "mode": "full",
-   "count": 279,
+   "count": 200,
    "counts": {
     "deals": 33,
     "movers": 23,
-    "volume": 20,
+    "volume": 3,
     "global": 37,
     "mna": 9,
     "orders": 16,
     "policy": 24,
-    "results": 117
+    "results": 55
    }
   },
   {
@@ -24,7 +24,7 @@
    "date": "2026-10-26",
    "generatedAt": "2026-10-26T15:37:25Z",
    "mode": "full",
-   "count": 289,
+   "count": 200,
    "counts": {
     "deals": 33,
     "mna": 8,
@@ -33,8 +33,8 @@
     "movers": 24,
     "orders": 18,
     "other": 1,
-    "results": 119,
-    "volume": 20
+    "results": 47,
+    "volume": 3
    }
   },
   {
