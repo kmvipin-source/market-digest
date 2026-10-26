@@ -173,34 +173,55 @@ def fetch_bse(since):
     return out
 
 def fetch_results_calendar(days=7):
-    """Companies with results board meetings in the next `days` days (BSE forthcoming results)."""
+    """Companies with results board meetings in the next `days` days. BSE API first, Moneycontrol calendar as fallback."""
     h = {"Referer": "https://www.bseindia.com/", "Origin": "https://www.bseindia.com"}
     d0 = now_ist(); d1 = d0 + dt.timedelta(days=days)
-    rows = []
-    for url, params in (
+    out, notes = [], []
+    attempts = [
+        (BSE_BOARD, {"fromdate": d0.strftime("%Y%m%d"), "todate": d1.strftime("%Y%m%d"), "purpose": "P.1", "scripcode": "", "strSearch": "P"}),
         (BSE_FORTH, {"scripcode": "", "Fdate": d0.strftime("%Y%m%d"), "TDate": d1.strftime("%Y%m%d"), "Purpose": "P.1", "strSearch": "P"}),
-        (BSE_BOARD, {"scripcode": "", "Fdate": d0.strftime("%Y%m%d"), "TDate": d1.strftime("%Y%m%d"), "Purpose": "", "strSearch": "P", "ddlPurpose": "P.1"}),
-    ):
+        (BSE_BOARD, {"Fdate": d0.strftime("%Y%m%d"), "TDate": d1.strftime("%Y%m%d"), "Purpose": "P.1", "scripcode": "", "strSearch": "P"}),
+    ]
+    for url, params in attempts:
         try:
             r = get(url, params=params, headers=h)
             data = r.json()
             rows = data if isinstance(data, list) else (data.get("Table") or data.get("data") or [])
-            if rows:
+            notes.append(f"{url.split('/')[-2]}:{len(rows)}")
+            for row in rows:
+                name = clean(row.get("short_name") or row.get("Long_Name") or row.get("SLONGNAME") or row.get("sLongName") or row.get("LongName") or "")
+                date = clean(str(row.get("meeting_date") or row.get("BM_DATE") or row.get("Meeting_Date") or row.get("DT_TM") or row.get("BoardMeetingDate") or ""))
+                purpose = clean(row.get("PURPOSE") or row.get("Purpose") or row.get("purpose") or "Results")
+                if not name or not date or (purpose and not re.search(r"result", purpose, re.I)):
+                    continue
+                out.append({"name": name, "date": date[:10], "purpose": purpose[:80]})
+            if out:
                 break
         except Exception as ex:
-            log(f"results calendar {url.split('/')[-2]} FAILED: {ex}")
-    out = []
-    for row in rows:
-        name = clean(row.get("short_name") or row.get("Long_Name") or row.get("SLONGNAME") or row.get("sLongName") or "")
-        date = clean(str(row.get("meeting_date") or row.get("BM_DATE") or row.get("Meeting_Date") or row.get("DT_TM") or ""))[:10]
-        purpose = clean(row.get("PURPOSE") or row.get("Purpose") or "Results")
-        if not name or not date:
-            continue
-        if purpose and not re.search(r"result", purpose, re.I):
-            continue
-        out.append({"name": name, "date": date, "purpose": purpose[:80]})
-    log(f"results calendar: {len(out)} companies"); stat("Results calendar (BSE)", len(out) > 0, len(out))
-    return out
+            notes.append(f"{url.split('/')[-2]} err {str(ex)[:60]}")
+    if not out:
+        try:
+            r = get("https://www.moneycontrol.com/stocks/marketinfo/results-calendar/", headers={"Referer": "https://www.moneycontrol.com/"})
+            html = r.text
+            # rows look like: <td ...><a ...>Company</a></td> ... <td>27-Oct-2026</td>
+            for m in re.finditer(r'<a[^>]+href="[^"]*/stockpricequote/[^"]*"[^>]*>([^<]{2,60})</a>.{0,600}?(\d{1,2}-[A-Za-z]{3}-\d{4})', html, re.S):
+                name, date = clean(m.group(1)), m.group(2)
+                try:
+                    d = dt.datetime.strptime(date, "%d-%b-%Y").replace(tzinfo=IST)
+                except Exception:
+                    continue
+                if d0.date() <= d.date() <= d1.date():
+                    out.append({"name": name, "date": d.strftime("%Y-%m-%d"), "purpose": "Results"})
+            notes.append(f"moneycontrol:{len(out)}")
+        except Exception as ex:
+            notes.append(f"moneycontrol err {str(ex)[:60]}")
+    seen = set(); uniq = []
+    for c in out:
+        k = (c["name"].lower(), c["date"])
+        if k not in seen:
+            seen.add(k); uniq.append(c)
+    log(f"results calendar: {len(uniq)} companies ({'; '.join(notes)})"); stat("Results calendar", len(uniq) > 0, len(uniq), "; ".join(notes))
+    return uniq
 
 def nse_universe():
     try:
@@ -645,11 +666,13 @@ def main():
             key = re.sub(r"[^a-z0-9]", "", c["name"].lower())[:14]
             sym = by_name.get(key)
             cap = seg.get(sym, "") if sym else ""
-            try:
-                d = dt.datetime.strptime(c["date"][:10].replace("/", "-"), "%Y-%m-%d") if "-" in c["date"] else dt.datetime.strptime(c["date"][:10], "%d %b %Y")
-                when = d.strftime("%a %d %b")
-            except Exception:
-                when = c["date"]
+            when, sort_date = c["date"], c["date"]
+            for fmt in ("%Y-%m-%d", "%d-%m-%Y", "%d/%m/%Y", "%d %b %Y", "%d-%b-%Y", "%Y%m%d"):
+                try:
+                    d = dt.datetime.strptime(c["date"][:10].strip(), fmt); when = d.strftime("%a %d %b"); sort_date = d.strftime("%Y-%m-%d"); break
+                except Exception:
+                    continue
+            c["date"] = sort_date
             items.append({"category": "calendar", "company": c["name"], "ticker": sym or "", "cap": cap,
                           "fact": f"Results board meeting · {when}", "when": when, "sortDate": c["date"],
                           "source": "BSE", "materiality": 3 if cap in ("Large", "Mid") else (2 if cap == "Small" else 1)})
