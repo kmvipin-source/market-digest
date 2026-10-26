@@ -19,7 +19,7 @@ import requests
 ROOT = Path(__file__).resolve().parent.parent
 DATA = ROOT / "data"
 IST = ZoneInfo("Asia/Kolkata")
-UA = {"User-Agent": "Mozilla/5.0 (compatible; MarketDigest/1.0; +https://github.com)", "Accept": "*/*"}
+UA = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36", "Accept": "application/rss+xml, application/xml, text/xml, application/json, */*", "Accept-Language": "en-IN,en;q=0.9"}
 
 NEWS_FEEDS = {
     "Economic Times Markets": "https://economictimes.indiatimes.com/markets/rssfeeds/1977021501.cms",
@@ -32,6 +32,15 @@ NEWS_FEEDS = {
     "Mint Companies": "https://www.livemint.com/rss/companies",
     "Reuters India (via Google News)": "https://news.google.com/rss/search?q=site:reuters.com+India+stocks&hl=en-IN&gl=IN&ceid=IN:en",
 }
+GNEWS = "https://news.google.com/rss/search?q={q}+when:1d&hl=en-IN&gl=IN&ceid=IN:en"
+GNEWS_FEEDS = {
+    "Google News · order wins": GNEWS.format(q="%22order%22+OR+%22contract%22+OR+%22LoI%22+bags+crore+shares"),
+    "Google News · results": GNEWS.format(q="Q2+results+net+profit+crore"),
+    "Google News · M&A": GNEWS.format(q="acquisition+OR+stake+OR+merger+crore+company+India"),
+    "Google News · policy": GNEWS.format(q="RBI+OR+SEBI+OR+government+markets+policy+India"),
+    "Google News · markets": GNEWS.format(q="Sensex+Nifty+today"),
+    "Google News · stocks in focus": GNEWS.format(q="%22stocks+to+watch%22+OR+%22stocks+in+focus%22"),
+}
 POLICY_FEEDS = {
     "RBI": "https://www.rbi.org.in/pressreleases_rss.xml",
     "SEBI": "https://www.sebi.gov.in/sebirss.xml",
@@ -41,6 +50,10 @@ BSE_ANN = "https://api.bseindia.com/BseIndiaAPI/api/AnnSubCategoryGetData/w"
 NIFTY500_CSV = "https://archives.nseindia.com/content/indices/ind_nifty500list.csv"
 
 CATS = ["results", "orders", "mna", "policy", "movers", "global", "other"]
+STATS = {}
+
+def stat(name, ok, n=0, err=""):
+    STATS[name] = {"ok": ok, "n": n, "err": str(err)[:160]}
 
 # ---------------------------------------------------------------- helpers
 def log(*a):
@@ -78,17 +91,21 @@ def fetch_feeds(feeds, since):
                 when = dt.datetime(*ts[:6], tzinfo=dt.timezone.utc) if ts else None
                 if when and when < since:
                     continue
+                title = clean(e.get("title"))
+                src = name
+                if name.startswith("Google News") and " - " in title:
+                    title, src = title.rsplit(" - ", 1)
                 out.append({
-                    "source": name,
-                    "title": clean(e.get("title")),
+                    "source": src,
+                    "title": title,
                     "summary": clean(e.get("summary", ""))[:400],
                     "link": e.get("link", ""),
                     "when": iso_utc(when) if when else None,
                 })
                 n += 1
-            log(f"feed {name}: {n} items")
+            log(f"feed {name}: {n} items"); stat(name, True, n)
         except Exception as ex:
-            log(f"feed {name} FAILED: {ex}")
+            log(f"feed {name} FAILED: {ex}"); stat(name, False, 0, ex)
     return out
 
 def fetch_bse(since):
@@ -104,7 +121,7 @@ def fetch_bse(since):
             r = get(BSE_ANN, params=params, headers=h)
             rows = r.json().get("Table", [])
         except Exception as ex:
-            log(f"bse page {page} FAILED: {ex}")
+            log(f"bse page {page} FAILED: {ex}"); stat("BSE announcements", False, len(out), ex)
             break
         if not rows:
             break
@@ -125,6 +142,7 @@ def fetch_bse(since):
             })
         log(f"bse page {page}: {len(rows)} rows")
         time.sleep(0.8)
+    stat("BSE announcements", True, len(out))
     return out
 
 def nse_universe():
@@ -153,7 +171,7 @@ def fetch_movers(threshold, intraday):
     try:
         df = yf.download(tickers, period="5d", interval="1d", group_by="ticker", threads=True, progress=False, auto_adjust=False)
     except Exception as ex:
-        log(f"yfinance download FAILED: {ex}"); return []
+        log(f"yfinance download FAILED: {ex}"); stat("NSE prices (Yahoo)", False, 0, ex); return []
     for s, t in zip(syms, tickers):
         try:
             sub = df[t].dropna(how="all")
@@ -174,7 +192,7 @@ def fetch_movers(threshold, intraday):
         except Exception:
             continue
     out.sort(key=lambda x: -abs(x["pct"]))
-    log(f"movers >= {threshold}%: {len(out)}")
+    log(f"movers >= {threshold}%: {len(out)}"); stat("NSE prices (Yahoo)", True, len(out))
     return out[:40]
 
 def fetch_global():
@@ -253,7 +271,7 @@ def groq_classify(raw, mode, query, key):
             except Exception as ex:
                 log(f"groq batch {i} attempt {attempt} failed: {ex}")
                 time.sleep(3)
-    log(f"groq classified: {len(items)} items from {len(raw)} headlines")
+    log(f"groq classified: {len(items)} items from {len(raw)} headlines"); stat("Groq classifier", True, len(items))
     return items
 
 def dedupe(items):
@@ -292,6 +310,7 @@ def main():
     else:
         if args.mode in ("full", "orders", "results", "policy", "custom"):
             raw += fetch_feeds(NEWS_FEEDS, since)
+            raw += fetch_feeds(GNEWS_FEEDS, since)
             raw += fetch_bse(since)
         if args.mode in ("full", "policy", "custom"):
             raw += fetch_feeds(POLICY_FEEDS, since)
@@ -328,7 +347,7 @@ def main():
            "generatedAt": iso_utc(), "mode": args.mode, "query": args.query, "threshold": args.threshold,
            "market": market, "items": items[:200],
            "sources": sorted({r.get("link", "") for r in raw if r.get("link")})[:80],
-           "classifier": "groq" if key else "rules"}
+           "classifier": "groq" if key else "rules", "stats": STATS, "rawCount": len(raw)}
     DATA.mkdir(exist_ok=True)
     (DATA / f"{run_id}.json").write_text(json.dumps(doc, ensure_ascii=False, indent=1))
 
