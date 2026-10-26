@@ -40,6 +40,8 @@ GNEWS_FEEDS = {
     "Google News · policy": GNEWS.format(q="RBI+OR+SEBI+OR+government+markets+policy+India"),
     "Google News · markets": GNEWS.format(q="Sensex+Nifty+today"),
     "Google News · stocks in focus": GNEWS.format(q="%22stocks+to+watch%22+OR+%22stocks+in+focus%22"),
+    "Google News · ratings": GNEWS.format(q="(upgrade+OR+downgrade+OR+%22target+price%22+OR+%22initiates+coverage%22)+shares+brokerage"),
+    "Google News · bulk deals": GNEWS.format(q="%22bulk+deal%22+OR+%22block+deal%22+shares"),
 }
 POLICY_FEEDS = {
     "RBI": "https://www.rbi.org.in/pressreleases_rss.xml",
@@ -72,7 +74,7 @@ def segment_map():
     log(f"segment map: {len(seg)} symbols")
     return seg
 
-CATS = ["calendar", "results", "orders", "mna", "policy", "movers", "volume", "global", "other"]
+CATS = ["calendar", "results", "orders", "mna", "policy", "movers", "volume", "deals", "ratings", "actions", "global", "other"]
 STATS = {}
 NAMES = {}
 BREADTH = {}
@@ -397,6 +399,154 @@ def fetch_global():
         log(f"global FAILED: {ex}")
     return out
 
+# ---------------------------------------------------------------- extra NSE/BSE datasets
+DELIV = {}
+def last_trading_days(n=4):
+    d = now_ist()
+    if (d.hour, d.minute) < (18, 30):  # today's files publish in the evening
+        d -= dt.timedelta(days=1)
+    out = []
+    while len(out) < n:
+        if d.weekday() < 5:
+            out.append(d)
+        d -= dt.timedelta(days=1)
+    return out
+
+def nse_csv(url_fmt):
+    """Try the newest trading days until a file exists."""
+    for d in last_trading_days():
+        url = url_fmt.format(d=d)
+        try:
+            r = get(url, headers={"Referer": "https://www.nseindia.com/"})
+            if r.status_code == 200 and len(r.text) > 200 and "<html" not in r.text[:200].lower():
+                return r.text, d
+        except Exception:
+            continue
+    return None, None
+
+def fetch_delivery():
+    """Delivery % per symbol from NSE's full bhavcopy."""
+    text, d = nse_csv("https://archives.nseindia.com/products/content/sec_bhavdata_full_{d:%d%m%Y}.csv")
+    if not text:
+        stat("Delivery % (NSE bhavcopy)", False, 0, "no file"); return
+    import csv, io
+    n = 0
+    for row in csv.DictReader(io.StringIO(text)):
+        row = {k.strip(): (v or "").strip() for k, v in row.items() if k}
+        if row.get("SERIES") not in ("EQ", "BE"):
+            continue
+        try:
+            DELIV[row["SYMBOL"]] = float(row.get("DELIV_PER") or 0); n += 1
+        except Exception:
+            pass
+    stat("Delivery % (NSE bhavcopy)", n > 0, n, f"for {d:%d %b}" if d else "")
+
+def fetch_deals():
+    """Bulk and block deals (NSE daily files)."""
+    import csv, io
+    out = []
+    for kind, url in (("Bulk", "https://archives.nseindia.com/content/equities/bulk.csv"), ("Block", "https://archives.nseindia.com/content/equities/block.csv")):
+        try:
+            r = get(url, headers={"Referer": "https://www.nseindia.com/"})
+            rows = list(csv.DictReader(io.StringIO(r.text)))
+            for row in rows:
+                row = {k.strip(): (v or "").strip() for k, v in row.items() if k}
+                sym = row.get("Symbol") or row.get("SYMBOL"); name = row.get("Security Name") or row.get("SECURITY NAME") or sym
+                client = row.get("Client Name") or row.get("CLIENT NAME") or ""
+                side = row.get("Buy/Sell") or row.get("BUY/SELL") or ""
+                qty = (row.get("Quantity Traded") or row.get("QUANTITY TRADED") or "0").replace(",", "")
+                px = (row.get("Trade Price / Wght. Avg. Price") or row.get("TRADE PRICE / WGHT. AVG. PRICE") or row.get("Trade Price") or "0").replace(",", "")
+                date = row.get("Date") or row.get("DATE") or ""
+                try:
+                    val = float(qty) * float(px) / 1e7
+                except Exception:
+                    val = 0
+                if not sym or val < 1:  # ignore < ₹1 Cr
+                    continue
+                out.append({"kind": kind, "sym": sym, "name": name, "client": client[:60], "side": side.upper()[:4], "qty": int(float(qty)), "px": float(px), "valCr": round(val, 1), "date": date})
+        except Exception as ex:
+            log(f"{kind} deals FAILED: {ex}")
+    out.sort(key=lambda x: -x["valCr"])
+    stat("Bulk/block deals (NSE)", len(out) > 0, len(out))
+    return out[:40]
+
+def fetch_52w():
+    """Symbols that set a new 52-week high or low in the latest session (NSE file)."""
+    import csv, io
+    text, d = nse_csv("https://archives.nseindia.com/content/CM_52_wk_High_low_{d:%d%m%Y}.csv")
+    if not text:
+        stat("52-week lists (NSE)", False, 0, "no file"); return [], []
+    highs, lows = [], []
+    lines = text.splitlines()
+    # file has a few header lines before the real header
+    start = next((i for i, l in enumerate(lines) if l.upper().startswith("SYMBOL")), 0)
+    today = d.strftime("%d-%b-%Y") if d else ""
+    for row in csv.DictReader(io.StringIO("\n".join(lines[start:]))):
+        row = {k.strip(): (v or "").strip() for k, v in row.items() if k}
+        if row.get("SERIES", "EQ") not in ("EQ", "BE", ""):
+            continue
+        sym = row.get("SYMBOL")
+        hd = row.get("52_Week_High_Date") or row.get("52_WEEK_HIGH_DATE") or ""
+        ld = row.get("52_Week_Low_DT") or row.get("52_Week_Low_Date") or row.get("52_WEEK_LOW_DATE") or ""
+        if sym and today and hd.lower().startswith(today.lower()[:6]):
+            highs.append(sym)
+        if sym and today and ld.lower().startswith(today.lower()[:6]):
+            lows.append(sym)
+    stat("52-week lists (NSE)", True, len(highs) + len(lows), f"for {d:%d %b}" if d else "")
+    return highs, lows
+
+def fetch_flows(raw):
+    """FII/DII cash-market flows from the day's headlines (published by exchanges after close; reported widely)."""
+    best = ""
+    for rr in raw:
+        text = rr["title"] + " " + rr["summary"]
+        f = re.search(r"FII[s]?[^.]{0,60}?(bought|buy|buying|sold|sell|selling|offload)[^.]{0,40}?(?:₹|Rs\.?|INR)\s?([\d,]+(?:\.\d+)?)\s*(crore|cr)", text, re.I)
+        d = re.search(r"DII[s]?[^.]{0,60}?(bought|buy|buying|sold|sell|selling)[^.]{0,40}?(?:₹|Rs\.?|INR)\s?([\d,]+(?:\.\d+)?)\s*(crore|cr)", text, re.I)
+        if f or d:
+            parts = []
+            if f: parts.append(f"FII {'+' if re.search('bou|buy', f.group(1), re.I) else '-'}₹{f.group(2)} Cr")
+            if d: parts.append(f"DII {'+' if re.search('bou|buy', d.group(1), re.I) else '-'}₹{d.group(2)} Cr")
+            best = " / ".join(parts) + f" (per {rr['source']})"
+            break
+    stat("FII/DII flows (news)", bool(best), 1 if best else 0, "" if best else "not found in headlines")
+    return best
+
+def fetch_corp_actions(days=7):
+    """Ex-dates for dividends, bonus, splits, rights in the next `days` days (BSE published corporate-actions API)."""
+    d0 = now_ist(); d1 = d0 + dt.timedelta(days=days)
+    out = []
+    try:
+        h = {"Referer": "https://www.bseindia.com/", "Origin": "https://www.bseindia.com"}
+        r = get("https://api.bseindia.com/BseIndiaAPI/api/CorporateAction/w", params={"scripcode": "", "Fdate": d0.strftime("%Y%m%d"), "TDate": d1.strftime("%Y%m%d"), "Purposecode": "", "strSearch": "S", "ddlcategorys": "E", "ddlindustrys": ""}, headers=h)
+        data = r.json(); rows = data if isinstance(data, list) else (data.get("Table") or [])
+        for row in rows:
+            purpose = clean(row.get("Purpose") or row.get("purpose_name") or ""); ex = clean(str(row.get("Ex_date") or row.get("exdate") or ""))
+            name = clean(row.get("short_name") or row.get("long_name") or "")
+            if name and re.search(r"dividend|bonus|split|rights|buyback|buy back", purpose, re.I):
+                out.append({"sym": "", "name": name, "purpose": purpose[:90], "exDate": ex[:10]})
+    except Exception as ex:
+        log(f"corp actions BSE failed: {ex}")
+    stat("Corporate actions (BSE)", len(out) > 0, len(out))
+    return out[:60]
+
+def index_dma():
+    """Nifty / Midcap / Smallcap vs 50- and 200-day averages."""
+    try:
+        import yfinance as yf
+        res = {}
+        for label, t in (("Nifty 50", "^NSEI"), ("Midcap", "^NSEMDCP50"), ("Smallcap", "^CNXSC")):
+            df = yf.download(t, period="1y", interval="1d", progress=False, auto_adjust=False)
+            if df is None or len(df) < 60:
+                continue
+            close = df["Close"].squeeze().dropna()
+            px, d50, d200 = float(close.iloc[-1]), float(close.tail(50).mean()), float(close.tail(200).mean()) if len(close) >= 200 else None
+            res[label] = {"px": round(px), "dma50": round(d50), "dma200": round(d200) if d200 else None,
+                          "vs50": f"{(px / d50 - 1) * 100:+.1f}%", "vs200": f"{(px / d200 - 1) * 100:+.1f}%" if d200 else ""}
+        stat("Index DMAs", len(res) > 0, len(res))
+        return res
+    except Exception as ex:
+        log(f"dma failed: {ex}"); stat("Index DMAs", False, 0, ex); return {}
+
 # ---------------------------------------------------------------- mover reasons
 STOP = {"ltd", "limited", "india", "industries", "the", "co", "company", "corporation", "corp", "and", "of", "&", "international", "enterprises", "technologies", "technology", "services", "solutions", "products", "global", "group", "holdings", "finance", "financial", "bank", "power", "energy", "infra", "infrastructure", "pharma", "pharmaceuticals", "chemicals", "steel", "motors", "textiles", "mills"}
 
@@ -469,7 +619,7 @@ def rule_classify(raw):
     return items
 
 GROQ_URL = "https://api.groq.com/openai/v1/chat/completions"
-PROMPT = """You turn Indian stock-market headlines into a structured digest. Rules: facts only, in your own words, each fact at most 25 words with the numbers; never add buy/sell/target language; drop items that are not material market news (listicles, opinion, lifestyle, ads, routine compliance filings, IPO GMP chatter); merge duplicates of the same story; company = the listed company or body (e.g. "RBI", "Bond market"); materiality 1-3 (3 = index name, or deal/number large relative to the company). Categories: results (quarterly numbers, guidance, dividends, buybacks), orders (order wins, contracts, LOIs), mna (acquisitions, stake sales, mergers, open offers), policy (RBI/SEBI/government/regulation/macro-India), global (overseas markets, crude, currency), other (management changes, ratings, fund-raises, bulk deals, legal). MODE: {mode}. {query}
+PROMPT = """You turn Indian stock-market headlines into a structured digest. Rules: facts only, in your own words, each fact at most 25 words with the numbers; never add buy/sell/target language; drop items that are not material market news (listicles, opinion, lifestyle, ads, routine compliance filings, IPO GMP chatter); merge duplicates of the same story; company = the listed company or body (e.g. "RBI", "Bond market"); materiality 1-3 (3 = index name, or deal/number large relative to the company). Categories: results (quarterly numbers, guidance, dividends, buybacks), orders (order wins, contracts, LOIs), mna (acquisitions, stake sales, mergers, open offers), policy (RBI/SEBI/government/regulation/macro-India), global (overseas markets, crude, currency), ratings (brokerage upgrades/downgrades, target changes, coverage initiations: state the broker, the new stance and target as reported), other (management changes, fund-raises, legal). MODE: {mode}. {query}
 Return ONLY a JSON object: {{"items":[{{"category":"...","company":"...","fact":"...","value":"<₹ amount for orders/deals or omit>","source":"<source name as given>","materiality":1}}]}}
 HEADLINES (source | title | summary):
 {rows}"""
@@ -492,7 +642,7 @@ def prefilter(raw):
     return out[:400]
 
 GROQ_URL = "https://api.groq.com/openai/v1/chat/completions"
-PROMPT = """You turn Indian stock-market headlines into a structured digest. Rules: facts only, in your own words, each fact at most 25 words with the numbers; never add buy/sell/target language; drop items that are not material market news (listicles, opinion, lifestyle, ads, routine compliance filings, IPO GMP chatter); merge duplicates of the same story; company = the listed company or body (e.g. "RBI", "Bond market"); materiality 1-3 (3 = index name, or deal/number large relative to the company). Categories: results (quarterly numbers, guidance, dividends, buybacks), orders (order wins, contracts, LOIs), mna (acquisitions, stake sales, mergers, open offers), policy (RBI/SEBI/government/regulation/macro-India), global (overseas markets, crude, currency), other (management changes, ratings, fund-raises, bulk deals, legal). MODE: {mode}. {query}
+PROMPT = """You turn Indian stock-market headlines into a structured digest. Rules: facts only, in your own words, each fact at most 25 words with the numbers; never add buy/sell/target language; drop items that are not material market news (listicles, opinion, lifestyle, ads, routine compliance filings, IPO GMP chatter); merge duplicates of the same story; company = the listed company or body (e.g. "RBI", "Bond market"); materiality 1-3 (3 = index name, or deal/number large relative to the company). Categories: results (quarterly numbers, guidance, dividends, buybacks), orders (order wins, contracts, LOIs), mna (acquisitions, stake sales, mergers, open offers), policy (RBI/SEBI/government/regulation/macro-India), global (overseas markets, crude, currency), ratings (brokerage upgrades/downgrades, target changes, coverage initiations: state the broker, the new stance and target as reported), other (management changes, fund-raises, legal). MODE: {mode}. {query}
 Return ONLY a JSON object: {{"items":[{{"category":"...","company":"...","fact":"...","value":"<rupee amount for orders/deals or omit>","source":"<source name as given>","materiality":1}}]}}
 HEADLINES (source | title | summary):
 {rows}"""
@@ -580,6 +730,8 @@ def dedupe(items):
         k = (norm(it.get("company")), it.get("category"))
         if it.get("category") == "calendar":
             k = (norm(it.get("company")), "calendar")
+        elif it.get("category") in ("deals", "actions") or it.get("subtype"):
+            k = (norm(it.get("company")), it.get("category"), it.get("subtype", ""), re.sub(r"\W+", "", str(it.get("fact", "")).lower())[:40])
         elif norm(it.get("company")) == "indexwrap":
             k = ("indexwrap", "global"); it["category"] = "global"; it["company"] = "Sensex / Nifty"
         elif it.get("category") in ("movers", "global") and it.get("fact"):
@@ -677,6 +829,15 @@ def main():
         log("falling back to keyword rules"); items = rule_classify(raw)
     if args.mode in ("orders", "results", "policy"):
         items = [i for i in items if i["category"] == args.mode]
+    deals, highs, lows, actions, dma, flows = [], [], [], [], {}, ""
+    if args.mode in ("full", "movers", "custom"):
+        fetch_delivery()
+        deals = fetch_deals()
+        highs, lows = fetch_52w()
+        dma = index_dma()
+    if args.mode in ("full", "custom"):
+        flows = fetch_flows(raw)
+        actions = fetch_corp_actions()
     lookups = 0
     for m in movers:
         reason, rsrc = find_reason(m["company"], items, raw)
@@ -685,16 +846,35 @@ def main():
         base = f"₹{m['price']:,} · volume {m['volx']}× average" if m.get("volx") else f"₹{m['price']:,}"
         if m.get("w52"): base += f" · {m['w52']}"
         elif m.get("fromHigh") is not None: base += f" · {m['fromHigh']:+.0f}% from 52-wk high"
+        if DELIV.get(m["company"]) is not None: base += f" · delivery {DELIV[m['company']]:.0f}%"
         fact = f"{base}. {reason}" if reason else f"{base}. Reason: none found in today's filings or news"
         items.append({"category": "movers", "company": NAMES.get(m["company"], m["company"]), "ticker": m["company"], "pct": m["pct"], "cap": m.get("cap", ""),
                       "fact": fact, "reasonSource": rsrc or "",
                       "source": "NSE prices", "materiality": 3 if m.get("cap") in ("Large", "Mid") else (2 if abs(m["pct"]) >= 15 else 1)})
     for v in VOLSPIKES:
         reason, rsrc = find_reason(v["company"], items, raw)
-        extra = f" · {v['w52']}" if v.get("w52") else ""
+        extra = (f" · {v['w52']}" if v.get("w52") else "") + (f" · delivery {DELIV[v['company']]:.0f}%" if DELIV.get(v["company"]) is not None else "")
         items.append({"category": "volume", "company": NAMES.get(v["company"], v["company"]), "ticker": v["company"], "pct": v["pct"], "cap": v.get("cap", ""),
                       "fact": f"Volume {v['volx']}× average at ₹{v['price']:,}{extra}. " + (reason or "Reason: none found in today's filings or news"),
                       "reasonSource": rsrc or "", "source": "NSE prices", "materiality": 2 if v.get("cap") in ("Large", "Mid") else 1})
+    seg_all = segment_map() if (deals or highs or lows) else {}
+    for dl in deals:
+        cap = seg_all.get(dl["sym"], "")
+        items.append({"category": "deals", "company": NAMES.get(dl["sym"], dl["name"]), "ticker": dl["sym"], "cap": cap, "value": f"₹{dl['valCr']:,} Cr",
+                      "fact": f"{dl['kind']} deal · {dl['client'] or 'undisclosed'} {('bought' if dl['side'].startswith('B') else 'sold')} {dl['qty']:,} shares at ₹{dl['px']:,}",
+                      "when": dl["date"], "source": "NSE", "materiality": 3 if dl["valCr"] >= 50 else (2 if dl["valCr"] >= 10 else 1)})
+    for sym in highs[:60]:
+        if any(i.get("ticker") == sym and i["category"] in ("movers", "volume") for i in items):
+            continue
+        p = PRICES.get(sym)
+        items.append({"category": "other", "subtype": "high52", "company": NAMES.get(sym, sym), "ticker": sym, "cap": seg_all.get(sym, ""), "pct": p[2] if p else None,
+                      "fact": "New 52-week high" + (f" at ₹{p[1]:,}" if p else "") + (f" · delivery {DELIV[sym]:.0f}%" if DELIV.get(sym) is not None else ""), "source": "NSE", "materiality": 2 if seg_all.get(sym) in ("Large", "Mid", "Small") else 1})
+    for sym in lows[:40]:
+        p = PRICES.get(sym)
+        items.append({"category": "other", "subtype": "low52", "company": NAMES.get(sym, sym), "ticker": sym, "cap": seg_all.get(sym, ""), "pct": p[2] if p else None,
+                      "fact": "New 52-week low" + (f" at ₹{p[1]:,}" if p else ""), "source": "NSE", "materiality": 2 if seg_all.get(sym) in ("Large", "Mid", "Small") else 1})
+    for a in actions:
+        items.append({"category": "actions", "company": a["name"], "ticker": a.get("sym", ""), "fact": a["purpose"], "when": a.get("exDate", ""), "sortDate": a.get("exDate", ""), "source": "NSE/BSE", "materiality": 1})
     if args.mode in ("full", "results", "custom"):
         cal = fetch_results_calendar()
         seg = segment_map() if cal else {}
@@ -730,6 +910,9 @@ def main():
         market["sectors"] = {k[4:]: v for k, v in glob.items() if k.startswith("sec_")}
         if BREADTH.get("scanned"):
             market["breadth"] = dict(BREADTH)
+        if flows: market["flows"] = flows
+        if dma: market["dma"] = dma
+        market["high52"] = len(highs); market["low52"] = len(lows)
         market["note"] = (f"Quotes as of {glob['asOf']}. " if glob.get("asOf") else "") + "Index, sector and commodity figures from Yahoo Finance; breadth is computed across all liquid NSE stocks."
     window = f"news since {since.astimezone(IST).strftime('%a %d %b %H:%M')} IST"
     doc = {"id": run_id, "label": f"{t0.strftime('%a %d %b')} {t0.strftime('%H:%M')} IST · {label_mode}", "window": window, "date": t0.strftime("%Y-%m-%d"),

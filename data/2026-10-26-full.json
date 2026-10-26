@@ -1,0 +1,415 @@
+{
+ "id": "2026-10-26-full",
+ "label": "Mon 26 Oct 20:17 IST · Full digest",
+ "window": "news since Fri 23 Oct 15:00 IST",
+ "date": "2026-10-26",
+ "generatedAt": "2026-10-26T14:47:10Z",
+ "mode": "full",
+ "query": "",
+ "threshold": 10,
+ "market": {},
+ "items": [
+  {
+   "category": "mna",
+   "company": "Zen Technologies",
+   "fact": "Zen Technologies: Acquires majority stake in Cogknit Semantics",
+   "source": "BSE filing",
+   "materiality": 2,
+   "link": ""
+  },
+  {
+   "category": "mna",
+   "company": "PDS",
+   "fact": "PDS: Raises stake in DBS Lifestyle Hong Kong to 100%",
+   "source": "BSE filing",
+   "materiality": 2,
+   "link": ""
+  },
+  {
+   "category": "mna",
+   "company": "Dr Agarwals Health Care",
+   "fact": "Dr Agarwals Health Care: Merger effective 1 Nov; 23 new shares for every 2 old",
+   "source": "BSE filing",
+   "materiality": 2,
+   "link": ""
+  },
+  {
+   "category": "mna",
+   "company": "PFC / REC",
+   "fact": "PFC / REC: Exchanges give no-objection to the merger",
+   "source": "BSE filing",
+   "materiality": 2,
+   "link": ""
+  },
+  {
+   "category": "mna",
+   "company": "JSW Steel",
+   "fact": "JSW Steel: NCLT sanctions Piombino Steel merger",
+   "source": "BSE filing",
+   "materiality": 2,
+   "link": ""
+  },
+  {
+   "category": "orders",
+   "company": "KEC International",
+   "fact": "KEC International: ₹2,872 Cr PGCIL order for 765 kV transmission lines, described as a record",
+   "source": "BSE filing",
+   "materiality": 2,
+   "link": ""
+  },
+  {
+   "category": "orders",
+   "company": "Ramky Infrastructure",
+   "fact": "Ramky Infrastructure: ₹589 Cr RVNL EPC contract for residential towers in Chhattisgarh",
+   "source": "BSE filing",
+   "materiality": 2,
+   "link": ""
+  },
+  {
+   "category": "orders",
+   "company": "B.L. Kashyap & Sons",
+   "fact": "B.L. Kashyap & Sons: ₹496 Cr civil works order from Signature Global",
+   "source": "BSE filing",
+   "materiality": 2,
+   "link": ""
+  },
+  {
+   "category": "orders",
+   "company": "Rachana Infra",
+   "fact": "Rachana Infra: ₹147 Cr Gujarat road order",
+   "source": "BSE filing",
+   "materiality": 2,
+   "link": ""
+  },
+  {
+   "category": "orders",
+   "company": "Railtel",
+   "fact": "Railtel: ₹20 Cr order from Munitions India",
+   "source": "BSE filing",
+   "materiality": 2,
+   "link": ""
+  },
+  {
+   "category": "orders",
+   "company": "Welspun Corp",
+   "fact": "Welspun Corp: ₹5,500 Cr US gas-pipe order serving a hyperscaler AI data centre",
+   "source": "BSE filing",
+   "materiality": 2,
+   "link": ""
+  },
+  {
+   "category": "orders",
+   "company": "Jyoti Structures",
+   "fact": "Jyoti Structures: ₹690 Cr GETCO order for a 765 kV line in Gujarat",
+   "source": "BSE filing",
+   "materiality": 2,
+   "link": ""
+  },
+  {
+   "category": "orders",
+   "company": "GK Energy",
+   "fact": "GK Energy: ₹330 Cr MSEDCL order for 14,000 solar pumps, 60-day execution",
+   "source": "BSE filing",
+   "materiality": 2,
+   "link": ""
+  },
+  {
+   "category": "orders",
+   "company": "Highway Infrastructure",
+   "fact": "Highway Infrastructure: ₹340 Cr NHAI toll-collection contract",
+   "source": "BSE filing",
+   "materiality": 2,
+   "link": ""
+  },
+  {
+   "category": "orders",
+   "company": "Transrail Lighting",
+   "fact": "Transrail Lighting: ₹927 Cr power T&D orders; also acquires 49% of a 990 MW solar project",
+   "source": "BSE filing",
+   "materiality": 2,
+   "link": ""
+  },
+  {
+   "category": "orders",
+   "company": "Kalpataru Projects",
+   "fact": "Kalpataru Projects: ~₹2,349 Cr of new orders",
+   "source": "BSE filing",
+   "materiality": 2,
+   "link": ""
+  },
+  {
+   "category": "other",
+   "company": "Seamec",
+   "fact": "Seamec: $55 Mn (₹517 Cr) 1,225-day vessel charter for ONGC operations",
+   "source": "BSE filing",
+   "materiality": 2,
+   "link": ""
+  },
+  {
+   "category": "other",
+   "company": "Eternal",
+   "fact": "Eternal: Proposes reorganisation and share swap involving Adonmo–Mygate",
+   "source": "BSE filing",
+   "materiality": 2,
+   "link": ""
+  },
+  {
+   "category": "other",
+   "company": "Sagility",
+   "fact": "Sagility: Acquires Chirok Health to expand provider services",
+   "source": "BSE filing",
+   "materiality": 2,
+   "link": ""
+  },
+  {
+   "category": "other",
+   "company": "Jana Small Finance Bank",
+   "fact": "Jana Small Finance Bank: Clarifies media report of Federal Bank acquisition talks; no confirmed deal",
+   "source": "BSE filing",
+   "materiality": 2,
+   "link": ""
+  },
+  {
+   "category": "global",
+   "company": "Asia",
+   "fact": "Asia (Mon): Nikkei −0.5%, Hang Seng +0.4%, Kospi −0.9%, Shanghai −0.2%",
+   "source": "India TV",
+   "materiality": 1,
+   "link": ""
+  },
+  {
+   "category": "global",
+   "company": "US",
+   "fact": "US (last week): S&P −0.5%, Nasdaq −0.7%, Dow +0.4%; VIX +24% over the month",
+   "source": "Quantscase",
+   "materiality": 1,
+   "link": ""
+  },
+  {
+   "category": "global",
+   "company": "Commodities",
+   "fact": "Commodities & FX: Brent ~$117 (+1.7% w/w); gold −4.1% w/w; USD/INR flat w/w, rupee +1.3% m/m",
+   "source": "Quantscase",
+   "materiality": 1,
+   "link": ""
+  },
+  {
+   "category": "global",
+   "company": "China",
+   "fact": "China & HK (last week): Hang Seng and Nikkei −4% each, CSI 300 −5.2%",
+   "source": "Quantscase",
+   "materiality": 1,
+   "link": ""
+  },
+  {
+   "category": "policy",
+   "company": "Bond",
+   "fact": "Bond market: 10-yr G-sec yield 7.47% (+28 bps since 6 Oct); market pricing at least 50 bps of RBI hikes by early 2027 on crude, global yields, tight liquidity",
+   "source": "Business Standard",
+   "materiality": 1,
+   "link": ""
+  },
+  {
+   "category": "results",
+   "company": "Mankind Pharma",
+   "fact": "Mankind Pharma: Q2 PAT ₹711 Cr (+39%), revenue ₹4,338 Cr (+17%); EBITDA margin 27.1% (+210 bps); international revenue +33%",
+   "source": "NSE filing / Upstox",
+   "materiality": 1,
+   "link": ""
+  },
+  {
+   "category": "results",
+   "company": "REC",
+   "fact": "REC: Q2 PAT ₹3,478 Cr (−21%); second interim dividend ₹3.50/share, record date 30 Oct",
+   "source": "NSE filing / Upstox",
+   "materiality": 1,
+   "link": ""
+  },
+  {
+   "category": "results",
+   "company": "Tata Consumer Products",
+   "fact": "Tata Consumer Products: Q2 PAT ₹469 Cr (+16%), revenue ₹5,661 Cr (+14%); margins flat on raw-material costs",
+   "source": "NSE filing / Upstox",
+   "materiality": 1,
+   "link": ""
+  },
+  {
+   "category": "results",
+   "company": "Ather Energy",
+   "fact": "Ather Energy: First profitable quarter: PAT ₹1.26 Cr vs ₹154 Cr loss a year ago; revenue +63%",
+   "source": "Upstox",
+   "materiality": 1,
+   "link": ""
+  },
+  {
+   "category": "results",
+   "company": "ITC Hotels",
+   "fact": "ITC Hotels: Q2 PAT ₹201 Cr (+51%); revenue growth reported between 13% and 25% (sources conflict)",
+   "source": "Upstox",
+   "materiality": 1,
+   "link": ""
+  },
+  {
+   "category": "results",
+   "company": "Dr Reddy's Laboratories",
+   "fact": "Dr Reddy's Laboratories: Q2 PAT ₹925 Cr (−31%), revenue −1.5% YoY but +7% QoQ on lower lenalidomide; stock rallied anyway",
+   "source": "Upstox",
+   "materiality": 1,
+   "link": ""
+  },
+  {
+   "category": "results",
+   "company": "Shriram Finance",
+   "fact": "Shriram Finance: Standalone PAT ₹3,677 Cr (+59%) but asset quality and credit costs disappointed",
+   "source": "Upstox",
+   "materiality": 1,
+   "link": ""
+  },
+  {
+   "category": "results",
+   "company": "Kotak Mahindra Bank",
+   "fact": "Kotak Mahindra Bank: Q2 consolidated PAT ₹5,645 Cr (+26%); standalone ₹4,212 Cr (+29.5%), NII ₹8,459 Cr (+15.7%)",
+   "source": "Mint / Business Standard",
+   "materiality": 1,
+   "link": ""
+  },
+  {
+   "category": "results",
+   "company": "Infosys",
+   "fact": "Infosys: Q2 PAT ₹7,823 Cr (+6%); FY27 revenue guidance cut to 1–2% constant currency",
+   "source": "Mint",
+   "materiality": 1,
+   "link": ""
+  },
+  {
+   "category": "results",
+   "company": "BPCL",
+   "fact": "BPCL: Q2 PAT ₹4,993 Cr vs ₹3,962 Cr loss last quarter (−22.5% YoY on fuel price freeze); EBITDA ₹8,971 Cr",
+   "source": "Mint / Business Standard",
+   "materiality": 1,
+   "link": ""
+  },
+  {
+   "category": "results",
+   "company": "Coforge",
+   "fact": "Coforge: Q2 PAT ₹588 Cr (+56.5%), first full quarter of Encora",
+   "source": "Mint",
+   "materiality": 1,
+   "link": ""
+  },
+  {
+   "category": "results",
+   "company": "Bank",
+   "fact": "Bank of India: Q2 PAT ₹3,202 Cr (+25%), NII ₹7,007 Cr (+18.5%)",
+   "source": "Mint",
+   "materiality": 1,
+   "link": ""
+  },
+  {
+   "category": "results",
+   "company": "AU Small Finance Bank",
+   "fact": "AU Small Finance Bank: Q2 PAT ₹858 Cr (+53%)",
+   "source": "Business Standard",
+   "materiality": 1,
+   "link": ""
+  },
+  {
+   "category": "results",
+   "company": "JK Cement",
+   "fact": "JK Cement: Q2 PAT ₹169 Cr (+6%), revenue ₹3,733 Cr (+24%)",
+   "source": "Business Standard",
+   "materiality": 1,
+   "link": ""
+  },
+  {
+   "category": "results",
+   "company": "Netweb Technologies",
+   "fact": "Netweb Technologies: Q2 revenue ₹1,323 Cr (+61.5% QoQ)",
+   "source": "Mint",
+   "materiality": 1,
+   "link": ""
+  },
+  {
+   "category": "results",
+   "company": "SBI Funds Management",
+   "fact": "SBI Funds Management: Q2 revenue ₹1,193 Cr (+3.4% QoQ), PAT ₹701 Cr (−20% QoQ)",
+   "source": "Mint",
+   "materiality": 1,
+   "link": ""
+  },
+  {
+   "category": "results",
+   "company": "Vinyl Chemicals",
+   "fact": "Vinyl Chemicals: Q2 PAT ₹11.4 Cr vs ₹2.9 Cr a year ago",
+   "source": "Multibagg",
+   "materiality": 1,
+   "link": ""
+  },
+  {
+   "category": "results",
+   "company": "Veefin Solutions",
+   "fact": "Veefin Solutions: H1 revenue ₹239 Cr, PAT ₹24.9 Cr",
+   "source": "Multibagg",
+   "materiality": 1,
+   "link": ""
+  },
+  {
+   "category": "results",
+   "company": "Supreme Industries",
+   "fact": "Supreme Industries: Dividend declared with Q2 results",
+   "source": "Upstox",
+   "materiality": 1,
+   "link": ""
+  },
+  {
+   "category": "results",
+   "company": "Paytm",
+   "fact": "Paytm (One 97): Reported Mon; numbers not yet captured. BofA expected PAT ₹271 Cr (+76%), revenue ₹2,641 Cr (+28%)",
+   "source": "Goodreturns",
+   "materiality": 1,
+   "link": ""
+  }
+ ],
+ "sources": [],
+ "classifier": "rules",
+ "stats": {
+  "Delivery % (NSE bhavcopy)": {
+   "ok": false,
+   "n": 0,
+   "err": "no file"
+  },
+  "Bulk/block deals (NSE)": {
+   "ok": false,
+   "n": 0,
+   "err": ""
+  },
+  "52-week lists (NSE)": {
+   "ok": false,
+   "n": 0,
+   "err": "no file"
+  },
+  "Index DMAs": {
+   "ok": false,
+   "n": 0,
+   "err": ""
+  },
+  "FII/DII flows (news)": {
+   "ok": false,
+   "n": 0,
+   "err": "not found in headlines"
+  },
+  "Corporate actions (BSE)": {
+   "ok": false,
+   "n": 0,
+   "err": ""
+  },
+  "Results calendar": {
+   "ok": false,
+   "n": 0,
+   "err": "BoardMeetings err HTTPSConnectionPool(host='api.bseindia.com', port=443): Max ; Corpforthresults err HTTPSConnectionPool(host='api.bseindia.com', port=443): Max"
+  }
+ },
+ "rawCount": 46,
+ "prices": {},
+ "brief": null
+}

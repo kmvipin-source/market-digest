@@ -219,8 +219,8 @@ footer{color:var(--muted);font-size:12px;margin-top:28px;line-height:1.5}
 <script src="config.js"></script>
 <script>
 (function(){
-  const CATS=[["all","All"],["movers","Movers"],["results","Results"],["volume","Volume"],["calendar","Calendar"],["orders","Orders"],["mna","M&A"],["policy","Policy"],["global","Global"],["other","Other"]];
-  const CAT_LABEL=Object.fromEntries(CATS); const CAT_COLOR={calendar:"var(--c-calendar)",results:"var(--c-results)",orders:"var(--c-orders)",mna:"var(--c-mna)",policy:"var(--c-policy)",movers:"var(--c-movers)",volume:"var(--c-volume)",global:"var(--c-global)",other:"var(--c-other)"};
+  const CATS=[["all","All"],["movers","Movers"],["results","Results"],["volume","Volume"],["deals","Deals"],["high52","52-wk"],["calendar","Calendar"],["orders","Orders"],["mna","M&A"],["ratings","Ratings"],["actions","Ex-dates"],["policy","Policy"],["global","Global"],["other","Other"]];
+  const CAT_LABEL=Object.fromEntries(CATS); const CAT_COLOR={deals:"#9d174d",high52:"#166534",ratings:"#1d4ed8",actions:"#6b7280",calendar:"var(--c-calendar)",results:"var(--c-results)",orders:"var(--c-orders)",mna:"var(--c-mna)",policy:"var(--c-policy)",movers:"var(--c-movers)",volume:"var(--c-volume)",global:"var(--c-global)",other:"var(--c-other)"};
   const $=id=>document.getElementById(id);
   let runs=[], current=null, cat="all", thr=10, q=""; const expanded=new Set();
   let watch=[]; try{ watch=JSON.parse(localStorage.getItem("md.watch")||"[]"); }catch(e){ watch=[]; }
@@ -245,11 +245,12 @@ footer{color:var(--muted);font-size:12px;margin-top:28px;line-height:1.5}
   const ist=ts=>{ if(!ts) return ""; try{ return new Date(ts).toLocaleString("en-IN",{timeZone:"Asia/Kolkata",weekday:"short",day:"2-digit",month:"short",hour:"2-digit",minute:"2-digit",hour12:true})+" IST"; }catch(e){ return ts; } };
   const ago=ts=>{ if(!ts) return ""; const d=(Date.now()-new Date(ts).getTime())/60000; if(d<1) return "just now"; if(d<60) return Math.round(d)+" min ago"; if(d<48*60) return Math.round(d/60)+" h ago"; return Math.round(d/1440)+" d ago"; };
 
+  const vcat=it=>(it.subtype==="high52"||it.subtype==="low52")?"high52":it.category;
   function visibleItems(){
     if(!current) return [];
     const needle=q.trim().toLowerCase();
     return (current.items||[]).filter(it=>{
-      if(cat!=="all" && it.category!==cat) return false;
+      if(cat!=="all" && vcat(it)!==cat) return false;
       if(it.category==="movers" && Math.abs(+it.pct||0)<thr) return false;
       if(needle && !((it.company||"")+" "+(it.fact||"")+" "+(it.source||"")).toLowerCase().includes(needle)) return false;
       return true;
@@ -257,7 +258,7 @@ footer{color:var(--muted);font-size:12px;margin-top:28px;line-height:1.5}
   }
   function renderCats(){
     const counts={all:0};
-    (current?.items||[]).forEach(it=>{ counts.all++; counts[it.category]=(counts[it.category]||0)+1; });
+    (current?.items||[]).forEach(it=>{ counts.all++; const k=vcat(it); counts[k]=(counts[k]||0)+1; });
     $("cats").innerHTML=CATS.map(([k,l])=>`<button class="chip" type="button" data-cat="${k}" aria-pressed="${cat===k}" style="--c:${CAT_COLOR[k]||"var(--muted)"}">${k!=="all"?"<i></i>":""}${l}<span class="n">${counts[k]||0}</span></button>`).join("");
   }
   function renderMarket(){
@@ -270,6 +271,7 @@ footer{color:var(--muted);font-size:12px;margin-top:28px;line-height:1.5}
     const world=[["sp500","S&P 500"],["nasdaq","Nasdaq"],["dow","Dow"],["nikkei","Nikkei"],["hangseng","Hang Seng"],["kospi","Kospi"],["brent","Brent"],["usdinr","USD/INR"],["gold","Gold"],["silver","Silver"],["us10y","US 10-yr"],["dxy","Dollar index"]];
     let html=(m.asOf?`<div class="asof">Quotes as of <b>${esc(m.asOf)}</b></div>`:"")+`<div class="mgrid">${india.filter(([k])=>m[k]).map(([k,l])=>tile(l,m[k])).join("")}</div>`;
     if(m.breadth){ const b=m.breadth; html+=`<div class="breadth"><b>Breadth</b> <span class="u">${b.advances} up</span> / <span class="d">${b.declines} down</span> of ${b.scanned} · ≥5%: <span class="u">${b.up5}</span>/<span class="d">${b.down5}</span> · ≥10%: <span class="u">${b.up10}</span>/<span class="d">${b.down10}</span></div>`; }
+    if(m.dma&&Object.keys(m.dma).length){ html+=`<div class="breadth"><b>Trend</b> ${Object.entries(m.dma).map(([k,v])=>`${esc(k)}: <span class="${v.vs50.startsWith("+")?"u":"d"}">${esc(v.vs50)}</span> vs 50-DMA${v.vs200?`, <span class="${v.vs200.startsWith("+")?"u":"d"}">${esc(v.vs200)}</span> vs 200-DMA`:""}`).join(" · ")}${(m.high52||m.low52)?` · 52-wk highs <span class="u">${m.high52||0}</span> / lows <span class="d">${m.low52||0}</span>`:""}</div>`; }
     if(m.sectors&&Object.keys(m.sectors).length){ const names={it:"IT",auto:"Auto",pharma:"Pharma",metal:"Metal",realty:"Realty",fmcg:"FMCG",psubank:"PSU Bank",energy:"Energy",infra:"Infra",media:"Media"}; const rows=Object.entries(m.sectors).map(([k,v])=>{ const pm=String(v).match(/\(([+-−]?[\d.]+)%\)/); return {k,v,p:pm?parseFloat(pm[1].replace("−","-")):0}; }).sort((a,b)=>b.p-a.p); html+=`<div class="sectors">${rows.map(r=>`<span class="sec ${r.p>0?"u":r.p<0?"d":""}">${names[r.k]||r.k} <em>${r.p>0?"+":""}${r.p.toFixed(1)}%</em></span>`).join("")}</div>`; }
     html+=`<details class="world"><summary>Global &amp; commodities</summary><div class="mgrid">${world.filter(([k])=>m[k]).map(([k,l])=>tile(l,m[k])).join("")}</div></details>`;
     if(m.note) html+=`<div class="note">${esc(m.note)}</div>`;
@@ -278,6 +280,15 @@ footer{color:var(--muted);font-size:12px;margin-top:28px;line-height:1.5}
   function calendarList(list){
     const byDay={}; list.forEach(it=>{ (byDay[it.when||"Date TBC"]=byDay[it.when||"Date TBC"]||[]).push(it); });
     return Object.keys(byDay).map(day=>`<div class="day"><div class="dayh">${esc(day)} <span class="n">${byDay[day].length}</span></div><div class="daylist">${byDay[day].map(it=>`<span class="co-pill ${esc((it.cap||"").toLowerCase())}">${esc(it.company)}${it.cap?`<em>${esc(it.cap)}</em>`:""}</span>`).join("")}</div></div>`).join("");
+  }
+  function pills52(list){
+    const hi=list.filter(i=>i.subtype==="high52"), lo=list.filter(i=>i.subtype==="low52");
+    const pill=i=>`<span class="co-pill ${esc((i.cap||"").toLowerCase())}" title="${esc(i.fact)}">${esc(i.company.replace(/ Limited$/i,""))}${i.pct!=null?`<em class="${pctClass(+i.pct)}">${fmtPct(+i.pct)}</em>`:""}</span>`;
+    return `${hi.length?`<div class="day"><div class="dayh">New highs <span class="n">${hi.length}</span></div><div class="daylist">${hi.map(pill).join("")}</div></div>`:""}${lo.length?`<div class="day" style="border-left-color:var(--down)"><div class="dayh">New lows <span class="n">${lo.length}</span></div><div class="daylist">${lo.map(pill).join("")}</div></div>`:""}`;
+  }
+  function actionsList(list){
+    const byDay={}; list.forEach(it=>{ (byDay[it.when||"Date TBC"]=byDay[it.when||"Date TBC"]||[]).push(it); });
+    return Object.keys(byDay).sort().map(day=>`<div class="day" style="border-left-color:#6b7280"><div class="dayh">Ex-date ${esc(day)} <span class="n">${byDay[day].length}</span></div><div class="daylist">${byDay[day].map(it=>`<span class="co-pill" title="${esc(it.fact)}">${esc(it.company)}<em>${esc(it.fact.split(/[-–:]/)[0].trim().slice(0,22))}</em></span>`).join("")}</div></div>`).join("");
   }
   function card(it){
     const p=it.pct!=null?`<span class="pct ${pctClass(+it.pct)}">${fmtPct(+it.pct)}</span>`:(it.value?`<span class="pct">${esc(it.value)}</span>`:"");
@@ -296,15 +307,15 @@ footer{color:var(--muted);font-size:12px;margin-top:28px;line-height:1.5}
     const items=visibleItems();
     if(!items.length){ feed.innerHTML=`<div class="empty"><b>Nothing matches</b>Try another category, a lower movers threshold, or clear the search.</div>`; return; }
     if(cat!=="all"){ feed.innerHTML=`<div class="list">${items.map(card).join("")}</div>`; return; }
-    const order=["movers","results","volume","calendar","orders","mna","policy","global","other"], groups={};
-    items.forEach(it=>{ (groups[it.category]=groups[it.category]||[]).push(it); });
+    const order=["movers","results","volume","deals","high52","calendar","orders","mna","ratings","actions","policy","global","other"], groups={};
+    items.forEach(it=>{ const k=vcat(it); (groups[k]=groups[k]||[]).push(it); });
     if(groups.calendar){ const rank={Large:0,Mid:1,Small:2,Micro:3,"":4}; groups.calendar.sort((a,b)=>String(a.sortDate||"").localeCompare(String(b.sortDate||""))||(rank[a.cap]??4)-(rank[b.cap]??4)); }
-    const LIMIT=5, titles={movers:"Big moves",results:"Results & guidance",volume:"Unusual volume",calendar:"Results due this week",orders:"Order wins",mna:"Deals & stakes",policy:"Policy & macro",global:"Global",other:"Other"};
+    const LIMIT=5, titles={movers:"Big moves",results:"Results & guidance",volume:"Unusual volume",deals:"Bulk & block deals",high52:"New 52-week highs & lows",calendar:"Results due this week",orders:"Order wins",mna:"M&A & stakes",ratings:"Broker rating changes",actions:"Ex-dates this week",policy:"Policy & macro",global:"Global",other:"Other"};
     feed.innerHTML=order.filter(k=>groups[k]).map(k=>{
       const list=groups[k], open=expanded.has(k)||list.length<=LIMIT;
       const shown=open?list:list.slice(0,LIMIT);
-      const body=k==="calendar"?calendarList(list):shown.map(card).join("");
-      const more=(!open&&k!=="calendar")?`<button class="more" type="button" data-more="${k}">Show all ${list.length}</button>`:(open&&list.length>LIMIT&&k!=="calendar"?`<button class="more" type="button" data-less="${k}">Show top ${LIMIT}</button>`:"");
+      const body=k==="calendar"?calendarList(list):(k==="high52"?pills52(list):(k==="actions"?actionsList(list):shown.map(card).join("")));
+      const more=(!open&&!["calendar","high52","actions"].includes(k))?`<button class="more" type="button" data-more="${k}">Show all ${list.length}</button>`:(open&&list.length>LIMIT&&k!=="calendar"?`<button class="more" type="button" data-less="${k}">Show top ${LIMIT}</button>`:"");
       return `<div class="section" id="sec-${k}" style="--c:${CAT_COLOR[k]}"><i></i><h2>${titles[k]||CAT_LABEL[k]}</h2><span class="n">${list.length}</span><button class="open" type="button" data-cat="${k}" aria-label="Open ${titles[k]}">›</button></div><div class="list">${body}${more}</div>`;
     }).join("");
   }
