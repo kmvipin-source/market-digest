@@ -222,7 +222,8 @@ footer{color:var(--muted);font-size:12px;margin-top:28px;line-height:1.5}
   const CATS=[["all","All"],["movers","Movers"],["results","Results"],["volume","Volume"],["deals","Deals"],["high52","52-wk"],["calendar","Calendar"],["orders","Orders"],["mna","M&A"],["ratings","Ratings"],["actions","Ex-dates"],["policy","Policy"],["global","Global"],["other","Other"]];
   const CAT_LABEL=Object.fromEntries(CATS); const CAT_COLOR={deals:"#9d174d",high52:"#166534",ratings:"#1d4ed8",actions:"#6b7280",calendar:"var(--c-calendar)",results:"var(--c-results)",orders:"var(--c-orders)",mna:"var(--c-mna)",policy:"var(--c-policy)",movers:"var(--c-movers)",volume:"var(--c-volume)",global:"var(--c-global)",other:"var(--c-other)"};
   const $=id=>document.getElementById(id);
-  let runs=[], current=null, cat="all", thr=10, q=""; const expanded=new Set();
+  let runs=[], current=null, cat="all", thr=10, q=""; const expanded=new Set(); let scrips={};
+  fetch("data/scrips.json").then(r=>r.ok?r.json():{}).then(j=>{ scrips=j||{}; }).catch(()=>{});
   let watch=[]; try{ watch=JSON.parse(localStorage.getItem("md.watch")||"[]"); }catch(e){ watch=[]; }
   let wlSynced=false;
   async function pushWatch(){
@@ -418,15 +419,15 @@ footer{color:var(--muted);font-size:12px;margin-top:28px;line-height:1.5}
   function renderChips(){ $("wlChips").innerHTML=watch.map((w,i)=>`<span class="wlchip">${esc(w.sym)}${w.name?` · ${esc(w.name.split(" ").slice(0,2).join(" "))}`:""}<button type="button" data-i="${i}" aria-label="Remove">✕</button></span>`).join("")||`<span class="wnone">Nothing yet. Add up to 15.</span>`; }
   function fillSuggestions(){ showSug(""); }
   function showSug(q){
-    const box=$("wlSugList"); const prices=current?.prices||{}; const needle=q.trim().toLowerCase();
+    const box=$("wlSugList"); const pr=current?.prices||{}; const prices=Object.keys(pr).length?pr:Object.fromEntries(Object.entries(scrips).map(([s,n])=>[s,[n,null,null,null]])); const needle=q.trim().toLowerCase();
     if(!needle||needle.length<2){ box.hidden=true; box.innerHTML=""; return; }
     const hits=Object.entries(prices).filter(([s,v])=>s.toLowerCase().startsWith(needle)||v[0].toLowerCase().includes(needle)).sort((a,b)=>{ const as=a[0].toLowerCase().startsWith(needle)?0:1, bs=b[0].toLowerCase().startsWith(needle)?0:1; return as-bs||a[1][0].localeCompare(b[1][0]); }).slice(0,12);
     if(!hits.length){ box.hidden=false; box.innerHTML=`<button type="button" disabled><span class="nm">${Object.keys(prices).length?"No match — press Add to keep it as typed":"Scrip list loads after the next run — press Add to keep it as typed"}</span></button>`; return; }
-    box.hidden=false; box.innerHTML=hits.map(([s,v])=>`<button type="button" data-sym="${esc(s)}"><span class="sym">${esc(s)}</span><span class="nm">${esc(v[0])}</span><span class="px">₹${Number(v[1]).toLocaleString("en-IN")} <span class="${pctClass(v[2])}">${fmtPct(v[2])}</span></span></button>`).join("");
+    box.hidden=false; box.innerHTML=hits.map(([s,v])=>`<button type="button" data-sym="${esc(s)}"><span class="sym">${esc(s)}</span><span class="nm">${esc(v[0])}</span>${v[1]!=null?`<span class="px">₹${Number(v[1]).toLocaleString("en-IN")} <span class="${pctClass(v[2])}">${fmtPct(v[2])}</span></span>`:""}</button>`).join("");
   }
   function addWatch(raw){
     const v=raw.trim(); if(!v) return; if(watch.length>=15){ return; }
-    const prices=current?.prices||{}; let sym=v.toUpperCase(), name="";
+    const pr=current?.prices||{}; const prices=Object.keys(pr).length?pr:Object.fromEntries(Object.entries(scrips).map(([s,n])=>[s,[n]])); let sym=v.toUpperCase(), name="";
     if(prices[sym]) name=prices[sym][0];
     else { const hit=Object.entries(prices).find(([s,x])=>x[0].toLowerCase().startsWith(v.toLowerCase())||s.toLowerCase()===v.toLowerCase()); if(hit){ sym=hit[0]; name=hit[1][0]; } else { name=v; sym=v.toUpperCase().replace(/[^A-Z0-9&-]/g,"").slice(0,12); } }
     if(watch.some(w=>w.sym===sym)) return;

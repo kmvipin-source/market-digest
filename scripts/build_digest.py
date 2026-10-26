@@ -924,6 +924,8 @@ def main():
         doc["brief"] = groq_brief(doc, key)
     DATA.mkdir(exist_ok=True)
     (DATA / f"{run_id}.json").write_text(json.dumps(doc, ensure_ascii=False, indent=1))
+    if NAMES:
+        (DATA / "scrips.json").write_text(json.dumps({k: v[:40] for k, v in sorted(NAMES.items())}, ensure_ascii=False))
 
     idx_path = DATA / "index.json"
     index = json.loads(idx_path.read_text()) if idx_path.exists() else {"runs": []}
