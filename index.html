@@ -31,6 +31,8 @@ header{position:sticky;top:0;z-index:9;background:var(--panel);border-bottom:1px
 .brand .logo svg{width:16px;height:16px}
 .brand small{display:block;font-weight:500;font-size:11px;color:var(--muted);letter-spacing:.04em;text-transform:uppercase}
 .spacer{flex:1}
+.iconbtn{font:inherit;border:0;background:var(--chip);color:var(--accent);border-radius:10px;padding:7px 10px;cursor:pointer;font-size:16px;line-height:1;display:inline-flex;align-items:center;gap:4px}
+.iconbtn .n{font-family:var(--mono);font-size:11px;color:var(--muted)}
 select,input[type=search]{font:inherit;color:var(--fg);background:var(--chip);border:1px solid transparent;border-radius:10px;padding:8px 10px;min-width:0;max-width:50vw}
 select:focus,input:focus,button:focus-visible,a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .status{display:inline-flex;align-items:center;gap:6px;font-size:12px;color:var(--muted);flex-wrap:wrap}
@@ -87,6 +89,7 @@ main{padding-block:14px 110px;max-width:760px;margin:0 auto}
 .co-pill.large{background:#e0ecff} .co-pill.mid{background:#ede4ff} .co-pill.small{background:#e3f6ea}
 .empty{text-align:center;color:var(--muted);padding:40px 16px;border:1px dashed var(--line);border-radius:14px;background:var(--panel)}
 .empty b{display:block;color:var(--fg);margin-bottom:6px}
+.fab[disabled]{opacity:.7;cursor:default}
 .fab{position:fixed;right:max(16px,env(safe-area-inset-right,0px));bottom:calc(18px + env(safe-area-inset-bottom,0px));z-index:20;background:var(--accent);color:var(--accent-fg);border:0;border-radius:999px;padding:14px 20px;font:inherit;font-weight:700;font-size:15px;box-shadow:0 6px 20px rgba(194,65,12,.35);cursor:pointer;text-decoration:none}
 .scrim{position:fixed;inset:0;background:rgba(20,26,34,.45);z-index:30}
 .sheet{position:fixed;left:0;right:0;bottom:0;z-index:31;background:var(--panel);border-radius:18px 18px 0 0;padding:14px 0 calc(16px + env(safe-area-inset-bottom,0px));max-height:85vh;overflow:auto;box-shadow:0 -8px 30px rgba(0,0,0,.18)}
@@ -95,6 +98,31 @@ main{padding-block:14px 110px;max-width:760px;margin:0 auto}
 .sheet ol{margin:0 0 12px;padding-left:20px;font-size:14px}
 .sheet li{margin-bottom:6px}
 .sheet code{font-family:var(--mono);font-size:12px;background:var(--chip);padding:1px 5px;border-radius:5px}
+.row{display:flex;gap:8px}
+.row input{flex:1;font:inherit;color:var(--fg);background:var(--chip);border:1px solid transparent;border-radius:10px;padding:9px 11px;min-width:0}
+.wlchips{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+.wlchip{display:inline-flex;align-items:center;gap:6px;background:var(--chip);border-radius:999px;padding:5px 6px 5px 11px;font-size:13px}
+.wlchip button{border:0;background:var(--panel);border-radius:50%;width:20px;height:20px;cursor:pointer;color:var(--muted);font-size:12px;line-height:1}
+.wsec{margin:10px 0 14px}
+.wrow{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:10px 12px;border-left:3px solid #ca8a04;margin-bottom:8px}
+.wtop{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}
+.wtop .co{font-weight:700}
+.wtop .tk{font-family:var(--mono);font-size:11px;color:var(--muted)}
+.wtop .px{font-family:var(--mono);font-size:13px;margin-left:auto}
+.wnews{margin-top:6px;display:flex;flex-direction:column;gap:5px;font-size:13px}
+.wnews .tag{margin-right:4px}
+.wnone{font-size:12px;color:var(--muted);margin-top:4px}
+.card.wl{box-shadow:inset 0 0 0 1px #ca8a04}
+.presets{display:flex;flex-direction:column;gap:8px;margin-bottom:4px}
+.preset{font:inherit;text-align:left;background:var(--chip);border:1px solid transparent;border-radius:12px;padding:11px 12px;color:var(--fg);cursor:pointer}
+.preset[aria-pressed="true"]{border-color:var(--accent);background:var(--panel)}
+.preset small{display:block;color:var(--muted);font-size:12px;margin-top:2px}
+textarea{width:100%;font:inherit;font-size:14px;color:var(--fg);background:var(--chip);border:1px solid transparent;border-radius:12px;padding:10px 12px;min-height:72px;resize:vertical;margin-top:8px}
+.msg{margin-top:10px;font-size:13px;padding:10px 12px;border-radius:10px;background:var(--chip);color:var(--fg)}
+.msg.warn{background:var(--warn-bg);color:var(--warn)} .msg.err{background:var(--down-bg);color:var(--down)} .msg.ok{background:var(--up-bg);color:var(--up)}
+.dot.run{background:var(--accent);animation:pulse 1.2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+@media (prefers-reduced-motion:reduce){.dot.run{animation:none}}
 .btnrow{display:flex;gap:8px;margin-top:12px}
 .btn{font:inherit;font-weight:600;border:0;border-radius:12px;padding:12px 16px;cursor:pointer;background:var(--chip);color:var(--fg);text-decoration:none;text-align:center}
 .btn.primary{background:var(--accent);color:var(--accent-fg);flex:1}
@@ -108,6 +136,7 @@ footer{color:var(--muted);font-size:12px;margin-top:28px;line-height:1.5}
   <div class="hbar">
     <div class="brand"><span class="logo"><svg viewBox="0 0 64 64"><polyline points="10,44 22,30 32,36 44,20 54,26" fill="none" stroke="#f0893a" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span>Market Digest<small>Indian equities, every morning</small></span></div>
     <div class="spacer"></div>
+    <button class="iconbtn" id="wlBtn" type="button" aria-label="Edit watchlist" title="Watchlist">★<span id="wlCount" class="n"></span></button>
     <select id="runSel" aria-label="Choose a digest"><option value="">Loading…</option></select>
   </div>
   <div class="tools">
@@ -123,24 +152,41 @@ footer{color:var(--muted);font-size:12px;margin-top:28px;line-height:1.5}
 
 <main class="gutter">
   <div class="status" style="margin-bottom:10px"><span class="dot" id="dot"></span><span id="statusText">Loading…</span></div>
+  <section id="watch" hidden></section>
   <div id="market" class="market" hidden></div>
   <div id="feed"></div>
   <footer>This page organises publicly available information for informational purposes. It may contain errors or omissions and does not provide investment advice. Items are summarised from exchange filings, RSS news feeds and free price data at run time; confirm with the source before acting.</footer>
 </main>
 
-<a class="fab" id="fab" href="#run">Run now</a>
+<button class="fab" id="fab" type="button">Run now</button>
 
+<div id="wlWrap" hidden>
+  <div class="scrim" id="wlScrim"></div>
+  <div class="sheet gutter" role="dialog" aria-labelledby="wlTitle">
+    <h3 id="wlTitle">Watchlist</h3>
+    <p>Up to 15 stocks. Saved on this device. Matching news from every section is pinned at the top of the digest.</p>
+    <div class="row"><input id="wlIn" list="wlSug" placeholder="Ticker or company, e.g. MRPL or Ather" autocomplete="off"><button class="btn" id="wlAdd" type="button">Add</button></div>
+    <datalist id="wlSug"></datalist>
+    <div class="wlchips" id="wlChips"></div>
+    <div class="btnrow"><button class="btn primary" id="wlDone" type="button">Done</button></div>
+  </div>
+</div>
 <div id="sheetWrap" hidden>
   <div class="scrim" id="scrim"></div>
   <div class="sheet gutter" role="dialog" aria-labelledby="sheetTitle">
     <h3 id="sheetTitle">Run a fresh digest</h3>
-    <p>Runs on GitHub Actions, free, in about 2–4 minutes. The new digest appears in the day selector when it's done (refresh the page).</p>
-    <ol>
-      <li>Tap <strong>Open runner</strong> below (sign in to GitHub if asked).</li>
-      <li>Tap <strong>Run workflow</strong>, pick a mode — <code>full</code>, <code>movers</code>, <code>orders</code>, <code>results</code>, <code>policy</code> or <code>custom</code> with your own ask — and the movers threshold.</li>
-      <li>Tap the green <strong>Run workflow</strong> button.</li>
-    </ol>
-    <div class="btnrow"><button class="btn" id="cancel" type="button">Close</button><a class="btn primary" id="runnerLink" href="#" target="_blank" rel="noopener">Open runner</a></div>
+    <p>Takes 5–10 minutes. The page updates itself when it's done.</p>
+    <div class="presets" id="presets">
+      <button class="preset" type="button" data-mode="full" aria-pressed="true">Full digest<small>Everything: calendar, movers, volume, news, policy, global</small></button>
+      <button class="preset" type="button" data-mode="movers" aria-pressed="false">Movers &amp; volume now<small>Stocks beyond the threshold since today's open, with reasons</small></button>
+      <button class="preset" type="button" data-mode="orders" aria-pressed="false">Order wins<small>Contracts and LOIs from filings and news</small></button>
+      <button class="preset" type="button" data-mode="results" aria-pressed="false">Results<small>Numbers and guidance announced today, plus the week's calendar</small></button>
+      <button class="preset" type="button" data-mode="custom" aria-pressed="false">Specific ask<small>Type exactly what you want covered</small></button>
+    </div>
+    <textarea id="custom" placeholder="e.g. all order wins above ₹500 Cr this week, or pharma results this quarter" hidden></textarea>
+    <div class="row" id="keyRow" style="margin-top:10px"><input id="runKey" type="password" placeholder="Passphrase (set once in Cloudflare)" autocomplete="off"></div>
+    <div class="btnrow"><button class="btn" id="cancel" type="button">Close</button><button class="btn primary" id="go" type="button">Run</button></div>
+    <div id="sheetMsg" class="msg" hidden></div>
   </div>
 </div>
 
@@ -151,6 +197,11 @@ footer{color:var(--muted);font-size:12px;margin-top:28px;line-height:1.5}
   const CAT_LABEL=Object.fromEntries(CATS); const CAT_COLOR={calendar:"var(--c-calendar)",results:"var(--c-results)",orders:"var(--c-orders)",mna:"var(--c-mna)",policy:"var(--c-policy)",movers:"var(--c-movers)",volume:"var(--c-volume)",global:"var(--c-global)",other:"var(--c-other)"};
   const $=id=>document.getElementById(id);
   let runs=[], current=null, cat="all", thr=10, q="";
+  let watch=[]; try{ watch=JSON.parse(localStorage.getItem("md.watch")||"[]"); }catch(e){ watch=[]; }
+  const saveWatch=()=>{ try{ localStorage.setItem("md.watch",JSON.stringify(watch)); }catch(e){} };
+  const STOPW=new Set(["ltd","limited","india","industries","the","co","company","corporation","corp","and","of","international","enterprises","technologies","technology","services","solutions","products","global","group","holdings","finance","financial","bank","power","energy","infra","infrastructure","pharma","pharmaceuticals","chemicals","steel","motors","textiles","mills"]);
+  const toks=n=>String(n||"").toLowerCase().match(/[a-z]{3,}/g)?.filter(t=>!STOPW.has(t)).slice(0,2)||[];
+  function matchesWatch(it,w){ const sym=w.sym.toLowerCase(); if((it.ticker||"").toLowerCase()===sym) return true; const t=toks(w.name||w.sym); if(!t.length) return false; const hay=((it.company||"")+" "+(it.fact||"")).toLowerCase(); return t.every(x=>hay.includes(x)); }
   try{ cat=localStorage.getItem("md.cat")||"all"; thr=+localStorage.getItem("md.thr")||10; }catch(e){}
   const cfg=window.DIGEST_CONFIG||{};
   if(cfg.repo){ $("runnerLink").href=`https://github.com/${cfg.repo}/actions/workflows/digest.yml`; }
@@ -204,7 +255,7 @@ footer{color:var(--muted);font-size:12px;margin-top:28px;line-height:1.5}
     if(it.reasonSource) tags.push(`<span>via ${esc(it.reasonSource)}</span>`);
     if(it.source) tags.push(it.link?`<a href="${esc(it.link)}" target="_blank" rel="noopener">${esc(it.source)}</a>`:`<span>${esc(it.source)}</span>`);
     if(it.when) tags.push(`<span>${esc(it.when)}</span>`);
-    return `<article class="card ${it.materiality>=3?"mat3":""}" style="--c:${CAT_COLOR[it.category]||"var(--line)"}"><div class="co">${esc(it.company)}</div>${p}<div class="fact">${esc(it.fact)}</div><div class="meta">${tags.join("")}</div></article>`;
+    const inWl=watch.some(w=>matchesWatch(it,w)); return `<article class="card ${it.materiality>=3?"mat3":""} ${inWl?"wl":""}" style="--c:${CAT_COLOR[it.category]||"var(--line)"}"><div class="co">${esc(it.company)}</div>${p}<div class="fact">${esc(it.fact)}</div><div class="meta">${tags.join("")}</div></article>`;
   }
   function renderFeed(){
     const feed=$("feed");
@@ -223,7 +274,21 @@ footer{color:var(--muted);font-size:12px;margin-top:28px;line-height:1.5}
   }
   function srcSummary(d){ const st=d.stats||{}; const ks=Object.keys(st); if(!ks.length) return ""; const ok=ks.filter(k=>st[k].ok).length; const bad=ks.filter(k=>!st[k].ok); $("statusText").title=bad.length?("Failed: "+bad.map(k=>k+" ("+st[k].err+")").join("; ")):"All sources responded"; return ` · sources ${ok}/${ks.length} ok`; }
   function renderStatus(ok,text){ $("dot").className="dot "+(ok?"ok":"err"); $("statusText").textContent=text; }
-  function renderAll(){ renderRunSel(); renderCats(); renderMarket(); renderFeed(); }
+  function renderWatch(){
+    const el=$("watch"); $("wlCount").textContent=watch.length?watch.length:"";
+    if(!watch.length){ el.hidden=true; return; }
+    el.hidden=false;
+    const prices=current?.prices||{};
+    const rows=watch.map(w=>{
+      const p=prices[w.sym]; const name=w.name||(p&&p[0])||w.sym;
+      const news=(current?.items||[]).filter(it=>it.category!=="calendar"&&matchesWatch(it,w));
+      const cal=(current?.items||[]).filter(it=>it.category==="calendar"&&matchesWatch(it,w));
+      const px=p?`<span class="px">₹${Number(p[1]).toLocaleString("en-IN")} <span class="${pctClass(p[2])}">${fmtPct(p[2])}</span>${p[3]>=3?` · vol ${p[3]}×`:""}</span>`:"";
+      return `<div class="wrow"><div class="wtop"><span class="co">${esc(name)}</span><span class="tk">${esc(w.sym)}</span>${px}</div>${cal.length?`<div class="wnone">Results: ${esc(cal[0].when||"")}</div>`:""}${news.length?`<div class="wnews">${news.map(it=>`<div><span class="tag">${esc(CAT_LABEL[it.category]||it.category)}</span>${esc(it.fact)}${it.source?` <span class="tk">· ${esc(it.source)}</span>`:""}</div>`).join("")}</div>`:`<div class="wnone">No news in this digest</div>`}</div>`;
+    }).join("");
+    el.innerHTML=`<div class="section" style="--c:#ca8a04"><i></i><h2>Watchlist</h2><span class="n">${watch.length}</span></div><div class="wsec">${rows}</div>`;
+  }
+  function renderAll(){ renderRunSel(); renderCats(); renderMarket(); renderWatch(); renderFeed(); }
 
   async function loadRun(id){
     try{
@@ -247,10 +312,57 @@ footer{color:var(--muted);font-size:12px;margin-top:28px;line-height:1.5}
   [...$("thr").children].forEach(c=>c.setAttribute("aria-pressed",+c.dataset.t===thr));
   $("q").addEventListener("input",e=>{ q=e.target.value; renderFeed(); });
   $("runSel").addEventListener("change",e=>{ if(e.target.value) loadRun(e.target.value); });
-  $("fab").addEventListener("click",e=>{ e.preventDefault(); $("sheetWrap").hidden=false; });
+  let mode="full", runKey=""; try{ runKey=localStorage.getItem("md.key")||""; }catch(e){}
+  let polling=null, runningSince=null, lastSeenRun=null;
+  $("fab").addEventListener("click",()=>{ $("sheetWrap").hidden=false; $("sheetMsg").hidden=true; $("runKey").value=runKey; });
   const close=()=>{ $("sheetWrap").hidden=true; };
   $("scrim").addEventListener("click",close); $("cancel").addEventListener("click",close);
-  init();
+  $("presets").addEventListener("click",e=>{ const b=e.target.closest("[data-mode]"); if(!b) return; mode=b.dataset.mode; [...$("presets").children].forEach(c=>c.setAttribute("aria-pressed",c===b)); $("custom").hidden=mode!=="custom"; if(mode==="custom") $("custom").focus(); });
+  function setRunning(on,label){ const dot=$("dot"); if(on){ dot.className="dot run"; $("statusText").textContent=label||"Running…"; $("fab").disabled=true; $("fab").textContent="Running…"; } else { $("fab").disabled=false; $("fab").textContent="Run now"; } }
+  async function checkStatus(){
+    try{
+      const r=await fetch("api/status",{cache:"no-store"}); if(!r.ok) return null; const s=await r.json();
+      if(!s.ok) return null;
+      if(s.status==="queued"||s.status==="in_progress"){ const started=new Date(s.createdAt); const mins=Math.max(0,Math.round((Date.now()-started)/60000)); setRunning(true,`Run in progress · started ${mins} min ago · page refreshes automatically`); if(!polling) polling=setInterval(checkStatus,20000); runningSince=runningSince||s.createdAt; return s; }
+      if(polling){ clearInterval(polling); polling=null; }
+      if(runningSince){ runningSince=null; setRunning(false); await init(); }
+      else setRunning(false);
+      return s;
+    }catch(e){ return null; }
+  }
+  $("go").addEventListener("click",async()=>{
+    const msg=$("sheetMsg"); msg.hidden=false; msg.className="msg";
+    if(mode==="custom" && !$("custom").value.trim()){ msg.className="msg warn"; msg.textContent="Type what you want covered first."; return; }
+    const key=$("runKey").value.trim(); if(!key){ msg.className="msg warn"; msg.textContent="Enter the passphrase you set in Cloudflare (RUN_KEY)."; return; }
+    $("go").disabled=true; msg.textContent="Starting…";
+    try{
+      const r=await fetch("api/run",{method:"POST",headers:{"content-type":"application/json"},body:JSON.stringify({mode,query:mode==="custom"?$("custom").value.trim():"",threshold:thr,key})});
+      const d=await r.json().catch(()=>({ok:false,error:"server error"}));
+      if(!d.ok) throw new Error(d.error||("HTTP "+r.status));
+      runKey=key; try{ localStorage.setItem("md.key",key); }catch(e){}
+      msg.className="msg ok"; msg.textContent="Started. You can close this — the page will refresh itself when the run finishes (5–10 min).";
+      runningSince=new Date().toISOString(); setRunning(true,"Run starting…"); if(!polling) polling=setInterval(checkStatus,20000);
+      setTimeout(close,1500);
+    }catch(e){ msg.className="msg err"; msg.textContent="Couldn't start: "+e.message; }
+    finally{ $("go").disabled=false; }
+  });
+  function renderChips(){ $("wlChips").innerHTML=watch.map((w,i)=>`<span class="wlchip">${esc(w.sym)}${w.name?` · ${esc(w.name.split(" ").slice(0,2).join(" "))}`:""}<button type="button" data-i="${i}" aria-label="Remove">✕</button></span>`).join("")||`<span class="wnone">Nothing yet. Add up to 15.</span>`; }
+  function fillSuggestions(){ const prices=current?.prices||{}; const dl=$("wlSug"); dl.innerHTML=Object.entries(prices).slice(0,2600).map(([s,v])=>`<option value="${esc(s)}">${esc(v[0])}</option>`).join(""); }
+  function addWatch(raw){
+    const v=raw.trim(); if(!v) return; if(watch.length>=15){ return; }
+    const prices=current?.prices||{}; let sym=v.toUpperCase(), name="";
+    if(prices[sym]) name=prices[sym][0];
+    else { const hit=Object.entries(prices).find(([s,x])=>x[0].toLowerCase().startsWith(v.toLowerCase())||s.toLowerCase()===v.toLowerCase()); if(hit){ sym=hit[0]; name=hit[1][0]; } else { name=v; sym=v.toUpperCase().replace(/[^A-Z0-9&-]/g,"").slice(0,12); } }
+    if(watch.some(w=>w.sym===sym)) return;
+    watch.push({sym,name}); saveWatch(); renderChips(); renderWatch(); renderFeed();
+  }
+  $("wlBtn").addEventListener("click",()=>{ fillSuggestions(); renderChips(); $("wlWrap").hidden=false; $("wlIn").focus(); });
+  const closeWl=()=>{ $("wlWrap").hidden=true; };
+  $("wlScrim").addEventListener("click",closeWl); $("wlDone").addEventListener("click",closeWl);
+  $("wlAdd").addEventListener("click",()=>{ addWatch($("wlIn").value); $("wlIn").value=""; });
+  $("wlIn").addEventListener("keydown",e=>{ if(e.key==="Enter"){ e.preventDefault(); addWatch($("wlIn").value); $("wlIn").value=""; } });
+  $("wlChips").addEventListener("click",e=>{ const b=e.target.closest("[data-i]"); if(!b) return; watch.splice(+b.dataset.i,1); saveWatch(); renderChips(); renderWatch(); renderFeed(); });
+  init().then(checkStatus);
 })();
 </script>
 </body>

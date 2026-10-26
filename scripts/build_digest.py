@@ -77,6 +77,7 @@ STATS = {}
 NAMES = {}
 BREADTH = {}
 VOLSPIKES = []
+PRICES = {}
 
 def stat(name, ok, n=0, err=""):
     STATS[name] = {"ok": ok, "n": n, "err": str(err)[:160]}
@@ -270,6 +271,7 @@ def fetch_movers(threshold, intraday):
             if px * vol < 2e6 or px < 5:   # skip illiquid names: < ₹20 lakh traded or penny prices
                 continue
             BREADTH["scanned"] += 1
+            PRICES[s] = [NAMES.get(s, s)[:40], round(px, 2), round(pct, 2), round((vol / avgv), 1) if avgv else 0]
             if pct > 0: BREADTH["advances"] += 1
             elif pct < 0: BREADTH["declines"] += 1
             if pct >= 5: BREADTH["up5"] += 1
@@ -644,7 +646,7 @@ def main():
            "generatedAt": iso_utc(), "mode": args.mode, "query": args.query, "threshold": args.threshold,
            "market": market, "items": items[:200],
            "sources": sorted({r.get("link", "") for r in raw if r.get("link")})[:80],
-           "classifier": "groq" if key else "rules", "stats": STATS, "rawCount": len(raw)}
+           "classifier": "groq" if key else "rules", "stats": STATS, "rawCount": len(raw), "prices": PRICES}
     DATA.mkdir(exist_ok=True)
     (DATA / f"{run_id}.json").write_text(json.dumps(doc, ensure_ascii=False, indent=1))
 
