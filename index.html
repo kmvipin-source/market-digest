@@ -15,7 +15,7 @@
   --bg:#f3f5f8; --panel:#ffffff; --fg:#141a22; --muted:#66707f; --line:#e4e8ee;
   --accent:#c2410c; --accent-fg:#ffffff; --chip:#eaeef3; --chip-on:#141a22; --chip-on-fg:#ffffff;
   --up:#15803d; --up-bg:#e6f6ec; --down:#b91c1c; --down-bg:#fdecec; --warn:#854d0e; --warn-bg:#fef3c7;
-  --c-results:#2563eb; --c-orders:#c2410c; --c-mna:#7c3aed; --c-policy:#0f766e; --c-movers:#15803d; --c-global:#475569; --c-other:#9ca3af;
+  --c-calendar:#b45309; --c-results:#2563eb; --c-orders:#c2410c; --c-mna:#7c3aed; --c-policy:#0f766e; --c-movers:#15803d; --c-global:#475569; --c-other:#9ca3af;
   --font:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
   --mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
   color-scheme:light;
@@ -68,6 +68,13 @@ main{padding-block:14px 110px;max-width:760px;margin:0 auto}
 .tag{font-size:11px;letter-spacing:.04em;text-transform:uppercase;padding:2px 7px;border-radius:6px;background:var(--chip);color:var(--muted)}
 .pct.up{color:var(--up);background:var(--up-bg)} .pct.down{color:var(--down);background:var(--down-bg)}
 .mat3 .co::after{content:"";display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--accent);margin-left:6px;vertical-align:middle}
+.day{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:10px 12px;border-left:3px solid var(--c-calendar)}
+.dayh{font-weight:700;font-size:13px;margin-bottom:8px;display:flex;gap:8px;align-items:baseline}
+.dayh .n{font-family:var(--mono);font-size:11px;color:var(--muted);font-weight:400}
+.daylist{display:flex;flex-wrap:wrap;gap:6px}
+.co-pill{font-size:13px;background:var(--chip);border-radius:8px;padding:4px 8px;display:inline-flex;gap:6px;align-items:center}
+.co-pill em{font-style:normal;font-size:10px;letter-spacing:.04em;text-transform:uppercase;color:var(--muted)}
+.co-pill.large{background:#e0ecff} .co-pill.mid{background:#ede4ff} .co-pill.small{background:#e3f6ea}
 .empty{text-align:center;color:var(--muted);padding:40px 16px;border:1px dashed var(--line);border-radius:14px;background:var(--panel)}
 .empty b{display:block;color:var(--fg);margin-bottom:6px}
 .fab{position:fixed;right:max(16px,env(safe-area-inset-right,0px));bottom:calc(18px + env(safe-area-inset-bottom,0px));z-index:20;background:var(--accent);color:var(--accent-fg);border:0;border-radius:999px;padding:14px 20px;font:inherit;font-weight:700;font-size:15px;box-shadow:0 6px 20px rgba(194,65,12,.35);cursor:pointer;text-decoration:none}
@@ -130,8 +137,8 @@ footer{color:var(--muted);font-size:12px;margin-top:28px;line-height:1.5}
 <script src="config.js"></script>
 <script>
 (function(){
-  const CATS=[["all","All"],["results","Results"],["orders","Orders"],["mna","M&A"],["policy","Policy"],["movers","Movers"],["global","Global"],["other","Other"]];
-  const CAT_LABEL=Object.fromEntries(CATS); const CAT_COLOR={results:"var(--c-results)",orders:"var(--c-orders)",mna:"var(--c-mna)",policy:"var(--c-policy)",movers:"var(--c-movers)",global:"var(--c-global)",other:"var(--c-other)"};
+  const CATS=[["all","All"],["calendar","Calendar"],["results","Results"],["orders","Orders"],["mna","M&A"],["policy","Policy"],["movers","Movers"],["global","Global"],["other","Other"]];
+  const CAT_LABEL=Object.fromEntries(CATS); const CAT_COLOR={calendar:"var(--c-calendar)",results:"var(--c-results)",orders:"var(--c-orders)",mna:"var(--c-mna)",policy:"var(--c-policy)",movers:"var(--c-movers)",global:"var(--c-global)",other:"var(--c-other)"};
   const $=id=>document.getElementById(id);
   let runs=[], current=null, cat="all", thr=10, q="";
   try{ cat=localStorage.getItem("md.cat")||"all"; thr=+localStorage.getItem("md.thr")||10; }catch(e){}
@@ -167,6 +174,10 @@ footer{color:var(--muted);font-size:12px;margin-top:28px;line-height:1.5}
     const tiles=map.filter(([k])=>m[k]).map(([k,l])=>`<div class="tile"><b>${l}</b><span class="${cls(String(m[k]))}">${esc(m[k])}</span></div>`);
     el.innerHTML=tiles.join("")+(m.note?`<div class="note">${esc(m.note)}</div>`:"");
   }
+  function calendarList(list){
+    const byDay={}; list.forEach(it=>{ (byDay[it.when||"Date TBC"]=byDay[it.when||"Date TBC"]||[]).push(it); });
+    return Object.keys(byDay).map(day=>`<div class="day"><div class="dayh">${esc(day)} <span class="n">${byDay[day].length}</span></div><div class="daylist">${byDay[day].map(it=>`<span class="co-pill ${esc((it.cap||"").toLowerCase())}">${esc(it.company)}${it.cap?`<em>${esc(it.cap)}</em>`:""}</span>`).join("")}</div></div>`).join("");
+  }
   function card(it){
     const p=it.pct!=null?`<span class="pct ${pctClass(+it.pct)}">${fmtPct(+it.pct)}</span>`:(it.value?`<span class="pct">${esc(it.value)}</span>`:"");
     const tags=[];
@@ -184,9 +195,10 @@ footer{color:var(--muted);font-size:12px;margin-top:28px;line-height:1.5}
     const items=visibleItems();
     if(!items.length){ feed.innerHTML=`<div class="empty"><b>Nothing matches</b>Try another category, a lower movers threshold, or clear the search.</div>`; return; }
     if(cat!=="all"){ feed.innerHTML=`<div class="list">${items.map(card).join("")}</div>`; return; }
-    const order=["movers","results","orders","mna","policy","global","other"], groups={};
+    const order=["calendar","movers","results","orders","mna","policy","global","other"], groups={};
     items.forEach(it=>{ (groups[it.category]=groups[it.category]||[]).push(it); });
-    feed.innerHTML=order.filter(k=>groups[k]).map(k=>`<div class="section" style="--c:${CAT_COLOR[k]}"><i></i><h2>${CAT_LABEL[k]}</h2><span class="n">${groups[k].length}</span></div><div class="list">${groups[k].map(card).join("")}</div>`).join("");
+    if(groups.calendar){ const rank={Large:0,Mid:1,Small:2,Micro:3,"":4}; groups.calendar.sort((a,b)=>String(a.sortDate||"").localeCompare(String(b.sortDate||""))||(rank[a.cap]??4)-(rank[b.cap]??4)); }
+    feed.innerHTML=order.filter(k=>groups[k]).map(k=>`<div class="section" style="--c:${CAT_COLOR[k]}"><i></i><h2>${k==="calendar"?"Results this week":CAT_LABEL[k]}</h2><span class="n">${groups[k].length}</span></div><div class="list">${k==="calendar"?calendarList(groups[k]):groups[k].map(card).join("")}</div>`).join("");
   }
   function renderRunSel(){
     const sel=$("runSel");

@@ -47,6 +47,8 @@ POLICY_FEEDS = {
     "PIB": "https://pib.gov.in/RssMain.aspx?ModId=6&Lang=1&Regid=3",
 }
 BSE_ANN = "https://api.bseindia.com/BseIndiaAPI/api/AnnSubCategoryGetData/w"
+BSE_FORTH = "https://api.bseindia.com/BseIndiaAPI/api/Corpforthresults/w"
+BSE_BOARD = "https://api.bseindia.com/BseIndiaAPI/api/BoardMeetings/w"
 NIFTY500_CSV = "https://archives.nseindia.com/content/indices/ind_nifty500list.csv"
 NSE_EQUITY_CSV = "https://archives.nseindia.com/content/equities/EQUITY_L.csv"
 SEGMENT_LISTS = {
@@ -70,7 +72,7 @@ def segment_map():
     log(f"segment map: {len(seg)} symbols")
     return seg
 
-CATS = ["results", "orders", "mna", "policy", "movers", "global", "other"]
+CATS = ["calendar", "results", "orders", "mna", "policy", "movers", "global", "other"]
 STATS = {}
 NAMES = {}
 
@@ -165,6 +167,36 @@ def fetch_bse(since):
         log(f"bse page {page}: {len(rows)} rows")
         time.sleep(0.8)
     stat("BSE announcements", True, len(out))
+    return out
+
+def fetch_results_calendar(days=7):
+    """Companies with results board meetings in the next `days` days (BSE forthcoming results)."""
+    h = {"Referer": "https://www.bseindia.com/", "Origin": "https://www.bseindia.com"}
+    d0 = now_ist(); d1 = d0 + dt.timedelta(days=days)
+    rows = []
+    for url, params in (
+        (BSE_FORTH, {"scripcode": "", "Fdate": d0.strftime("%Y%m%d"), "TDate": d1.strftime("%Y%m%d"), "Purpose": "P.1", "strSearch": "P"}),
+        (BSE_BOARD, {"scripcode": "", "Fdate": d0.strftime("%Y%m%d"), "TDate": d1.strftime("%Y%m%d"), "Purpose": "", "strSearch": "P", "ddlPurpose": "P.1"}),
+    ):
+        try:
+            r = get(url, params=params, headers=h)
+            data = r.json()
+            rows = data if isinstance(data, list) else (data.get("Table") or data.get("data") or [])
+            if rows:
+                break
+        except Exception as ex:
+            log(f"results calendar {url.split('/')[-2]} FAILED: {ex}")
+    out = []
+    for row in rows:
+        name = clean(row.get("short_name") or row.get("Long_Name") or row.get("SLONGNAME") or row.get("sLongName") or "")
+        date = clean(str(row.get("meeting_date") or row.get("BM_DATE") or row.get("Meeting_Date") or row.get("DT_TM") or ""))[:10]
+        purpose = clean(row.get("PURPOSE") or row.get("Purpose") or "Results")
+        if not name or not date:
+            continue
+        if purpose and not re.search(r"result", purpose, re.I):
+            continue
+        out.append({"name": name, "date": date, "purpose": purpose[:80]})
+    log(f"results calendar: {len(out)} companies"); stat("Results calendar (BSE)", len(out) > 0, len(out))
     return out
 
 def nse_universe():
@@ -443,7 +475,9 @@ def dedupe(items):
     order = []
     for it in items:
         k = (norm(it.get("company")), it.get("category"))
-        if it.get("category") in ("movers", "global") and it.get("fact"):
+        if it.get("category") == "calendar":
+            k = (norm(it.get("company")), "calendar")
+        elif it.get("category") in ("movers", "global") and it.get("fact"):
             k = (norm(it.get("company")), it.get("category"), re.sub(r"\W+", "", it["fact"].lower())[:30])
         if k not in best:
             best[k] = it; order.append(k)
@@ -509,6 +543,24 @@ def main():
         items.append({"category": "movers", "company": NAMES.get(m["company"], m["company"]), "ticker": m["company"], "pct": m["pct"], "cap": m.get("cap", ""),
                       "fact": fact, "reasonSource": rsrc or "",
                       "source": "NSE prices", "materiality": 3 if m.get("cap") in ("Large", "Mid") else (2 if abs(m["pct"]) >= 15 else 1)})
+    if args.mode in ("full", "results", "custom"):
+        cal = fetch_results_calendar()
+        seg = segment_map() if cal else {}
+        by_name = {}
+        for sym, nm in NAMES.items():
+            by_name[re.sub(r"[^a-z0-9]", "", nm.lower())[:14]] = sym
+        for c in cal:
+            key = re.sub(r"[^a-z0-9]", "", c["name"].lower())[:14]
+            sym = by_name.get(key)
+            cap = seg.get(sym, "") if sym else ""
+            try:
+                d = dt.datetime.strptime(c["date"][:10].replace("/", "-"), "%Y-%m-%d") if "-" in c["date"] else dt.datetime.strptime(c["date"][:10], "%d %b %Y")
+                when = d.strftime("%a %d %b")
+            except Exception:
+                when = c["date"]
+            items.append({"category": "calendar", "company": c["name"], "ticker": sym or "", "cap": cap,
+                          "fact": f"Results board meeting · {when}", "when": when, "sortDate": c["date"],
+                          "source": "BSE", "materiality": 3 if cap in ("Large", "Mid") else (2 if cap == "Small" else 1)})
     items = dedupe(items)
     items.sort(key=lambda i: (-i.get("materiality", 1), i["category"]))
 
