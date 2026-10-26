@@ -1,0 +1,521 @@
+{
+ "label": "Tue 27 Oct 2026 (news of Mon 26 Oct)",
+ "date": "2026-10-27",
+ "generatedAt": "2026-10-26T12:30:00Z",
+ "mode": "full",
+ "query": "",
+ "market": {
+  "sensex": "73,607 (+0.66%)",
+  "nifty": "22,753 (+0.68%)",
+  "giftNifty": "check at 8:30",
+  "brent": "~$117, easing",
+  "flows": "FII +₹887 Cr / DII +₹3,236 Cr (23 Oct)",
+  "note": "Both indices closed at the day's high; midcaps +1.2%, smallcaps +1.4%. Breadth was weak at the open (1,841 down / 908 up) and recovered through the day. 10-yr G-sec at 7.47%, market pricing a 50 bps RBI hike by early 2027."
+ },
+ "items": [
+  {
+   "category": "results",
+   "company": "Mankind Pharma",
+   "fact": "Q2 PAT ₹711 Cr (+39%), revenue ₹4,338 Cr (+17%); EBITDA margin 27.1% (+210 bps); international revenue +33%",
+   "pct": 4.5,
+   "source": "NSE filing / Upstox",
+   "materiality": 3
+  },
+  {
+   "category": "results",
+   "company": "REC",
+   "fact": "Q2 PAT ₹3,478 Cr (−21%); second interim dividend ₹3.50/share, record date 30 Oct",
+   "source": "NSE filing / Upstox",
+   "materiality": 3
+  },
+  {
+   "category": "results",
+   "company": "Tata Consumer Products",
+   "fact": "Q2 PAT ₹469 Cr (+16%), revenue ₹5,661 Cr (+14%); margins flat on raw-material costs",
+   "pct": -2.8,
+   "source": "NSE filing / Upstox",
+   "materiality": 2
+  },
+  {
+   "category": "results",
+   "company": "Ather Energy",
+   "fact": "First profitable quarter: PAT ₹1.26 Cr vs ₹154 Cr loss a year ago; revenue +63%",
+   "pct": 14.1,
+   "source": "Upstox",
+   "materiality": 3
+  },
+  {
+   "category": "results",
+   "company": "ITC Hotels",
+   "fact": "Q2 PAT ₹201 Cr (+51%); revenue growth reported between 13% and 25% (sources conflict)",
+   "source": "Upstox",
+   "materiality": 2
+  },
+  {
+   "category": "results",
+   "company": "Dr Reddy's Laboratories",
+   "fact": "Q2 PAT ₹925 Cr (−31%), revenue −1.5% YoY but +7% QoQ on lower lenalidomide; stock rallied anyway",
+   "pct": 6.6,
+   "source": "Upstox",
+   "materiality": 3
+  },
+  {
+   "category": "results",
+   "company": "Shriram Finance",
+   "fact": "Standalone PAT ₹3,677 Cr (+59%) but asset quality and credit costs disappointed",
+   "pct": -4.6,
+   "source": "Upstox",
+   "materiality": 2
+  },
+  {
+   "category": "results",
+   "company": "Kotak Mahindra Bank",
+   "fact": "Q2 consolidated PAT ₹5,645 Cr (+26%); standalone ₹4,212 Cr (+29.5%), NII ₹8,459 Cr (+15.7%)",
+   "source": "Mint / Business Standard",
+   "materiality": 3
+  },
+  {
+   "category": "results",
+   "company": "Infosys",
+   "fact": "Q2 PAT ₹7,823 Cr (+6%); FY27 revenue guidance cut to 1–2% constant currency",
+   "pct": -3.1,
+   "source": "Mint",
+   "materiality": 3
+  },
+  {
+   "category": "results",
+   "company": "BPCL",
+   "fact": "Q2 PAT ₹4,993 Cr vs ₹3,962 Cr loss last quarter (−22.5% YoY on fuel price freeze); EBITDA ₹8,971 Cr",
+   "source": "Mint / Business Standard",
+   "materiality": 2
+  },
+  {
+   "category": "results",
+   "company": "Coforge",
+   "fact": "Q2 PAT ₹588 Cr (+56.5%), first full quarter of Encora",
+   "pct": 4.9,
+   "source": "Mint",
+   "materiality": 2
+  },
+  {
+   "category": "results",
+   "company": "Bank of India",
+   "fact": "Q2 PAT ₹3,202 Cr (+25%), NII ₹7,007 Cr (+18.5%)",
+   "pct": -3.6,
+   "source": "Mint",
+   "materiality": 2
+  },
+  {
+   "category": "results",
+   "company": "AU Small Finance Bank",
+   "fact": "Q2 PAT ₹858 Cr (+53%)",
+   "pct": -6.9,
+   "source": "Business Standard",
+   "materiality": 2
+  },
+  {
+   "category": "results",
+   "company": "JK Cement",
+   "fact": "Q2 PAT ₹169 Cr (+6%), revenue ₹3,733 Cr (+24%)",
+   "source": "Business Standard",
+   "materiality": 1
+  },
+  {
+   "category": "results",
+   "company": "Netweb Technologies",
+   "fact": "Q2 revenue ₹1,323 Cr (+61.5% QoQ)",
+   "source": "Mint",
+   "materiality": 1
+  },
+  {
+   "category": "results",
+   "company": "SBI Funds Management",
+   "fact": "Q2 revenue ₹1,193 Cr (+3.4% QoQ), PAT ₹701 Cr (−20% QoQ)",
+   "source": "Mint",
+   "materiality": 1
+  },
+  {
+   "category": "results",
+   "company": "Vinyl Chemicals",
+   "fact": "Q2 PAT ₹11.4 Cr vs ₹2.9 Cr a year ago",
+   "pct": 20,
+   "source": "Multibagg",
+   "materiality": 1
+  },
+  {
+   "category": "results",
+   "company": "Veefin Solutions",
+   "fact": "H1 revenue ₹239 Cr, PAT ₹24.9 Cr",
+   "pct": 14.9,
+   "source": "Multibagg",
+   "materiality": 1
+  },
+  {
+   "category": "results",
+   "company": "Supreme Industries",
+   "fact": "Dividend declared with Q2 results",
+   "pct": -4.1,
+   "source": "Upstox",
+   "materiality": 1
+  },
+  {
+   "category": "results",
+   "company": "Paytm (One 97)",
+   "fact": "Reported Mon; numbers not yet captured. BofA expected PAT ₹271 Cr (+76%), revenue ₹2,641 Cr (+28%)",
+   "source": "Goodreturns",
+   "materiality": 2
+  },
+  {
+   "category": "orders",
+   "company": "KEC International",
+   "fact": "₹2,872 Cr PGCIL order for 765 kV transmission lines, described as a record",
+   "value": "₹2,872 Cr",
+   "source": "BSE filing",
+   "when": "24 Oct",
+   "materiality": 3
+  },
+  {
+   "category": "orders",
+   "company": "Ramky Infrastructure",
+   "fact": "₹589 Cr RVNL EPC contract for residential towers in Chhattisgarh",
+   "value": "₹589 Cr",
+   "source": "BSE filing",
+   "when": "24 Oct",
+   "materiality": 2
+  },
+  {
+   "category": "orders",
+   "company": "B.L. Kashyap & Sons",
+   "fact": "₹496 Cr civil works order from Signature Global",
+   "value": "₹496 Cr",
+   "source": "BSE filing",
+   "when": "24 Oct",
+   "materiality": 2
+  },
+  {
+   "category": "orders",
+   "company": "Rachana Infra",
+   "fact": "₹147 Cr Gujarat road order",
+   "value": "₹147 Cr",
+   "source": "BSE filing",
+   "when": "24 Oct",
+   "materiality": 1
+  },
+  {
+   "category": "orders",
+   "company": "Railtel",
+   "fact": "₹20 Cr order from Munitions India",
+   "value": "₹20 Cr",
+   "source": "BSE filing",
+   "when": "24 Oct",
+   "materiality": 1
+  },
+  {
+   "category": "orders",
+   "company": "Welspun Corp",
+   "fact": "₹5,500 Cr US gas-pipe order serving a hyperscaler AI data centre",
+   "value": "₹5,500 Cr",
+   "pct": -2.2,
+   "source": "BSE filing",
+   "when": "23 Oct",
+   "materiality": 3
+  },
+  {
+   "category": "orders",
+   "company": "Jyoti Structures",
+   "fact": "₹690 Cr GETCO order for a 765 kV line in Gujarat",
+   "value": "₹690 Cr",
+   "source": "BSE filing",
+   "when": "23 Oct",
+   "materiality": 2
+  },
+  {
+   "category": "orders",
+   "company": "GK Energy",
+   "fact": "₹330 Cr MSEDCL order for 14,000 solar pumps, 60-day execution",
+   "value": "₹330 Cr",
+   "source": "BSE filing",
+   "when": "23 Oct",
+   "materiality": 2
+  },
+  {
+   "category": "orders",
+   "company": "Highway Infrastructure",
+   "fact": "₹340 Cr NHAI toll-collection contract",
+   "value": "₹340 Cr",
+   "source": "BSE filing",
+   "when": "23 Oct",
+   "materiality": 2
+  },
+  {
+   "category": "orders",
+   "company": "Transrail Lighting",
+   "fact": "₹927 Cr power T&D orders; also acquires 49% of a 990 MW solar project",
+   "value": "₹927 Cr",
+   "source": "BSE filing",
+   "when": "21 Oct",
+   "materiality": 2
+  },
+  {
+   "category": "orders",
+   "company": "Kalpataru Projects",
+   "fact": "~₹2,349 Cr of new orders",
+   "value": "₹2,349 Cr",
+   "source": "BSE filing",
+   "when": "21 Oct",
+   "materiality": 2
+  },
+  {
+   "category": "orders",
+   "company": "Seamec",
+   "fact": "$55 Mn (₹517 Cr) 1,225-day vessel charter for ONGC operations",
+   "value": "₹517 Cr",
+   "source": "BSE filing",
+   "when": "21 Oct",
+   "materiality": 2
+  },
+  {
+   "category": "mna",
+   "company": "Eternal",
+   "fact": "Proposes reorganisation and share swap involving Adonmo–Mygate",
+   "pct": 2.6,
+   "source": "BSE filing",
+   "when": "21 Oct",
+   "materiality": 2
+  },
+  {
+   "category": "mna",
+   "company": "Zen Technologies",
+   "fact": "Acquires majority stake in Cogknit Semantics",
+   "source": "BSE filing",
+   "when": "18 Oct",
+   "materiality": 2
+  },
+  {
+   "category": "mna",
+   "company": "Sagility",
+   "fact": "Acquires Chirok Health to expand provider services",
+   "source": "BSE filing",
+   "when": "21 Oct",
+   "materiality": 1
+  },
+  {
+   "category": "mna",
+   "company": "PDS",
+   "fact": "Raises stake in DBS Lifestyle Hong Kong to 100%",
+   "source": "BSE filing",
+   "when": "21 Oct",
+   "materiality": 1
+  },
+  {
+   "category": "mna",
+   "company": "Dr Agarwals Health Care",
+   "fact": "Merger effective 1 Nov; 23 new shares for every 2 old",
+   "source": "BSE filing",
+   "when": "20 Oct",
+   "materiality": 1
+  },
+  {
+   "category": "mna",
+   "company": "PFC / REC",
+   "fact": "Exchanges give no-objection to the merger",
+   "source": "BSE filing",
+   "when": "19 Oct",
+   "materiality": 3
+  },
+  {
+   "category": "mna",
+   "company": "JSW Steel",
+   "fact": "NCLT sanctions Piombino Steel merger",
+   "pct": 6.3,
+   "source": "BSE filing",
+   "when": "17 Oct",
+   "materiality": 2
+  },
+  {
+   "category": "mna",
+   "company": "Jana Small Finance Bank",
+   "fact": "Clarifies media report of Federal Bank acquisition talks; no confirmed deal",
+   "source": "BSE filing",
+   "when": "19 Oct",
+   "materiality": 2
+  },
+  {
+   "category": "policy",
+   "company": "Bond market",
+   "fact": "10-yr G-sec yield 7.47% (+28 bps since 6 Oct); market pricing at least 50 bps of RBI hikes by early 2027 on crude, global yields, tight liquidity",
+   "source": "Business Standard",
+   "when": "25 Oct",
+   "materiality": 3
+  },
+  {
+   "category": "policy",
+   "company": "Paytm / MDR",
+   "fact": "Merchant discount rate framework reportedly delayed until after Diwali",
+   "source": "Goodreturns",
+   "materiality": 2
+  },
+  {
+   "category": "policy",
+   "company": "YES Bank",
+   "fact": "Reviewing Supreme Court ruling on AT-1 bonds; queries received from bondholders",
+   "source": "Mint",
+   "materiality": 2
+  },
+  {
+   "category": "policy",
+   "company": "Edelweiss EAAS India Alternatives",
+   "fact": "₹1,200 Cr IPO opened 26 Oct",
+   "source": "Lokmat Times",
+   "materiality": 1
+  },
+  {
+   "category": "movers",
+   "company": "Permanent Magnets",
+   "fact": "Upper circuit at a 52-week high; technical breakout, no filing found",
+   "pct": 20,
+   "source": "Multibagg",
+   "materiality": 1
+  },
+  {
+   "category": "movers",
+   "company": "Vinyl Chemicals",
+   "fact": "Q2 profit roughly 4× year-on-year",
+   "pct": 20,
+   "source": "Multibagg",
+   "materiality": 1
+  },
+  {
+   "category": "movers",
+   "company": "Oswal Agro Mills",
+   "fact": "Reason: none found; trading above 50- and 150-day averages",
+   "pct": 20,
+   "source": "Multibagg",
+   "materiality": 1
+  },
+  {
+   "category": "movers",
+   "company": "Mobavenue AI Tech",
+   "fact": "Reason: none found",
+   "pct": 19.8,
+   "source": "Multibagg",
+   "materiality": 1
+  },
+  {
+   "category": "movers",
+   "company": "Veefin Solutions",
+   "fact": "H1 results",
+   "pct": 14.9,
+   "source": "Multibagg",
+   "materiality": 1
+  },
+  {
+   "category": "movers",
+   "company": "Ather Energy",
+   "fact": "First profitable quarter",
+   "pct": 14.1,
+   "source": "Upstox",
+   "materiality": 2
+  },
+  {
+   "category": "movers",
+   "company": "MRPL",
+   "fact": "Reason: none found (refining-margin read-through from BPCL likely, unconfirmed)",
+   "pct": 12.7,
+   "source": "Upstox",
+   "materiality": 1
+  },
+  {
+   "category": "movers",
+   "company": "Spencer's Retail",
+   "fact": "Locked at 10% upper circuit; reason: none found",
+   "pct": 10,
+   "source": "MarketsMojo",
+   "materiality": 1
+  },
+  {
+   "category": "movers",
+   "company": "Kesoram Industries",
+   "fact": "Locked at 10% upper circuit; reason: none found",
+   "pct": 10,
+   "source": "MarketsMojo",
+   "materiality": 1
+  },
+  {
+   "category": "movers",
+   "company": "AU Small Finance Bank",
+   "fact": "Sold off despite +53% profit",
+   "pct": -6.9,
+   "source": "Upstox",
+   "materiality": 1
+  },
+  {
+   "category": "movers",
+   "company": "Dr Reddy's Laboratories",
+   "fact": "Rallied despite a 31% profit fall",
+   "pct": 6.6,
+   "source": "Upstox",
+   "materiality": 1
+  },
+  {
+   "category": "movers",
+   "company": "JSW Steel",
+   "fact": "Led metals; NCLT merger approval earlier in the week",
+   "pct": 6.3,
+   "source": "Upstox",
+   "materiality": 1
+  },
+  {
+   "category": "movers",
+   "company": "City Union Bank",
+   "fact": "Reason: none found",
+   "pct": -6.4,
+   "source": "Upstox",
+   "materiality": 1
+  },
+  {
+   "category": "global",
+   "company": "Asia (Mon)",
+   "fact": "Nikkei −0.5%, Hang Seng +0.4%, Kospi −0.9%, Shanghai −0.2%",
+   "source": "India TV",
+   "materiality": 1
+  },
+  {
+   "category": "global",
+   "company": "US (last week)",
+   "fact": "S&P −0.5%, Nasdaq −0.7%, Dow +0.4%; VIX +24% over the month",
+   "source": "Quantscase",
+   "materiality": 1
+  },
+  {
+   "category": "global",
+   "company": "Commodities & FX",
+   "fact": "Brent ~$117 (+1.7% w/w); gold −4.1% w/w; USD/INR flat w/w, rupee +1.3% m/m",
+   "source": "Quantscase",
+   "materiality": 2
+  },
+  {
+   "category": "global",
+   "company": "China & HK (last week)",
+   "fact": "Hang Seng and Nikkei −4% each, CSI 300 −5.2%",
+   "source": "Quantscase",
+   "materiality": 1
+  }
+ ],
+ "sources": [
+  "https://upstox.com/news/market-news/stocks/top-gainers-and-losers-oct-26-dr-reddy-s-rallies-7-jsw-steel-gains-6-shriram-finance-falls-5-check-list/article-202405/",
+  "https://www.multibagg.ai/market-pulse/articles/top-gainers-india-today-cmvp5c1nc000c2qqcy1z7str6",
+  "https://upstox.com/news/market-news/earnings/mankind-pharma-q2-results-profit-rises-39-yo-y-to-711-crore-as-operating-margins-improve-300-basis-points/article-202406/",
+  "https://upstox.com/news/market-news/earnings/rec-q2-results-net-profit-declines-21-yo-y-to-3-478-crore-second-interim-dividend-declared/article-202411/",
+  "https://upstox.com/news/market-news/earnings/tata-consumer-products-q2-results-net-profit-rises-16-yo-y-to-469-crore-margin-growth-remains-flat/article-202409/",
+  "https://www.indiaipo.in/news/detail/top-stocks-to-watch-today-paytm-mankind-pharma-infosys-bpcl-shares-in-focus-on-monday-26-oct-full-list",
+  "https://marketping.in/discover/contract-wins",
+  "https://news.alfafinder.com/section/new-orders/",
+  "https://marketping.in/discover/mergers-acquisitions",
+  "https://www.business-standard.com/markets/news/bond-yields-rise-nearly-30-bps-in-oct-to-raise-govt-s-interest-burden-126102500377_1.html",
+  "https://www.quantscase.com/blog/market-pulse-2026-10-25"
+ ],
+ "id": "2026-10-27-full",
+ "classifier": "curated",
+ "threshold": 10
+}

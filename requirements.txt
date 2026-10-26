@@ -1,0 +1,3 @@
+feedparser==6.0.11
+yfinance==0.2.65
+requests==2.32.4

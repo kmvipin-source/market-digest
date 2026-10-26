@@ -1,0 +1,61 @@
+name: Market Digest
+
+on:
+  schedule:
+    # 08:10 IST = 02:40 UTC, Monday to Friday
+    - cron: "40 2 * * 1-5"
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: "What to build"
+        type: choice
+        default: full
+        options: [full, movers, orders, results, policy, custom]
+      query:
+        description: "Specific ask (only for custom mode)"
+        type: string
+        default: ""
+      threshold:
+        description: "Movers threshold in % (e.g. 10)"
+        type: string
+        default: "10"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: digest
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - run: pip install -r requirements.txt
+
+      - name: Build digest
+        env:
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+          GROQ_MODEL: ${{ vars.GROQ_MODEL || 'llama-3.3-70b-versatile' }}
+        run: |
+          python scripts/build_digest.py \
+            --mode "${{ github.event.inputs.mode || 'full' }}" \
+            --query "${{ github.event.inputs.query || '' }}" \
+            --threshold "${{ github.event.inputs.threshold || '10' }}"
+
+      - name: Commit data
+        run: |
+          git config user.name "digest-bot"
+          git config user.email "digest-bot@users.noreply.github.com"
+          git add data/
+          git diff --cached --quiet && echo "nothing new" || git commit -m "digest: ${{ github.event.inputs.mode || 'full' }} $(date -u +%Y-%m-%dT%H:%MZ)"
+          git pull --rebase origin ${{ github.ref_name }} || true
+          git push

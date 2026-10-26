@@ -1,0 +1,220 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Market Digest</title>
+<meta name="description" content="Daily Indian stock-market digest: results, order wins, M&A, policy and big movers.">
+<meta name="theme-color" content="#171b21">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="icon-192.png">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  --bg:#f6f7f9; --panel:#ffffff; --fg:#14181f; --muted:#5d6675; --line:#e3e6eb;
+  --accent:#b8540a; --accent-fg:#ffffff; --chip:#eceef2; --chip-on:#14181f; --chip-on-fg:#ffffff;
+  --up:#1a7f4b; --up-bg:#e4f4ea; --down:#b42318; --down-bg:#fbe9e7; --warn:#8a6d00; --warn-bg:#fff4cc;
+  --font:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+  color-scheme:light;
+}
+@media (prefers-color-scheme: dark){ :root{
+  --bg:#0f1216; --panel:#171b21; --fg:#e8ebef; --muted:#98a2b3; --line:#2a303a;
+  --accent:#f0893a; --accent-fg:#14181f; --chip:#232934; --chip-on:#e8ebef; --chip-on-fg:#14181f;
+  --up:#4cc38a; --up-bg:#15291f; --down:#f0776b; --down-bg:#331a17; --warn:#e2c04a; --warn-bg:#2e2810;
+  color-scheme:dark; } }
+*{box-sizing:border-box}
+html,body{height:100%}
+body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.45 var(--font);-webkit-font-smoothing:antialiased;padding-top:env(safe-area-inset-top,0px)}
+.gutter{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+header{position:sticky;top:0;z-index:9;background:var(--panel);border-bottom:1px solid var(--line)}
+.hbar{display:flex;align-items:center;gap:10px;padding-block:10px 8px}
+.brand{font-weight:700;font-size:17px;letter-spacing:-.01em;white-space:nowrap}
+.brand small{display:block;font-weight:500;font-size:11px;color:var(--muted);letter-spacing:.04em;text-transform:uppercase}
+.spacer{flex:1}
+select,input[type=search]{font:inherit;color:var(--fg);background:var(--chip);border:1px solid transparent;border-radius:10px;padding:8px 10px;min-width:0;max-width:52vw}
+select:focus,input:focus,button:focus-visible,a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.status{display:inline-flex;align-items:center;gap:6px;font-size:12px;color:var(--muted)}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--muted);flex:none}
+.dot.ok{background:var(--up)} .dot.err{background:var(--down)}
+.filters{display:flex;gap:8px;overflow-x:auto;padding-block:0 10px;scrollbar-width:none}
+.filters::-webkit-scrollbar{display:none}
+.chip{flex:none;font:inherit;font-size:13px;font-weight:500;border:0;border-radius:999px;padding:7px 12px;background:var(--chip);color:var(--fg);cursor:pointer}
+.chip[aria-pressed="true"]{background:var(--chip-on);color:var(--chip-on-fg)}
+.chip .n{font-family:var(--mono);font-size:11px;opacity:.7;margin-left:4px}
+.tools{display:flex;gap:8px;padding-block:0 10px}
+.tools input{flex:1;max-width:none}
+.seg{display:inline-flex;background:var(--chip);border-radius:10px;padding:3px;gap:2px}
+.seg button{font:inherit;font-size:12px;font-family:var(--mono);border:0;background:transparent;color:var(--muted);border-radius:8px;padding:5px 8px;cursor:pointer}
+.seg button[aria-pressed="true"]{background:var(--panel);color:var(--fg);box-shadow:0 1px 2px rgba(0,0,0,.12)}
+main{padding-block:14px 110px;max-width:760px;margin:0 auto}
+.market{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:12px 14px;margin-bottom:14px}
+.market .row{display:flex;flex-wrap:wrap;gap:6px 16px;font-family:var(--mono);font-size:13px;font-variant-numeric:tabular-nums}
+.market .row b{font-weight:500;color:var(--muted)}
+.market .note{font-size:13px;color:var(--muted);margin-top:6px}
+.section{margin:18px 0 8px;display:flex;align-items:baseline;gap:8px}
+.section h2{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:0;font-weight:600}
+.section .n{font-family:var(--mono);font-size:11px;color:var(--muted)}
+.list{display:flex;flex-direction:column;gap:8px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:11px 13px;display:grid;grid-template-columns:1fr auto;gap:4px 10px;min-width:0}
+.card .co{font-weight:600;font-size:15px;min-width:0;overflow-wrap:anywhere}
+.card .fact{grid-column:1/-1;font-size:14px;min-width:0;overflow-wrap:anywhere}
+.card .meta{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:6px 10px;font-size:12px;color:var(--muted);align-items:center}
+.card .meta a{color:var(--muted)}
+.pct{font-family:var(--mono);font-size:13px;font-weight:500;padding:2px 8px;border-radius:8px;white-space:nowrap;align-self:start}
+.pct.up{color:var(--up);background:var(--up-bg)} .pct.down{color:var(--down);background:var(--down-bg)}
+.tag{font-size:11px;letter-spacing:.04em;text-transform:uppercase;padding:2px 7px;border-radius:6px;background:var(--chip);color:var(--muted)}
+.mat3{border-left:3px solid var(--accent)}
+.empty{text-align:center;color:var(--muted);padding:40px 16px;border:1px dashed var(--line);border-radius:14px}
+.empty b{display:block;color:var(--fg);margin-bottom:6px}
+.fab{position:fixed;right:max(16px,env(safe-area-inset-right,0px));bottom:calc(18px + env(safe-area-inset-bottom,0px));z-index:20;background:var(--accent);color:var(--accent-fg);border:0;border-radius:999px;padding:14px 20px;font:inherit;font-weight:700;font-size:15px;box-shadow:0 6px 20px rgba(0,0,0,.25);cursor:pointer;text-decoration:none}
+.scrim{position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:30}
+.sheet{position:fixed;left:0;right:0;bottom:0;z-index:31;background:var(--panel);border-radius:18px 18px 0 0;padding:14px 0 calc(16px + env(safe-area-inset-bottom,0px));max-height:85vh;overflow:auto;box-shadow:0 -8px 30px rgba(0,0,0,.25)}
+.sheet h3{margin:0 0 4px;font-size:17px}
+.sheet p{margin:0 0 12px;color:var(--muted);font-size:13px}
+.sheet ol{margin:0 0 12px;padding-left:20px;font-size:14px}
+.sheet li{margin-bottom:6px}
+.sheet code{font-family:var(--mono);font-size:12px;background:var(--chip);padding:1px 5px;border-radius:5px}
+.btnrow{display:flex;gap:8px;margin-top:12px}
+.btn{font:inherit;font-weight:600;border:0;border-radius:12px;padding:12px 16px;cursor:pointer;background:var(--chip);color:var(--fg);text-decoration:none;text-align:center}
+.btn.primary{background:var(--accent);color:var(--accent-fg);flex:1}
+footer{color:var(--muted);font-size:12px;margin-top:28px;line-height:1.5}
+[hidden]{display:none!important}
+</style>
+</head>
+<body>
+<header class="gutter">
+  <div class="hbar">
+    <div class="brand">Market Digest<small>Indian equities, every morning</small></div>
+    <div class="spacer"></div>
+    <select id="runSel" aria-label="Choose a digest"><option value="">Loading…</option></select>
+  </div>
+  <div class="tools">
+    <input type="search" id="q" placeholder="Search company or keyword" autocomplete="off">
+    <div class="seg" id="thr" role="group" aria-label="Movers threshold">
+      <button type="button" data-t="5" aria-pressed="false">5%</button>
+      <button type="button" data-t="10" aria-pressed="true">10%</button>
+      <button type="button" data-t="15" aria-pressed="false">15%</button>
+    </div>
+  </div>
+  <div class="filters" id="cats"></div>
+</header>
+
+<main class="gutter">
+  <div class="status" style="margin-bottom:10px"><span class="dot" id="dot"></span><span id="statusText">Loading…</span></div>
+  <div id="market" class="market" hidden></div>
+  <div id="feed"></div>
+  <footer>This page organises publicly available information for informational purposes. It may contain errors or omissions and does not provide investment advice. Items are summarised from exchange filings, RSS news feeds and free price data at run time; confirm with the source before acting.</footer>
+</main>
+
+<a class="fab" id="fab" href="#run">Run now</a>
+
+<div id="sheetWrap" hidden>
+  <div class="scrim" id="scrim"></div>
+  <div class="sheet gutter" role="dialog" aria-labelledby="sheetTitle">
+    <h3 id="sheetTitle">Run a fresh digest</h3>
+    <p>Runs on GitHub Actions, free, in about 2–4 minutes. The new digest appears in the day selector when it's done (refresh the page).</p>
+    <ol>
+      <li>Tap <strong>Open runner</strong> below (sign in to GitHub if asked).</li>
+      <li>Tap <strong>Run workflow</strong>, pick a mode — <code>full</code>, <code>movers</code>, <code>orders</code>, <code>results</code>, <code>policy</code> or <code>custom</code> with your own ask — and the movers threshold.</li>
+      <li>Tap the green <strong>Run workflow</strong> button.</li>
+    </ol>
+    <div class="btnrow"><button class="btn" id="cancel" type="button">Close</button><a class="btn primary" id="runnerLink" href="#" target="_blank" rel="noopener">Open runner</a></div>
+  </div>
+</div>
+
+<script src="config.js"></script>
+<script>
+(function(){
+  const CATS=[["all","All"],["results","Results"],["orders","Orders"],["mna","M&A"],["policy","Policy"],["movers","Movers"],["global","Global"],["other","Other"]];
+  const CAT_LABEL=Object.fromEntries(CATS);
+  const $=id=>document.getElementById(id);
+  let runs=[], current=null, cat="all", thr=10, q="";
+  try{ cat=localStorage.getItem("md.cat")||"all"; thr=+localStorage.getItem("md.thr")||10; }catch(e){}
+  const cfg=window.DIGEST_CONFIG||{};
+  if(cfg.repo){ $("runnerLink").href=`https://github.com/${cfg.repo}/actions/workflows/digest.yml`; }
+
+  const esc=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+  const fmtPct=p=>(p>0?"+":"")+Number(p).toFixed(1)+"%";
+  const pctClass=p=>p>0?"up":p<0?"down":"";
+  const ago=ts=>{ if(!ts) return ""; const d=(Date.now()-new Date(ts).getTime())/60000; if(d<1) return "just now"; if(d<60) return Math.round(d)+" min ago"; if(d<48*60) return Math.round(d/60)+" h ago"; return Math.round(d/1440)+" d ago"; };
+
+  function visibleItems(){
+    if(!current) return [];
+    const needle=q.trim().toLowerCase();
+    return (current.items||[]).filter(it=>{
+      if(cat!=="all" && it.category!==cat) return false;
+      if(it.category==="movers" && Math.abs(+it.pct||0)<thr) return false;
+      if(needle && !((it.company||"")+" "+(it.fact||"")+" "+(it.source||"")).toLowerCase().includes(needle)) return false;
+      return true;
+    });
+  }
+  function renderCats(){
+    const counts={all:0};
+    (current?.items||[]).forEach(it=>{ counts.all++; counts[it.category]=(counts[it.category]||0)+1; });
+    $("cats").innerHTML=CATS.map(([k,l])=>`<button class="chip" type="button" data-cat="${k}" aria-pressed="${cat===k}">${l}<span class="n">${counts[k]||0}</span></button>`).join("");
+  }
+  function renderMarket(){
+    const m=current?.market, el=$("market");
+    if(!m||!Object.keys(m).length){ el.hidden=true; return; }
+    el.hidden=false;
+    const map=[["sensex","Sensex"],["nifty","Nifty"],["giftNifty","GIFT"],["sp500","S&P"],["nikkei","Nikkei"],["brent","Brent"],["usdinr","USD/INR"],["flows","FII/DII"]];
+    const cells=map.filter(([k])=>m[k]).map(([k,l])=>`<span><b>${l}</b> ${esc(m[k])}</span>`);
+    el.innerHTML=`<div class="row">${cells.join("")}</div>${m.note?`<div class="note">${esc(m.note)}</div>`:""}`;
+  }
+  function card(it){
+    const p=it.pct!=null?`<span class="pct ${pctClass(+it.pct)}">${fmtPct(+it.pct)}</span>`:(it.value?`<span class="pct">${esc(it.value)}</span>`:"");
+    const tags=[];
+    if(cat==="all") tags.push(`<span class="tag">${esc(CAT_LABEL[it.category]||it.category||"")}</span>`);
+    if(it.source) tags.push(it.link?`<a href="${esc(it.link)}" target="_blank" rel="noopener">${esc(it.source)}</a>`:`<span>${esc(it.source)}</span>`);
+    if(it.when) tags.push(`<span>${esc(it.when)}</span>`);
+    return `<article class="card ${it.materiality>=3?"mat3":""}"><div class="co">${esc(it.company)}</div>${p}<div class="fact">${esc(it.fact)}</div><div class="meta">${tags.join("")}</div></article>`;
+  }
+  function renderFeed(){
+    const feed=$("feed");
+    if(!current){ feed.innerHTML=`<div class="empty"><b>No digest yet</b>Tap <strong>Run now</strong> to build the first one, or wait for the weekday 8:10 AM run.</div>`; return; }
+    const items=visibleItems();
+    if(!items.length){ feed.innerHTML=`<div class="empty"><b>Nothing matches</b>Try another category, a lower movers threshold, or clear the search.</div>`; return; }
+    if(cat!=="all"){ feed.innerHTML=`<div class="list">${items.map(card).join("")}</div>`; return; }
+    const order=["movers","results","orders","mna","policy","global","other"], groups={};
+    items.forEach(it=>{ (groups[it.category]=groups[it.category]||[]).push(it); });
+    feed.innerHTML=order.filter(k=>groups[k]).map(k=>`<div class="section"><h2>${CAT_LABEL[k]}</h2><span class="n">${groups[k].length}</span></div><div class="list">${groups[k].map(card).join("")}</div>`).join("");
+  }
+  function renderRunSel(){
+    const sel=$("runSel");
+    sel.innerHTML=runs.length?runs.map(r=>`<option value="${esc(r.id)}" ${current&&current.id===r.id?"selected":""}>${esc(r.label||r.id)}</option>`).join(""):`<option value="">No digests yet</option>`;
+  }
+  function renderStatus(ok,text){ $("dot").className="dot "+(ok?"ok":"err"); $("statusText").textContent=text; }
+  function renderAll(){ renderRunSel(); renderCats(); renderMarket(); renderFeed(); }
+
+  async function loadRun(id){
+    try{
+      const r=await fetch(`data/${id}.json?v=${Date.now()}`); if(!r.ok) throw new Error(r.status);
+      current=await r.json(); current.id=current.id||id;
+      renderAll();
+      renderStatus(true,`${current.items?.length||0} items · generated ${ago(current.generatedAt)}${current.query?" · "+current.query:""}${current.classifier==="rules"?" · keyword mode (no Groq key)":""}`);
+    }catch(e){ renderStatus(false,"Couldn't load that digest."); }
+  }
+  async function init(){
+    try{
+      const r=await fetch(`data/index.json?v=${Date.now()}`); if(!r.ok) throw new Error(r.status);
+      runs=(await r.json()).runs||[];
+      renderRunSel();
+      if(runs.length) await loadRun(runs[0].id); else { renderAll(); renderStatus(false,"No digests yet"); }
+    }catch(e){ renderAll(); renderStatus(false,"Couldn't load the digest index."); }
+  }
+
+  $("cats").addEventListener("click",e=>{ const b=e.target.closest("[data-cat]"); if(!b) return; cat=b.dataset.cat; try{localStorage.setItem("md.cat",cat)}catch(x){} renderCats(); renderFeed(); });
+  $("thr").addEventListener("click",e=>{ const b=e.target.closest("[data-t]"); if(!b) return; thr=+b.dataset.t; try{localStorage.setItem("md.thr",thr)}catch(x){} [...$("thr").children].forEach(c=>c.setAttribute("aria-pressed",c===b)); renderFeed(); });
+  [...$("thr").children].forEach(c=>c.setAttribute("aria-pressed",+c.dataset.t===thr));
+  $("q").addEventListener("input",e=>{ q=e.target.value; renderFeed(); });
+  $("runSel").addEventListener("change",e=>{ if(e.target.value) loadRun(e.target.value); });
+  $("fab").addEventListener("click",e=>{ e.preventDefault(); $("sheetWrap").hidden=false; });
+  const close=()=>{ $("sheetWrap").hidden=true; };
+  $("scrim").addEventListener("click",close); $("cancel").addEventListener("click",close);
+  init();
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,349 @@
+#!/usr/bin/env python3
+"""Build the Morning Market Digest.
+
+Reads public RSS feeds, BSE corporate announcements and free price data,
+classifies items (Groq LLM if GROQ_API_KEY is set, keyword rules otherwise)
+and writes data/<run-id>.json plus data/index.json for the static site.
+
+Usage:
+  python scripts/build_digest.py                     # full digest
+  python scripts/build_digest.py --mode movers --threshold 10
+  python scripts/build_digest.py --mode custom --query "order wins above 500 Cr this week"
+"""
+import argparse, json, os, re, sys, time, hashlib, datetime as dt
+from pathlib import Path
+from zoneinfo import ZoneInfo
+
+import requests
+
+ROOT = Path(__file__).resolve().parent.parent
+DATA = ROOT / "data"
+IST = ZoneInfo("Asia/Kolkata")
+UA = {"User-Agent": "Mozilla/5.0 (compatible; MarketDigest/1.0; +https://github.com)", "Accept": "*/*"}
+
+NEWS_FEEDS = {
+    "Economic Times Markets": "https://economictimes.indiatimes.com/markets/rssfeeds/1977021501.cms",
+    "Economic Times Stocks": "https://economictimes.indiatimes.com/markets/stocks/rssfeeds/2146842.cms",
+    "Moneycontrol": "https://www.moneycontrol.com/rss/latestnews.xml",
+    "Moneycontrol Business": "https://www.moneycontrol.com/rss/business.xml",
+    "Business Standard Markets": "https://www.business-standard.com/rss/markets-106.rss",
+    "Business Standard Companies": "https://www.business-standard.com/rss/companies-101.rss",
+    "Mint Markets": "https://www.livemint.com/rss/markets",
+    "Mint Companies": "https://www.livemint.com/rss/companies",
+    "Reuters India (via Google News)": "https://news.google.com/rss/search?q=site:reuters.com+India+stocks&hl=en-IN&gl=IN&ceid=IN:en",
+}
+POLICY_FEEDS = {
+    "RBI": "https://www.rbi.org.in/pressreleases_rss.xml",
+    "SEBI": "https://www.sebi.gov.in/sebirss.xml",
+    "PIB": "https://pib.gov.in/RssMain.aspx?ModId=6&Lang=1&Regid=3",
+}
+BSE_ANN = "https://api.bseindia.com/BseIndiaAPI/api/AnnSubCategoryGetData/w"
+NIFTY500_CSV = "https://archives.nseindia.com/content/indices/ind_nifty500list.csv"
+
+CATS = ["results", "orders", "mna", "policy", "movers", "global", "other"]
+
+# ---------------------------------------------------------------- helpers
+def log(*a):
+    print(*a, file=sys.stderr, flush=True)
+
+def now_ist():
+    return dt.datetime.now(IST)
+
+def iso_utc(d=None):
+    d = d or dt.datetime.now(dt.timezone.utc)
+    return d.astimezone(dt.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+
+def get(url, params=None, timeout=25, headers=None):
+    h = dict(UA); h.update(headers or {})
+    r = requests.get(url, params=params, headers=h, timeout=timeout)
+    r.raise_for_status()
+    return r
+
+def clean(s):
+    s = re.sub(r"<[^>]+>", " ", s or "")
+    s = re.sub(r"\s+", " ", s).strip()
+    return s
+
+# ---------------------------------------------------------------- sources
+def fetch_feeds(feeds, since):
+    import feedparser
+    out = []
+    for name, url in feeds.items():
+        try:
+            r = get(url)
+            parsed = feedparser.parse(r.content)
+            n = 0
+            for e in parsed.entries:
+                ts = e.get("published_parsed") or e.get("updated_parsed")
+                when = dt.datetime(*ts[:6], tzinfo=dt.timezone.utc) if ts else None
+                if when and when < since:
+                    continue
+                out.append({
+                    "source": name,
+                    "title": clean(e.get("title")),
+                    "summary": clean(e.get("summary", ""))[:400],
+                    "link": e.get("link", ""),
+                    "when": iso_utc(when) if when else None,
+                })
+                n += 1
+            log(f"feed {name}: {n} items")
+        except Exception as ex:
+            log(f"feed {name} FAILED: {ex}")
+    return out
+
+def fetch_bse(since):
+    """BSE corporate announcements for the window. Returns raw headline rows."""
+    out = []
+    d0 = since.astimezone(IST).strftime("%Y%m%d")
+    d1 = now_ist().strftime("%Y%m%d")
+    h = {"Referer": "https://www.bseindia.com/", "Origin": "https://www.bseindia.com"}
+    for page in range(1, 6):
+        params = {"pageno": page, "strCat": "-1", "strPrevDate": d0, "strScrip": "", "strSearch": "P",
+                  "strToDate": d1, "strType": "C", "subcategory": "-1"}
+        try:
+            r = get(BSE_ANN, params=params, headers=h)
+            rows = r.json().get("Table", [])
+        except Exception as ex:
+            log(f"bse page {page} FAILED: {ex}")
+            break
+        if not rows:
+            break
+        for row in rows:
+            head = clean(row.get("HEADLINE") or row.get("NEWSSUB") or "")
+            cat = clean(row.get("CATEGORYNAME", ""))
+            if not head:
+                continue
+            # keep the categories that matter; skip routine compliance filings
+            if re.search(r"(Trading Window|Certificate|Compliance|Reg\.? ?74|Investor Presentation|Newspaper|Analyst|Clarification|Record Date|Outcome of Board Meeting)$", head, re.I) and not re.search(r"(order|contract|acqui|merger|result|dividend|buyback|rating|guidance)", head, re.I):
+                continue
+            out.append({
+                "source": "BSE filing",
+                "title": f"{clean(row.get('SLONGNAME',''))}: {head}",
+                "summary": cat,
+                "link": "https://www.bseindia.com/corporates/ann.html",
+                "when": None,
+            })
+        log(f"bse page {page}: {len(rows)} rows")
+        time.sleep(0.8)
+    return out
+
+def nse_universe():
+    try:
+        r = get(NIFTY500_CSV, headers={"Referer": "https://www.nseindia.com/"})
+        syms = []
+        for line in r.text.splitlines()[1:]:
+            parts = line.split(",")
+            if len(parts) >= 3 and parts[2].strip():
+                syms.append(parts[2].strip())
+        log(f"nifty500 universe: {len(syms)} symbols")
+        return syms
+    except Exception as ex:
+        log(f"nifty500 list FAILED: {ex}; using fallback 60-stock universe")
+        return ["RELIANCE","TCS","HDFCBANK","ICICIBANK","INFY","SBIN","BHARTIARTL","ITC","LT","KOTAKBANK","AXISBANK","HINDUNILVR","BAJFINANCE","MARUTI","SUNPHARMA","TITAN","ULTRACEMCO","NTPC","ONGC","POWERGRID","TATAMOTORS","TATASTEEL","JSWSTEEL","ADANIENT","ADANIPORTS","COALINDIA","BPCL","WIPRO","HCLTECH","TECHM","DRREDDY","CIPLA","DIVISLAB","NESTLEIND","BRITANNIA","ASIANPAINT","GRASIM","HINDALCO","INDUSINDBK","EICHERMOT","HEROMOTOCO","BAJAJ-AUTO","M&M","SHRIRAMFIN","BAJAJFINSV","SBILIFE","HDFCLIFE","TATACONSUM","APOLLOHOSP","LTIM","TRENT","BEL","HAL","ZOMATO","PAYTM","IRFC","RVNL","MAZDOCK","COFORGE","PERSISTENT"]
+
+def fetch_movers(threshold, intraday):
+    """Movers via yfinance. intraday=True compares last price to today's open; else previous close to last close."""
+    try:
+        import yfinance as yf
+    except Exception as ex:
+        log(f"yfinance missing: {ex}"); return []
+    syms = nse_universe()
+    tickers = [s + ".NS" for s in syms]
+    out = []
+    try:
+        df = yf.download(tickers, period="5d", interval="1d", group_by="ticker", threads=True, progress=False, auto_adjust=False)
+    except Exception as ex:
+        log(f"yfinance download FAILED: {ex}"); return []
+    for s, t in zip(syms, tickers):
+        try:
+            sub = df[t].dropna(how="all")
+            if len(sub) < 2:
+                continue
+            last, prev = sub.iloc[-1], sub.iloc[-2]
+            if intraday:
+                base, px = float(last["Open"]), float(last["Close"])
+            else:
+                base, px = float(prev["Close"]), float(last["Close"])
+            if not base or base != base:
+                continue
+            pct = (px / base - 1) * 100
+            vol = float(last["Volume"]); avgv = float(sub["Volume"].iloc[:-1].mean() or 0)
+            if abs(pct) >= threshold:
+                out.append({"company": s, "pct": round(pct, 2), "price": round(px, 2),
+                            "volx": round(vol / avgv, 1) if avgv else None})
+        except Exception:
+            continue
+    out.sort(key=lambda x: -abs(x["pct"]))
+    log(f"movers >= {threshold}%: {len(out)}")
+    return out[:40]
+
+def fetch_global():
+    try:
+        import yfinance as yf
+    except Exception:
+        return {}
+    idx = {"sensex": "^BSESN", "nifty": "^NSEI", "sp500": "^GSPC", "nasdaq": "^IXIC", "nikkei": "^N225",
+           "hangseng": "^HSI", "brent": "BZ=F", "usdinr": "INR=X", "gold": "GC=F"}
+    out = {}
+    try:
+        df = yf.download(list(idx.values()), period="5d", interval="1d", group_by="ticker", progress=False, auto_adjust=False)
+        for k, t in idx.items():
+            sub = df[t].dropna(how="all")
+            if len(sub) >= 2:
+                last, prev = float(sub.iloc[-1]["Close"]), float(sub.iloc[-2]["Close"])
+                pct = (last / prev - 1) * 100
+                out[k] = f"{last:,.{2 if last < 1000 else 0}f} ({pct:+.2f}%)"
+    except Exception as ex:
+        log(f"global FAILED: {ex}")
+    return out
+
+# ---------------------------------------------------------------- classify
+KEYWORDS = [
+    ("orders", r"\b(order|orders|contract|LOI|letter of (intent|award)|bags|wins|awarded|work order|purchase order|EPC)\b"),
+    ("mna", r"\b(acqui|merger|amalgamat|stake|takeover|open offer|buyout|divest|JV|joint venture|demerger)\b"),
+    ("results", r"\b(Q[1-4]|quarter|results?|net profit|PAT|revenue|EBITDA|guidance|dividend|buyback|margin)\b"),
+    ("policy", r"\b(RBI|SEBI|government|ministry|policy|circular|regulat|GST|budget|tariff|duty|PLI|cabinet|repo rate|yield)\b"),
+    ("global", r"\b(Wall Street|Dow|Nasdaq|S&P|Nikkei|Hang Seng|Fed|crude|Brent|rupee|dollar|gold|GIFT Nifty|Asian markets|US markets)\b"),
+]
+
+def rule_classify(raw):
+    items = []
+    for r in raw:
+        text = f"{r['title']} {r['summary']}"
+        cat = "other"
+        for c, pat in KEYWORDS:
+            if re.search(pat, text, re.I):
+                cat = c; break
+        if cat == "other" and r["source"] != "BSE filing":
+            continue  # drop generic news in rule mode
+        company = r["title"].split(":")[0] if r["source"] == "BSE filing" else r["title"].split(" ")[0:3]
+        company = company if isinstance(company, str) else " ".join(company)
+        items.append({"category": cat, "company": company[:60], "fact": r["title"][:180],
+                      "source": r["source"], "materiality": 2 if r["source"] == "BSE filing" else 1, "link": r["link"]})
+    return items
+
+GROQ_URL = "https://api.groq.com/openai/v1/chat/completions"
+PROMPT = """You turn Indian stock-market headlines into a structured digest. Rules: facts only, in your own words, each fact at most 25 words with the numbers; never add buy/sell/target language; drop items that are not material market news (listicles, opinion, lifestyle, ads, routine compliance filings, IPO GMP chatter); merge duplicates of the same story; company = the listed company or body (e.g. "RBI", "Bond market"); materiality 1-3 (3 = index name, or deal/number large relative to the company). Categories: results (quarterly numbers, guidance, dividends, buybacks), orders (order wins, contracts, LOIs), mna (acquisitions, stake sales, mergers, open offers), policy (RBI/SEBI/government/regulation/macro-India), global (overseas markets, crude, currency), other (management changes, ratings, fund-raises, bulk deals, legal). MODE: {mode}. {query}
+Return ONLY a JSON object: {{"items":[{{"category":"...","company":"...","fact":"...","value":"<₹ amount for orders/deals or omit>","source":"<source name as given>","materiality":1}}]}}
+HEADLINES (source | title | summary):
+{rows}"""
+
+def groq_classify(raw, mode, query, key):
+    items = []
+    batch = 45
+    for i in range(0, len(raw), batch):
+        chunk = raw[i:i + batch]
+        rows = "\n".join(f"{r['source']} | {r['title']} | {r['summary'][:200]}" for r in chunk)
+        body = {"model": os.environ.get("GROQ_MODEL", "llama-3.3-70b-versatile"), "temperature": 0.1,
+                "response_format": {"type": "json_object"},
+                "messages": [{"role": "user", "content": PROMPT.format(mode=mode, query=("Specific ask: " + query) if query else "", rows=rows)}]}
+        for attempt in range(3):
+            try:
+                r = requests.post(GROQ_URL, json=body, headers={"Authorization": f"Bearer {key}"}, timeout=90)
+                if r.status_code == 429:
+                    time.sleep(8 * (attempt + 1)); continue
+                r.raise_for_status()
+                content = r.json()["choices"][0]["message"]["content"]
+                got = json.loads(content).get("items", [])
+                for it in got:
+                    if it.get("category") in CATS and it.get("company") and it.get("fact"):
+                        it["materiality"] = int(it.get("materiality") or 1)
+                        items.append(it)
+                break
+            except Exception as ex:
+                log(f"groq batch {i} attempt {attempt} failed: {ex}")
+                time.sleep(3)
+    log(f"groq classified: {len(items)} items from {len(raw)} headlines")
+    return items
+
+def dedupe(items):
+    seen, out = set(), []
+    for it in items:
+        k = hashlib.md5((it["company"].lower()[:20] + "|" + it["category"] + "|" + re.sub(r"\W+", "", it["fact"].lower())[:40]).encode()).hexdigest()
+        if k in seen:
+            continue
+        seen.add(k); out.append(it)
+    return out
+
+# ---------------------------------------------------------------- main
+def main():
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--mode", default="full", choices=["full", "movers", "orders", "results", "policy", "custom"])
+    ap.add_argument("--query", default="")
+    ap.add_argument("--threshold", type=float, default=10)
+    ap.add_argument("--hours", type=float, default=0, help="lookback window in hours (default: since 15:00 IST previous trading day)")
+    ap.add_argument("--offline-sample", action="store_true", help="skip network; build from data/sample_raw.json")
+    args = ap.parse_args()
+
+    t0 = now_ist()
+    if args.hours:
+        since = t0 - dt.timedelta(hours=args.hours)
+    else:
+        prev = t0 - dt.timedelta(days=1)
+        while prev.weekday() >= 5:
+            prev -= dt.timedelta(days=1)
+        since = prev.replace(hour=15, minute=0, second=0, microsecond=0)
+    since = since.astimezone(dt.timezone.utc)
+    log(f"mode={args.mode} since={since.isoformat()} threshold={args.threshold}")
+
+    raw, movers, glob = [], [], {}
+    if args.offline_sample:
+        raw = json.loads((DATA / "sample_raw.json").read_text())
+    else:
+        if args.mode in ("full", "orders", "results", "policy", "custom"):
+            raw += fetch_feeds(NEWS_FEEDS, since)
+            raw += fetch_bse(since)
+        if args.mode in ("full", "policy", "custom"):
+            raw += fetch_feeds(POLICY_FEEDS, since)
+        if args.mode in ("full", "movers", "custom"):
+            intraday = t0.hour >= 9 and (t0.hour, t0.minute) >= (9, 30) and t0.hour < 16
+            movers = fetch_movers(args.threshold, intraday)
+        if args.mode in ("full", "custom"):
+            glob = fetch_global()
+    log(f"raw headlines: {len(raw)}")
+
+    key = os.environ.get("GROQ_API_KEY", "").strip()
+    items = groq_classify(raw, args.mode, args.query, key) if (key and raw) else rule_classify(raw)
+    if args.mode in ("orders", "results", "policy"):
+        items = [i for i in items if i["category"] == args.mode]
+    for m in movers:
+        items.append({"category": "movers", "company": m["company"], "pct": m["pct"],
+                      "fact": f"₹{m['price']:,} · volume {m['volx']}× average" if m.get("volx") else f"₹{m['price']:,}",
+                      "source": "NSE prices", "materiality": 2 if abs(m["pct"]) >= 15 else 1})
+    items = dedupe(items)
+    items.sort(key=lambda i: (-i.get("materiality", 1), i["category"]))
+
+    label_mode = {"full": "Full digest", "movers": "Movers", "orders": "Orders", "results": "Results", "policy": "Policy", "custom": "Custom: " + args.query[:40]}[args.mode]
+    run_id = f"{t0.strftime('%Y-%m-%d')}-{args.mode}"
+    n = 2
+    while (DATA / f"{run_id}.json").exists():
+        run_id = f"{t0.strftime('%Y-%m-%d')}-{args.mode}-{n}"; n += 1
+
+    market = {}
+    if glob:
+        market = {"sensex": glob.get("sensex", ""), "nifty": glob.get("nifty", ""), "brent": glob.get("brent", ""),
+                  "usdinr": glob.get("usdinr", ""), "sp500": glob.get("sp500", ""), "nikkei": glob.get("nikkei", ""),
+                  "note": "Index and commodity figures are the latest daily closes from Yahoo Finance."}
+    doc = {"id": run_id, "label": f"{t0.strftime('%a %d %b %Y')} · {label_mode}", "date": t0.strftime("%Y-%m-%d"),
+           "generatedAt": iso_utc(), "mode": args.mode, "query": args.query, "threshold": args.threshold,
+           "market": market, "items": items[:200],
+           "sources": sorted({r.get("link", "") for r in raw if r.get("link")})[:80],
+           "classifier": "groq" if key else "rules"}
+    DATA.mkdir(exist_ok=True)
+    (DATA / f"{run_id}.json").write_text(json.dumps(doc, ensure_ascii=False, indent=1))
+
+    idx_path = DATA / "index.json"
+    index = json.loads(idx_path.read_text()) if idx_path.exists() else {"runs": []}
+    index["runs"] = [r for r in index["runs"] if r["id"] != run_id]
+    counts = {}
+    for it in items:
+        counts[it["category"]] = counts.get(it["category"], 0) + 1
+    index["runs"].insert(0, {"id": run_id, "label": doc["label"], "date": doc["date"], "generatedAt": doc["generatedAt"],
+                             "mode": args.mode, "count": len(items), "counts": counts})
+    index["runs"] = sorted(index["runs"], key=lambda r: r["generatedAt"], reverse=True)[:120]
+    index["updatedAt"] = iso_utc()
+    idx_path.write_text(json.dumps(index, ensure_ascii=False, indent=1))
+    log(f"wrote data/{run_id}.json with {len(items)} items; classifier={doc['classifier']}")
+
+if __name__ == "__main__":
+    main()

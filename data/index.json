@@ -1,0 +1,21 @@
+{
+ "runs": [
+  {
+   "id": "2026-10-27-full",
+   "label": "Tue 27 Oct 2026 (news of Mon 26 Oct)",
+   "date": "2026-10-27",
+   "generatedAt": "2026-10-26T12:30:00Z",
+   "mode": "full",
+   "count": 61,
+   "counts": {
+    "results": 20,
+    "orders": 12,
+    "mna": 8,
+    "policy": 4,
+    "movers": 13,
+    "global": 4
+   }
+  }
+ ],
+ "updatedAt": "2026-10-26T12:42:00Z"
+}
