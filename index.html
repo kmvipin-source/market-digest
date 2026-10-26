@@ -285,7 +285,7 @@ footer{color:var(--muted);font-size:12px;margin-top:28px;line-height:1.5}
   }
   function renderMarket(){
     const m=current?.market, el=$("market");
-    if(!m||!Object.keys(m).length){ el.hidden=true; return; }
+    if(cat!=="all"||!m||!Object.keys(m).length){ el.hidden=true; return; }
     el.hidden=false;
     const cls=v=>/\+/.test(v)?"u":/-|−/.test(v)?"d":"";
     const tile=(l,v)=>{ const parts=String(v).split(" · "); return `<div class="tile"><b>${l}</b><span class="lvl">${esc(parts[0])}</span>${parts[1]?`<span class="chg ${cls(parts[1])}">${esc(parts[1])}</span>`:""}</div>`; };
@@ -315,7 +315,7 @@ footer{color:var(--muted);font-size:12px;margin-top:28px;line-height:1.5}
   function card(it){
     const p=it.pct!=null?`<span class="pct ${pctClass(+it.pct)}">${fmtPct(+it.pct)}</span>`:(it.value?`<span class="pct">${esc(it.value)}</span>`:"");
     const tags=[];
-    if(cat==="all") tags.push(`<span class="tag">${esc(CAT_LABEL[it.category]||it.category||"")}</span>`);
+    if(cat==="all"||cat==="watch") tags.push(`<span class="tag">${esc(CAT_LABEL[it.category]||it.category||"")}</span>`);
     if(it.ticker) tags.push(`<span class="tag">${esc(it.ticker)}</span>`);
     if(it.cap) tags.push(`<span class="tag">${esc(it.cap)} cap</span>`);
     if(it.reasonSource) tags.push(`<span>via ${esc(it.reasonSource)}</span>`);
@@ -334,7 +334,10 @@ footer{color:var(--muted);font-size:12px;margin-top:28px;line-height:1.5}
     if(cat==="watch"){ feed.innerHTML=watch.length?"":`<div class="empty"><b>No stocks yet</b>Tap ★ at the top to add up to 15.</div>`; return; }
     const items=visibleItems();
     if(!items.length){ feed.innerHTML=`<div class="empty"><b>Nothing matches</b>Try another category, a lower movers threshold, or clear the search.</div>`; return; }
-    if(cat!=="all"){ feed.innerHTML=`<div class="list">${items.map(card).join("")}</div>`; return; }
+    if(cat!=="all"){
+      const titles2={movers:"Big moves",results:"Results & guidance",volume:"Unusual volume",deals:"Bulk & block deals",high52:"New 52-week highs & lows",calendar:"Results due this week",orders:"Order wins",mna:"M&A & stakes",ratings:"Broker rating changes",actions:"Ex-dates this week",policy:"Policy & macro",global:"Global",other:"Other"};
+      const body=cat==="calendar"?calendarList(items):(cat==="high52"?pills52(items):(cat==="actions"?actionsList(items):items.map(card).join("")));
+      feed.innerHTML=`<div class="section" style="--c:${CAT_COLOR[cat]||"var(--muted)"}"><i></i><h2>${titles2[cat]||CAT_LABEL[cat]}</h2><span class="n">${items.length}</span></div><div class="list">${body}</div>`; return; }
     const order=["movers","results","volume","deals","high52","calendar","orders","mna","ratings","actions","policy","global","other"], groups={};
     items.forEach(it=>{ const k=vcat(it); (groups[k]=groups[k]||[]).push(it); });
     if(groups.calendar){ const rank={Large:0,Mid:1,Small:2,Micro:3,"":4}; groups.calendar.sort((a,b)=>String(a.sortDate||"").localeCompare(String(b.sortDate||""))||(rank[a.cap]??4)-(rank[b.cap]??4)); }
@@ -356,7 +359,7 @@ footer{color:var(--muted);font-size:12px;margin-top:28px;line-height:1.5}
   function renderStatus(ok,text){ $("dot").className="dot "+(ok?"ok":"err"); $("statusText").textContent=text; }
   function renderBrief(){
     const b=current?.brief, el=$("brief");
-    if(!b||(!b.regime&&!(b.leads||[]).length)){ el.hidden=true; return; }
+    if(cat!=="all"||!b||(!b.regime&&!(b.leads||[]).length)){ el.hidden=true; return; }
     el.hidden=false;
     const leads=(b.leads||[]).map(l=>`<div class="lead"><div class="lt"><span class="co">${esc(l.company)}</span>${l.cap?`<span class="tag">${esc(l.cap)} cap</span>`:""}${(l.tags||[]).slice(0,3).map(t=>`<span class="tag t">${esc(t)}</span>`).join("")}</div><div class="why">${esc(l.why)}</div></div>`).join("");
     const li=a=>(a||[]).map(x=>`<li>${esc(x)}</li>`).join("");
@@ -409,8 +412,8 @@ footer{color:var(--muted);font-size:12px;margin-top:28px;line-height:1.5}
   }
 
   $("watch").addEventListener("click",e=>{ if(e.target.closest("#wlToggle")){ wlOpen=!wlOpen; try{localStorage.setItem("md.wlopen",wlOpen?"1":"0");}catch(x){} renderWatch(); return; } const r=e.target.closest(".wrow[data-sym]"); if(r&&cat!=="watch"){ const s=r.dataset.sym; wlExpanded.has(s)?wlExpanded.delete(s):wlExpanded.add(s); renderWatch(); } });
-  $("feed").addEventListener("click",e=>{ const m=e.target.closest("[data-more]"); const l=e.target.closest("[data-less]"); const o=e.target.closest(".open[data-cat]"); if(m){ expanded.add(m.dataset.more); renderFeed(); } else if(l){ expanded.delete(l.dataset.less); renderFeed(); const s=$("sec-"+l.dataset.less); if(s) s.scrollIntoView({block:"start"}); } else if(o){ cat=o.dataset.cat; try{localStorage.setItem("md.cat",cat)}catch(x){} renderCats(); renderFeed(); window.scrollTo({top:0}); } });
-  $("cats").addEventListener("click",e=>{ const b=e.target.closest("[data-cat]"); if(!b) return; cat=b.dataset.cat; try{localStorage.setItem("md.cat",cat)}catch(x){} renderCats(); renderFeed(); });
+  $("feed").addEventListener("click",e=>{ const m=e.target.closest("[data-more]"); const l=e.target.closest("[data-less]"); const o=e.target.closest(".open[data-cat]"); if(m){ expanded.add(m.dataset.more); renderFeed(); } else if(l){ expanded.delete(l.dataset.less); renderFeed(); const s=$("sec-"+l.dataset.less); if(s) s.scrollIntoView({block:"start"}); } else if(o){ cat=o.dataset.cat; try{localStorage.setItem("md.cat",cat)}catch(x){} renderAll(); window.scrollTo({top:0}); } });
+  $("cats").addEventListener("click",e=>{ const b=e.target.closest("[data-cat]"); if(!b) return; cat=b.dataset.cat; try{localStorage.setItem("md.cat",cat)}catch(x){} renderAll(); window.scrollTo({top:0}); });
   $("thr").addEventListener("click",e=>{ const b=e.target.closest("[data-t]"); if(!b) return; thr=+b.dataset.t; try{localStorage.setItem("md.thr",thr)}catch(x){} [...$("thr").children].forEach(c=>c.setAttribute("aria-pressed",c===b)); renderFeed(); });
   [...$("thr").children].forEach(c=>c.setAttribute("aria-pressed",+c.dataset.t===thr));
   $("q").addEventListener("input",e=>{ q=e.target.value; renderFeed(); });
