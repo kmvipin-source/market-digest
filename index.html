@@ -105,6 +105,18 @@ main{padding-block:14px 110px;max-width:760px;margin:0 auto}
 .wlchips{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
 .wlchip{display:inline-flex;align-items:center;gap:6px;background:var(--chip);border-radius:999px;padding:5px 6px 5px 11px;font-size:13px}
 .wlchip button{border:0;background:var(--panel);border-radius:50%;width:20px;height:20px;cursor:pointer;color:var(--muted);font-size:12px;line-height:1}
+.brief{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:14px;margin:10px 0 14px;border-top:3px solid var(--accent)}
+.brief .regime{margin:0 0 10px;font-size:15px;line-height:1.55}
+.brief h4{margin:14px 0 8px;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.brief ul{margin:0;padding-left:18px;font-size:14px;line-height:1.5}
+.brief li{margin-bottom:4px}
+.leads{display:flex;flex-direction:column;gap:8px}
+.lead{background:var(--bg);border-radius:10px;padding:9px 11px}
+.lead .lt{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.lead .co{font-weight:600}
+.lead .tag.t{background:#fff1e6;color:var(--accent)}
+.lead .why{font-size:13.5px;margin-top:3px;line-height:1.45}
+.brief .fine{font-size:11px;color:var(--muted);margin-top:12px}
 .wsec{margin:10px 0 14px}
 .wrow{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:10px 12px;border-left:3px solid #ca8a04;margin-bottom:8px}
 .wtop{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}
@@ -155,6 +167,7 @@ footer{color:var(--muted);font-size:12px;margin-top:28px;line-height:1.5}
 
 <main class="gutter">
   <div class="status" style="margin-bottom:10px"><span class="dot" id="dot"></span><span id="statusText">Loading…</span></div>
+  <section id="brief" hidden></section>
   <section id="watch" hidden></section>
   <div id="market" class="market" hidden></div>
   <div id="feed"></div>
@@ -277,6 +290,21 @@ footer{color:var(--muted);font-size:12px;margin-top:28px;line-height:1.5}
   }
   function srcSummary(d){ const st=d.stats||{}; const ks=Object.keys(st); if(!ks.length) return ""; const ok=ks.filter(k=>st[k].ok).length; const bad=ks.filter(k=>!st[k].ok); $("statusText").title=bad.length?("Failed: "+bad.map(k=>k+" ("+st[k].err+")").join("; ")):"All sources responded"; return ` · sources ${ok}/${ks.length} ok`; }
   function renderStatus(ok,text){ $("dot").className="dot "+(ok?"ok":"err"); $("statusText").textContent=text; }
+  function renderBrief(){
+    const b=current?.brief, el=$("brief");
+    if(!b||(!b.regime&&!(b.leads||[]).length)){ el.hidden=true; return; }
+    el.hidden=false;
+    const leads=(b.leads||[]).map(l=>`<div class="lead"><div class="lt"><span class="co">${esc(l.company)}</span>${l.cap?`<span class="tag">${esc(l.cap)} cap</span>`:""}${(l.tags||[]).slice(0,3).map(t=>`<span class="tag t">${esc(t)}</span>`).join("")}</div><div class="why">${esc(l.why)}</div></div>`).join("");
+    const li=a=>(a||[]).map(x=>`<li>${esc(x)}</li>`).join("");
+    el.innerHTML=`<div class="section" style="--c:var(--accent)"><i></i><h2>Today's read</h2></div>
+      <div class="brief">
+        ${b.regime?`<p class="regime">${esc(b.regime)}</p>`:""}
+        ${leads?`<h4>Worth a closer look</h4><div class="leads">${leads}</div>`:""}
+        ${(b.week||[]).length?`<h4>Week ahead</h4><ul>${li(b.week)}</ul>`:""}
+        ${(b.risks||[]).length?`<h4>What could change the picture</h4><ul>${li(b.risks)}</ul>`:""}
+        <div class="fine">Generated from the items below; information only, not investment advice.</div>
+      </div>`;
+  }
   function renderWatch(){
     const el=$("watch"); $("wlCount").textContent=watch.length?watch.length:"";
     if(!watch.length){ el.hidden=true; return; }
@@ -291,7 +319,7 @@ footer{color:var(--muted);font-size:12px;margin-top:28px;line-height:1.5}
     }).join("");
     el.innerHTML=`<div class="section" style="--c:#ca8a04"><i></i><h2>Watchlist</h2><span class="n">${watch.length}</span></div><div class="wsec">${rows}</div>`;
   }
-  function renderAll(){ renderRunSel(); renderCats(); renderMarket(); renderWatch(); renderFeed(); }
+  function renderAll(){ renderRunSel(); renderCats(); renderMarket(); renderBrief(); renderWatch(); renderFeed(); }
 
   async function loadRun(id){
     try{

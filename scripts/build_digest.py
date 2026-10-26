@@ -593,6 +593,45 @@ def dedupe(items):
                 best[k] = it
     return [best[k] for k in order]
 
+# ---------------------------------------------------------------- brief
+BRIEF_PROMPT = """You are writing the morning read for an Indian equity trader who focuses on mid and small caps. Use ONLY the data below. No buy/sell/target language and no price predictions: describe the setup and what is worth researching, and say why using the numbers given. Plain English, concise.
+Return ONLY JSON:
+{{"regime": "2-3 sentences on market regime: breadth, VIX, leading/lagging sectors, macro pressure (crude, rupee, yields, FII)",
+ "leads": [{{"company": "...", "cap": "Large|Mid|Small|Micro|", "why": "one sentence with the concrete signals (move %, volume x, 52-week context, order/result/deal with value)", "tags": ["momentum","volume","order win","results","deal","policy","reversal","breakout"]}}],
+ "week": ["3-6 bullets: the most material results and policy events ahead, with dates where given"],
+ "risks": ["2-4 bullets: what could change the picture, grounded in the data"]}}
+Pick 6-8 leads; prefer Mid/Small/Micro caps with more than one signal (price + volume + a filing or news). Exclude index-level items from leads.
+
+MARKET: {market}
+BREADTH: {breadth}
+SECTORS: {sectors}
+ITEMS (category | company | cap | pct | fact):
+{rows}"""
+
+def groq_brief(doc, key):
+    if not key:
+        return None
+    m = doc.get("market", {})
+    rows = []
+    for it in sorted(doc["items"], key=lambda i: -int(i.get("materiality") or 1))[:120]:
+        rows.append(f"{it.get('category')} | {it.get('company')} | {it.get('cap','')} | {it.get('pct','')} | {str(it.get('fact',''))[:160]}")
+    prompt = BRIEF_PROMPT.format(market={k: v for k, v in m.items() if k not in ("sectors", "breadth", "note")}, breadth=m.get("breadth", {}), sectors=m.get("sectors", {}), rows="\n".join(rows))
+    for model in pick_groq_models(key):
+        try:
+            r = requests.post(GROQ_URL, json={"model": model, "temperature": 0.2, "response_format": {"type": "json_object"},
+                                              "messages": [{"role": "user", "content": prompt}]},
+                              headers={"Authorization": f"Bearer {key}"}, timeout=120)
+            if r.status_code >= 400:
+                log(f"brief {model}: {r.status_code} {r.text[:120]}"); continue
+            b = json.loads(r.json()["choices"][0]["message"]["content"])
+            if b.get("regime") or b.get("leads"):
+                stat("Morning read (Groq)", True, len(b.get("leads", [])), f"model={model}")
+                return b
+        except Exception as ex:
+            log(f"brief failed on {model}: {ex}")
+    stat("Morning read (Groq)", False, 0, "all models failed")
+    return None
+
 # ---------------------------------------------------------------- main
 def main():
     ap = argparse.ArgumentParser()
@@ -698,6 +737,8 @@ def main():
            "market": market, "items": items[:200],
            "sources": sorted({r.get("link", "") for r in raw if r.get("link")})[:80],
            "classifier": "groq" if key else "rules", "stats": STATS, "rawCount": len(raw), "prices": PRICES}
+    if args.mode in ("full", "custom", "movers") and doc["items"]:
+        doc["brief"] = groq_brief(doc, key)
     DATA.mkdir(exist_ok=True)
     (DATA / f"{run_id}.json").write_text(json.dumps(doc, ensure_ascii=False, indent=1))
 
