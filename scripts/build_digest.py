@@ -337,13 +337,41 @@ def fetch_global():
                 except Exception:
                     continue
         df = yf.download(list(idx.values()), period="5d", interval="1d", group_by="ticker", progress=False, auto_adjust=False)
+        asof = None
         for k, t in idx.items():
             sub = df[t].dropna(how="all")
             if len(sub) >= 2:
+                if k in ("nifty", "sensex"):
+                    try:
+                        ts = sub.index[-1].to_pydatetime()
+                        asof = ts
+                    except Exception:
+                        pass
                 last, prev = float(sub.iloc[-1]["Close"]), float(sub.iloc[-2]["Close"])
                 pct = (last / prev - 1) * 100; chg = last - prev
                 dp = 2 if last < 1000 else 0
                 out[k] = f"{last:,.{dp}f} · {chg:+,.{dp}f} ({pct:+.2f}%)"
+        # quote freshness: during market hours (09:15-15:30 IST) try a 5-minute bar for the latest Nifty/Sensex print
+        t_now = now_ist()
+        if t_now.weekday() < 5 and (9, 15) <= (t_now.hour, t_now.minute) <= (15, 35):
+            try:
+                live = yf.download(["^NSEI", "^BSESN"], period="1d", interval="5m", group_by="ticker", progress=False, auto_adjust=False)
+                for k, t in (("nifty", "^NSEI"), ("sensex", "^BSESN")):
+                    sub = live[t].dropna(how="all")
+                    if len(sub):
+                        px = float(sub.iloc[-1]["Close"]); prev = float(df[t].dropna(how="all").iloc[-2]["Close"])
+                        out[k] = f"{px:,.0f} · {px - prev:+,.0f} ({(px / prev - 1) * 100:+.2f}%)"
+                        asof = sub.index[-1].to_pydatetime()
+                out["quoteNote"] = "live"
+            except Exception as ex:
+                log(f"live quote failed: {ex}")
+        if asof is not None:
+            try:
+                if asof.tzinfo is None:
+                    asof = asof.replace(tzinfo=dt.timezone.utc)
+                out["asOf"] = asof.astimezone(IST).strftime("%a %d %b %H:%M") + " IST" + (" (live)" if out.get("quoteNote") == "live" else " close")
+            except Exception:
+                pass
     except Exception as ex:
         log(f"global FAILED: {ex}")
     return out
@@ -640,7 +668,7 @@ def main():
         market["sectors"] = {k[4:]: v for k, v in glob.items() if k.startswith("sec_")}
         if BREADTH.get("scanned"):
             market["breadth"] = dict(BREADTH)
-        market["note"] = "Index, sector and commodity figures are the latest daily closes from Yahoo Finance; breadth is computed across all liquid NSE stocks."
+        market["note"] = (f"Quotes as of {glob['asOf']}. " if glob.get("asOf") else "") + "Index, sector and commodity figures from Yahoo Finance; breadth is computed across all liquid NSE stocks."
     window = f"news since {since.astimezone(IST).strftime('%a %d %b %H:%M')} IST"
     doc = {"id": run_id, "label": f"{t0.strftime('%a %d %b')} {t0.strftime('%H:%M')} IST · {label_mode}", "window": window, "date": t0.strftime("%Y-%m-%d"),
            "generatedAt": iso_utc(), "mode": args.mode, "query": args.query, "threshold": args.threshold,

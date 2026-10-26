@@ -51,6 +51,7 @@ select:focus,input:focus,button:focus-visible,a:focus-visible{outline:2px solid 
 .seg button[aria-pressed="true"]{background:var(--panel);color:var(--fg);box-shadow:0 1px 2px rgba(0,0,0,.10)}
 main{padding-block:14px 110px;max-width:760px;margin:0 auto}
 .market{display:flex;flex-direction:column;gap:8px;margin:10px 0 14px}
+.asof{font-size:12px;color:var(--muted)} .asof b{color:var(--fg);font-weight:600}
 .mgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
 .breadth{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:10px 12px;font-size:13px;font-family:var(--mono);font-variant-numeric:tabular-nums}
 .breadth b{font-family:var(--font);font-size:11px;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);margin-right:6px}
@@ -60,7 +61,8 @@ main{padding-block:14px 110px;max-width:760px;margin:0 auto}
 .sec em{font-style:normal;font-family:var(--mono)}
 .sec.u{background:var(--up-bg);color:var(--up)} .sec.d{background:var(--down-bg);color:var(--down)}
 .world summary{cursor:pointer;font-size:13px;color:var(--muted);padding:4px 2px}
-.world .mgrid{margin-top:8px}
+.world .asof{font-size:12px;color:var(--muted)} .asof b{color:var(--fg);font-weight:600}
+.mgrid{margin-top:8px}
 .tile{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:10px 12px;min-width:0}
 .tile b{display:block;font-size:11px;font-weight:600;color:var(--muted);letter-spacing:.04em;text-transform:uppercase}
 .tile span{display:block;font-family:var(--mono);font-size:14px;font-variant-numeric:tabular-nums;margin-top:2px;overflow-wrap:anywhere}
@@ -128,7 +130,8 @@ textarea{width:100%;font:inherit;font-size:14px;color:var(--fg);background:var(-
 .btn.primary{background:var(--accent);color:var(--accent-fg);flex:1}
 footer{color:var(--muted);font-size:12px;margin-top:28px;line-height:1.5}
 [hidden]{display:none!important}
-@media (max-width:420px){.mgrid{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:420px){.asof{font-size:12px;color:var(--muted)} .asof b{color:var(--fg);font-weight:600}
+.mgrid{grid-template-columns:repeat(2,1fr)}}
 </style>
 </head>
 <body>
@@ -235,7 +238,7 @@ footer{color:var(--muted);font-size:12px;margin-top:28px;line-height:1.5}
     const tile=(l,v)=>{ const parts=String(v).split(" · "); return `<div class="tile"><b>${l}</b><span class="lvl">${esc(parts[0])}</span>${parts[1]?`<span class="chg ${cls(parts[1])}">${esc(parts[1])}</span>`:""}</div>`; };
     const india=[["sensex","Sensex"],["nifty","Nifty 50"],["midcap","Midcap 50"],["smallcap","Smallcap 100"],["banknifty","Bank Nifty"],["vix","India VIX"],["giftNifty","GIFT Nifty"],["flows","FII / DII"]];
     const world=[["sp500","S&P 500"],["nasdaq","Nasdaq"],["dow","Dow"],["nikkei","Nikkei"],["hangseng","Hang Seng"],["kospi","Kospi"],["brent","Brent"],["usdinr","USD/INR"],["gold","Gold"],["silver","Silver"],["us10y","US 10-yr"],["dxy","Dollar index"]];
-    let html=`<div class="mgrid">${india.filter(([k])=>m[k]).map(([k,l])=>tile(l,m[k])).join("")}</div>`;
+    let html=(m.asOf?`<div class="asof">Quotes as of <b>${esc(m.asOf)}</b></div>`:"")+`<div class="mgrid">${india.filter(([k])=>m[k]).map(([k,l])=>tile(l,m[k])).join("")}</div>`;
     if(m.breadth){ const b=m.breadth; html+=`<div class="breadth"><b>Breadth</b> <span class="u">${b.advances} up</span> / <span class="d">${b.declines} down</span> of ${b.scanned} · ≥5%: <span class="u">${b.up5}</span>/<span class="d">${b.down5}</span> · ≥10%: <span class="u">${b.up10}</span>/<span class="d">${b.down10}</span></div>`; }
     if(m.sectors&&Object.keys(m.sectors).length){ const names={it:"IT",auto:"Auto",pharma:"Pharma",metal:"Metal",realty:"Realty",fmcg:"FMCG",psubank:"PSU Bank",energy:"Energy",infra:"Infra",media:"Media"}; const rows=Object.entries(m.sectors).map(([k,v])=>{ const pm=String(v).match(/\(([+-−]?[\d.]+)%\)/); return {k,v,p:pm?parseFloat(pm[1].replace("−","-")):0}; }).sort((a,b)=>b.p-a.p); html+=`<div class="sectors">${rows.map(r=>`<span class="sec ${r.p>0?"u":r.p<0?"d":""}">${names[r.k]||r.k} <em>${r.p>0?"+":""}${r.p.toFixed(1)}%</em></span>`).join("")}</div>`; }
     html+=`<details class="world"><summary>Global &amp; commodities</summary><div class="mgrid">${world.filter(([k])=>m[k]).map(([k,l])=>tile(l,m[k])).join("")}</div></details>`;
