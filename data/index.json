@@ -1,6 +1,24 @@
 {
  "runs": [
   {
+   "id": "2026-10-26-full-2",
+   "label": "Mon 26 Oct 19:34 IST · Full digest",
+   "date": "2026-10-26",
+   "generatedAt": "2026-10-26T14:15:03Z",
+   "mode": "full",
+   "count": 128,
+   "counts": {
+    "global": 16,
+    "orders": 8,
+    "other": 13,
+    "policy": 8,
+    "results": 34,
+    "mna": 5,
+    "movers": 24,
+    "volume": 20
+   }
+  },
+  {
    "id": "2026-10-26-full-4",
    "label": "Mon 26 Oct 19:24 IST · Full digest",
    "date": "2026-10-26",
@@ -35,22 +53,6 @@
    }
   },
   {
-   "id": "2026-10-26-full-2",
-   "label": "Mon 26 Oct 2026 · Full digest",
-   "date": "2026-10-26",
-   "generatedAt": "2026-10-26T13:34:08Z",
-   "mode": "full",
-   "count": 286,
-   "counts": {
-    "global": 54,
-    "mna": 18,
-    "movers": 3,
-    "orders": 30,
-    "policy": 28,
-    "results": 153
-   }
-  },
-  {
    "id": "2026-10-26-full",
    "label": "Mon 26 Oct 2026 · Full digest",
    "date": "2026-10-26",
@@ -78,5 +80,5 @@
    }
   }
  ],
- "updatedAt": "2026-10-26T14:04:19Z"
+ "updatedAt": "2026-10-26T14:15:03Z"
 }
