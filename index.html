@@ -386,7 +386,23 @@ footer{color:var(--muted);font-size:12px;margin-top:28px;line-height:1.5}
   }
   let wlOpen=true; try{ wlOpen=localStorage.getItem("md.wlopen")!=="0"; }catch(e){}
   const wlExpanded=new Set();
+  function resolveWatch(){
+    const pr=current?.prices||{}; const names=Object.keys(pr).length?pr:Object.fromEntries(Object.entries(scrips).map(([s,n])=>[s,[n]]));
+    if(!Object.keys(names).length) return;
+    let changed=false;
+    watch.forEach(w=>{
+      if(names[w.sym]) { if(!w.name&&names[w.sym][0]){ w.name=names[w.sym][0]; changed=true; } return; }
+      const q=(w.name||w.sym).toLowerCase().replace(/[^a-z0-9 ]/g,"");
+      const qs=q.replace(/\s+/g,"");
+      let hits=Object.entries(names).filter(([s,v])=>s.toLowerCase()===qs||s.toLowerCase().startsWith(qs));
+      if(!hits.length) hits=Object.entries(names).filter(([s,v])=>String(v[0]).toLowerCase().replace(/[^a-z0-9 ]/g,"").startsWith(q));
+      if(!hits.length){ const first=q.split(" ")[0]; if(first.length>=4) hits=Object.entries(names).filter(([s,v])=>String(v[0]).toLowerCase().startsWith(first)); }
+      if(hits.length===1||(hits.length>1&&hits[0][0].toLowerCase()===qs)){ w.sym=hits[0][0]; w.name=hits[0][1][0]; changed=true; }
+    });
+    if(changed){ try{ localStorage.setItem("md.watch",JSON.stringify(watch)); }catch(e){} pushWatch(); }
+  }
   function renderTicker(){
+    resolveWatch();
     const el=$("ticker"), tr=$("tkTrack"); const prices=current?.prices||{};
     if(!watch.length){ el.hidden=true; return; }
     const cells=watch.map(w=>{ const p=prices[w.sym]; if(!p||p[1]==null) return `<span class="tk" data-sym="${esc(w.sym)}"><b>${esc(w.sym)}</b><span class="f">—</span></span>`; const pc=+p[2]||0; return `<span class="tk" data-sym="${esc(w.sym)}"><b>${esc(w.sym)}</b><span>₹${Number(p[1]).toLocaleString("en-IN")}</span><span class="${pc>0?"u":pc<0?"d":"f"}">${pc>0?"▲":pc<0?"▼":"•"} ${fmtPct(pc)}</span></span>`; });
