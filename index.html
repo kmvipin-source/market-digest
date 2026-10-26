@@ -26,16 +26,22 @@ body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.45 var(--font);-w
 .gutter{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
 header{position:sticky;top:0;z-index:9;background:var(--panel);border-bottom:1px solid var(--line);box-shadow:0 1px 0 rgba(20,26,34,.02)}
 .hbar{display:flex;align-items:center;gap:10px;padding-block:12px 8px}
-.brand{font-weight:700;font-size:18px;letter-spacing:-.01em;white-space:nowrap;display:flex;align-items:center;gap:8px}
+.brand{font-weight:700;font-size:17px;letter-spacing:-.01em;white-space:nowrap;display:flex;align-items:center;gap:8px;min-width:0;flex:1;overflow:hidden}
+.brand>span{min-width:0;overflow:hidden;text-overflow:ellipsis}
+.brand small{display:none}
+@media (min-width:480px){.brand small{display:block}}
 .brand .logo{width:26px;height:26px;border-radius:7px;background:var(--fg);display:inline-grid;place-items:center;flex:none}
 .brand .logo svg{width:16px;height:16px}
-.brand small{display:block;font-weight:500;font-size:11px;color:var(--muted);letter-spacing:.04em;text-transform:uppercase}
+.brand small{font-weight:500;font-size:11px;color:var(--muted);letter-spacing:.04em;text-transform:uppercase}
 .spacer{flex:1}
-.iconbtn{font:inherit;border:0;background:var(--chip);color:var(--accent);border-radius:10px;padding:7px 10px;cursor:pointer;font-size:16px;line-height:1;display:inline-flex;align-items:center;gap:4px}
+.iconbtn{flex:none;font:inherit;border:0;background:var(--chip);color:var(--accent);border-radius:10px;padding:7px 9px;cursor:pointer;font-size:16px;line-height:1;display:inline-flex;align-items:center;gap:4px}
 .iconbtn .n{font-family:var(--mono);font-size:11px;color:var(--muted)}
-select,input[type=search]{font:inherit;color:var(--fg);background:var(--chip);border:1px solid transparent;border-radius:10px;padding:8px 10px;min-width:0;max-width:50vw}
+select,input[type=search]{font:inherit;color:var(--fg);background:var(--chip);border:1px solid transparent;border-radius:10px;padding:8px 10px;min-width:0}
+select#runSel{flex:none;max-width:38vw;min-width:118px;font-weight:600;font-size:13px;appearance:none;-webkit-appearance:none;padding-right:26px;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'><path d='M2 4l4 4 4-4' fill='none' stroke='%2366707f' stroke-width='1.6'/></svg>");background-repeat:no-repeat;background-position:right 9px center;text-overflow:ellipsis}
 select:focus,input:focus,button:focus-visible,a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .status{display:inline-flex;align-items:center;gap:6px;font-size:12px;color:var(--muted);flex-wrap:wrap}
+.ib{font:inherit;border:0;background:transparent;color:var(--muted);cursor:pointer;padding:0 4px;font-size:14px;line-height:1}
+.runinfo{font-size:12px;color:var(--muted);background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:8px 10px;margin:-4px 0 10px;line-height:1.5}
 .dot{width:8px;height:8px;border-radius:50%;background:var(--muted);flex:none}
 .dot.ok{background:var(--up)} .dot.err{background:var(--down)}
 .filters{display:flex;gap:8px;overflow-x:auto;padding-block:0 10px;scrollbar-width:none}
@@ -52,10 +58,22 @@ select:focus,input:focus,button:focus-visible,a:focus-visible{outline:2px solid 
 main{padding-block:14px 110px;max-width:760px;margin:0 auto}
 .market{display:flex;flex-direction:column;gap:8px;margin:10px 0 14px}
 .asof{font-size:12px;color:var(--muted)} .asof b{color:var(--fg);font-weight:600}
-.mgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.mgrid{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;padding-bottom:2px;scroll-snap-type:x proximity}
+.mgrid::-webkit-scrollbar{display:none}
+.mgrid .tile{flex:0 0 auto;min-width:138px;scroll-snap-align:start}
 .breadth{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:10px 12px;font-size:13px;font-family:var(--mono);font-variant-numeric:tabular-nums}
 .breadth b{font-family:var(--font);font-size:11px;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);margin-right:6px}
 .breadth .u{color:var(--up)} .breadth .d{color:var(--down)}
+.bcard{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:10px 12px}
+.bhead{display:flex;justify-content:space-between;align-items:baseline;gap:8px;font-size:13px;flex-wrap:wrap}
+.bhead b{font-size:11px;letter-spacing:.04em;text-transform:uppercase;color:var(--muted)}
+.bhead .u{color:var(--up);font-weight:600} .bhead .d{color:var(--down);font-weight:600} .muted{color:var(--muted)}
+.bar{height:8px;border-radius:999px;background:var(--down-bg);margin:8px 0 6px;overflow:hidden}
+.bar span{display:block;height:100%;background:var(--up);border-radius:999px}
+.bsub{display:flex;flex-wrap:wrap;gap:4px 14px;font-size:12px;color:var(--muted);font-variant-numeric:tabular-nums}
+.bsub b{font-weight:600} .bsub .u{color:var(--up)} .bsub .d{color:var(--down)}
+.trend{display:flex;flex-wrap:wrap;gap:6px 14px;margin-top:6px;font-size:13px;font-variant-numeric:tabular-nums}
+.trow{display:inline-flex;gap:8px;align-items:baseline} .trow em{font-style:normal;color:var(--muted);font-size:12px} .trow .u{color:var(--up)} .trow .d{color:var(--down)}
 .sectors{display:flex;flex-wrap:wrap;gap:6px}
 .sec{font-size:12px;padding:5px 9px;border-radius:8px;background:var(--chip);display:inline-flex;gap:5px;align-items:center}
 .sec em{font-style:normal;font-family:var(--mono)}
@@ -76,6 +94,7 @@ main{padding-block:14px 110px;max-width:760px;margin:0 auto}
 .card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:12px 14px;display:grid;grid-template-columns:1fr auto;gap:4px 10px;min-width:0;border-left:3px solid var(--c,var(--line))}
 .card .co{font-weight:600;font-size:15px;min-width:0;overflow-wrap:anywhere}
 .card .fact{grid-column:1/-1;font-size:14px;line-height:1.5;min-width:0;overflow-wrap:anywhere}
+.card .why{grid-column:1/-1;font-size:13px;color:var(--muted);line-height:1.45;min-width:0;overflow-wrap:anywhere}
 .card .meta{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:6px 10px;font-size:12px;color:var(--muted);align-items:center}
 .card .meta a{color:var(--muted)}
 .pct{font-family:var(--mono);font-size:13px;font-weight:500;padding:2px 8px;border-radius:8px;white-space:nowrap;align-self:start;background:var(--chip);color:var(--muted)}
@@ -161,7 +180,6 @@ footer{color:var(--muted);font-size:12px;margin-top:28px;line-height:1.5}
 <header class="gutter">
   <div class="hbar">
     <div class="brand"><span class="logo"><svg viewBox="0 0 64 64"><polyline points="10,44 22,30 32,36 44,20 54,26" fill="none" stroke="#f0893a" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span>Market Digest<small>Indian equities, every morning</small></span></div>
-    <div class="spacer"></div>
     <button class="iconbtn" id="wlBtn" type="button" aria-label="Edit watchlist" title="Watchlist">★<span id="wlCount" class="n"></span></button>
     <select id="runSel" aria-label="Choose a digest"><option value="">Loading…</option></select>
   </div>
@@ -177,7 +195,8 @@ footer{color:var(--muted);font-size:12px;margin-top:28px;line-height:1.5}
 </header>
 
 <main class="gutter">
-  <div class="status" style="margin-bottom:10px"><span class="dot" id="dot"></span><span id="statusText">Loading…</span></div>
+  <div class="status" style="margin-bottom:10px"><span class="dot" id="dot"></span><span id="statusText">Loading…</span><button class="ib" id="infoBtn" type="button" aria-label="Run details">ⓘ</button><button class="ib" id="refreshBtn" type="button" aria-label="Refresh">↻</button></div>
+  <div id="runInfo" class="runinfo" hidden></div>
   <section id="brief" hidden></section>
   <section id="watch" hidden></section>
   <div id="market" class="market" hidden></div>
@@ -233,9 +252,9 @@ footer{color:var(--muted);font-size:12px;margin-top:28px;line-height:1.5}
     try{ const r=await fetch("api/watchlist",{method:"PUT",headers:{"content-type":"application/json"},body:JSON.stringify({key,list:watch})}); const d=await r.json().catch(()=>({})); if(d.ok){ wlSynced=true; $("wlSync").textContent="Synced across your devices"; } else { $("wlSync").textContent=d.error==="wrong passphrase"?"Passphrase didn't match — list saved on this device only":"Saved on this device only"; } }catch(e){ $("wlSync").textContent="Saved on this device only (offline)"; }
   }
   async function pullWatch(){
-    try{ const r=await fetch("api/watchlist",{cache:"no-store"}); const d=await r.json(); if(d.ok&&Array.isArray(d.list)&&d.list.length){ watch=d.list; try{localStorage.setItem("md.watch",JSON.stringify(watch));}catch(e){} wlSynced=true; renderWatch(); renderFeed(); } }catch(e){}
+    try{ const r=await fetch("api/watchlist",{cache:"no-store"}); const d=await r.json(); if(d.ok&&Array.isArray(d.list)&&d.list.length){ watch=d.list; try{localStorage.setItem("md.watch",JSON.stringify(watch));}catch(e){} wlSynced=true; renderCats(); renderWatch(); renderFeed(); } }catch(e){}
   }
-  const saveWatch=()=>{ try{ localStorage.setItem("md.watch",JSON.stringify(watch)); }catch(e){} pushWatch(); };
+  const saveWatch=()=>{ try{ localStorage.setItem("md.watch",JSON.stringify(watch)); }catch(e){} pushWatch(); renderCats(); };
   const STOPW=new Set(["ltd","limited","india","industries","the","co","company","corporation","corp","and","of","international","enterprises","technologies","technology","services","solutions","products","global","group","holdings","finance","financial","bank","power","energy","infra","infrastructure","pharma","pharmaceuticals","chemicals","steel","motors","textiles","mills"]);
   const toks=n=>String(n||"").toLowerCase().match(/[a-z]{3,}/g)?.filter(t=>!STOPW.has(t)).slice(0,2)||[];
   function matchesWatch(it,w){ const sym=w.sym.toLowerCase(); if((it.ticker||"").toLowerCase()===sym) return true; const t=toks(w.name||w.sym); if(!t.length) return false; const hay=((it.company||"")+" "+(it.fact||"")).toLowerCase(); return t.every(x=>hay.includes(x)); }
@@ -273,8 +292,8 @@ footer{color:var(--muted);font-size:12px;margin-top:28px;line-height:1.5}
     const india=[["sensex","Sensex"],["nifty","Nifty 50"],["midcap","Midcap 50"],["smallcap","Smallcap 100"],["banknifty","Bank Nifty"],["vix","India VIX"],["giftNifty","GIFT Nifty"],["flows","FII / DII"]];
     const world=[["sp500","S&P 500"],["nasdaq","Nasdaq"],["dow","Dow"],["nikkei","Nikkei"],["hangseng","Hang Seng"],["kospi","Kospi"],["brent","Brent"],["usdinr","USD/INR"],["gold","Gold"],["silver","Silver"],["us10y","US 10-yr"],["dxy","Dollar index"]];
     let html=(m.asOf?`<div class="asof">Quotes as of <b>${esc(m.asOf)}</b></div>`:"")+`<div class="mgrid">${india.filter(([k])=>m[k]).map(([k,l])=>tile(l,m[k])).join("")}</div>`;
-    if(m.breadth){ const b=m.breadth; html+=`<div class="breadth"><b>Breadth</b> <span class="u">${b.advances} up</span> / <span class="d">${b.declines} down</span> of ${b.scanned} · ≥5%: <span class="u">${b.up5}</span>/<span class="d">${b.down5}</span> · ≥10%: <span class="u">${b.up10}</span>/<span class="d">${b.down10}</span></div>`; }
-    if(m.dma&&Object.keys(m.dma).length){ html+=`<div class="breadth"><b>Trend</b> ${Object.entries(m.dma).map(([k,v])=>`${esc(k)}: <span class="${v.vs50.startsWith("+")?"u":"d"}">${esc(v.vs50)}</span> vs 50-DMA${v.vs200?`, <span class="${v.vs200.startsWith("+")?"u":"d"}">${esc(v.vs200)}</span> vs 200-DMA`:""}`).join(" · ")}${(m.high52||m.low52)?` · 52-wk highs <span class="u">${m.high52||0}</span> / lows <span class="d">${m.low52||0}</span>`:""}</div>`; }
+    if(m.breadth){ const b=m.breadth, tot=(b.advances+b.declines)||1, up=Math.round(b.advances/tot*100); html+=`<div class="bcard"><div class="bhead"><b>Breadth</b><span><span class="u">${b.advances} up</span> · <span class="d">${b.declines} down</span> <span class="muted">of ${b.scanned}</span></span></div><div class="bar"><span style="width:${up}%"></span></div><div class="bsub"><span>Moved ≥5%: <b class="u">${b.up5}</b> / <b class="d">${b.down5}</b></span><span>≥10%: <b class="u">${b.up10}</b> / <b class="d">${b.down10}</b></span>${(m.high52||m.low52)?`<span>52-wk highs <b class="u">${m.high52||0}</b> / lows <b class="d">${m.low52||0}</b></span>`:""}</div></div>`; }
+    if(m.dma&&Object.keys(m.dma).length){ html+=`<div class="bcard"><div class="bhead"><b>Trend</b><span class="muted">vs 50 / 200-day average</span></div><div class="trend">${Object.entries(m.dma).map(([k,v])=>`<span class="trow"><em>${esc(k)}</em><b class="${v.vs50.startsWith("+")?"u":"d"}">${esc(v.vs50)}</b>${v.vs200?`<b class="${v.vs200.startsWith("+")?"u":"d"}">${esc(v.vs200)}</b>`:""}</span>`).join("")}</div></div>`; }
     if(m.sectors&&Object.keys(m.sectors).length){ const names={it:"IT",auto:"Auto",pharma:"Pharma",metal:"Metal",realty:"Realty",fmcg:"FMCG",psubank:"PSU Bank",energy:"Energy",infra:"Infra",media:"Media"}; const rows=Object.entries(m.sectors).map(([k,v])=>{ const pm=String(v).match(/\(([+-−]?[\d.]+)%\)/); return {k,v,p:pm?parseFloat(pm[1].replace("−","-")):0}; }).sort((a,b)=>b.p-a.p); html+=`<div class="sectors">${rows.map(r=>`<span class="sec ${r.p>0?"u":r.p<0?"d":""}">${names[r.k]||r.k} <em>${r.p>0?"+":""}${r.p.toFixed(1)}%</em></span>`).join("")}</div>`; }
     html+=`<details class="world"><summary>Global &amp; commodities</summary><div class="mgrid">${world.filter(([k])=>m[k]).map(([k,l])=>tile(l,m[k])).join("")}</div></details>`;
     if(m.note) html+=`<div class="note">${esc(m.note)}</div>`;
@@ -302,7 +321,12 @@ footer{color:var(--muted);font-size:12px;margin-top:28px;line-height:1.5}
     if(it.reasonSource) tags.push(`<span>via ${esc(it.reasonSource)}</span>`);
     if(it.source) tags.push(it.link?`<a href="${esc(it.link)}" target="_blank" rel="noopener">${esc(it.source)}</a>`:`<span>${esc(it.source)}</span>`);
     if(it.when) tags.push(`<span>${esc(it.when)}</span>`);
-    const inWl=watch.some(w=>matchesWatch(it,w)); return `<article class="card ${it.materiality>=3?"mat3":""} ${inWl?"wl":""}" style="--c:${CAT_COLOR[it.category]||"var(--line)"}"><div class="co">${esc(it.company)}</div>${p}<div class="fact">${esc(it.fact)}</div><div class="meta">${tags.join("")}</div></article>`;
+    const inWl=watch.some(w=>matchesWatch(it,w));
+    let fact=String(it.fact||""), reason="";
+    const ri=fact.indexOf(". Likely reason: "), rn=fact.indexOf(". Reason: none found");
+    if(ri>0){ reason="Why: "+fact.slice(ri+17); fact=fact.slice(0,ri); } else if(rn>0){ reason="No filing or news found for this move"; fact=fact.slice(0,rn); }
+    const name=String(it.company||"").replace(/ Limited$/i,"");
+    return `<article class="card ${it.materiality>=3?"mat3":""} ${inWl?"wl":""}" style="--c:${CAT_COLOR[it.category]||"var(--line)"}"><div class="co">${esc(name)}</div>${p}<div class="fact">${esc(fact)}</div>${reason?`<div class="why">${esc(reason)}</div>`:""}<div class="meta">${tags.join("")}</div></article>`;
   }
   function renderFeed(){
     const feed=$("feed");
@@ -325,7 +349,8 @@ footer{color:var(--muted);font-size:12px;margin-top:28px;line-height:1.5}
   }
   function renderRunSel(){
     const sel=$("runSel");
-    sel.innerHTML=runs.length?runs.map(r=>`<option value="${esc(r.id)}" ${current&&current.id===r.id?"selected":""}>${esc(r.label||r.id)}</option>`).join(""):`<option value="">No digests yet</option>`;
+    const short=r=>{ const l=String(r.label||r.id); const m=l.match(/^(\w{3} \d{1,2} \w{3})(?: \d{4})?(?: (\d{2}:\d{2}) IST)? · (.+)$/); return m?`${m[1].replace(/^\w{3} /,"")}${m[2]?" "+m[2]:""}${/Full/.test(m[3])?"":" · "+m[3].replace("Custom: ","")}`:l; };
+    sel.innerHTML=runs.length?runs.map(r=>`<option value="${esc(r.id)}" ${current&&current.id===r.id?"selected":""}>${esc(short(r))}</option>`).join(""):`<option value="">No digests yet</option>`;
   }
   function srcSummary(d){ const st=d.stats||{}; const ks=Object.keys(st); if(!ks.length) return ""; const ok=ks.filter(k=>st[k].ok).length; const bad=ks.filter(k=>!st[k].ok); $("statusText").title=bad.length?("Failed: "+bad.map(k=>k+" ("+st[k].err+")").join("; ")):"All sources responded"; return ` · sources ${ok}/${ks.length} ok`; }
   function renderStatus(ok,text){ $("dot").className="dot "+(ok?"ok":"err"); $("statusText").textContent=text; }
@@ -371,7 +396,7 @@ footer{color:var(--muted);font-size:12px;margin-top:28px;line-height:1.5}
       const r=await fetch(`data/${id}.json?v=${Date.now()}`); if(!r.ok) throw new Error(r.status);
       current=await r.json(); current.id=current.id||id;
       renderAll();
-      renderStatus(true,`Last run ${ist(current.generatedAt)} · ${current.items?.length||0} items`); $("statusText").title=`${current.window||""}${current.query?" · "+current.query:""}${current.classifier==="rules"?" · keyword mode (no Groq key)":""}${srcSummary(current)}`;
+      renderStatus(true,`Last run ${ist(current.generatedAt)} · ${current.items?.length||0} items`); const st=current.stats||{}; const bad=Object.keys(st).filter(k=>!st[k].ok); $("runInfo").innerHTML=`${esc(current.window||"")}${current.query?" · "+esc(current.query):""}${current.classifier==="rules"?" · keyword mode (no Groq key)":""}<br>Sources: ${Object.keys(st).length-bad.length}/${Object.keys(st).length} responded${bad.length?` · failed: ${bad.map(k=>esc(k)).join(", ")}`:""}`;
     }catch(e){ renderStatus(false,"Couldn't load that digest."); }
   }
   async function init(){
@@ -393,6 +418,8 @@ footer{color:var(--muted);font-size:12px;margin-top:28px;line-height:1.5}
   let mode="full", runKey=""; try{ runKey=localStorage.getItem("md.key")||""; }catch(e){}
   function runKeyFor(){ return runKey; }
   let polling=null, runningSince=null, lastSeenRun=null;
+  $("infoBtn").addEventListener("click",()=>{ $("runInfo").hidden=!$("runInfo").hidden; });
+  $("refreshBtn").addEventListener("click",async()=>{ $("refreshBtn").style.opacity=.4; await init(); checkStatus(); $("refreshBtn").style.opacity=1; });
   $("fab").addEventListener("click",()=>{ $("sheetWrap").hidden=false; $("sheetMsg").hidden=true; $("runKey").value=runKey; });
   const close=()=>{ $("sheetWrap").hidden=true; };
   $("scrim").addEventListener("click",close); $("cancel").addEventListener("click",close);
