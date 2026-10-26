@@ -391,7 +391,7 @@ footer{color:var(--muted);font-size:12px;margin-top:28px;line-height:1.5}
     try{
       const r=await fetch("api/status",{cache:"no-store"}); if(!r.ok) return null; const s=await r.json();
       if(!s.ok) return null;
-      if(s.status==="queued"||s.status==="in_progress"){ const started=new Date(s.createdAt); const mins=Math.max(0,Math.round((Date.now()-started)/60000)); setRunning(true,`Run in progress · started ${mins} min ago · page refreshes automatically`); if(!polling) polling=setInterval(checkStatus,20000); runningSince=runningSince||s.createdAt; return s; }
+      if(s.status==="queued"||s.status==="in_progress"){ const started=new Date(s.status==="in_progress"&&s.updatedAt?s.updatedAt:s.createdAt); const mins=Math.max(0,Math.round((Date.now()-started)/60000)); setRunning(true,s.status==="queued"?`Queued at GitHub · waiting ${mins} min for a runner · refreshes automatically`:`Running · ${mins} min · usually 6–10 min · refreshes automatically`); if(!polling) polling=setInterval(checkStatus,20000); runningSince=runningSince||s.createdAt; return s; }
       if(polling){ clearInterval(polling); polling=null; }
       if(runningSince){ runningSince=null; setRunning(false); await init(); }
       else setRunning(false);
@@ -403,6 +403,7 @@ footer{color:var(--muted);font-size:12px;margin-top:28px;line-height:1.5}
     if(mode==="custom" && !$("custom").value.trim()){ msg.className="msg warn"; msg.textContent="Type what you want covered first."; return; }
     const key=$("runKey").value.trim(); if(!key){ msg.className="msg warn"; msg.textContent="Enter the passphrase you set in Cloudflare (RUN_KEY)."; return; }
     $("go").disabled=true; msg.textContent="Starting…";
+    const st=await checkStatus(); if(st&&(st.status==="queued"||st.status==="in_progress")){ msg.className="msg warn"; msg.textContent="A run is already "+(st.status==="queued"?"queued":"in progress")+" — it will include the latest data. Close this and wait for it."; $("go").disabled=false; return; }
     try{
       const r=await fetch("api/run",{method:"POST",headers:{"content-type":"application/json"},body:JSON.stringify({mode,query:mode==="custom"?$("custom").value.trim():"",threshold:thr,key})});
       const d=await r.json().catch(()=>({ok:false,error:"server error"}));
