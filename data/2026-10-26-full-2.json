@@ -1,0 +1,1326 @@
+{
+ "id": "2026-10-26-full-2",
+ "label": "Mon 26 Oct 19:34 IST · Full digest",
+ "window": "news since Fri 23 Oct 15:00 IST",
+ "date": "2026-10-26",
+ "generatedAt": "2026-10-26T14:15:03Z",
+ "mode": "full",
+ "query": "",
+ "threshold": 10.0,
+ "market": {
+  "sensex": "73,607 · +483 (+0.66%)",
+  "nifty": "22,753 · +153 (+0.68%)",
+  "midcap": "16,267 · +200 (+1.25%)",
+  "banknifty": "54,367 · +79 (+0.15%)",
+  "vix": "17.16 · +0.30 (+1.78%)",
+  "sp500": "7,654 · +30 (+0.39%)",
+  "nasdaq": "26,005 · +49 (+0.19%)",
+  "dow": "52,477 · +262 (+0.50%)",
+  "nikkei": "62,190 · -504 (-0.80%)",
+  "hangseng": "23,212 · +118 (+0.51%)",
+  "kospi": "5,469 · -81 (-1.46%)",
+  "brent": "110.90 · -5.82 (-4.99%)",
+  "usdinr": "95.18 · +0.46 (+0.49%)",
+  "gold": "4,006 · -2 (-0.04%)",
+  "silver": "53.19 · -0.52 (-0.96%)",
+  "us10y": "4.98 · -0.01 (-0.20%)",
+  "dxy": "102.01 · +0.21 (+0.20%)",
+  "sectors": {
+   "it": "32,273 · +278 (+0.87%)",
+   "auto": "24,971 · +108 (+0.44%)",
+   "pharma": "25,774 · +445 (+1.76%)",
+   "metal": "11,732 · +253 (+2.21%)",
+   "realty": "789.70 · +5.35 (+0.68%)",
+   "fmcg": "42,801 · +120 (+0.28%)",
+   "psubank": "8,094 · +23 (+0.29%)",
+   "energy": "35,022 · +502 (+1.46%)",
+   "infra": "8,661 · +107 (+1.25%)"
+  },
+  "breadth": {
+   "scanned": 1860,
+   "advances": 1072,
+   "declines": 786,
+   "up5": 97,
+   "down5": 47,
+   "up10": 17,
+   "down10": 7
+  },
+  "note": "Index, sector and commodity figures are the latest daily closes from Yahoo Finance; breadth is computed across all liquid NSE stocks."
+ },
+ "items": [
+  {
+   "category": "global",
+   "company": "Sensex/Nifty",
+   "fact": "Sensex gained ~1,100 points, Nifty closed above 22,750 after four-day losses.",
+   "source": "Economic Times Markets",
+   "materiality": 3
+  },
+  {
+   "category": "global",
+   "company": "Nikkei index",
+   "fact": "Japan's Nikkei index fell for a third consecutive day as tech stocks slipped and energy shares rose.",
+   "source": "Reuters India (via Google News)",
+   "materiality": 3
+  },
+  {
+   "category": "global",
+   "company": "Sensex/Nifty",
+   "fact": "Sensex rose about 500 points and Nifty crossed 22,750 as markets recovered from a four‑day decline",
+   "source": "Livemint",
+   "materiality": 3
+  },
+  {
+   "category": "global",
+   "company": "Sensex/Nifty",
+   "fact": "Sensex rose about 483 points, Nifty around 22,753, ending higher after a four‑day decline",
+   "source": "HDFC Sky",
+   "materiality": 3
+  },
+  {
+   "category": "global",
+   "company": "Sensex/Nifty",
+   "fact": "Sensex fell roughly 500 points, Nifty slipped below 22,450 as IT shares sold off",
+   "source": "Moneycontrol.com",
+   "materiality": 3
+  },
+  {
+   "category": "global",
+   "company": "Sensex/Nifty",
+   "fact": "Sensex gained about 200 points, Nifty rose above 22,600, snapping a four‑day losing streak",
+   "source": "The Economic Times",
+   "materiality": 3
+  },
+  {
+   "category": "global",
+   "company": "Sensex/Nifty",
+   "fact": "Sensex rebounded ~650 points from intraday low, Nifty turned green; metal and pharma stocks led the rally",
+   "source": "News18",
+   "materiality": 3
+  },
+  {
+   "category": "global",
+   "company": "Sensex",
+   "fact": "Sensex fell ~300 points and Nifty slipped below 22,500 as crude oil traded above $115, weighing on Indian markets",
+   "source": "News9live",
+   "materiality": 3
+  },
+  {
+   "category": "orders",
+   "company": "KEC International",
+   "fact": "Secured orders worth Rs 2,872 crore.",
+   "value": "2,872 crore",
+   "source": "Udaipur Kiran",
+   "materiality": 3
+  },
+  {
+   "category": "other",
+   "company": "Sensex",
+   "fact": "Sensex fell 134 points, Nifty slipped below 22,600 as crude oil prices and West Asia tensions rose.",
+   "source": "IBTimes India",
+   "materiality": 3
+  },
+  {
+   "category": "other",
+   "company": "Nifty",
+   "fact": "Nifty opened below 22,500 as Brent crude rose above $111 per barrel, limiting recovery.",
+   "source": "NDTV Profit",
+   "materiality": 3
+  },
+  {
+   "category": "policy",
+   "company": "RBI",
+   "fact": "RBI allotted ₹150,007 crore in 4‑day VRR auction after receiving ₹186,666 crore bids.",
+   "value": "150,007 crore",
+   "source": "RBI",
+   "materiality": 3
+  },
+  {
+   "category": "policy",
+   "company": "Defence Ministry",
+   "fact": "Cleared Rs 2.12 lakh crore defence procurement, 82% domestic.",
+   "source": "Fortune India",
+   "materiality": 3
+  },
+  {
+   "category": "results",
+   "company": "Tata Consumer Products",
+   "fact": "Q2 FY27 net profit 470 crore (+16% YoY), revenue 5,661 crore (+14%).",
+   "source": "Economic Times Markets",
+   "materiality": 3
+  },
+  {
+   "category": "results",
+   "company": "ITC Hotels",
+   "fact": "Q2 FY27 revenue 1,054 crore (+26% YoY) and net profit 203 crore (+52%).",
+   "source": "Economic Times Markets",
+   "materiality": 3
+  },
+  {
+   "category": "results",
+   "company": "Apollo Micro Systems",
+   "fact": "Q2 net profit surged 56% YoY, revenue jumped 72% to about 1,000 crore.",
+   "source": "Economic Times Markets",
+   "materiality": 3
+  },
+  {
+   "category": "results",
+   "company": "Mankind Pharma",
+   "fact": "Q2 net profit Rs 716 crore; revenue Rs 4,338 crore.",
+   "source": "Free Press Journal",
+   "materiality": 3
+  },
+  {
+   "category": "global",
+   "company": "Indian government bonds",
+   "fact": "Indian government bond yields rose as oil prices fell, supporting bond market.",
+   "source": "Economic Times Markets",
+   "materiality": 2
+  },
+  {
+   "category": "global",
+   "company": "Rupee",
+   "fact": "Rupee slipped 5 paise to 94.98 per US dollar amid high crude oil rates.",
+   "source": "Economic Times Markets",
+   "materiality": 2
+  },
+  {
+   "category": "global",
+   "company": "Gold market",
+   "fact": "Gold price under pressure due to higher bond yields, strong US dollar, and Fed expectations.",
+   "source": "Mint Markets",
+   "materiality": 2
+  },
+  {
+   "category": "global",
+   "company": "Indian Rupee",
+   "fact": "Rupee trades within a narrow range against the US dollar as growth supports the currency",
+   "source": "www.tmgm.com",
+   "materiality": 2
+  },
+  {
+   "category": "global",
+   "company": "Bond market",
+   "fact": "India‑US bond yield spread widens, raising concerns for Indian and foreign investors",
+   "source": "Moneycontrol.com",
+   "materiality": 2
+  },
+  {
+   "category": "global",
+   "company": "Brent crude",
+   "fact": "Brent crude topped $115 per barrel, contributing to negative start for GIFT Nifty.",
+   "source": "The Financial Express",
+   "materiality": 2
+  },
+  {
+   "category": "mna",
+   "company": "Senco Gold",
+   "fact": "Senco Gold agreed to buy 68% of August Jewellery for ₹68 crore.",
+   "value": "₹68 crore",
+   "source": "Business Standard Markets",
+   "materiality": 2
+  },
+  {
+   "category": "mna",
+   "company": "Mankind",
+   "fact": "Mankind approved merger of its subsidiary.",
+   "source": "Sahi",
+   "materiality": 2
+  },
+  {
+   "category": "mna",
+   "company": "GRT Jewellers",
+   "fact": "Received CCI approval for majority stake acquisition in TBZ.",
+   "source": "The Retail Jeweller India",
+   "materiality": 2
+  },
+  {
+   "category": "movers",
+   "company": "Krebs Biochemicals and Industries Limited",
+   "ticker": "KREBSBIO",
+   "pct": 20.0,
+   "cap": "Micro",
+   "fact": "₹62.22 · volume 4.1× average · -19% from 52-wk high. Reason: none found in today's filings or news",
+   "reasonSource": "",
+   "source": "NSE prices",
+   "materiality": 2
+  },
+  {
+   "category": "movers",
+   "company": "Permanent Magnets Limited",
+   "ticker": "PERMAGN",
+   "pct": 20.0,
+   "cap": "Micro",
+   "fact": "₹1,028.25 · volume 21.8× average · 52-week high. Likely reason: Permanent Magnets Q2FY27 Results: Net profit up 156% YoY; results published",
+   "reasonSource": "scanx.trade",
+   "source": "NSE prices",
+   "materiality": 2
+  },
+  {
+   "category": "movers",
+   "company": "Vinyl Chemicals (India) Limited",
+   "ticker": "VINYLINDIA",
+   "pct": 20.0,
+   "cap": "Micro",
+   "fact": "₹240.07 · volume 11.3× average · -18% from 52-wk high. Likely reason: Vinyl Chemicals Limited Reports Earnings Results for the Second Quarter and Six Months Ended September 30, 2026",
+   "reasonSource": "www.marketscreener.com",
+   "source": "NSE prices",
+   "materiality": 2
+  },
+  {
+   "category": "movers",
+   "company": "Oswal Agro Mills Limited",
+   "ticker": "OSWALAGRO",
+   "pct": 19.99,
+   "cap": "Micro",
+   "fact": "₹38.77 · volume 0.9× average · -52% from 52-wk high. Reason: none found in today's filings or news",
+   "reasonSource": "",
+   "source": "NSE prices",
+   "materiality": 2
+  },
+  {
+   "category": "orders",
+   "company": "Ola Electric",
+   "fact": "SoftBank sold 1.21 crore Ola Electric rights; Ola launched Rs 1,000 crore rights issue.",
+   "source": "Economic Times Markets",
+   "materiality": 2,
+   "value": "Rs 1,000 crore"
+  },
+  {
+   "category": "orders",
+   "company": "Jyoti Structures",
+   "fact": "Jyoti Structures secured ₹949 crore power‑grid orders, about 90% of its ₹1,069 crore market cap.",
+   "value": "₹949 crore",
+   "source": "Business Standard Markets",
+   "materiality": 2
+  },
+  {
+   "category": "orders",
+   "company": "Tata Communications",
+   "fact": "Tata Communications will invest $400‑450 million to build a 10,000 km AI‑fibre network with 7.2 PB capacity across Indian data‑centre hubs.",
+   "source": "Business Standard Companies",
+   "materiality": 2
+  },
+  {
+   "category": "orders",
+   "company": "L&T Technology Services",
+   "fact": "L&T Technology Services signed a five‑year contract with Nokia to provide engineering and R&D support, including a dedicated offshore development centre in India.",
+   "source": "Business Standard Companies",
+   "materiality": 2
+  },
+  {
+   "category": "orders",
+   "company": "Godrej Properties",
+   "fact": "Godrej Properties plans project launches worth over ₹32,000 crore in H2 FY27.",
+   "source": "Business Standard Companies",
+   "materiality": 2
+  },
+  {
+   "category": "orders",
+   "company": "Jio Platforms",
+   "fact": "Jio Platforms IPO attracted 22.19× overall subscription, with QIBs bidding 70.6× their quota.",
+   "source": "Business Standard Companies",
+   "materiality": 2
+  },
+  {
+   "category": "other",
+   "company": "Yes Bank",
+   "fact": "Yes Bank hit 52‑week low, falling up to 32% over the month.",
+   "source": "Economic Times Markets",
+   "materiality": 2
+  },
+  {
+   "category": "other",
+   "company": "Ather Energy",
+   "fact": "Ather Energy shares jumped ~19% after Q2 profit of 1.26 crore, reversing 154 crore loss.",
+   "source": "Economic Times Markets",
+   "materiality": 2
+  },
+  {
+   "category": "other",
+   "company": "Swiggy",
+   "fact": "Swiggy shares rose ~5% after Q2 results, following earlier 17% plunge.",
+   "source": "Economic Times Markets",
+   "materiality": 2
+  },
+  {
+   "category": "other",
+   "company": "BSE",
+   "fact": "BSE shares climbed over 4% after Motilal Oswal upgraded stock to Buy.",
+   "source": "Economic Times Markets",
+   "materiality": 2
+  },
+  {
+   "category": "other",
+   "company": "Sugar market",
+   "fact": "Policy squeeze tightens mill margins and clouds price outlook for Indian sugar producers",
+   "source": "CMB News",
+   "materiality": 2
+  },
+  {
+   "category": "other",
+   "company": "AU Small Finance Bank",
+   "fact": "AU Small Finance Bank shares tumbled nearly 8% while broader market sold off, pushing Nifty under 22,400",
+   "source": "NewsDrum",
+   "materiality": 2
+  },
+  {
+   "category": "policy",
+   "company": "Bond market",
+   "fact": "Indian government bond yields rose as oil prices climbed, rupee weakened for third session.",
+   "source": "Economic Times Markets",
+   "materiality": 2
+  },
+  {
+   "category": "policy",
+   "company": "Rupee",
+   "fact": "Rupee fell third consecutive day as importers increased dollar bids and foreign outflows rose.",
+   "source": "Economic Times Markets",
+   "materiality": 2
+  },
+  {
+   "category": "policy",
+   "company": "Finance Ministry",
+   "fact": "Finance minister said RBI cannot set the rupee’s value but can intervene to curb sudden fluctuations",
+   "source": "Open Magazine",
+   "materiality": 2
+  },
+  {
+   "category": "policy",
+   "company": "Government of India",
+   "fact": "Government is weighing a cut to long‑term capital gains tax and a dollar‑based tax for foreign portfolio investors",
+   "source": "CNBC TV18",
+   "materiality": 2
+  },
+  {
+   "category": "policy",
+   "company": "SEBI",
+   "fact": "SEBI introduced margin waiver for subsequent buy/sell trades after early pay‑in in cash segment.",
+   "source": "SEBI",
+   "materiality": 2
+  },
+  {
+   "category": "results",
+   "company": "Bharat Coking Coal",
+   "fact": "Q2 net profit Rs 123.7 crore; revenue rose 39% YoY, turning to profit.",
+   "source": "Economic Times Markets",
+   "materiality": 2
+  },
+  {
+   "category": "results",
+   "company": "AU Small Finance Bank",
+   "fact": "AU Small Finance Bank posted Q2 net profit of ₹858 crore, a 53 % increase YoY.",
+   "source": "Business Standard Companies",
+   "materiality": 2
+  },
+  {
+   "category": "results",
+   "company": "Shriram Finance",
+   "fact": "Shriram Finance trimmed FY27 credit‑growth guidance to 15‑17% amid higher credit costs.",
+   "source": "Business Standard Markets",
+   "materiality": 2
+  },
+  {
+   "category": "results",
+   "company": "Infosys",
+   "fact": "Infosys cut its fiscal-year earnings guidance, becoming the biggest laggard among major stocks in early trade",
+   "source": "NiftyTrader",
+   "materiality": 2
+  },
+  {
+   "category": "results",
+   "company": "Carlsberg India",
+   "fact": "Carlsberg India reported FY26 revenue of ₹8,708.8 crore, with profit rising 22 % year‑on‑year.",
+   "source": "Business Standard Companies",
+   "materiality": 2
+  },
+  {
+   "category": "results",
+   "company": "JK Cement",
+   "fact": "JK Cement posted Q2FY27 net profit of ₹169.3 crore, up 6.3 %, and revenue growth of 23.7 %.",
+   "source": "Business Standard Companies",
+   "materiality": 2
+  },
+  {
+   "category": "results",
+   "company": "BPCL",
+   "fact": "BPCL Q2FY27 net profit fell 21.5 % to ₹4,863 crore, pressured by weak marketing margins despite 30 % revenue rise.",
+   "source": "Business Standard Companies",
+   "materiality": 2
+  },
+  {
+   "category": "results",
+   "company": "Kotak Mahindra Bank",
+   "fact": "Kotak Mahindra Bank Q2 consolidated net profit rose 26 % to ₹5,645 crore; NII grew 16 % and provisions fell.",
+   "source": "Business Standard Companies",
+   "materiality": 2
+  },
+  {
+   "category": "results",
+   "company": "Godrej Properties",
+   "fact": "Godrej Properties Q2 net profit dropped 62 % to ₹154 crore, while total income rose 38 % YoY.",
+   "source": "Business Standard Companies",
+   "materiality": 2
+  },
+  {
+   "category": "results",
+   "company": "Coforge",
+   "fact": "Coforge Q2 profit surged 56.5 % to ₹588 crore, with revenue up 53.6 % YoY.",
+   "source": "Business Standard Companies",
+   "materiality": 2
+  },
+  {
+   "category": "results",
+   "company": "Apple India",
+   "fact": "Apple India FY26 revenue reached ₹1,04,607 crore, up 32 % year‑on‑year.",
+   "source": "Business Standard Companies",
+   "materiality": 2
+  },
+  {
+   "category": "results",
+   "company": "Indian Overseas Bank",
+   "fact": "Net profit 1,912 crore; NII up 26% YoY; asset quality improves",
+   "source": "NDTV Profit",
+   "materiality": 2
+  },
+  {
+   "category": "results",
+   "company": "Sona BLW Precision",
+   "fact": "Profit 223 crore; revenue up 35% YoY",
+   "source": "NDTV Profit",
+   "materiality": 2
+  },
+  {
+   "category": "results",
+   "company": "Supreme Industries",
+   "fact": "Net profit 262 crore; profit up 59%; dividend 12 per share",
+   "source": "NDTV Profit",
+   "materiality": 2
+  },
+  {
+   "category": "results",
+   "company": "Bank of Maharashtra",
+   "fact": "Q2 net profit increased to Rs 2,300 crore from Rs 1,630 crore YoY.",
+   "source": "Sahi",
+   "materiality": 2
+  },
+  {
+   "category": "results",
+   "company": "REC",
+   "fact": "Net profit 3,391 crore; dividend 3.50 per share; loan book 26,537 crore",
+   "source": "Zee Business",
+   "materiality": 2
+  },
+  {
+   "category": "results",
+   "company": "DCM Shriram",
+   "fact": "Profit 105 crore; margins shrink; dividend declared",
+   "source": "NDTV Profit",
+   "materiality": 2
+  },
+  {
+   "category": "results",
+   "company": "Sona BLW",
+   "fact": "Sona BLW Q2 net profit up 30% on higher revenue; BEV revenue rose 129%",
+   "source": "CNBC TV18",
+   "materiality": 2
+  },
+  {
+   "category": "results",
+   "company": "Bank of India",
+   "fact": "Bank of India shares fell up to 5.5% after Q2 results; global NIM dropped to 2.47% QoQ",
+   "source": "Moneycontrol.com",
+   "materiality": 2
+  },
+  {
+   "category": "results",
+   "company": "Tamilnad Mercantile Bank",
+   "fact": "Tamilnad Mercantile Bank Q2 profit hit record ₹451 crore, highest business growth in 18 years",
+   "source": "CNBC TV18",
+   "materiality": 2
+  },
+  {
+   "category": "results",
+   "company": "Avantel",
+   "fact": "Avantel Q2 profit ₹6.8 crore (up from ₹4.3 crore YoY) and EBITDA ₹208 crore, margin 28%",
+   "source": "Sahi",
+   "materiality": 2
+  },
+  {
+   "category": "results",
+   "company": "JBM Auto",
+   "fact": "JBM Auto Q2 profit rose 11%; revenue increased as EBITDA margin expanded",
+   "source": "CNBC TV18",
+   "materiality": 2
+  },
+  {
+   "category": "results",
+   "company": "Hero MotoCorp",
+   "fact": "Hero MotoCorp Q2 revenue projected to rise 20% YoY to ₹14,572 crore",
+   "source": "Zee Business",
+   "materiality": 2
+  },
+  {
+   "category": "results",
+   "company": "Netweb Technologies",
+   "fact": "Q2 earnings grew healthily; shares fell 5%.",
+   "source": "Upstox",
+   "materiality": 2
+  },
+  {
+   "category": "results",
+   "company": "Eris Lifesciences",
+   "fact": "Q2 net profit rose 39% YoY to Rs 187 crore.",
+   "source": "scanx.trade",
+   "materiality": 2
+  },
+  {
+   "category": "results",
+   "company": "Dalmia Bharat",
+   "fact": "Q2 loss of Rs 205 crore; operating profit down 29%.",
+   "source": "CNBC TV18",
+   "materiality": 2
+  },
+  {
+   "category": "results",
+   "company": "Lumax Industries",
+   "fact": "Q2 net profit rose 46% to Rs 51.99 crore.",
+   "source": "Whalesbook",
+   "materiality": 2
+  },
+  {
+   "category": "results",
+   "company": "STL",
+   "fact": "Q2 profit Rs 517 crore; revenue surged 145%.",
+   "source": "Communications Today",
+   "materiality": 2
+  },
+  {
+   "category": "results",
+   "company": "Mankind",
+   "fact": "Mankind Q2 consolidated net profit Rs 710 crore.",
+   "source": "Sahi",
+   "materiality": 2
+  },
+  {
+   "category": "volume",
+   "company": "ITC Hotels Limited",
+   "ticker": "ITCHOTELS",
+   "pct": 5.16,
+   "cap": "Mid",
+   "fact": "Volume 9.4× average at ₹164.31. Likely reason: Q2 FY27 revenue 1,054 crore (+26% YoY) and net profit 203 crore (+52%).",
+   "reasonSource": "Economic Times Markets",
+   "source": "NSE prices",
+   "materiality": 2
+  },
+  {
+   "category": "volume",
+   "company": "Indian Overseas Bank",
+   "ticker": "IOB",
+   "pct": 5.93,
+   "cap": "Mid",
+   "fact": "Volume 6.2× average at ₹30.38. Likely reason: Net profit 1,912 crore; NII up 26% YoY; asset quality improves",
+   "reasonSource": "NDTV Profit",
+   "source": "NSE prices",
+   "materiality": 2
+  },
+  {
+   "category": "volume",
+   "company": "Dr. Reddy's Laboratories Limited",
+   "ticker": "DRREDDY",
+   "pct": 6.62,
+   "cap": "Large",
+   "fact": "Volume 6.1× average at ₹1,310.9. Likely reason: Nifty 50 closing, stock market October 26, share market recovery, four day losing streak, Dr Reddys Laboratories, Shriram Finance share pric",
+   "reasonSource": "NewsDrum",
+   "source": "NSE prices",
+   "materiality": 2
+  },
+  {
+   "category": "global",
+   "company": "Gold market",
+   "fact": "Gold prices rose as falling oil prices eased some inflation concerns.",
+   "source": "Reuters India (via Google News)",
+   "materiality": 1
+  },
+  {
+   "category": "global",
+   "company": "Rupee",
+   "fact": "The Indian rupee remained largely unchanged this week after oil‑driven declines erased earlier gains.",
+   "source": "Reuters India (via Google News)",
+   "materiality": 1
+  },
+  {
+   "category": "mna",
+   "company": "Euro Pratik Sales",
+   "fact": "Placed Fabwood stake acquisition worth Rs 42.70 crore on hold.",
+   "value": "42.70 crore",
+   "source": "scanx.trade",
+   "materiality": 1
+  },
+  {
+   "category": "mna",
+   "company": "Ashika Global Securities",
+   "fact": "Completed 26% stake purchase in Resurgent India Rating.",
+   "source": "Udaipur Kiran",
+   "materiality": 1
+  },
+  {
+   "category": "movers",
+   "company": "Ather Energy Limited",
+   "ticker": "ATHERENERG",
+   "pct": 14.13,
+   "cap": "Small",
+   "fact": "₹1,575.0 · volume 4.1× average · -10% from 52-wk high. Likely reason: Ather Energy shares jumped ~19% after Q2 profit of 1.26 crore, reversing 154 crore loss.",
+   "reasonSource": "Economic Times Markets",
+   "source": "NSE prices",
+   "materiality": 1
+  },
+  {
+   "category": "movers",
+   "company": "Automotive Stampings and Assemblies Limited",
+   "ticker": "ASAL",
+   "pct": 13.58,
+   "cap": "Micro",
+   "fact": "₹453.2 · volume 26.3× average · -22% from 52-wk high. Reason: none found in today's filings or news",
+   "reasonSource": "",
+   "source": "NSE prices",
+   "materiality": 1
+  },
+  {
+   "category": "movers",
+   "company": "Dhanlaxmi Bank Limited",
+   "ticker": "DHANBANK",
+   "pct": -13.56,
+   "cap": "Micro",
+   "fact": "₹30.91 · volume 4.4× average · -19% from 52-wk high. Likely reason: Dhanlaxmi Bank Q2 results: Net profit more than doubles to ₹48.55 crore",
+   "reasonSource": "Business Standard Companies",
+   "source": "NSE prices",
+   "materiality": 1
+  },
+  {
+   "category": "movers",
+   "company": "Steel Strips Wheels Limited",
+   "ticker": "SSWL",
+   "pct": 13.55,
+   "cap": "Micro",
+   "fact": "₹532.25 · volume 6.5× average · -5% from 52-wk high. Likely reason: Steel Strips Wheels SSWL Q2 FY27 Results Newspaper Publication",
+   "reasonSource": "Kalkine India",
+   "source": "NSE prices",
+   "materiality": 1
+  },
+  {
+   "category": "movers",
+   "company": "Yasho Industries Limited",
+   "ticker": "YASHO",
+   "pct": 13.18,
+   "cap": "Micro",
+   "fact": "₹3,767.4 · volume 4.3× average · -25% from 52-wk high. Reason: none found in today's filings or news",
+   "reasonSource": "",
+   "source": "NSE prices",
+   "materiality": 1
+  },
+  {
+   "category": "movers",
+   "company": "Highway Infrastructure Limited",
+   "ticker": "HILINFRA",
+   "pct": 12.86,
+   "cap": "Micro",
+   "fact": "₹61.53 · volume 9.4× average · -26% from 52-wk high. Reason: none found in today's filings or news",
+   "reasonSource": "",
+   "source": "NSE prices",
+   "materiality": 1
+  },
+  {
+   "category": "movers",
+   "company": "Mangalore Refinery and Petrochemicals Limited",
+   "ticker": "MRPL",
+   "pct": 12.55,
+   "cap": "Small",
+   "fact": "₹182.61 · volume 16.3× average · -14% from 52-wk high. Likely reason: ONGC Earnings May Jump 20% To ₹1.4 Lakh Crore In FY27, S&P Global Sees Strong Recovery In Oil And Refining",
+   "reasonSource": "Free Press Journal",
+   "source": "NSE prices",
+   "materiality": 1
+  },
+  {
+   "category": "movers",
+   "company": "IndoStar Capital Finance Limited",
+   "ticker": "INDOSTAR",
+   "pct": 12.49,
+   "cap": "Micro",
+   "fact": "₹183.13 · volume 14.4× average · -37% from 52-wk high. Reason: none found in today's filings or news",
+   "reasonSource": "",
+   "source": "NSE prices",
+   "materiality": 1
+  },
+  {
+   "category": "movers",
+   "company": "Uttam Sugar Mills Limited",
+   "ticker": "UTTAMSUGAR",
+   "pct": -12.26,
+   "cap": "Micro",
+   "fact": "₹309.2 · volume 1.0× average · -23% from 52-wk high. Reason: none found in today's filings or news",
+   "reasonSource": "",
+   "source": "NSE prices",
+   "materiality": 1
+  },
+  {
+   "category": "movers",
+   "company": "PNGS Reva Diamond Jewellery Limited",
+   "ticker": "PNGSREVA",
+   "pct": -12.24,
+   "cap": "Micro",
+   "fact": "₹555.1 · volume 5.6× average · -25% from 52-wk high. Likely reason: PNGS Reva Q2 results: Profit jumps 78%, but stock falls over 13%",
+   "reasonSource": "CNBC TV18",
+   "source": "NSE prices",
+   "materiality": 1
+  },
+  {
+   "category": "movers",
+   "company": "Revathi Equipment India Limited",
+   "ticker": "RVTH",
+   "pct": -12.04,
+   "cap": "Micro",
+   "fact": "₹607.2 · volume 4.7× average · -37% from 52-wk high. Reason: none found in today's filings or news",
+   "reasonSource": "",
+   "source": "NSE prices",
+   "materiality": 1
+  },
+  {
+   "category": "movers",
+   "company": "Narmada Agrobase Limited",
+   "ticker": "NARMADA",
+   "pct": 11.91,
+   "cap": "Micro",
+   "fact": "₹11.18 · volume 3.6× average · -50% from 52-wk high. Reason: none found in today's filings or news",
+   "reasonSource": "",
+   "source": "NSE prices",
+   "materiality": 1
+  },
+  {
+   "category": "movers",
+   "company": "Shanti Gold International Limited",
+   "ticker": "SHANTIGOLD",
+   "pct": -11.1,
+   "cap": "Micro",
+   "fact": "₹327.6 · volume 1.3× average · -25% from 52-wk high. Likely reason: Shanti Gold International Share Price Falls",
+   "reasonSource": "Kalkine India",
+   "source": "NSE prices",
+   "materiality": 1
+  },
+  {
+   "category": "movers",
+   "company": "Vakrangee Limited",
+   "ticker": "VAKRANGEE",
+   "pct": 10.54,
+   "cap": "Micro",
+   "fact": "₹5.77 · volume 1.6× average · -40% from 52-wk high. Reason: none found in today's filings or news",
+   "reasonSource": "",
+   "source": "NSE prices",
+   "materiality": 1
+  },
+  {
+   "category": "movers",
+   "company": "Jyoti Structures Limited",
+   "ticker": "JYOTISTRUC",
+   "pct": 10.42,
+   "cap": "Micro",
+   "fact": "₹9.01 · volume 4.5× average · -38% from 52-wk high. Likely reason: Jyoti Structures secured ₹949 crore power‑grid orders, about 90% of its ₹1,069 crore market cap.",
+   "reasonSource": "Business Standard Markets",
+   "source": "NSE prices",
+   "materiality": 1
+  },
+  {
+   "category": "movers",
+   "company": "SKY GOLD AND DIAMONDS LIMITED",
+   "ticker": "SKYGOLD",
+   "pct": -10.35,
+   "cap": "Micro",
+   "fact": "₹938.5 · volume 1.9× average · -13% from 52-wk high. Reason: none found in today's filings or news",
+   "reasonSource": "",
+   "source": "NSE prices",
+   "materiality": 1
+  },
+  {
+   "category": "movers",
+   "company": "Taneja Aerospace & Aviation Limited",
+   "ticker": "TANAA",
+   "pct": 10.31,
+   "cap": "Micro",
+   "fact": "₹306.95 · volume 7.5× average · -19% from 52-wk high. Reason: none found in today's filings or news",
+   "reasonSource": "",
+   "source": "NSE prices",
+   "materiality": 1
+  },
+  {
+   "category": "movers",
+   "company": "Tata Teleservices (Maharashtra) Limited",
+   "ticker": "TTML",
+   "pct": 10.22,
+   "cap": "Small",
+   "fact": "₹41.53 · volume 1.4× average · -29% from 52-wk high. Likely reason: Tata Teleservices narrows Q2 loss: what it means for Tata Tele stock",
+   "reasonSource": "ad-hoc-news.de",
+   "source": "NSE prices",
+   "materiality": 1
+  },
+  {
+   "category": "movers",
+   "company": "Spencer's Retail Limited",
+   "ticker": "SPENCERS",
+   "pct": 10.0,
+   "cap": "Micro",
+   "fact": "₹16.28 · volume 0.2× average · -70% from 52-wk high. Reason: none found in today's filings or news",
+   "reasonSource": "",
+   "source": "NSE prices",
+   "materiality": 1
+  },
+  {
+   "category": "movers",
+   "company": "Vishal Nirmiti Limited",
+   "ticker": "VNL",
+   "pct": -10.0,
+   "cap": "Micro",
+   "fact": "₹104.31 · volume 42.6× average · 52-week low. Reason: none found in today's filings or news",
+   "reasonSource": "",
+   "source": "NSE prices",
+   "materiality": 1
+  },
+  {
+   "category": "orders",
+   "company": "Bharat Petroleum",
+   "fact": "Bharat Petroleum expects its Russian crude purchases to decline in November.",
+   "source": "Reuters India (via Google News)",
+   "materiality": 1
+  },
+  {
+   "category": "other",
+   "company": "Utssav CZ Gold Jewels",
+   "fact": "Utssav CZ Gold Jewels approved a 1:1 bonus issue, doubling paid‑up equity to ₹49.996 crore.",
+   "source": "Business Standard Companies",
+   "materiality": 1
+  },
+  {
+   "category": "other",
+   "company": "Failte‑Sigenergy JV",
+   "fact": "Failte‑Sigenergy joint venture will build inverter and battery storage plants in India.",
+   "source": "Reuters India (via Google News)",
+   "materiality": 1
+  },
+  {
+   "category": "other",
+   "company": "SP Group",
+   "fact": "Seeking fair value for its Tata Sons stake.",
+   "source": "The Financial Express",
+   "materiality": 1
+  },
+  {
+   "category": "other",
+   "company": "Banks",
+   "fact": "Banks say there is no immediate need to raise capital under RBI’s new operational‑risk framework",
+   "source": "Moneycontrol.com",
+   "materiality": 1
+  },
+  {
+   "category": "other",
+   "company": "Jio Platforms",
+   "fact": "Jio Platforms IPO allotment expected today; investors can check status on BSE, NSE, registrar.",
+   "source": "Moneycontrol.com",
+   "materiality": 1
+  },
+  {
+   "category": "policy",
+   "company": "Indian government",
+   "fact": "India is expected to extend duty‑free cotton imports through December, sources say.",
+   "source": "Reuters India (via Google News)",
+   "materiality": 1
+  },
+  {
+   "category": "results",
+   "company": "Mantra Capital",
+   "fact": "Q2 profit Rs 1.82 crore; warrants converted.",
+   "source": "Whalesbook",
+   "materiality": 1
+  },
+  {
+   "category": "volume",
+   "company": "Belding India Limited",
+   "ticker": "BELDING",
+   "pct": -0.64,
+   "cap": "Micro",
+   "fact": "Volume 31.8× average at ₹837.75. Reason: none found in today's filings or news",
+   "reasonSource": "",
+   "source": "NSE prices",
+   "materiality": 1
+  },
+  {
+   "category": "volume",
+   "company": "TCI Express Limited",
+   "ticker": "TCIEXP",
+   "pct": 0.6,
+   "cap": "Micro",
+   "fact": "Volume 26.4× average at ₹461.45. Reason: none found in today's filings or news",
+   "reasonSource": "",
+   "source": "NSE prices",
+   "materiality": 1
+  },
+  {
+   "category": "volume",
+   "company": "Mahindra Logistics Limited",
+   "ticker": "MAHLOG",
+   "pct": 5.37,
+   "cap": "Micro",
+   "fact": "Volume 19.2× average at ₹390.15. Likely reason: Mahindra Logistics Q2 FY27 Revenue Surges 24% to ₹2,095 Crores",
+   "reasonSource": "Indian Transport & Logistics",
+   "source": "NSE prices",
+   "materiality": 1
+  },
+  {
+   "category": "volume",
+   "company": "EPACK Durable Limited",
+   "ticker": "EPACK",
+   "pct": 7.77,
+   "cap": "Micro",
+   "fact": "Volume 17.7× average at ₹166.19. Reason: none found in today's filings or news",
+   "reasonSource": "",
+   "source": "NSE prices",
+   "materiality": 1
+  },
+  {
+   "category": "volume",
+   "company": "Bharat Coking Coal Limited",
+   "ticker": "BHARATCOAL",
+   "pct": 4.23,
+   "cap": "Small",
+   "fact": "Volume 17.5× average at ₹31.02. Likely reason: Q2 net profit Rs 123.7 crore; revenue rose 39% YoY, turning to profit.",
+   "reasonSource": "Economic Times Markets",
+   "source": "NSE prices",
+   "materiality": 1
+  },
+  {
+   "category": "volume",
+   "company": "Lumax Industries Limited",
+   "ticker": "LUMAXIND",
+   "pct": -7.22,
+   "cap": "Micro",
+   "fact": "Volume 11.6× average at ₹4,921.0. Likely reason: Q2 net profit rose 46% to Rs 51.99 crore.",
+   "reasonSource": "Whalesbook",
+   "source": "NSE prices",
+   "materiality": 1
+  },
+  {
+   "category": "volume",
+   "company": "Tata Chemicals Limited",
+   "ticker": "TATACHEM",
+   "pct": 3.23,
+   "cap": "Small",
+   "fact": "Volume 10.3× average at ₹595.45. Likely reason: Q2 FY27 net profit 470 crore (+16% YoY), revenue 5,661 crore (+14%).",
+   "reasonSource": "Economic Times Markets",
+   "source": "NSE prices",
+   "materiality": 1
+  },
+  {
+   "category": "volume",
+   "company": "E2E Networks Limited",
+   "ticker": "E2E",
+   "pct": 5.0,
+   "cap": "Micro",
+   "fact": "Volume 9.8× average at ₹594.35. Reason: none found in today's filings or news",
+   "reasonSource": "",
+   "source": "NSE prices",
+   "materiality": 1
+  },
+  {
+   "category": "volume",
+   "company": "Eris Lifesciences Limited",
+   "ticker": "ERIS",
+   "pct": 0.89,
+   "cap": "Micro",
+   "fact": "Volume 9.6× average at ₹1,105.2. Likely reason: Q2 net profit rose 39% YoY to Rs 187 crore.",
+   "reasonSource": "scanx.trade",
+   "source": "NSE prices",
+   "materiality": 1
+  },
+  {
+   "category": "volume",
+   "company": "Aditya Birla Real Estate Limited",
+   "ticker": "ABREL",
+   "pct": 3.37,
+   "cap": "Small",
+   "fact": "Volume 9.1× average at ₹1,077.5. Likely reason: Aditya Birla Real Estate Q2 Profit Soars to Rs 918.7 Cr",
+   "reasonSource": "Rediff MoneyWiz",
+   "source": "NSE prices",
+   "materiality": 1
+  },
+  {
+   "category": "volume",
+   "company": "Sterling Tools Limited",
+   "ticker": "STERTOOLS",
+   "pct": 7.92,
+   "cap": "Micro",
+   "fact": "Volume 7.2× average at ₹216.89. Reason: none found in today's filings or news",
+   "reasonSource": "",
+   "source": "NSE prices",
+   "materiality": 1
+  },
+  {
+   "category": "volume",
+   "company": "Apollo Micro Systems Limited",
+   "ticker": "APOLLO",
+   "pct": 9.65,
+   "cap": "Micro",
+   "fact": "Volume 7.1× average at ₹410.9. Likely reason: Q2 net profit surged 56% YoY, revenue jumped 72% to about 1,000 crore.",
+   "reasonSource": "Economic Times Markets",
+   "source": "NSE prices",
+   "materiality": 1
+  },
+  {
+   "category": "volume",
+   "company": "Vidhi Specialty Food Ingredients Limited",
+   "ticker": "VIDHIING",
+   "pct": -2.18,
+   "cap": "Micro",
+   "fact": "Volume 6.9× average at ₹311.65. Reason: none found in today's filings or news",
+   "reasonSource": "",
+   "source": "NSE prices",
+   "materiality": 1
+  },
+  {
+   "category": "volume",
+   "company": "Keystone Realtors Limited",
+   "ticker": "RUSTOMJEE",
+   "pct": -1.54,
+   "cap": "Micro",
+   "fact": "Volume 6.8× average at ₹331.75. Reason: none found in today's filings or news",
+   "reasonSource": "",
+   "source": "NSE prices",
+   "materiality": 1
+  },
+  {
+   "category": "volume",
+   "company": "Indo Tech Transformers Limited",
+   "ticker": "INDOTECH",
+   "pct": -2.83,
+   "cap": "Micro",
+   "fact": "Volume 6.6× average at ₹2,573.3. Reason: none found in today's filings or news",
+   "reasonSource": "",
+   "source": "NSE prices",
+   "materiality": 1
+  },
+  {
+   "category": "volume",
+   "company": "Chembond Chemicals Limited",
+   "ticker": "CHEMBONDCH",
+   "pct": -7.81,
+   "cap": "Micro",
+   "fact": "Volume 6.0× average at ₹210.84. Reason: none found in today's filings or news",
+   "reasonSource": "",
+   "source": "NSE prices",
+   "materiality": 1
+  },
+  {
+   "category": "volume",
+   "company": "Tamilnad Mercantile Bank Limited",
+   "ticker": "TMB",
+   "pct": 0.42,
+   "cap": "Micro",
+   "fact": "Volume 5.7× average at ₹804.05. Likely reason: Tamilnad Mercantile Bank Q2 profit hit record ₹451 crore, highest business growth in 18 years",
+   "reasonSource": "CNBC TV18",
+   "source": "NSE prices",
+   "materiality": 1
+  }
+ ],
+ "sources": [
+  "https://economictimes.indiatimes.com/markets/bonds/chinas-central-bank-sets-up-non-bank-financial-institution-bond-market-swap-facility/articleshow/135210676.cms",
+  "https://economictimes.indiatimes.com/markets/bonds/french-bond-selloff-eases-as-country-spared-ratings-downgrade/articleshow/135206922.cms",
+  "https://economictimes.indiatimes.com/markets/bonds/india-bonds-give-up-gains-as-high-oil-prices-weigh/articleshow/135211224.cms",
+  "https://economictimes.indiatimes.com/markets/bonds/oil-us-treasuries-prop-up-indian-bonds/articleshow/135203917.cms",
+  "https://economictimes.indiatimes.com/markets/bonds/sumitomo-life-to-remain-cautious-on-jgb-yields-keep-investment-pace-unchanged-from-h1/articleshow/135207033.cms",
+  "https://economictimes.indiatimes.com/markets/commodities/news/gold-prices-rise-rs-700/10-gram-silver-gains-rs-1500/kg-ahead-of-us-fed-meet-key-levels-to-track-today/articleshow/135204122.cms",
+  "https://economictimes.indiatimes.com/markets/commodities/news/silver-prices-are-tarnished-but-not-forgotten-why-hsbc-thinks-gains-in-white-metal-may-be-limited/articleshow/135207313.cms",
+  "https://economictimes.indiatimes.com/markets/forex/forex-news/rupee-falls-5-paise-to-94-98-against-us-dollar-in-early-trade/articleshow/135203047.cms",
+  "https://economictimes.indiatimes.com/markets/forex/rupee-weakens-for-third-session-as-importers-step-up-dollar-bids-foreign-outflows-bite/articleshow/135208766.cms",
+  "https://economictimes.indiatimes.com/markets/ipos/fpos/jios-record-india-ipo-falls-short-of-record-payday-for-bankers/articleshow/135203965.cms",
+  "https://economictimes.indiatimes.com/markets/stocks/earnings/itc-hotels-reports-revenues-of-rs-1054-cr-for-q2-pat-at-rs-203-cr/articleshow/135210456.cms",
+  "https://economictimes.indiatimes.com/markets/stocks/earnings/tata-consumer-q2-results-net-profit-rises-16-yoy-to-rs-470-crore-revenue-up-14/articleshow/135211637.cms",
+  "https://economictimes.indiatimes.com/markets/stocks/news/apollo-micro-systems-shares-rally-9-as-q2-net-profit-jumps-56-yoy/articleshow/135205339.cms",
+  "https://economictimes.indiatimes.com/markets/stocks/news/ather-energy-shares-skyrocket-19-after-ev-maker-swings-to-rs-1-26-crore-profit-in-q2/articleshow/135209355.cms",
+  "https://economictimes.indiatimes.com/markets/stocks/news/au-small-finance-bank-shares-tumble-10-after-q2-results-but-jefferies-and-motilal-see-up-to-37-upside/articleshow/135202907.cms",
+  "https://economictimes.indiatimes.com/markets/stocks/news/bharat-coking-coal-shares-rally-5-after-q2-profit-turnaround-revenue-jumps-39-yoy/articleshow/135203231.cms",
+  "https://economictimes.indiatimes.com/markets/stocks/news/bse-shares-jump-over-4-as-motilal-oswal-upgrades-stock-to-buy-4-reasons-behind-bullish-call/articleshow/135205458.cms",
+  "https://economictimes.indiatimes.com/markets/stocks/news/coforge-slips-3-even-as-jefferies-nomura-others-raise-targets-after-q2-earnings-why-are-they-bullish/articleshow/135202672.cms",
+  "https://economictimes.indiatimes.com/markets/stocks/news/fiis-raise-stakes-after-two-quarters-of-cuts-8-stocks-rally-up-to-135-in-3-months/slideshow/135206025.cms",
+  "https://economictimes.indiatimes.com/markets/stocks/news/indusind-bank-shares-in-focus-after-q2-results-why-jefferies-cut-target-despite-lender-swinging-to-profit/articleshow/135202240.cms",
+  "https://economictimes.indiatimes.com/markets/stocks/news/infosys-shares-fall-4-after-it-major-lowers-fy27-guidance-what-are-goldman-sachs-nomura-others-saying/articleshow/135202432.cms",
+  "https://economictimes.indiatimes.com/markets/stocks/news/kotak-mahindra-bank-shares-climb-4-after-q2-results-what-are-jefferies-goldman-sachs-saying/articleshow/135202411.cms",
+  "https://economictimes.indiatimes.com/markets/stocks/news/market-wrap-dr-reddys-jsw-steel-shriram-finance-tata-consumer-top-gainers-and-losers-on-nifty-and-sensex-on-monday/articleshow/135209828.cms",
+  "https://economictimes.indiatimes.com/markets/stocks/news/sensex-rises-200-pts-nifty-above-22600-as-market-snaps-4-day-losing-streak-is-the-relief-rally-sustainable/articleshow/135203034.cms",
+  "https://economictimes.indiatimes.com/markets/stocks/news/shriram-finance-shares-crash-6-as-jefferies-citi-and-other-brokerages-slash-target-prices-after-q2-results-why-do-they-still-say-buy/articleshow/135202853.cms",
+  "https://economictimes.indiatimes.com/markets/stocks/news/softbank-sells-1-21-crore-ola-electric-rights-entitlements-as-ev-maker-seeks-to-raise-rs-1000-crore/articleshow/135209308.cms",
+  "https://economictimes.indiatimes.com/markets/stocks/news/swiggy-shares-jump-5-a-day-after-q2-results-sparked-a-17-crash-why-brokerages-remain-bullish-despite-target-price-cuts/articleshow/135205591.cms",
+  "https://economictimes.indiatimes.com/markets/stocks/news/tonbo-imaging-shares-soar-another-17-after-a-64-listing-pop-buy-sell-or-hold-the-stock/articleshow/135204062.cms",
+  "https://economictimes.indiatimes.com/markets/stocks/news/what-bitcoin-etf-flows-reveal-about-institutional-confidence/articleshow/135205178.cms",
+  "https://economictimes.indiatimes.com/markets/stocks/news/yes-bank-among-6-stocks-to-hit-52-week-lows-and-fall-up-to-32-in-a-month/slideshow/135212417.cms",
+  "https://economictimes.indiatimes.com/markets/us-stocks/news/5-global-market-themes-to-watch-out-for-this-week/slideshow/135203536.cms",
+  "https://economictimes.indiatimes.com/markets/us-stocks/news/big-tech-earnings-week-will-ai-spending-pay-off/slideshow/135204181.cms",
+  "https://economictimes.indiatimes.com/markets/us-stocks/news/brazil-stock-market-to-crash-today-what-lulas-surprise-victory-in-elections-means-for-emerging-markets-commodities/articleshow/135205255.cms",
+  "https://economictimes.indiatimes.com/markets/us-stocks/news/global-market-japan-bond-yields-edge-higher-ahead-of-key-central-bank-meetings/articleshow/135204344.cms",
+  "https://economictimes.indiatimes.com/markets/us-stocks/news/global-market-japans-nikkei-falls-for-third-straight-session-as-chip-stocks-slide/articleshow/135203127.cms",
+  "https://economictimes.indiatimes.com/markets/us-stocks/news/holcim-lifts-guidance-again-on-strong-demand/articleshow/135202905.cms",
+  "https://economictimes.indiatimes.com/markets/us-stocks/wall-street-guide/anthropic-opens-books-on-ais-explosive-growth-and-staggering-costs/articleshow/135212999.cms",
+  "https://economictimes.indiatimes.com/markets/us-stocks/wall-street-guide/asia-focused-banks-face-bond-market-risks-ahead-of-q3-earnings/articleshow/135209404.cms",
+  "https://economictimes.indiatimes.com/markets/us-stocks/wall-street-guide/ecb-meeting-five-key-questions-on-rates-inflation-and-lagardes-exit/articleshow/135206869.cms",
+  "https://economictimes.indiatimes.com/markets/us-stocks/wall-street-guide/global-equity-funds-attract-28-16-billion-as-easing-yields-boost-sentiment/articleshow/135206114.cms",
+  "https://economictimes.indiatimes.com/markets/us-stocks/wall-street-guide/global-market-sk-hynix-weighs-12-billion-special-dividend-ahead-of-q3-results-reports/articleshow/135205842.cms",
+  "https://economictimes.indiatimes.com/markets/us-stocks/wall-street-guide/us-stocks-face-crucial-test-as-ai-earnings-fed-meeting-loom/articleshow/135203072.cms",
+  "https://economictimes.indiatimes.com/markets/us-stocks/wall-street-guide/us-stocks-today-us-stocks-open-higher-as-anthropics-ipo-filing-sharpens-ai-focus/articleshow/135213224.cms",
+  "https://news.google.com/rss/articles/CBMi-AFBVV95cUxNZGJTRkJ3STRTWlo4MnFxNlRXMDN4OVdjVXhHZXFHT2wzS3V0RE9sRUdXVUpzSHpDMjM5bE5tWGJ6SkRkWWh2aVNRX3Y1WnQxMTVZMC1HY1VqN0VzM2k5VkE1VV9ORHpCR2t6Tld3bDYwdWw2djVGX3hZdXluemlzRXUtZW1mMEtwMXdxeVJfaTRGVjlrY0JLeXNwb3dvZ1V6TjhoQmloUzFKSkUwQUxhSU5iMnNZMW4zOGFOX3QtU2pNcVVBejlGZHdZVXg5UlQ0eDlpcXVCNTN4ZzZGUWpRb3VoZGEwLV84MjgwdEp0V1Y4dng0V1VZLdIB_gFBVV95cUxONW9HZUR5V0tBRDJ4NnQ4ZWhzSk43V3RaNk1ZVlhoUTdKb1NlWHZ5S0dYNERMcWRXTHlaX2xUVURjTDlWeDVTWGp3OVhDbnFZTkx0ZGNPdlpFajZPeVdMaW1XX2hibkdtUnpoUHdRUjNlekNtZU94NktZMHNndWNUNTVVaDc5eGJraWZQczhxb0tKX1NkZ2NLX0prbEhHLXc5NnBsYm0ta0NhWXpuNkhhSHBYbG5tSFBFM0NmSUFpT1NpRjR6LUdyaDhGVUxaU2xRMFIyYmQ5a1ViLU1NSjREQjhna01oRjA2R1FTUmtHcFpfY1Zia1dOaWZOSXgtQQ?oc=5",
+  "https://news.google.com/rss/articles/CBMi-gFBVV95cUxONTJnVmlaeEVhRE5SUmRjbW9oQ19zdWd6QzdVbjFqZTZ6MnpzaTBWUldtU1czN01nZENFdWZxOXVGSFRaaUpVYWxtNDRISnU1eXBQMVppNzhyUzdRQmVxVHkwSFlLdGR1VG5rdXZZemxzM3dqam1nOGVKb3JDV3hUSWtuQTJ2WDU3Tm9aYlRGVUlYZEotb09zVEp6ZVJJRmRFSFZYODIxeGowbmlERWU3YnU5c0F6V1c0WlpVbzE3NlYxMVVieTBfdElZbzhvcUhqM05RN1NGaTZsRHZkcVVkOGF1SEVoLUtkbFJWem40QWNNX0t2dU9YSVZB?oc=5",
+  "https://news.google.com/rss/articles/CBMi-gFBVV95cUxPZzg5TFI4Q2RGOXZuMjdGUGsyRjVoUzJKZHRZaVlVeldvd1EzdU9BYnlnQnZaRy15RkRkR25Pa2hRdUozb0owemViV21hYlFUQTZPSVp5TVRaMlpoUHFZTHJvc3o3RXM1X0FuUjZBTUl1Q3hpWUxuREpsR0o3ck1DeklfdW41RVo0djRWTEt1SVVTX0JiYk5KZkI5dnZCWEs0MHRsaXBqYWpkbDVnUFpKMGFqblJnUlpPYXRrMHBXa1BUcnpOaWxOQ3lkU1JRb09Pb0lUVzd5cGpSNjZsbTZZcTUwcURCUmtLeEpkLU5MdlA5eXpkYUF4OXFR?oc=5",
+  "https://news.google.com/rss/articles/CBMi-gFBVV95cUxPdVBVODlGWDNvMVVFR0duNUUxOURSQXloakpiR0JSTGFFZGw0ZGQ2bXVKWFYtanFOYjQ0TWJONEdCWHU1S3paUTVVb0xyUVZBWFdZaHJkTWJqTnY2QU1teC1KTFpLY040cFlDb2RoMjVWczZoc19jakRJZEhpbmRtQlM3Q0ZsUDRaLXQ1Y2JRS1U4Unl3QjRvaEU2X0lmdUt2S2JyaVE0NHpQbGR1c3h1bnlPMXFTRHlrVjBfS0lyQjVUb3Jjc0F4V2hhQWlOMjFCWmtnbkVqdExPVFBIMGRFWG0xdy1kRk44aFI3YVBSb3dMd1dxdDRIejlB0gH_AUFVX3lxTE9BLS1RNWwtZFVCd0R4aWJJTG1pTi1BTlAtUW9YS0hHYm1ISWR1OXlRRDZVLWVJN1d6VlVyNDh5YjlmTEMtbG5GT0Z6N2xZc005REU1ZWNZLTRQU3N2VHdDZjVKSHpLeklYRTVybXVRR2tTOGdibnpoRUhpb3Z4M3AtRlpYQjAzVU1vOUtfOEJ6czM4YkxMQjkyeGlBNmktRkRTNEtJVzV1UnlucXNJeWlUVjJobUlnQ0hBbldDc1QtSmRpcDA3RklpWmlaMGZsY3M4TXVuUWlYQnprbDA1WF9NZFpneWQyNWZzZy1ZVURTMEtkdTRES0lUN29hVGlfWQ?oc=5",
+  "https://news.google.com/rss/articles/CBMi-wFBVV95cUxNQXA2ODZOdHNEQmZCZkJNYVRXc1V1TjVGelk0M1A5bGc4VUxzZFZWVVNESWxNdUlnQktYazJlaTJwT1BtcG5UUzVSYWhUNDVtVnlBX0RHM2MyNDllTDVDUUtOc3lJenFjNkpjdEpxNVV2dUlWcURoVk1wOFBBNXYtNmVDX19xbHk0YlczVkU2WjlxNndLclUwa3M0Y0JQdzhDd0ZjRlU1NVFLR2dYNFUwT0FrVlphRm9ocEEwOGlScGVQX0JZTkkwQ21hblhqTnpHWGRwTFk0c3pKZlBZMzZnd1dCazFkbXg4cU8tTmozUnlOT1VBR1FvMzNsYw?oc=5",
+  "https://news.google.com/rss/articles/CBMi-wFBVV95cUxPY0RIdzhqd2JHcXBTRjJEcEhoc1dVb24ybFBHRmxhX0liVEFYQnNGOG5SSTZ6eFVGOWVPSnZWOWJodmg0OGVRWTl3M2JNZWlCUGpwSHhGWUNCSWdmQ3kyNGlCd1JrSXRHWXJFSnVwVVBlRlZVNDlpRGJoUnJaWEU0aS1DWkdKVFp1VTZXbmdaNFRSb1JMOHJvMEZxaG1TNUszVGE0S2lUckNfTjFKX3hKREhaNEhRWWd1Ry10WDIxRUhuaURQcV9WZlNYXzNjUGdkUEhfR3hvRUxoT2E0Wkg3QngySWV1UHF3RWpPZnF2dHpOU1hvUjFCYk9hd9IB-wFBVV95cUxPY0RIdzhqd2JHcXBTRjJEcEhoc1dVb24ybFBHRmxhX0liVEFYQnNGOG5SSTZ6eFVGOWVPSnZWOWJodmg0OGVRWTl3M2JNZWlCUGpwSHhGWUNCSWdmQ3kyNGlCd1JrSXRHWXJFSnVwVVBlRlZVNDlpRGJoUnJaWEU0aS1DWkdKVFp1VTZXbmdaNFRSb1JMOHJvMEZxaG1TNUszVGE0S2lUckNfTjFKX3hKREhaNEhRWWd1Ry10WDIxRUhuaURQcV9WZlNYXzNjUGdkUEhfR3hvRUxoT2E0Wkg3QngySWV1UHF3RWpPZnF2dHpOU1hvUjFCYk9hdw?oc=5",
+  "https://news.google.com/rss/articles/CBMi-wFBVV95cUxQOFpqbkxZYlZ6NGRWRGpweG1MMlRRajZmajZZNXg5THY4UzVqREg1Q0hLeGliVV9VajVlczZxVXkyVkdiR3pQcm5iZFVaZWhWSVdWUFRzc1RyYXFOWkw1OVhkTm5EcktrZzlmd1JZWjdwRFdBUnc3Vm8wTjBCdWY2a2JwZ2dnaTYxMURJbUNPbjdGWVJ0SmVTbGJ5eUk0R2Z0b21VNXFfZ1RfOGQxdEZCWElwZVNnMTdLUnNPd0kzNWNicGJfUklCMlp5UnMtNTEzem9YUEd5TXhrczN6VElsVUdoMnRtRjBXQTAzOEpSdXpRX3FzaDRieC1wONIB-wFBVV95cUxQOFpqbkxZYlZ6NGRWRGpweG1MMlRRajZmajZZNXg5THY4UzVqREg1Q0hLeGliVV9VajVlczZxVXkyVkdiR3pQcm5iZFVaZWhWSVdWUFRzc1RyYXFOWkw1OVhkTm5EcktrZzlmd1JZWjdwRFdBUnc3Vm8wTjBCdWY2a2JwZ2dnaTYxMURJbUNPbjdGWVJ0SmVTbGJ5eUk0R2Z0b21VNXFfZ1RfOGQxdEZCWElwZVNnMTdLUnNPd0kzNWNicGJfUklCMlp5UnMtNTEzem9YUEd5TXhrczN6VElsVUdoMnRtRjBXQTAzOEpSdXpRX3FzaDRieC1wOA?oc=5",
+  "https://news.google.com/rss/articles/CBMi0AFBVV95cUxQMzdhVHBBYzlnMmVWdUh0dF9OQjM5TVN2aVVuVzQ1Q2ZqQVNmTE1sMm1PMWlIbFRaa2hNOHB0Rm90RDVzWGhPMEpfWkRlYWZnY2dkalpRUVJlSEdYQlV3REhWSlBSQmtQU0MtaTRUQk4yV2twdGZBdFFMcmVDczhGeVVjVkFTc240YjRFcWlHVG1oekRoU0trLVBnelhqVDd6eFlqbkN4VDZHNjE1dXFvZTRhdnJnSHNPamRadTBwWXVqNlotLS1rMVFVTkd0THdI0gHWAUFVX3lxTFBoZ1hmMndFb0xDMklRNjJHdHlmNDZUNDVjVXAtREpBbUExSFh0ckJlM2tyMEtoTXlzTDgyMGpieENsSlBKbTNfQTJEMDJEOTJ2R0NmYWFkWkNWQVVIYXY1VzA0OFBpcVYxaW9IRm9PeGF1cThUY3VyckNMekhTNGxTdW1LQVBlSGVQZFBMZldBMUlLNi1zWEVJREl5TUFDRm1kUVFFYWVCeXdiMHUzcHVBcHRKb19ocGpLc1IxbkFlLU5EYzBLd1FuampMdWpoOTk2b1NTUGc?oc=5",
+  "https://news.google.com/rss/articles/CBMi0AFBVV95cUxQaUV3S09UOGRLN1hpckpwZ0FZRURlVjZRQ21YemdTWXdOczJLV0lKSWZMN2FXdlJRaXBYcWZSR3hlUm1fTjRKc3NLcVpZOTYxcE5pb2poSWhLZzdQUHhMaVRKb2hieEl2RnJYUWNQS1dDR3A2MmRjRnJ3OF9pNHBfdzhMc19SMWVrZ3ZvR0FOTjRqSDk1TnlvMWJLUUNjcEFqYWhSTnk5TjZqaWRQMDlWYU9LWnJxTXIzNENwcW9QTy0zdlZQQ3ZQUUZLanJvSkRi0gHWAUFVX3lxTE52V2xGR044a0JjSUY2X3pFY1BTRzh1b3daU0RFYUJNeFBvU1JGR21lVk1IdXlQUHV2c2hWY0VCSm4wSml0VHg3RUh2ZjZRdjl4ZWJLdHVsOGpTa0tSaUplblJVUm9kdGgtV3dISXhFdUp6QnNsX19KZmszcy1lZm56d1RDaG9XYUpQLWh3MmdJQTd6blYxVnZ0NE05SENVS0Y3N0xmMkdhRFA1eU91RzY1cVZxN2JHYV9lWmVtNWRjRWY3UEMwcEo2djF4TXdRMGY3MzhKRHc?oc=5",
+  "https://news.google.com/rss/articles/CBMi0gFBVV95cUxNNjNWNHVkOFphNVUydzFCUEk0RVBhU056UVBYNF8zamJEdjgyNGhlOG5UT21ZT0l3UE9XdVV2LU93NGdzdFE3aGN0YVFrVDNZS0l5bndIdzB0SGFVNFVseU1ob2YxbUhkdEx6MExxZXpYUlZmOWN3QXlzbDl1OXBHMjhnTzZsM2tWYnZlUWx5YTFrbk8tNWw2dmdrWFM4TXd2WVZFdjRCRHMwQk0yRXVNRVRzQWZfLVlGa25fYXZOQVBObWJSLXBkekNNNE5WN2ZqRXc?oc=5",
+  "https://news.google.com/rss/articles/CBMi0gFBVV95cUxPb0dsVGtNZGt5UHNxLTNEMEd0NU1mRjcyRmpZZExhODZGUjRiTzAxcGVzYjJUZDliQ1VfZHhJWXFTa21ZZUtITGVidVptYUZqd3dnb3ktWlVNU3V0MHBHdHViZEFkdjN4TmhKV0F0S1pJWjdOSndSSGxhNWg5MGtpaGlPb3dlbjh1STNqdXBRdDd1NF83MzVnNFpDWHVwcGZsaGNlREVYLTgyeHBxWXhoWFdneE9yb1lTemdWbFkxMXpON2ZqNFJ3WEZjVVhxUDNELWfSAdcBQVVfeXFMTkMwWF9nSlh2RjFwNzdFdFhVOGVfYkpsUnM4VUxwNkJuelB5V1ozZXA1ZFB3ZU4xdkc0MFZoYklIOUUxUENpbWlhZDlqWmNhQTdMUk9UQ0tMV3A1T2NOSkN2SnB3TkRFWWhsT0FUdGpPZ2lleUdnamdXZUhXYk03R05oemEtQ0JJUlRobHdwQ2NxU1BlTG0wN3dZTUQxUFZDQVB1aEZ3aTlXSU9HZGdEN0I4MDhOMlRxdFVIcU9nMG1RYXB3SDNWcEpONEJIYWwxZ3QyRXRpU28?oc=5",
+  "https://news.google.com/rss/articles/CBMi0gFBVV95cUxQazBfSE9oS2FMUFdUQ3ctaVVoeW54OHg3aEdva1EzM0dzTEJZS2JBYkJTel9CQnlWaDQwMGZQVm5qQWhjczhSclAzZnNkdFprclB6eFZzWTR5WUhfMVVYLVlZdXhNN1V2dHlacUtNOFNDclVCc2tQR3owdU55RTZSMmYteG9xRWZIVFdYb0JDeDUydHRrSDZuNE9INkJfX3B2TXZ4eWZaYUJzVWtpeGpPc1JpQVlLbFAzYXZSMnIxZVZWNzhaXzZpR2QzSERBdzNEalHSAdcBQVVfeXFMTm9VZktQUnBKV1NfZEpucHB2WEh6aUtUSFk4MnRHVHhRb285YU1TZlUxRGRQU3l0VHFsdUFvUEZyYmQ4REhNSnBUMW1RMVFvUm9zYWlqVXFSMEZRM0J5N2E2WTRGdHYwN1JpdjZ1eVRuTGNUNTFIWU1sRnZ6ZXlfTkVHdElYb1VRWmZIRTl6VkFscjNzaEJEZ19UQXl3VUFXOUtieXlEb0VKT2s4Smd2MVdTTXN2ejQwdmk2dlpYU3NMY0VNZmc3SWdUaEVGcEs5X2FDSVFDa2c?oc=5",
+  "https://news.google.com/rss/articles/CBMi0wFBVV95cUxNRUlHM2JtaWRyUzNFalFyQmFQLUFGd05QSXRyU3p2emVGQ3hxbnlReXY4anJuMHdHXzdjQmVsVkFPWFQ4V2Ezb0NmczEzNnZUcjhRTHl3UVlaT3NzX0Q4QUZoWGUzNy1IZXhqMV80UlpCLVZzdElTOTE3QVhGTjdmZHN3NkVnQXl5UFNXT2cyMVE3LWRjak9fdTJqTVlXZ3dmTFVsOGl4cUFTVUxRQl9OQjR1ZWFzQkFlVnVaVUN0UXEwZHhid0dvZlFsTEQ3ZXBtQjlr?oc=5",
+  "https://news.google.com/rss/articles/CBMi0wFBVV95cUxPZk0ya1VxeDF4c2QzYmFpLWZ6M2hfMmJrM0djLVBjOW91NlRmX3h4R3NOZnZHM1JOQTV2dUp2dmg0RnFRU3F0TWFjMmluaTFhMHdDc1lsYkxRSGYxc2NheFZCanE2blR0RHRKaVFMN2JxaTZPNkU3a2FGa1FTZ3h1U3RUSC1JSTNXX1R5SEhDYXdxdlowWWtHcjAzbWI2OFZoXzdlNWdNM0M0OHJtaVViTTE4TDA3YTdmQWRPeVc2d0RPTk9OOGd1QVlvU0RzNGQzUUJB0gHYAUFVX3lxTE5YdnE4R0RmZ3RGcGdoRWRJUy1BQ1FKTDNNS2RlS29IeGZDaFg5RUltVGxMVW1EamNrckFKa3JnY1cxY0lYTXVEelBMZlFxQ2FjTl9TcllwZm9YaDVuWHdjcFdtVE9KSkZZTmd3TUtaTktuMGFYcV9mTXZNczkycXRJTW9pQVJ0TjgyaUNITmIweXJpRXVJclpmamFDMG8xcXFpcndmczFxSVEyWE5kcmp1VG1fSlFUbDJwa2ZVS3R1WkJaR09WRzlEY0J4WVBKQl9qc0dwYnJJcA?oc=5",
+  "https://news.google.com/rss/articles/CBMi0wFBVV95cUxQT0swMlA2X2VCSnBhN3BWQWtiY3RuRG5TaE9PNHZiZGpuTWRQc1I4S1ZWRmpucDJpdEkzdDFXdVlCTk40RVpoanE1aC1vLTIta0ZTdGlsQjVDNGVNMGhCME4yak1PVUN0NUZMcmFUWk4tZ2FTWEdwa2JxbDFrY0JVa09tdE10XzBvV2NHYnhnVkxUczUycWVNNGpwbzdSNy1QYTIyWW40MmprTHRabkRXazRRLXVkMngwVGVKLWVCVFVGN2k4Vi1fVGxsVXVfYUNid29R?oc=5",
+  "https://news.google.com/rss/articles/CBMi1AFBVV95cUxNRGRlOUJmR3R3OHVfeUFjSERMMVlzdFktLU5aNWRwVVc3d3FRSTAzeHRCS0lnQnZPNks4X3Y2dmtDdnZ5MWN2c2tjeTVlMWV5aEswWXpsb0hNZVRYblAzRVM4SmxZNTAzbDRaV0ZjUGkwR3RodmxqSXVRRklWUC1fRUZjZkFsdE1Rb3lXUm1zLTZBU2FjWFlCdWxLa0lIUkdaUFotWDc2TDFyek93QVVqbEFLNU1hZkc4eFhILUhMUTlTS1l2ajJrOUFZVjZHNGRmcjloetIB1AFBVV95cUxNRGRlOUJmR3R3OHVfeUFjSERMMVlzdFktLU5aNWRwVVc3d3FRSTAzeHRCS0lnQnZPNks4X3Y2dmtDdnZ5MWN2c2tjeTVlMWV5aEswWXpsb0hNZVRYblAzRVM4SmxZNTAzbDRaV0ZjUGkwR3RodmxqSXVRRklWUC1fRUZjZkFsdE1Rb3lXUm1zLTZBU2FjWFlCdWxLa0lIUkdaUFotWDc2TDFyek93QVVqbEFLNU1hZkc4eFhILUhMUTlTS1l2ajJrOUFZVjZHNGRmcjloeg?oc=5",
+  "https://news.google.com/rss/articles/CBMi1AFBVV95cUxPZjl0TDlnd241UFNvcmdodjQtYVEwWFNhdlBXNmdmZGNFSDlOSlE1elFVLWVSMUVUaVVmdVRMdkRlMmxUSnlaUFlqRmZuRm1qQVd5cWt2VzhodjBxVl8zVV9DaWIycjViOUNIbTJMQ3BiR0VRVFU0SS1mV2NYajg3WXFGWU5QZnZudHo4RU1SX3FCTXBmVC04WTVmUUNzd3RVVk0tTV9SZVYycDJBYW5tQTNKQ3Z4WWlhTDNybk9LUkdOUXUzU0pWT2gzdGRUNW8wWExwSNIB4gFBVV95cUxQU0gtdGQ5SHdiNEx3alFZRXBxYU5Od0dXcDFQNzJoSzNRSEc5Nm44WUpCdWFvV1h1WndtZFBuUEg5dHlxSnZ6YTdmMHdhbEdvWng2Nm5pMHhJVlVCN2VzTkRUbk1KYXpGdFRndF9DWVlzSWtWem0wS240ZVYta1FBMTBlM1NGNUZzZkdXekpPVGxjbTA1QzlfSHg0RzdDTVZHQlNzcVFral96OFAxQjgzdXZDYjlnZWY3WkMweFBLVnAtVGZnRUx4RXlCa3Y1N3FRTC05eHJlX1ppdHJWY2p4cUJR?oc=5",
+  "https://news.google.com/rss/articles/CBMi1AFBVV95cUxPd0NKLTM5X21WN3VYMGhnT0s2bTdwX1dkSC0zcHV0S2RfczhuNnBtaElJWjVMejVfZXo3eVRlclptdGtPcmsxQlVYcTNuRHpjQURuLW9DWG8tcXQ2M0FkTU8xa2NQajBDNV9lbDhxbzU5al9DaGNLNWlsZ0FYQkZwRkVwdW1iNmVXMDZzclpweFN2Q0NKVmNmV2NjdFdieHFTT0NpVm5ib0RmcGJOdDlVbldONUtwMVo0aXc4NjBJUG54R0RPT3A1dVIzV0RIRFNBNUxGOA?oc=5",
+  "https://news.google.com/rss/articles/CBMi1AFBVV95cUxQTWd4M1BUSGpLXzM5YzdYM1VVZ2xtSEwzc3VqeWRlOFM0RzZscEh1LWpwTzFhUkJ4MFBrV0NQQW1aV2RPcWxvSXgwenhDWmxrNVZaVmhNaFA2cm91WWdRa1VjS0NZQ1VTQ3UyenZ1MDBsczJPbjVoVk42UDJZVTMzYlpmTGlfSUVzcGVJTmhQY0Q0VlRmbUJpaXF3eVJpTlY2NjVjSWtLSXBNYjR1VmdobUVjd3l1Q3dIeW1LVG1FVml2Si01dnBJTDMtVjl3RXRRU1UzV9IB2gFBVV95cUxQUk1nSHNEbGItbngtZUw0eW9aMC00LXRISXRkWWxTTDFzejN6ajZNUDJJMzB1OFY3clVtemlWcXJ3UUxUWEk5aTBERENQNnNhVkFTbnZINUpYRC1kR1JBRWpWRDdNZV9ROHBvUEVBRU9ZZmlheUtld0Q5TXVGUXdfX3Q4aTFVeUphN1duTTFHWkZ5SkxDSExDMHlHUUVOZGFERmFTeFR1TkF5ZDRPQ25EMFRFbVdmc2hUZFFtNlVSMmJkNUloUXNCQ21JUkRMRXREeXI4WHdmVVp2dw?oc=5",
+  "https://news.google.com/rss/articles/CBMi1AFBVV95cUxQZGpUVjJFcm56YlFqZl90NmpvUVlnQWd6ZXNCTHZ4aTd3Y01wLWpKZVljcmR5Q19pLXRfNTdkRGNBUEd5MTJscW5zQmRGSEpWdXN6OTVPWEJwQ1FVMjJ3Q1l4WTZycGg5ZWZHMWpmM0R1TFRlczVUMGRlZUJnRTRZRnZkSW9JZFlaS21ORGtPRUhHVHgtQmVPdExVNHl2Q3VjNlBpNmVxbnJ5VGM1NjdqUkdySVQ2Y2xkb0ZtVE80cmhXV0lMenJkbnhmdDBHbFcwRHh1Y9IB4gFBVV95cUxPSFN0WU5kMkxON3lVQlJtSHRPVEpQTS1yOEEtRnJNODVfc09lYmxlZkxzNWVSaFZCQTA5WHhOX3ZfNG14b1ZVMmRlNTZpdUF2cFhlY1BTdC1YbHZ5NXdHbkJxam5QWWtnUzVxR2otR0FjRjJuWWxfU0F0Y3dnZHZfSG5YUmVEeFNYMU5NamJadlhLQ29jRF9QMGFySTh0VGZZNGI0T0JOU2tnekZaVW5wa3JETWpvejAxbGd0LWw4QlZhWlQ5SVVSQ3RsNE54SDRFR0d0Z1EtOURGRUpJc2tpS19n?oc=5",
+  "https://news.google.com/rss/articles/CBMi1AFBVV95cUxQcVZkYXQtOVFMWWlabFBVd3p0UWhSWUVNWWV5c3dSakZHMlFTN3FkQm5oOVoxc19nXzVWajY5Rk91VmNtSEJrNU45cldtSE0wNk5XaUJxSmdwTGg3aHZGdkdhd29hMnJNWlBiS3N0eUE5Vm4ycmxIOFgtTnNZbnhITHpqdzJnUy1tZVZETkxWUVJGemRCM0VyYUtUd3ZfOGxxSlVPd25DVXBxMDdseERCYnFVdmFkeEM0WktQYVNXZGE4ZW9KY0h4U0xUNVBoaUxSZjdXQQ?oc=5",
+  "https://news.google.com/rss/articles/CBMi1AFBVV95cUxQem9CbDhnM0pya3ljb3E0QU55RmRIUmhyTU5Qb0pkWnREWlVkQlFoVTZHdld0YWVYcjlvZnBYUjNxN294ak9tVTNDbnJZSTBQTUdVNmVqZmFnanFOTTg0ekRrUUtiX2ZFVVZ6QU5PWU5TcHV6NHhmY1E1SFJzZFozME1KY2JlSmFYMXhzdVo1VENJUUx6Sm1zbG9SS2Z0Mm5xdHNPUlVQWnZZNzNMcWc1SWc1SVZ0QW44WUpCekdpVC1zVk91YlV2WDd6amVtOVZqQUREWNIB1wFBVV95cUxQSHVReDk4Q0o0Z0pmTUpnejB5UFlIQXVNeVh1S1hfcFE3aVI1c2FDYV9WSmxFdVRYYkRMREt0ZUVTYkhiRGhrTDRseHNPZkVhaFMzZUNDOUdkeFFaQzR6dGREUk5YSlFWYVBGMzcya3RUTUR6RGRESWVGUHhJVjZwV0d5Q0hRN1VjbFBkZ1dBMkJYMHU5T3BoZ2l1cjh3NFhDaTlzTHh6ZUp0NE5UeWl1TW1CbXV2NzNkdnlnMDNVSURRVUNkbWdaWFpUcFp5SGpmUlBOMnlESQ?oc=5",
+  "https://news.google.com/rss/articles/CBMi1gFBVV95cUxNbFRsMXpWcloxdDZOSnhKckxfODNYSDFBOFhEeVZFNzlfRHdpS0pGMTlpT21Pc2hiT0xndURHY3ZidVd1Z1N2YzMwVnRRUmJjdlE1ODd5RFFKdGRnekhJck1zN3ExODNiMFNldGZaQ1ZFSkVJRjdwSW84ejZkcXVCMzlJdXdxV0lfZEo2b3RzRk1nRkJpQnhtNUZWOFJrNXdvNDlZb29LN2tGNFFqOVBZTkh2TndhaDBnb0ViSDFsVUZ3THhuVkVUUk5TSnpIRnRUOU5VM1pR?oc=5",
+  "https://news.google.com/rss/articles/CBMi1gFBVV95cUxNdUxxbklnTVlEWW10OTNIRU5SNkZpTS1jQ2NqREhxbEZBUzFHcTdqNHdoWUdFam90TTV0Q1dqUEp3eXdwd3dMLUlSdTF0aF9HR21QUU5aVGRtbWpqVUQyZ0dYWTFDaUM5RlBpaC1DX3AxNmZGcGhGN0MzTk43dGsxdGNySnJ3c0hOd0x0Snh3X3ZMSFE4bFBjc2tITzNYYWlKZGl4X0p4WmNvSEdHbkpnc2J6UFFzMlcyaEMyb2VOZkcxOXVHQlN6WEdwS05kd0Q2UnktRXdn0gHbAUFVX3lxTE1ZQzRZVGQwMXJzc21OVlF4UUtNZ093SzNnUlJmbmRidDVMai1KQUwzcnoxdlZNUnRyaDlNUExBZEpQcUNuMGdwMUNtdkU2OWFhLURHVlBGTUpiOE45NjhnaFI0bDloTkFncUNacGdRRFdwMGJpdFowMHkxQzZFRlhMY2drbE5oSWhkVlNtcm85TlVXYjJmT1ZuUTUtcXJDXzZ6am9SbmlJNy0tejFobmJUWEtWUVdpYWpveExPQXVjRWlWeFZJRWctaEhhWkhvNUJob0tKemVjemxKUQ?oc=5",
+  "https://news.google.com/rss/articles/CBMi1gFBVV95cUxQV3JESlktemgzUFJJUnZtUE5TV2VzR2JvTTY4cm1WVDNZLW9NUVNFbzFXOW04NGRhYnJRYzUxb3RmZFdNRGl5a2tGdGtVVFpoS052b210Mkc3RVl1dFEyRE9VV1k5NUZJekVhVy04TTZOa2VuRk1YU19UN3FSNm5lMWVwT3VrXzNvQzROcFUta0JLMkk0VFpDVDdqYUJoYnR0YmdfWjg1NV9RcWNiTGNvMzI4cDk2WU1lN3hSZlllcmVBQjlNbG1yMGF3S0pMc05UeWN6eDlR0gHcAUFVX3lxTE1vWkhtVU1PdEN2SWI4QWd6Z2lsNzZIbTh1TW5OSlRUdXU5YzUtRHVJLTJVRlk0cFg0dWtkZnNFMjlmbU56LUZ2akVMNktxaElXLXRLdVB0RGp2ajJhNXVDbEx1YUxYbkRfSVdweWR0dUd4VUQyaHY2bHZjVnVJcVRGN1RMVkRBbk1CWllxd3dJN3Y4eElTR3JTdkw4ZVVNLXo1SmZKcFBjWmpqaGt5NnNSQkJpSTljTUpTMVVJbmhLQTFJTzlLdjdqYWtfVU55MEprQi1OamNIUEtXd08?oc=5",
+  "https://news.google.com/rss/articles/CBMi1gJBVV95cUxPN2RHTkE4OG5JUHl6ZFpTZ0ZBdGI1VF9uMlBVeWhSODhUMnJYTTE5VHV2akwtWEZiaFd5bFFTYi13NzJCaHVfbnIwY1JaSTNPTTZpbTJFY1BoM1VtV1NvSEFqWDBvcm9yeGgwUENJYURHcld4dmlhNmdsTWhTdk1oMFlZX1hJcDhzOE1NeUR1Y3d4amp5R3hHRlZVRlhud01VTGVzem1xMmEtT01BZVFCTnJPNHBBMWhQeXFGSWZKWU5PMl9MMF84eGphN3M0MlZFcVR3WW1iZlgwVG1lQm80Xzl3WEx5elFVanVUUVJUR0ZFV2xjOHhvVzNXUWJjZHFOWUFiNWIzRUJCeC15Y08tdmlsdkhJMl9KVGMxWndINWFwMWNNTVpNalZQOEtyNE9TZjZsXzFBbUdydkQ0dE42NmpuS0wtNW5vQmYzRWJhTF9VcjZhcnfSAdsCQVVfeXFMT3h2anM5Tk14WXVzWlItMnZLTGF3VWxDeERNZzkyVHRjQ3h2QzZUS3R0a21hbWNaMXJuNzV1bWN4U3dRLUxVOURSdDJUODg4elpISFNNWXUxd3ZPZERreFVBVkx2ZV9RNDdtcWxtc0VwM0JoLWlhdTdNMFNNcU9aUFVmREpqZnh4clNQQjlWSEliQUlud05YY2pNNHAzNWJqSjBLUG0zNTZmaVQ1aWNxb2RfR2hHNTh5MEVjNXVHc2hVTVBWQWZPZnRwNTV3a0FXa3JHWFVYekNDX1h1MkhYeFduQnprQVUxTGhqNkVYelprMVBBRzNGaXVSVFNSZnZ3YzAtelNVLXNNVzZPWnpZR29WV2NZTTNwV0JvMjNPM3dkRVh5NFBaWThWTWhYTkt5M09GUDc2LVMydngycG1LT2JqdVFfNlhPQ24xdjg3RHJaNnl0enkzMm1xN3c?oc=5",
+  "https://news.google.com/rss/articles/CBMi1wFBVV95cUxNRUFMQ01xTmxIR0Q3ZmExR05XeXdzRmEtUEM5cVR3UmwxV1pKOVA1RWNQUXN2UzRvbnFJVFUwd0V4SkthYno4aHViMFZqcllXbzIzNlR6Tl9UNlhPNXZLSmU4cHE1QjloVm9UUzA0RUh6Q2pod1V6QVdRV1dIZ05oTm9zSTEzYVNGbTJtUGxNTXlMRWxFbndVUXI2TVF1T25PbmpJR2o1bms2MVJzRTFxcjZIQWZzRDRHVnRDeUZ3NzJDaDBVM1k2WTFaS2FmT25Na2VFeXAxQdIB1wFBVV95cUxNRUFMQ01xTmxIR0Q3ZmExR05XeXdzRmEtUEM5cVR3UmwxV1pKOVA1RWNQUXN2UzRvbnFJVFUwd0V4SkthYno4aHViMFZqcllXbzIzNlR6Tl9UNlhPNXZLSmU4cHE1QjloVm9UUzA0RUh6Q2pod1V6QVdRV1dIZ05oTm9zSTEzYVNGbTJtUGxNTXlMRWxFbndVUXI2TVF1T25PbmpJR2o1bms2MVJzRTFxcjZIQWZzRDRHVnRDeUZ3NzJDaDBVM1k2WTFaS2FmT25Na2VFeXAxQQ?oc=5",
+  "https://news.google.com/rss/articles/CBMi1wFBVV95cUxOOV9jVE9KU2xsLWJhMXJidTJJWjBJc2lVakRUTnV5dkYzOW1hVTROcm1ZSUhKUE9mOV9iTnNBRGl4T3lxQmhyMV9pQkU3aEhwQXZya0ZOaTBrYW1RNlA4LUNwOTZvTENqYi1ILUM1RXNWSWNwQWs3a2QyeE45STNURk0xMGM5S2hIQzN2VzgtMHFSdEk3X09BOW1pNGRTX21Ka3hFc0hVbzZWb3lCR2JzeG9ZZ0Q5ekJXa1I5S2c3Y2FRM1RWVXlGQk14ZWZCVHI3bkJyYy1pZw?oc=5",
+  "https://news.google.com/rss/articles/CBMi1wFBVV95cUxOcm00Zl9MbkdZSWxpRF9NVm41U0xDRUpqaHRVWDN3MjNYeUJZYTQ4WExLQVJ4N1lyRXlnTGhqeDVBNk5OOWctVXgxRzZGdGEteFM0OUtrYlU0ajRCajJKWVdwWHduWHRISGRVNkpTMnFBYmREdi1jTW81b3JtRVJscUpNcGJzSGdnNVU4REFBWDVoZHNtSFY3VDBMaS0xb1hKX3ZQZ2ktOTdqenV6TFFTcV94R240c25YTXlZTU5RSVZ6ZG1hY19nVnFJQV9IcWl4Ym5UZ1d6WQ?oc=5",
+  "https://news.google.com/rss/articles/CBMi1wFBVV95cUxQU3lYY3R2NHlPbi1oSWxobzMyY1dYMzhoZm83aldDbEYyUFpqeXVEOG9MSk9RdmhDMF9yODhmbnp4TGk0LXZxWnBuOGJDUnl6X1g3UUtqM3J5R2NXWmRrblFFUm55SHdSSG9KYlhfTUVRQ3pBWmttTnZxby1KQWsyaFByeVRCZ2xzZUduRW03QlF0emdPdm9OeUZlT1F2MEpIejNPWXdhUEFzYkEwaEoyRGEtWmtPWDh4MVBkaXQtQnFya2R6dlYtWDVMM0R6TEZvYjc2VHFLMNIB3AFBVV95cUxPRi1WNEFHUWhTbUZpbUpxVnRERGd4Nmk2U3EzdngxcEJQYzZHN1owbzNORXhFMjFwYVUxYy0wYU1TSTJJdzhGTWpkLWNLNmF6dURXWVljNnJLVW9mYVBJZmYtSEJQaXlfMzhFRW5XNmhhanZSSHgtRXpINmhfOUQ0Q1ZiVFhyM1lCall0VTJZczAtM2FVM0gwMkdaeDFLbkRPWUhHQVN2WXV2MVpvZExaWUdQdjlZT29DQ2g5TGFQRnRCVFlIQVQ2NjlRek9OaGJnRnZtNndfYnlobU1u?oc=5",
+  "https://news.google.com/rss/articles/CBMi1wFBVV95cUxQaHNMNE94WElpelJxRFNZMmFoS1p0a2lrZUFFa2Vla0JFb2psbEVOSW5HY2pCNjZ5VzBfa1lyem8zRktLVVduZ1hlc1E0aW0yQ0Fxb0ZSUFJZLWlMd3hKZjFqY1VaOTRSNGxpN3QzbVNvaFhoX2Zyc2JueHVtRWRyTkhkalBPZ2M1dWdwU2NFWURyTmFLUjFvV3NybkJiTVpQYy1Fd1dLMlRxRHFZWGNobWpUclFZQ184OGk2eFRqUFBaWF9sT1FiUlJ2SjdpWTZCT1ktVzhNdw?oc=5",
+  "https://news.google.com/rss/articles/CBMi2AFBVV95cUxNNk9JVmlWd0dWdnNHdEdfa2NXd0xHTEdZTWF5dHhnZE9nak5ZYVZzUnlTa21sTENpWHNHRHF4UUVSLWJKTHVBUkxRYnlHblJxeHpOZGtreE1pQ1NORjZScmZ0WkJ1dFBIaHMxZzRPZFpTS0RtMzlCckJBLWRPcm9rbGtrU09UaVUxU2FzQUFvZjRlYzQ1RXZKWGZ6RE1PQVFheGNVNk1PZjJBLW9USnhMS25keWdxbTYzZTRwbEFmLVVWNXRkaFF0dllkZTVYZ2pSOWNUUUN0dmE?oc=5",
+  "https://news.google.com/rss/articles/CBMi2AFBVV95cUxOd3ZCdXNTLVVaMTJvZWJiNjRwd3NPdDVBd09IckF6cmJmS21BMmhVV2ZlNnRlU2pCWHRHano1Rk1GWkU0clROSHFSS09LU0toMUFQdldkQVdhSEtWRTNyVkZ3U1NMSTF6TzlZSzQ5SkFHcndwMlRKNl9vV0ZGRU56a2ZFN3A5MHVLdk9ISXpGX25VeHMtU0dXclFkY2xGSTQ4R085YnlGVl8tcEFRd3A5WW91alc1VVllUi03eW1nNlE4cmtzVHMtXzBqU29DTlRsTFY0ckxIZ2E?oc=5",
+  "https://news.google.com/rss/articles/CBMi2AFBVV95cUxPdXlZQ0Vhb0xVd09xMTctdkppX3Qyb1FZNENxNmRDNXEzMlprOUcySkh1eDVKVnZZeEJFalRsT2pSZl9wSjJKVWZhOEhGMjRIaDhoVUF2YjNhVl9WdklPQ2JfQUcwcU02aEF4TE9KQ3AzdG9naUxrVUduZGFCZS10aW5xdm1BVkhVMEc0YzM5dzdydlRkeUhJbTdzVkdnTXZwODZuOEtqWlFrU1VmWG5xRmY0MllYVHpEWmpLUTRDdE9SSTcwWXZnZEhMOXV3RjRfbW5NdEo2azHSAd4BQVVfeXFMT1dnZFVrLW9ScUx4VEhZNm0yTWxyaVR3QjJOamxRMVNQWXBkc0tMR2JFRjByR0FwQTBIV1pGYXpCMm5hV3lic2xUYm1sWU5iWkNfbkV1NHhVZmp3bzFhTlUzeWVDQXZ3YVlTbGNJVkxyb3JxNDhjRXBxY2Rpb3ZxU1FIMG1JOGhncDdYQXJtdVd2dHIydTdkem5xdmRhcWx3dmVPQkFUQnN6cXFMY0JHXzM5cFNHZEs4d01BNnJYTUk4Nk1KSmhiVWhPOWk2UHV2U09UdWRnanJsVXZzTFNR?oc=5",
+  "https://news.google.com/rss/articles/CBMi2AFBVV95cUxQbk9tOU9LN014enJtYVNzdHFOY2U1ZFVpbXFmdUhyU3dUTDEyTHotNUl6UVpUQkMtUDV5ejdkZ1I3d2VJY2MycVJLQVppVFA2VHhMZVM4TGRYS0I0Y1JtWDBDTy1GWk9majhGMjhORzZiSzBuR1NtUDFCdV9EMnZ6Mlc4TWhRb2VQXzVrNS1mc1NBam12bTVoeWNYSnFDUzNvQlV0cm9zNmV2ZVJKWVZsUGdaSWN2enNlRTJua29FeE5uSS1FMV96Ni0zazJZZUQ3Y1BJMDBvZjY?oc=5",
+  "https://news.google.com/rss/articles/CBMi2AJBVV95cUxQVnZ2WmZZU3VCa1Ayb0JPTjdzeElZVDZIc3llSmJ0VWxTakJNU21ZdUszTmItTUxGUHdUT0dqUW4xbFhyaTA2RjZqMFAyQ0pIYldlQ1J4aTdmV09nQkUwd291MW5DOGtIQ2ZUODRkdlpjRmZHRzNxOXh1aU9paHVZR2huNHowSmJ0VUpkWDJhX0p4SmpwLUNHMGpGNGV0dW5WQkFBTFRhSUY2LXRNUWxoNFF2WllNYXEzTEt1Z1hVQ195T3phM3lxT1Bfc0ZJUUJkZjN1NGZRRndLTWxPVFA4RDMwcEEyMlpJQ0pLRHQ3TEEzcXlRajQ1TVpPNUQ3WVlNUk50Qjl6RGNtRGY2eFJ4VWo3WEtWV0dZbEkyR0hQXzJpaDhFZnZvUElsVklsOWp4c2U3bmxueHNRSG9VVGxPS2p4aWFXRDZsamoyVXFkT2VzWjhJdzUwSw?oc=5",
+  "https://news.google.com/rss/articles/CBMi2gFBVV95cUxNT3NkbTM4STY5X25sMk9yeXpVZ2FKc3dpc3lDNjBUVVJzQ0pBdWVmR0RzM29OUVBxNHEyaXZ5Y0c4Q0w0SzM3WndCRmswdTl6ci1oOGlxQ0hkWmVOdU9lbkJfak9sTFJpamlWMEZoVXh3eE9qQ0FqbzJSVW9raUtQazNndUVOb04taTJyNS04Mm5YT0RyRGNSNmFqQndnR0UtSk1tdFk3dngyUlBBNnVDT1hfY3ROSDZRTW9iNXBTaGZSRGJuTkxMd3lCVlBEUUM2VnFMeUN1b3c1QQ?oc=5"
+ ],
+ "classifier": "groq",
+ "stats": {
+  "Economic Times Markets": {
+   "ok": true,
+   "n": 50,
+   "err": ""
+  },
+  "Economic Times Stocks": {
+   "ok": true,
+   "n": 50,
+   "err": ""
+  },
+  "Moneycontrol": {
+   "ok": true,
+   "n": 0,
+   "err": ""
+  },
+  "Moneycontrol Business": {
+   "ok": true,
+   "n": 0,
+   "err": ""
+  },
+  "Business Standard Markets": {
+   "ok": true,
+   "n": 35,
+   "err": ""
+  },
+  "Business Standard Companies": {
+   "ok": true,
+   "n": 35,
+   "err": ""
+  },
+  "Mint Markets": {
+   "ok": true,
+   "n": 35,
+   "err": ""
+  },
+  "Mint Companies": {
+   "ok": true,
+   "n": 35,
+   "err": ""
+  },
+  "Reuters India (via Google News)": {
+   "ok": true,
+   "n": 75,
+   "err": ""
+  },
+  "Google News · order wins": {
+   "ok": true,
+   "n": 28,
+   "err": ""
+  },
+  "Google News · results": {
+   "ok": true,
+   "n": 100,
+   "err": ""
+  },
+  "Google News · M&A": {
+   "ok": true,
+   "n": 48,
+   "err": ""
+  },
+  "Google News · policy": {
+   "ok": true,
+   "n": 49,
+   "err": ""
+  },
+  "Google News · markets": {
+   "ok": true,
+   "n": 81,
+   "err": ""
+  },
+  "Google News · stocks in focus": {
+   "ok": true,
+   "n": 88,
+   "err": ""
+  },
+  "BSE announcements": {
+   "ok": true,
+   "n": 0,
+   "err": ""
+  },
+  "RBI": {
+   "ok": true,
+   "n": 10,
+   "err": ""
+  },
+  "SEBI": {
+   "ok": true,
+   "n": 30,
+   "err": ""
+  },
+  "PIB": {
+   "ok": true,
+   "n": 20,
+   "err": ""
+  },
+  "NSE prices (Yahoo)": {
+   "ok": true,
+   "n": 24,
+   "err": "scanned 2587"
+  },
+  "Groq classifier": {
+   "ok": true,
+   "n": 115,
+   "err": "400: {\"error\":{\"message\":\"Failed to generate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_; 400: {\"error\""
+  },
+  "Results calendar (BSE)": {
+   "ok": false,
+   "n": 0,
+   "err": ""
+  }
+ },
+ "rawCount": 400
+}
