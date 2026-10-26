@@ -220,7 +220,6 @@ footer{color:var(--muted);font-size:12px;margin-top:28px;line-height:1.5}
   function matchesWatch(it,w){ const sym=w.sym.toLowerCase(); if((it.ticker||"").toLowerCase()===sym) return true; const t=toks(w.name||w.sym); if(!t.length) return false; const hay=((it.company||"")+" "+(it.fact||"")).toLowerCase(); return t.every(x=>hay.includes(x)); }
   try{ cat=localStorage.getItem("md.cat")||"all"; thr=+localStorage.getItem("md.thr")||10; }catch(e){}
   const cfg=window.DIGEST_CONFIG||{};
-  if(cfg.repo){ $("runnerLink").href=`https://github.com/${cfg.repo}/actions/workflows/digest.yml`; }
 
   const esc=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
   const fmtPct=p=>(p>0?"+":"")+Number(p).toFixed(1)+"%";
