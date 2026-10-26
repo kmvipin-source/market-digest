@@ -194,7 +194,7 @@ footer{color:var(--muted);font-size:12px;margin-top:28px;line-height:1.5}
       const r=await fetch(`data/${id}.json?v=${Date.now()}`); if(!r.ok) throw new Error(r.status);
       current=await r.json(); current.id=current.id||id;
       renderAll();
-      renderStatus(true,`${current.items?.length||0} items · generated ${ago(current.generatedAt)}${current.query?" · "+current.query:""}${current.classifier==="rules"?" · keyword mode (no Groq key)":""}${srcSummary(current)}`);
+      renderStatus(true,`${current.items?.length||0} items · generated ${ago(current.generatedAt)}${current.window?" · "+current.window:""}${current.query?" · "+current.query:""}${current.classifier==="rules"?" · keyword mode (no Groq key)":""}${srcSummary(current)}`);
     }catch(e){ renderStatus(false,"Couldn't load that digest."); }
   }
   async function init(){

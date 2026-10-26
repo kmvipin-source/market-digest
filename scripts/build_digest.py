@@ -48,6 +48,7 @@ POLICY_FEEDS = {
 }
 BSE_ANN = "https://api.bseindia.com/BseIndiaAPI/api/AnnSubCategoryGetData/w"
 NIFTY500_CSV = "https://archives.nseindia.com/content/indices/ind_nifty500list.csv"
+NSE_EQUITY_CSV = "https://archives.nseindia.com/content/equities/EQUITY_L.csv"
 
 CATS = ["results", "orders", "mna", "policy", "movers", "global", "other"]
 STATS = {}
@@ -147,6 +148,17 @@ def fetch_bse(since):
 
 def nse_universe():
     try:
+        r = get(NSE_EQUITY_CSV, headers={"Referer": "https://www.nseindia.com/"})
+        syms = []
+        for line in r.text.splitlines()[1:]:
+            parts = [x.strip().strip('"') for x in line.split(",")]
+            if len(parts) >= 3 and parts[2] in ("EQ", "BE") and parts[0]:
+                syms.append(parts[0])
+        if len(syms) > 500:
+            log(f"nse full universe: {len(syms)} symbols"); return syms
+    except Exception as ex:
+        log(f"nse equity list FAILED: {ex}; trying nifty500")
+    try:
         r = get(NIFTY500_CSV, headers={"Referer": "https://www.nseindia.com/"})
         syms = []
         for line in r.text.splitlines()[1:]:
@@ -168,13 +180,25 @@ def fetch_movers(threshold, intraday):
     syms = nse_universe()
     tickers = [s + ".NS" for s in syms]
     out = []
-    try:
-        df = yf.download(tickers, period="5d", interval="1d", group_by="ticker", threads=True, progress=False, auto_adjust=False)
-    except Exception as ex:
-        log(f"yfinance download FAILED: {ex}"); stat("NSE prices (Yahoo)", False, 0, ex); return []
+    frames = {}
+    for i in range(0, len(tickers), 400):
+        part = tickers[i:i + 400]
+        try:
+            df = yf.download(part, period="5d", interval="1d", group_by="ticker", threads=True, progress=False, auto_adjust=False)
+            for t in part:
+                try:
+                    frames[t] = df[t] if len(part) > 1 else df
+                except Exception:
+                    pass
+        except Exception as ex:
+            log(f"yfinance chunk {i} FAILED: {ex}")
+    if not frames:
+        stat("NSE prices (Yahoo)", False, 0, "all chunks failed"); return []
     for s, t in zip(syms, tickers):
         try:
-            sub = df[t].dropna(how="all")
+            if t not in frames:
+                continue
+            sub = frames[t].dropna(how="all")
             if len(sub) < 2:
                 continue
             last, prev = sub.iloc[-1], sub.iloc[-2]
@@ -186,14 +210,16 @@ def fetch_movers(threshold, intraday):
                 continue
             pct = (px / base - 1) * 100
             vol = float(last["Volume"]); avgv = float(sub["Volume"].iloc[:-1].mean() or 0)
+            if px * vol < 2e6 or px < 5:   # skip illiquid names: < ₹20 lakh traded or penny prices
+                continue
             if abs(pct) >= threshold:
                 out.append({"company": s, "pct": round(pct, 2), "price": round(px, 2),
                             "volx": round(vol / avgv, 1) if avgv else None})
         except Exception:
             continue
     out.sort(key=lambda x: -abs(x["pct"]))
-    log(f"movers >= {threshold}%: {len(out)}"); stat("NSE prices (Yahoo)", True, len(out))
-    return out[:40]
+    log(f"movers >= {threshold}%: {len(out)} of {len(syms)} scanned"); stat("NSE prices (Yahoo)", True, len(out), f"scanned {len(syms)}")
+    return out[:60]
 
 def fetch_global():
     try:
@@ -234,8 +260,14 @@ def rule_classify(raw):
                 cat = c; break
         if cat == "other" and r["source"] != "BSE filing":
             continue  # drop generic news in rule mode
-        company = r["title"].split(":")[0] if r["source"] == "BSE filing" else r["title"].split(" ")[0:3]
-        company = company if isinstance(company, str) else " ".join(company)
+        t = r["title"]
+        if r["source"] == "BSE filing":
+            company = t.split(":")[0]
+        else:
+            m = re.match(r"^((?:[A-Z][\w&'.-]*\s?){1,4})", t)
+            company = (m.group(1).strip() if m else "Market")
+            if company.lower() in ("the", "why", "how", "what", "stock", "stocks", "sensex", "nifty", "gold", "rupee", "oil", "asian", "global", "indian"):
+                company = {"sensex": "Markets", "nifty": "Markets", "gold": "Gold", "rupee": "Rupee", "oil": "Crude", "asian": "Asian markets", "global": "Global markets", "indian": "Markets"}.get(company.lower(), "Markets")
         items.append({"category": cat, "company": company[:60], "fact": r["title"][:180],
                       "source": r["source"], "materiality": 2 if r["source"] == "BSE filing" else 1, "link": r["link"]})
     return items
@@ -410,7 +442,8 @@ def main():
         market = {"sensex": glob.get("sensex", ""), "nifty": glob.get("nifty", ""), "brent": glob.get("brent", ""),
                   "usdinr": glob.get("usdinr", ""), "sp500": glob.get("sp500", ""), "nikkei": glob.get("nikkei", ""),
                   "note": "Index and commodity figures are the latest daily closes from Yahoo Finance."}
-    doc = {"id": run_id, "label": f"{t0.strftime('%a %d %b %Y')} · {label_mode}", "date": t0.strftime("%Y-%m-%d"),
+    window = f"news since {since.astimezone(IST).strftime('%a %d %b %H:%M')} IST"
+    doc = {"id": run_id, "label": f"{t0.strftime('%a %d %b')} {t0.strftime('%H:%M')} IST · {label_mode}", "window": window, "date": t0.strftime("%Y-%m-%d"),
            "generatedAt": iso_utc(), "mode": args.mode, "query": args.query, "threshold": args.threshold,
            "market": market, "items": items[:200],
            "sources": sorted({r.get("link", "") for r in raw if r.get("link")})[:80],
