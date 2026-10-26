@@ -1,6 +1,25 @@
 {
  "runs": [
   {
+   "id": "2026-10-26-2122-full",
+   "label": "Mon 26 Oct 21:22 IST · Full digest",
+   "date": "2026-10-26",
+   "generatedAt": "2026-10-26T16:00:17Z",
+   "mode": "full",
+   "count": 200,
+   "counts": {
+    "calendar": 68,
+    "deals": 33,
+    "movers": 24,
+    "volume": 3,
+    "actions": 4,
+    "global": 38,
+    "mna": 9,
+    "orders": 17,
+    "policy": 4
+   }
+  },
+  {
    "id": "2026-10-26-full-3",
    "label": "Mon 26 Oct 21:08 IST · Full digest",
    "date": "2026-10-26",
@@ -72,5 +91,5 @@
    }
   }
  ],
- "updatedAt": "2026-10-26T15:42:37Z"
+ "updatedAt": "2026-10-26T16:00:17Z"
 }
