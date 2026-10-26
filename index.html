@@ -102,6 +102,12 @@ main{padding-block:14px 110px;max-width:760px;margin:0 auto}
 .sheet code{font-family:var(--mono);font-size:12px;background:var(--chip);padding:1px 5px;border-radius:5px}
 .row{display:flex;gap:8px}
 .row input{flex:1;font:inherit;color:var(--fg);background:var(--chip);border:1px solid transparent;border-radius:10px;padding:9px 11px;min-width:0}
+.sug{display:flex;flex-direction:column;border:1px solid var(--line);border-radius:12px;margin-top:6px;overflow:hidden;max-height:240px;overflow-y:auto}
+.sug button{font:inherit;text-align:left;border:0;background:var(--panel);padding:10px 12px;display:flex;gap:10px;align-items:baseline;cursor:pointer;border-bottom:1px solid var(--line)}
+.sug button:last-child{border-bottom:0}
+.sug .sym{font-family:var(--mono);font-size:12px;color:var(--accent);min-width:88px}
+.sug .nm{font-size:13px;min-width:0;overflow-wrap:anywhere}
+.sug .px{margin-left:auto;font-family:var(--mono);font-size:12px;color:var(--muted);white-space:nowrap}
 .wlchips{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
 .wlchip{display:inline-flex;align-items:center;gap:6px;background:var(--chip);border-radius:999px;padding:5px 6px 5px 11px;font-size:13px}
 .wlchip button{border:0;background:var(--panel);border-radius:50%;width:20px;height:20px;cursor:pointer;color:var(--muted);font-size:12px;line-height:1}
@@ -181,8 +187,8 @@ footer{color:var(--muted);font-size:12px;margin-top:28px;line-height:1.5}
   <div class="sheet gutter" role="dialog" aria-labelledby="wlTitle">
     <h3 id="wlTitle">Watchlist</h3>
     <p>Up to 15 stocks. Saved on this device. Matching news from every section is pinned at the top of the digest.</p>
-    <div class="row"><input id="wlIn" list="wlSug" placeholder="Ticker or company, e.g. MRPL or Ather" autocomplete="off"><button class="btn" id="wlAdd" type="button">Add</button></div>
-    <datalist id="wlSug"></datalist>
+    <div class="row"><input id="wlIn" placeholder="Type a few letters, e.g. mrpl or ather" autocomplete="off" autocapitalize="off"><button class="btn" id="wlAdd" type="button">Add</button></div>
+    <div class="sug" id="wlSugList" hidden></div>
     <div class="wlchips" id="wlChips"></div>
     <div class="row" style="margin-top:12px"><input id="wlKey" type="password" placeholder="Passphrase (same as Run) — needed to sync across devices" autocomplete="off"></div>
     <div class="wnone" id="wlSync" style="margin-top:6px"></div>
@@ -388,7 +394,14 @@ footer{color:var(--muted);font-size:12px;margin-top:28px;line-height:1.5}
     finally{ $("go").disabled=false; }
   });
   function renderChips(){ $("wlChips").innerHTML=watch.map((w,i)=>`<span class="wlchip">${esc(w.sym)}${w.name?` · ${esc(w.name.split(" ").slice(0,2).join(" "))}`:""}<button type="button" data-i="${i}" aria-label="Remove">✕</button></span>`).join("")||`<span class="wnone">Nothing yet. Add up to 15.</span>`; }
-  function fillSuggestions(){ const prices=current?.prices||{}; const dl=$("wlSug"); dl.innerHTML=Object.entries(prices).slice(0,2600).map(([s,v])=>`<option value="${esc(s)}">${esc(v[0])}</option>`).join(""); }
+  function fillSuggestions(){ showSug(""); }
+  function showSug(q){
+    const box=$("wlSugList"); const prices=current?.prices||{}; const needle=q.trim().toLowerCase();
+    if(!needle||needle.length<2){ box.hidden=true; box.innerHTML=""; return; }
+    const hits=Object.entries(prices).filter(([s,v])=>s.toLowerCase().startsWith(needle)||v[0].toLowerCase().includes(needle)).sort((a,b)=>{ const as=a[0].toLowerCase().startsWith(needle)?0:1, bs=b[0].toLowerCase().startsWith(needle)?0:1; return as-bs||a[1][0].localeCompare(b[1][0]); }).slice(0,12);
+    if(!hits.length){ box.hidden=false; box.innerHTML=`<button type="button" disabled><span class="nm">${Object.keys(prices).length?"No match — press Add to keep it as typed":"Scrip list loads after the next run — press Add to keep it as typed"}</span></button>`; return; }
+    box.hidden=false; box.innerHTML=hits.map(([s,v])=>`<button type="button" data-sym="${esc(s)}"><span class="sym">${esc(s)}</span><span class="nm">${esc(v[0])}</span><span class="px">₹${Number(v[1]).toLocaleString("en-IN")} <span class="${pctClass(v[2])}">${fmtPct(v[2])}</span></span></button>`).join("");
+  }
   function addWatch(raw){
     const v=raw.trim(); if(!v) return; if(watch.length>=15){ return; }
     const prices=current?.prices||{}; let sym=v.toUpperCase(), name="";
@@ -401,8 +414,10 @@ footer{color:var(--muted);font-size:12px;margin-top:28px;line-height:1.5}
   $("wlKey").addEventListener("change",()=>{ runKeyFor(); if(watch.length) pushWatch(); });
   const closeWl=()=>{ $("wlWrap").hidden=true; };
   $("wlScrim").addEventListener("click",closeWl); $("wlDone").addEventListener("click",closeWl);
-  $("wlAdd").addEventListener("click",()=>{ addWatch($("wlIn").value); $("wlIn").value=""; });
-  $("wlIn").addEventListener("keydown",e=>{ if(e.key==="Enter"){ e.preventDefault(); addWatch($("wlIn").value); $("wlIn").value=""; } });
+  $("wlAdd").addEventListener("click",()=>{ addWatch($("wlIn").value); $("wlIn").value=""; showSug(""); });
+  $("wlIn").addEventListener("input",e=>showSug(e.target.value));
+  $("wlSugList").addEventListener("click",e=>{ const b=e.target.closest("[data-sym]"); if(!b) return; addWatch(b.dataset.sym); $("wlIn").value=""; showSug(""); $("wlIn").focus(); });
+  $("wlIn").addEventListener("keydown",e=>{ if(e.key==="Enter"){ e.preventDefault(); const first=$("wlSugList").querySelector("[data-sym]"); addWatch(first?first.dataset.sym:$("wlIn").value); $("wlIn").value=""; showSug(""); } });
   $("wlChips").addEventListener("click",e=>{ const b=e.target.closest("[data-i]"); if(!b) return; watch.splice(+b.dataset.i,1); saveWatch(); renderChips(); renderWatch(); renderFeed(); });
   init().then(()=>{ checkStatus(); pullWatch(); });
 })();
