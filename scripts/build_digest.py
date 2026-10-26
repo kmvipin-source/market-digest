@@ -394,13 +394,24 @@ def groq_classify(raw, mode, query, key):
     return items
 
 def dedupe(items):
-    seen, out = set(), []
+    """One item per (company, category) for news categories; keep the most material / most detailed."""
+    def norm(c):
+        c = re.sub(r"\b(ltd|limited|india|corp|corporation|the|co|company|inc)\b", "", (c or "").lower())
+        return re.sub(r"[^a-z0-9]", "", c)[:18]
+    best = {}
+    order = []
     for it in items:
-        k = hashlib.md5((it["company"].lower()[:20] + "|" + it["category"] + "|" + re.sub(r"\W+", "", it["fact"].lower())[:40]).encode()).hexdigest()
-        if k in seen:
-            continue
-        seen.add(k); out.append(it)
-    return out
+        k = (norm(it.get("company")), it.get("category"))
+        if it.get("category") in ("movers", "global") and it.get("fact"):
+            k = (norm(it.get("company")), it.get("category"), re.sub(r"\W+", "", it["fact"].lower())[:30])
+        if k not in best:
+            best[k] = it; order.append(k)
+        else:
+            cur = best[k]
+            score = lambda x: (int(x.get("materiality") or 1), len(str(x.get("fact") or "")), 1 if x.get("value") else 0)
+            if score(it) > score(cur):
+                best[k] = it
+    return [best[k] for k in order]
 
 # ---------------------------------------------------------------- main
 def main():
