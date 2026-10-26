@@ -15,7 +15,7 @@
   --bg:#f3f5f8; --panel:#ffffff; --fg:#141a22; --muted:#66707f; --line:#e4e8ee;
   --accent:#c2410c; --accent-fg:#ffffff; --chip:#eaeef3; --chip-on:#141a22; --chip-on-fg:#ffffff;
   --up:#15803d; --up-bg:#e6f6ec; --down:#b91c1c; --down-bg:#fdecec; --warn:#854d0e; --warn-bg:#fef3c7;
-  --c-calendar:#b45309; --c-results:#2563eb; --c-orders:#c2410c; --c-mna:#7c3aed; --c-policy:#0f766e; --c-movers:#15803d; --c-global:#475569; --c-other:#9ca3af;
+  --c-calendar:#b45309; --c-results:#2563eb; --c-orders:#c2410c; --c-mna:#7c3aed; --c-policy:#0f766e; --c-movers:#15803d; --c-volume:#0e7490; --c-global:#475569; --c-other:#9ca3af;
   --font:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
   --mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
   color-scheme:light;
@@ -48,12 +48,22 @@ select:focus,input:focus,button:focus-visible,a:focus-visible{outline:2px solid 
 .seg button{font:inherit;font-size:12px;font-family:var(--mono);border:0;background:transparent;color:var(--muted);border-radius:8px;padding:5px 8px;cursor:pointer}
 .seg button[aria-pressed="true"]{background:var(--panel);color:var(--fg);box-shadow:0 1px 2px rgba(0,0,0,.10)}
 main{padding-block:14px 110px;max-width:760px;margin:0 auto}
-.market{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:10px 0 14px}
+.market{display:flex;flex-direction:column;gap:8px;margin:10px 0 14px}
+.mgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.breadth{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:10px 12px;font-size:13px;font-family:var(--mono);font-variant-numeric:tabular-nums}
+.breadth b{font-family:var(--font);font-size:11px;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);margin-right:6px}
+.breadth .u{color:var(--up)} .breadth .d{color:var(--down)}
+.sectors{display:flex;flex-wrap:wrap;gap:6px}
+.sec{font-size:12px;padding:5px 9px;border-radius:8px;background:var(--chip);display:inline-flex;gap:5px;align-items:center}
+.sec em{font-style:normal;font-family:var(--mono)}
+.sec.u{background:var(--up-bg);color:var(--up)} .sec.d{background:var(--down-bg);color:var(--down)}
+.world summary{cursor:pointer;font-size:13px;color:var(--muted);padding:4px 2px}
+.world .mgrid{margin-top:8px}
 .tile{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:10px 12px;min-width:0}
 .tile b{display:block;font-size:11px;font-weight:600;color:var(--muted);letter-spacing:.04em;text-transform:uppercase}
 .tile span{display:block;font-family:var(--mono);font-size:14px;font-variant-numeric:tabular-nums;margin-top:2px;overflow-wrap:anywhere}
 .tile .lvl{font-size:16px;font-weight:500;color:var(--fg)} .tile .chg{font-size:12px;margin-top:0} .tile .u{color:var(--up)} .tile .d{color:var(--down)}
-.note{grid-column:1/-1;font-size:13px;color:var(--muted);background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:10px 12px}
+.note{font-size:13px;color:var(--muted);background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:10px 12px}
 .section{margin:20px 0 8px;display:flex;align-items:center;gap:8px}
 .section i{width:9px;height:9px;border-radius:50%;background:var(--c,var(--muted))}
 .section h2{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--fg);margin:0;font-weight:700}
@@ -90,7 +100,7 @@ main{padding-block:14px 110px;max-width:760px;margin:0 auto}
 .btn.primary{background:var(--accent);color:var(--accent-fg);flex:1}
 footer{color:var(--muted);font-size:12px;margin-top:28px;line-height:1.5}
 [hidden]{display:none!important}
-@media (max-width:420px){.market{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:420px){.mgrid{grid-template-columns:repeat(2,1fr)}}
 </style>
 </head>
 <body>
@@ -137,8 +147,8 @@ footer{color:var(--muted);font-size:12px;margin-top:28px;line-height:1.5}
 <script src="config.js"></script>
 <script>
 (function(){
-  const CATS=[["all","All"],["calendar","Calendar"],["results","Results"],["orders","Orders"],["mna","M&A"],["policy","Policy"],["movers","Movers"],["global","Global"],["other","Other"]];
-  const CAT_LABEL=Object.fromEntries(CATS); const CAT_COLOR={calendar:"var(--c-calendar)",results:"var(--c-results)",orders:"var(--c-orders)",mna:"var(--c-mna)",policy:"var(--c-policy)",movers:"var(--c-movers)",global:"var(--c-global)",other:"var(--c-other)"};
+  const CATS=[["all","All"],["calendar","Calendar"],["results","Results"],["orders","Orders"],["mna","M&A"],["policy","Policy"],["movers","Movers"],["volume","Volume"],["global","Global"],["other","Other"]];
+  const CAT_LABEL=Object.fromEntries(CATS); const CAT_COLOR={calendar:"var(--c-calendar)",results:"var(--c-results)",orders:"var(--c-orders)",mna:"var(--c-mna)",policy:"var(--c-policy)",movers:"var(--c-movers)",volume:"var(--c-volume)",global:"var(--c-global)",other:"var(--c-other)"};
   const $=id=>document.getElementById(id);
   let runs=[], current=null, cat="all", thr=10, q="";
   try{ cat=localStorage.getItem("md.cat")||"all"; thr=+localStorage.getItem("md.thr")||10; }catch(e){}
@@ -170,10 +180,16 @@ footer{color:var(--muted);font-size:12px;margin-top:28px;line-height:1.5}
     const m=current?.market, el=$("market");
     if(!m||!Object.keys(m).length){ el.hidden=true; return; }
     el.hidden=false;
-    const map=[["sensex","Sensex"],["nifty","Nifty 50"],["midcap","Midcap 50"],["smallcap","Smallcap 100"],["giftNifty","GIFT Nifty"],["sp500","S&P 500"],["nikkei","Nikkei"],["brent","Brent"],["usdinr","USD/INR"],["flows","FII / DII"]];
-    const cls=v=>/\(\+/.test(v)?"u":/\(-|\(−/.test(v)?"d":"";
-    const tiles=map.filter(([k])=>m[k]).map(([k,l])=>{ const v=String(m[k]); const parts=v.split(" · "); return `<div class="tile"><b>${l}</b><span class="lvl">${esc(parts[0])}</span>${parts[1]?`<span class="chg ${cls(v)}">${esc(parts[1])}</span>`:""}</div>`; });
-    el.innerHTML=tiles.join("")+(m.note?`<div class="note">${esc(m.note)}</div>`:"");
+    const cls=v=>/\+/.test(v)?"u":/-|−/.test(v)?"d":"";
+    const tile=(l,v)=>{ const parts=String(v).split(" · "); return `<div class="tile"><b>${l}</b><span class="lvl">${esc(parts[0])}</span>${parts[1]?`<span class="chg ${cls(parts[1])}">${esc(parts[1])}</span>`:""}</div>`; };
+    const india=[["sensex","Sensex"],["nifty","Nifty 50"],["midcap","Midcap 50"],["smallcap","Smallcap 100"],["banknifty","Bank Nifty"],["vix","India VIX"],["giftNifty","GIFT Nifty"],["flows","FII / DII"]];
+    const world=[["sp500","S&P 500"],["nasdaq","Nasdaq"],["dow","Dow"],["nikkei","Nikkei"],["hangseng","Hang Seng"],["kospi","Kospi"],["brent","Brent"],["usdinr","USD/INR"],["gold","Gold"],["silver","Silver"],["us10y","US 10-yr"],["dxy","Dollar index"]];
+    let html=`<div class="mgrid">${india.filter(([k])=>m[k]).map(([k,l])=>tile(l,m[k])).join("")}</div>`;
+    if(m.breadth){ const b=m.breadth; html+=`<div class="breadth"><b>Breadth</b> <span class="u">${b.advances} up</span> / <span class="d">${b.declines} down</span> of ${b.scanned} · ≥5%: <span class="u">${b.up5}</span>/<span class="d">${b.down5}</span> · ≥10%: <span class="u">${b.up10}</span>/<span class="d">${b.down10}</span></div>`; }
+    if(m.sectors&&Object.keys(m.sectors).length){ const names={it:"IT",auto:"Auto",pharma:"Pharma",metal:"Metal",realty:"Realty",fmcg:"FMCG",psubank:"PSU Bank",energy:"Energy",infra:"Infra",media:"Media"}; const rows=Object.entries(m.sectors).map(([k,v])=>{ const pm=String(v).match(/\(([+-−]?[\d.]+)%\)/); return {k,v,p:pm?parseFloat(pm[1].replace("−","-")):0}; }).sort((a,b)=>b.p-a.p); html+=`<div class="sectors">${rows.map(r=>`<span class="sec ${r.p>0?"u":r.p<0?"d":""}">${names[r.k]||r.k} <em>${r.p>0?"+":""}${r.p.toFixed(1)}%</em></span>`).join("")}</div>`; }
+    html+=`<details class="world"><summary>Global &amp; commodities</summary><div class="mgrid">${world.filter(([k])=>m[k]).map(([k,l])=>tile(l,m[k])).join("")}</div></details>`;
+    if(m.note) html+=`<div class="note">${esc(m.note)}</div>`;
+    el.innerHTML=html;
   }
   function calendarList(list){
     const byDay={}; list.forEach(it=>{ (byDay[it.when||"Date TBC"]=byDay[it.when||"Date TBC"]||[]).push(it); });
@@ -196,7 +212,7 @@ footer{color:var(--muted);font-size:12px;margin-top:28px;line-height:1.5}
     const items=visibleItems();
     if(!items.length){ feed.innerHTML=`<div class="empty"><b>Nothing matches</b>Try another category, a lower movers threshold, or clear the search.</div>`; return; }
     if(cat!=="all"){ feed.innerHTML=`<div class="list">${items.map(card).join("")}</div>`; return; }
-    const order=["calendar","movers","results","orders","mna","policy","global","other"], groups={};
+    const order=["calendar","movers","volume","results","orders","mna","policy","global","other"], groups={};
     items.forEach(it=>{ (groups[it.category]=groups[it.category]||[]).push(it); });
     if(groups.calendar){ const rank={Large:0,Mid:1,Small:2,Micro:3,"":4}; groups.calendar.sort((a,b)=>String(a.sortDate||"").localeCompare(String(b.sortDate||""))||(rank[a.cap]??4)-(rank[b.cap]??4)); }
     feed.innerHTML=order.filter(k=>groups[k]).map(k=>`<div class="section" style="--c:${CAT_COLOR[k]}"><i></i><h2>${k==="calendar"?"Results this week":CAT_LABEL[k]}</h2><span class="n">${groups[k].length}</span></div><div class="list">${k==="calendar"?calendarList(groups[k]):groups[k].map(card).join("")}</div>`).join("");

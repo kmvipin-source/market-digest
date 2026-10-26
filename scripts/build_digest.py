@@ -72,9 +72,11 @@ def segment_map():
     log(f"segment map: {len(seg)} symbols")
     return seg
 
-CATS = ["calendar", "results", "orders", "mna", "policy", "movers", "global", "other"]
+CATS = ["calendar", "results", "orders", "mna", "policy", "movers", "volume", "global", "other"]
 STATS = {}
 NAMES = {}
+BREADTH = {}
+VOLSPIKES = []
 
 def stat(name, ok, n=0, err=""):
     STATS[name] = {"ok": ok, "n": n, "err": str(err)[:160]}
@@ -233,6 +235,8 @@ def fetch_movers(threshold, intraday):
     syms = nse_universe()
     tickers = [s + ".NS" for s in syms]
     out = []
+    BREADTH.update({"scanned": 0, "advances": 0, "declines": 0, "up5": 0, "down5": 0, "up10": 0, "down10": 0})
+    VOLSPIKES.clear()
     frames = {}
     for i in range(0, len(tickers), 400):
         part = tickers[i:i + 400]
@@ -265,25 +269,60 @@ def fetch_movers(threshold, intraday):
             vol = float(last["Volume"]); avgv = float(sub["Volume"].iloc[:-1].mean() or 0)
             if px * vol < 2e6 or px < 5:   # skip illiquid names: < ₹20 lakh traded or penny prices
                 continue
+            BREADTH["scanned"] += 1
+            if pct > 0: BREADTH["advances"] += 1
+            elif pct < 0: BREADTH["declines"] += 1
+            if pct >= 5: BREADTH["up5"] += 1
+            if pct <= -5: BREADTH["down5"] += 1
+            if pct >= 10: BREADTH["up10"] += 1
+            if pct <= -10: BREADTH["down10"] += 1
+            volx = (vol / avgv) if avgv else 0
+            if volx >= 5 and abs(pct) < threshold and px * vol >= 2e7:
+                VOLSPIKES.append({"company": s, "pct": round(pct, 2), "price": round(px, 2), "volx": round(volx, 1)})
             if abs(pct) >= threshold:
                 out.append({"company": s, "pct": round(pct, 2), "price": round(px, 2),
                             "volx": round(vol / avgv, 1) if avgv else None})
         except Exception:
             continue
+    VOLSPIKES.sort(key=lambda x: -x["volx"]); del VOLSPIKES[20:]
     seg = segment_map()
-    for m in out:
+    for m in out + VOLSPIKES:
         m["cap"] = seg.get(m["company"], "Micro")
+    flag52(out + VOLSPIKES)
     out.sort(key=lambda x: -abs(x["pct"]))
     log(f"movers >= {threshold}%: {len(out)} of {len(syms)} scanned"); stat("NSE prices (Yahoo)", True, len(out), f"scanned {len(syms)}")
     return out[:60]
+
+def flag52(rows):
+    """Mark 52-week high/low for a small set of symbols (one yfinance call)."""
+    if not rows:
+        return
+    try:
+        import yfinance as yf
+        tickers = [r["company"] + ".NS" for r in rows][:80]
+        df = yf.download(tickers, period="1y", interval="1d", group_by="ticker", threads=True, progress=False, auto_adjust=False)
+        for r in rows[:80]:
+            try:
+                sub = (df[r["company"] + ".NS"] if len(tickers) > 1 else df).dropna(how="all")
+                hi, lo, px = float(sub["High"].max()), float(sub["Low"].min()), float(sub.iloc[-1]["Close"])
+                if px >= hi * 0.995: r["w52"] = "52-week high"
+                elif px <= lo * 1.005: r["w52"] = "52-week low"
+                r["fromHigh"] = round((px / hi - 1) * 100, 1)
+            except Exception:
+                pass
+    except Exception as ex:
+        log(f"52w flags FAILED: {ex}")
 
 def fetch_global():
     try:
         import yfinance as yf
     except Exception:
         return {}
-    idx = {"sensex": "^BSESN", "nifty": "^NSEI", "midcap": "^NSEMDCP50", "smallcap": "^CNXSC", "sp500": "^GSPC", "nasdaq": "^IXIC", "nikkei": "^N225",
-           "hangseng": "^HSI", "brent": "BZ=F", "usdinr": "INR=X", "gold": "GC=F"}
+    idx = {"sensex": "^BSESN", "nifty": "^NSEI", "midcap": "^NSEMDCP50", "smallcap": "^CNXSC", "banknifty": "^NSEBANK", "vix": "^INDIAVIX",
+           "sp500": "^GSPC", "nasdaq": "^IXIC", "dow": "^DJI", "nikkei": "^N225", "hangseng": "^HSI", "kospi": "^KS11",
+           "brent": "BZ=F", "usdinr": "INR=X", "gold": "GC=F", "silver": "SI=F", "us10y": "^TNX", "dxy": "DX-Y.NYB",
+           "sec_it": "^CNXIT", "sec_auto": "^CNXAUTO", "sec_pharma": "^CNXPHARMA", "sec_metal": "^CNXMETAL", "sec_realty": "^CNXREALTY",
+           "sec_fmcg": "^CNXFMCG", "sec_psubank": "^CNXPSUBANK", "sec_energy": "^CNXENERGY", "sec_infra": "^CNXINFRA", "sec_media": "^CNXMEDIA"}
     out = {}
     try:
         df = yf.download(list(idx.values()), period="5d", interval="1d", group_by="ticker", progress=False, auto_adjust=False)
@@ -540,10 +579,18 @@ def main():
         if not reason and lookups < 25:
             lookups += 1; reason, rsrc = news_lookup(m["company"]); time.sleep(0.5)
         base = f"₹{m['price']:,} · volume {m['volx']}× average" if m.get("volx") else f"₹{m['price']:,}"
+        if m.get("w52"): base += f" · {m['w52']}"
+        elif m.get("fromHigh") is not None: base += f" · {m['fromHigh']:+.0f}% from 52-wk high"
         fact = f"{base}. {reason}" if reason else f"{base}. Reason: none found in today's filings or news"
         items.append({"category": "movers", "company": NAMES.get(m["company"], m["company"]), "ticker": m["company"], "pct": m["pct"], "cap": m.get("cap", ""),
                       "fact": fact, "reasonSource": rsrc or "",
                       "source": "NSE prices", "materiality": 3 if m.get("cap") in ("Large", "Mid") else (2 if abs(m["pct"]) >= 15 else 1)})
+    for v in VOLSPIKES:
+        reason, rsrc = find_reason(v["company"], items, raw)
+        extra = f" · {v['w52']}" if v.get("w52") else ""
+        items.append({"category": "volume", "company": NAMES.get(v["company"], v["company"]), "ticker": v["company"], "pct": v["pct"], "cap": v.get("cap", ""),
+                      "fact": f"Volume {v['volx']}× average at ₹{v['price']:,}{extra}. " + (reason or "Reason: none found in today's filings or news"),
+                      "reasonSource": rsrc or "", "source": "NSE prices", "materiality": 2 if v.get("cap") in ("Large", "Mid") else 1})
     if args.mode in ("full", "results", "custom"):
         cal = fetch_results_calendar()
         seg = segment_map() if cal else {}
@@ -573,9 +620,11 @@ def main():
 
     market = {}
     if glob:
-        market = {"sensex": glob.get("sensex", ""), "nifty": glob.get("nifty", ""), "midcap": glob.get("midcap", ""), "smallcap": glob.get("smallcap", ""), "brent": glob.get("brent", ""),
-                  "usdinr": glob.get("usdinr", ""), "sp500": glob.get("sp500", ""), "nikkei": glob.get("nikkei", ""),
-                  "note": "Index and commodity figures are the latest daily closes from Yahoo Finance."}
+        market = {k: v for k, v in glob.items() if not k.startswith("sec_")}
+        market["sectors"] = {k[4:]: v for k, v in glob.items() if k.startswith("sec_")}
+        if BREADTH.get("scanned"):
+            market["breadth"] = dict(BREADTH)
+        market["note"] = "Index, sector and commodity figures are the latest daily closes from Yahoo Finance; breadth is computed across all liquid NSE stocks."
     window = f"news since {since.astimezone(IST).strftime('%a %d %b %H:%M')} IST"
     doc = {"id": run_id, "label": f"{t0.strftime('%a %d %b')} {t0.strftime('%H:%M')} IST · {label_mode}", "window": window, "date": t0.strftime("%Y-%m-%d"),
            "generatedAt": iso_utc(), "mode": args.mode, "query": args.query, "threshold": args.threshold,
