@@ -148,6 +148,7 @@ footer{color:var(--muted);font-size:12px;margin-top:28px;line-height:1.5}
   const esc=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
   const fmtPct=p=>(p>0?"+":"")+Number(p).toFixed(1)+"%";
   const pctClass=p=>p>0?"up":p<0?"down":"";
+  const ist=ts=>{ if(!ts) return ""; try{ return new Date(ts).toLocaleString("en-IN",{timeZone:"Asia/Kolkata",weekday:"short",day:"2-digit",month:"short",hour:"2-digit",minute:"2-digit",hour12:true})+" IST"; }catch(e){ return ts; } };
   const ago=ts=>{ if(!ts) return ""; const d=(Date.now()-new Date(ts).getTime())/60000; if(d<1) return "just now"; if(d<60) return Math.round(d)+" min ago"; if(d<48*60) return Math.round(d/60)+" h ago"; return Math.round(d/1440)+" d ago"; };
 
   function visibleItems(){
@@ -213,7 +214,7 @@ footer{color:var(--muted);font-size:12px;margin-top:28px;line-height:1.5}
       const r=await fetch(`data/${id}.json?v=${Date.now()}`); if(!r.ok) throw new Error(r.status);
       current=await r.json(); current.id=current.id||id;
       renderAll();
-      renderStatus(true,`${current.items?.length||0} items · generated ${ago(current.generatedAt)}${current.window?" · "+current.window:""}${current.query?" · "+current.query:""}${current.classifier==="rules"?" · keyword mode (no Groq key)":""}${srcSummary(current)}`);
+      renderStatus(true,`Last run ${ist(current.generatedAt)} (${ago(current.generatedAt)}) · ${current.items?.length||0} items${current.window?" · "+current.window:""}${current.query?" · "+current.query:""}${current.classifier==="rules"?" · keyword mode (no Groq key)":""}${srcSummary(current)}`);
     }catch(e){ renderStatus(false,"Couldn't load that digest."); }
   }
   async function init(){
