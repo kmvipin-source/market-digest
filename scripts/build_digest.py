@@ -269,9 +269,36 @@ Return ONLY a JSON object: {{"items":[{{"category":"...","company":"...","fact":
 HEADLINES (source | title | summary):
 {rows}"""
 
+def pick_groq_models(key):
+    """Ask Groq which models this key can use and order them by preference."""
+    env = os.environ.get("GROQ_MODEL", "").strip()
+    try:
+        r = requests.get("https://api.groq.com/openai/v1/models", headers={"Authorization": f"Bearer {key}"}, timeout=30)
+        r.raise_for_status()
+        ids = [m["id"] for m in r.json().get("data", []) if m.get("active", True)]
+    except Exception as ex:
+        log(f"groq model list FAILED: {ex}"); ids = []
+    log(f"groq models available: {ids}")
+    prefs = ["llama-4-maverick", "llama-4-scout", "llama-3.3-70b", "gpt-oss-120b", "qwen", "gpt-oss-20b", "llama-3.1-8b", "llama", "mixtral", "gemma"]
+    skip = ("whisper", "tts", "guard", "embed", "vision", "safeguard", "compound", "orpheus", "playai")
+    cands = [i for i in ids if not any(k in i.lower() for k in skip)]
+    ordered = []
+    for p in prefs:
+        for i in cands:
+            if p in i.lower() and i not in ordered:
+                ordered.append(i)
+    for i in cands:
+        if i not in ordered:
+            ordered.append(i)
+    if env:
+        ordered = [env] + [i for i in ordered if i != env]
+    return ordered[:3]
+
 def groq_classify(raw, mode, query, key):
     items, errors, calls = [], [], 0
-    models = [os.environ.get("GROQ_MODEL", "llama-3.3-70b-versatile"), "llama-3.1-8b-instant"]
+    models = pick_groq_models(key)
+    if not models:
+        stat("Groq classifier", False, 0, "no usable model found on this key"); return []
     model = models[0]
     batch = 25
     for i in range(0, len(raw), batch):
@@ -287,9 +314,11 @@ def groq_classify(raw, mode, query, key):
                 if r.status_code == 429:
                     wait = float(r.headers.get("retry-after", 0) or 0) or 10 * (attempt + 1)
                     log(f"groq 429, waiting {wait}s"); time.sleep(min(wait, 60)); continue
-                if r.status_code in (400, 404) and model != models[-1] and "model" in r.text.lower():
-                    log(f"groq model {model} rejected: {r.text[:120]}; switching to {models[-1]}")
-                    model = models[-1]; continue
+                if r.status_code in (400, 404) and "model" in r.text.lower():
+                    nxt = models[models.index(model) + 1] if model in models and models.index(model) + 1 < len(models) else None
+                    if not nxt:
+                        errors.append(f"model {model} rejected: {r.text[:100]}"); break
+                    log(f"groq model {model} rejected; switching to {nxt}"); model = nxt; continue
                 if r.status_code >= 400:
                     errors.append(f"{r.status_code}: {r.text[:140]}"); time.sleep(3); continue
                 content = r.json()["choices"][0]["message"]["content"]
