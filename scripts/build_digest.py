@@ -674,6 +674,8 @@ def pick_groq_models(key):
 
 def groq_classify(raw, mode, query, key):
     items, errors, calls = [], [], 0
+    budget_end = time.time() + float(os.environ.get("GROQ_BUDGET_SEC", "300"))
+    consecutive_429 = 0
     models = pick_groq_models(key)
     if not models:
         stat("Groq classifier", False, 0, "no usable model found on this key"); return []
@@ -683,15 +685,23 @@ def groq_classify(raw, mode, query, key):
         chunk = raw[i:i + batch]
         rows = "\n".join(f"{r['source']} | {r['title']} | {r['summary'][:160]}" for r in chunk)
         done = False
+        if time.time() > budget_end:
+            errors.append("time budget exhausted"); break
         for attempt in range(4):
+            if time.time() > budget_end:
+                break
             body = {"model": model, "temperature": 0.1, "response_format": {"type": "json_object"},
                     "messages": [{"role": "user", "content": PROMPT.format(mode=mode, query=("Specific ask: " + query) if query else "", rows=rows)}]}
             try:
                 calls += 1
                 r = requests.post(GROQ_URL, json=body, headers={"Authorization": f"Bearer {key}"}, timeout=120)
                 if r.status_code == 429:
+                    consecutive_429 += 1
                     wait = float(r.headers.get("retry-after", 0) or 0) or 10 * (attempt + 1)
+                    if wait > 90 or consecutive_429 >= 6:
+                        errors.append(f"rate limited (retry-after {wait:.0f}s) — quota likely exhausted"); budget_end = 0; break
                     log(f"groq 429, waiting {wait}s"); time.sleep(min(wait, 60)); continue
+                consecutive_429 = 0
                 if r.status_code in (400, 404) and "model" in r.text.lower():
                     nxt = models[models.index(model) + 1] if model in models and models.index(model) + 1 < len(models) else None
                     if not nxt:
@@ -714,6 +724,13 @@ def groq_classify(raw, mode, query, key):
         time.sleep(0.6)
     log(f"groq classified: {len(items)} items from {len(raw)} headlines in {calls} calls; errors={len(errors)}")
     stat("Groq classifier", len(items) > 0, len(items), ("; ".join(errors[:2]) if errors else ("model=" + model)))
+    if items and len(items) < len(raw) * 0.15 and errors:
+        log("groq coverage low; merging keyword fallback for the rest")
+        seen = {re.sub(r"\W+", "", (i.get("company", "") + i.get("fact", "")).lower())[:30] for i in items}
+        for it in rule_classify(raw):
+            k = re.sub(r"\W+", "", (it.get("company", "") + it.get("fact", "")).lower())[:30]
+            if k not in seen:
+                items.append(it)
     return items
 
 def dedupe(items):
@@ -773,6 +790,8 @@ def groq_brief(doc, key):
             r = requests.post(GROQ_URL, json={"model": model, "temperature": 0.2, "response_format": {"type": "json_object"},
                                               "messages": [{"role": "user", "content": prompt}]},
                               headers={"Authorization": f"Bearer {key}"}, timeout=120)
+            if r.status_code == 429:
+                stat("Morning read (Groq)", False, 0, "rate limited / quota"); return None
             if r.status_code >= 400:
                 log(f"brief {model}: {r.status_code} {r.text[:120]}"); continue
             b = json.loads(r.json()["choices"][0]["message"]["content"])
