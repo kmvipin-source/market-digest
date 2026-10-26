@@ -105,14 +105,14 @@ main{padding-block:14px 110px;max-width:760px;margin:0 auto}
 .row{display:flex;gap:8px}
 .row input{flex:1;font:inherit;color:var(--fg);background:var(--chip);border:1px solid transparent;border-radius:10px;padding:9px 11px;min-width:0}
 .sug{display:flex;flex-direction:column;border:1px solid var(--line);border-radius:12px;margin-top:6px;overflow:hidden;max-height:240px;overflow-y:auto}
-.sug button{font:inherit;text-align:left;border:0;background:var(--panel);padding:10px 12px;display:flex;gap:10px;align-items:baseline;cursor:pointer;border-bottom:1px solid var(--line)}
+.sug button{font:inherit;text-align:left;border:0;background:var(--panel);padding:13px 12px;display:flex;gap:10px;align-items:baseline;cursor:pointer;border-bottom:1px solid var(--line)}
 .sug button:last-child{border-bottom:0}
 .sug .sym{font-family:var(--mono);font-size:12px;color:var(--accent);min-width:88px}
 .sug .nm{font-size:13px;min-width:0;overflow-wrap:anywhere}
 .sug .px{margin-left:auto;font-family:var(--mono);font-size:12px;color:var(--muted);white-space:nowrap}
 .wlchips{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
-.wlchip{display:inline-flex;align-items:center;gap:6px;background:var(--chip);border-radius:999px;padding:5px 6px 5px 11px;font-size:13px}
-.wlchip button{border:0;background:var(--panel);border-radius:50%;width:20px;height:20px;cursor:pointer;color:var(--muted);font-size:12px;line-height:1}
+.wlchip{display:inline-flex;align-items:center;gap:8px;background:var(--chip);border-radius:999px;padding:8px 8px 8px 13px;font-size:14px}
+.wlchip button{border:0;background:var(--panel);border-radius:50%;width:26px;height:26px;cursor:pointer;color:var(--muted);font-size:13px;line-height:1}
 .brief{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:14px;margin:10px 0 14px;border-top:3px solid var(--accent)}
 .brief .regime{margin:0 0 10px;font-size:15px;line-height:1.55}
 .brief h4{margin:14px 0 8px;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
@@ -188,12 +188,11 @@ footer{color:var(--muted);font-size:12px;margin-top:28px;line-height:1.5}
   <div class="scrim" id="wlScrim"></div>
   <div class="sheet gutter" role="dialog" aria-labelledby="wlTitle">
     <h3 id="wlTitle">Watchlist</h3>
-    <p>Up to 15 stocks. Saved on this device. Matching news from every section is pinned at the top of the digest.</p>
+    <p>Up to 15 stocks. Their price, day move and any news are pinned at the top of every digest.</p>
     <div class="row"><input id="wlIn" placeholder="Type a few letters, e.g. mrpl or ather" autocomplete="off" autocapitalize="off"><button class="btn" id="wlAdd" type="button">Add</button></div>
     <div class="sug" id="wlSugList" hidden></div>
     <div class="wlchips" id="wlChips"></div>
-    <div class="row" style="margin-top:12px"><input id="wlKey" type="password" placeholder="Passphrase (same as Run) — needed to sync across devices" autocomplete="off"></div>
-    <div class="wnone" id="wlSync" style="margin-top:6px"></div>
+    <div class="wnone" id="wlSync" style="margin-top:8px"></div>
     <div class="btnrow"><button class="btn primary" id="wlDone" type="button">Done</button></div>
   </div>
 </div>
@@ -381,7 +380,7 @@ footer{color:var(--muted);font-size:12px;margin-top:28px;line-height:1.5}
   $("q").addEventListener("input",e=>{ q=e.target.value; renderFeed(); });
   $("runSel").addEventListener("change",e=>{ if(e.target.value) loadRun(e.target.value); });
   let mode="full", runKey=""; try{ runKey=localStorage.getItem("md.key")||""; }catch(e){}
-  function runKeyFor(){ const v=($("wlKey")&&$("wlKey").value.trim())||runKey; if(v&&v!==runKey){ runKey=v; try{localStorage.setItem("md.key",v);}catch(e){} } return v; }
+  function runKeyFor(){ return runKey; }
   let polling=null, runningSince=null, lastSeenRun=null;
   $("fab").addEventListener("click",()=>{ $("sheetWrap").hidden=false; $("sheetMsg").hidden=true; $("runKey").value=runKey; });
   const close=()=>{ $("sheetWrap").hidden=true; };
@@ -433,8 +432,7 @@ footer{color:var(--muted);font-size:12px;margin-top:28px;line-height:1.5}
     if(watch.some(w=>w.sym===sym)) return;
     watch.push({sym,name}); saveWatch(); renderChips(); renderWatch(); renderFeed();
   }
-  $("wlBtn").addEventListener("click",()=>{ fillSuggestions(); renderChips(); $("wlKey").value=runKey; $("wlSync").textContent=wlSynced?"Synced across your devices":(runKey?"":"Enter the passphrase once to sync this list to your other devices"); $("wlWrap").hidden=false; $("wlIn").focus(); });
-  $("wlKey").addEventListener("change",()=>{ runKeyFor(); if(watch.length) pushWatch(); });
+  $("wlBtn").addEventListener("click",()=>{ fillSuggestions(); renderChips(); $("wlSync").textContent=wlSynced?"Synced to your other devices":(runKey?"":"Tip: after you use Run now once, this list also syncs to your other devices"); $("wlWrap").hidden=false; $("wlIn").focus(); });
   const closeWl=()=>{ $("wlWrap").hidden=true; };
   $("wlScrim").addEventListener("click",closeWl); $("wlDone").addEventListener("click",closeWl);
   $("wlAdd").addEventListener("click",()=>{ addWatch($("wlIn").value); $("wlIn").value=""; showSug(""); });
