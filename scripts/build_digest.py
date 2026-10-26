@@ -678,7 +678,7 @@ def groq_classify(raw, mode, query, key):
     if not models:
         stat("Groq classifier", False, 0, "no usable model found on this key"); return []
     model = models[0]
-    batch = 25
+    batch = 35
     for i in range(0, len(raw), batch):
         chunk = raw[i:i + batch]
         rows = "\n".join(f"{r['source']} | {r['title']} | {r['summary'][:160]}" for r in chunk)
@@ -711,7 +711,7 @@ def groq_classify(raw, mode, query, key):
                 errors.append(str(ex)[:140]); time.sleep(3)
         if not done:
             log(f"groq batch {i} gave up")
-        time.sleep(1.5)
+        time.sleep(0.6)
     log(f"groq classified: {len(items)} items from {len(raw)} headlines in {calls} calls; errors={len(errors)}")
     stat("Groq classifier", len(items) > 0, len(items), ("; ".join(errors[:2]) if errors else ("model=" + model)))
     return items
@@ -841,8 +841,8 @@ def main():
     lookups = 0
     for m in movers:
         reason, rsrc = find_reason(m["company"], items, raw)
-        if not reason and lookups < 25:
-            lookups += 1; reason, rsrc = news_lookup(m["company"]); time.sleep(0.5)
+        if not reason and lookups < 15:
+            lookups += 1; reason, rsrc = news_lookup(m["company"]); time.sleep(0.3)
         base = f"₹{m['price']:,} · volume {m['volx']}× average" if m.get("volx") else f"₹{m['price']:,}"
         if m.get("w52"): base += f" · {m['w52']}"
         elif m.get("fromHigh") is not None: base += f" · {m['fromHigh']:+.0f}% from 52-wk high"
