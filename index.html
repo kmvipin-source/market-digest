@@ -479,6 +479,7 @@ footer{color:var(--muted);font-size:12px;margin-top:28px;line-height:1.5}
   $("wlIn").addEventListener("keydown",e=>{ if(e.key==="Enter"){ e.preventDefault(); const first=$("wlSugList").querySelector("[data-sym]"); addWatch(first?first.dataset.sym:$("wlIn").value); $("wlIn").value=""; showSug(""); } });
   $("wlChips").addEventListener("click",e=>{ const b=e.target.closest("[data-i]"); if(!b) return; watch.splice(+b.dataset.i,1); saveWatch(); renderChips(); renderWatch(); renderFeed(); });
   init().then(()=>{ checkStatus(); pullWatch(); });
+  if("serviceWorker" in navigator){ try{ navigator.serviceWorker.register("sw.js"); }catch(e){} }
 })();
 </script>
 </body>
