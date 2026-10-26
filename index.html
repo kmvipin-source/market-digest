@@ -116,7 +116,7 @@ main{padding-block:14px 110px;max-width:760px;margin:0 auto}
 .dayh{font-weight:700;font-size:13px;margin-bottom:8px;display:flex;gap:8px;align-items:baseline}
 .dayh .n{font-family:var(--mono);font-size:11px;color:var(--muted);font-weight:400}
 .daylist{display:flex;flex-wrap:wrap;gap:6px}
-.co-pill{font-size:13px;background:var(--chip);border-radius:8px;padding:4px 8px;display:inline-flex;gap:6px;align-items:center}
+.co-pill{font:inherit;font-size:13px;background:var(--chip);border:0;color:var(--fg);border-radius:8px;padding:6px 9px;display:inline-flex;gap:6px;align-items:center;cursor:pointer}
 .co-pill em{font-style:normal;font-size:10px;letter-spacing:.04em;text-transform:uppercase;color:var(--muted)}
 .co-pill.large{background:#e0ecff} .co-pill.mid{background:#ede4ff} .co-pill.small{background:#e3f6ea}
 .more{font:inherit;font-size:13px;font-weight:600;color:var(--accent);background:var(--panel);border:1px dashed var(--line);border-radius:12px;padding:10px;cursor:pointer}
@@ -397,7 +397,8 @@ footer{color:var(--muted);font-size:12px;margin-top:28px;line-height:1.5}
       let hits=Object.entries(names).filter(([s,v])=>s.toLowerCase()===qs||s.toLowerCase().startsWith(qs));
       if(!hits.length) hits=Object.entries(names).filter(([s,v])=>String(v[0]).toLowerCase().replace(/[^a-z0-9 ]/g,"").startsWith(q));
       if(!hits.length){ const first=q.split(" ")[0]; if(first.length>=4) hits=Object.entries(names).filter(([s,v])=>String(v[0]).toLowerCase().startsWith(first)); }
-      if(hits.length===1||(hits.length>1&&hits[0][0].toLowerCase()===qs)){ w.sym=hits[0][0]; w.name=hits[0][1][0]; changed=true; }
+      if(hits.length===1||(hits.length>1&&hits[0][0].toLowerCase()===qs)){ w.sym=hits[0][0]; w.name=hits[0][1][0]; delete w.options; changed=true; }
+      else if(hits.length>1){ w.options=hits.slice(0,4).map(([s,v])=>({sym:s,name:v[0]})); }
     });
     if(changed){ try{ localStorage.setItem("md.watch",JSON.stringify(watch)); }catch(e){} pushWatch(); }
   }
@@ -426,6 +427,7 @@ footer{color:var(--muted);font-size:12px;margin-top:28px;line-height:1.5}
       const open=full||wlExpanded.has(w.sym);
       const px=p?`<span class="px">₹${Number(p[1]).toLocaleString("en-IN")} <span class="${pctClass(p[2])}">${fmtPct(p[2])}</span></span>`:`<span class="px"></span>`;
       const badge=news.length?`<span class="nb">${news.length} news</span>`:(cal.length?`<span class="nb">results ${esc(cal[0].when||"")}</span>`:"");
+      if(!p&&w.options&&w.options.length){ return `<div class="wrow" data-sym="${esc(w.sym)}"><div class="wtop"><span class="co">${esc(name)}</span><span class="nb">which one?</span></div><div class="daylist" style="margin-top:8px">${w.options.map(o=>`<button type="button" class="co-pill" data-pick="${esc(o.sym)}" data-name="${esc(o.name)}" data-for="${esc(w.sym)}">${esc(o.name.replace(/ Limited$/i,""))}<em>${esc(o.sym)}</em></button>`).join("")}</div></div>`; }
       return `<div class="wrow ${open?"open":""}" data-sym="${esc(w.sym)}"><div class="wtop"><span class="co">${esc(name)}</span>${badge}${px}</div>${open?(news.length?`<div class="wnews">${news.map(it=>`<div><span class="tag">${esc(CAT_LABEL[it.category]||it.category)}</span>${esc(it.fact)}${it.source?` <span class="tk">· ${esc(it.source)}</span>`:""}</div>`).join("")}</div>`:`<div class="wnone">No news in this digest${cal.length?` · results ${esc(cal[0].when||"")}`:""}</div>`):""}</div>`;
     }).join("");
     el.innerHTML=`<div class="section" style="--c:#ca8a04"><i></i><h2>Watchlist</h2><span class="n">${watch.length}${withNews?` · ${withNews} with news`:""}</span><button class="open" type="button" id="wlToggle" aria-label="Collapse">${wlOpen||full?"▾":"▸"}</button></div>${(wlOpen||full)?`<div class="wsec">${rows}</div>`:""}`;
@@ -450,7 +452,7 @@ footer{color:var(--muted);font-size:12px;margin-top:28px;line-height:1.5}
   }
 
   $("ticker").addEventListener("click",e=>{ const t=e.target.closest(".tk[data-sym]"); if(!t) return; cat="watch"; try{localStorage.setItem("md.cat",cat)}catch(x){} renderAll(); const row=document.querySelector(`.wrow[data-sym="${t.dataset.sym}"]`); if(row) row.scrollIntoView({block:"center"}); });
-  $("watch").addEventListener("click",e=>{ if(e.target.closest("#wlToggle")){ wlOpen=!wlOpen; try{localStorage.setItem("md.wlopen",wlOpen?"1":"0");}catch(x){} renderWatch(); return; } const r=e.target.closest(".wrow[data-sym]"); if(r&&cat!=="watch"){ const s=r.dataset.sym; wlExpanded.has(s)?wlExpanded.delete(s):wlExpanded.add(s); renderWatch(); } });
+  $("watch").addEventListener("click",e=>{ const pk=e.target.closest("[data-pick]"); if(pk){ const w=watch.find(x=>x.sym===pk.dataset.for); if(w){ w.sym=pk.dataset.pick; w.name=pk.dataset.name; delete w.options; saveWatch(); renderTicker(); renderWatch(); renderFeed(); } return; } if(e.target.closest("#wlToggle")){ wlOpen=!wlOpen; try{localStorage.setItem("md.wlopen",wlOpen?"1":"0");}catch(x){} renderWatch(); return; } const r=e.target.closest(".wrow[data-sym]"); if(r&&cat!=="watch"){ const s=r.dataset.sym; wlExpanded.has(s)?wlExpanded.delete(s):wlExpanded.add(s); renderWatch(); } });
   $("feed").addEventListener("click",e=>{ const m=e.target.closest("[data-more]"); const l=e.target.closest("[data-less]"); const o=e.target.closest(".open[data-cat]"); if(m){ expanded.add(m.dataset.more); renderFeed(); } else if(l){ expanded.delete(l.dataset.less); renderFeed(); const s=$("sec-"+l.dataset.less); if(s) s.scrollIntoView({block:"start"}); } else if(o){ cat=o.dataset.cat; try{localStorage.setItem("md.cat",cat)}catch(x){} renderAll(); window.scrollTo({top:0}); } });
   $("cats").addEventListener("click",e=>{ const b=e.target.closest("[data-cat]"); if(!b) return; cat=b.dataset.cat; try{localStorage.setItem("md.cat",cat)}catch(x){} renderAll(); window.scrollTo({top:0}); });
   $("feed").addEventListener("click",e=>{ const b=e.target.closest(".thrseg [data-t]"); if(!b) return; thr=+b.dataset.t; try{localStorage.setItem("md.thr",thr)}catch(x){} renderCats(); renderFeed(); });
