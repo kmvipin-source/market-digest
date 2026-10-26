@@ -324,7 +324,16 @@ def fetch_global():
            "sec_it": "^CNXIT", "sec_auto": "^CNXAUTO", "sec_pharma": "^CNXPHARMA", "sec_metal": "^CNXMETAL", "sec_realty": "^CNXREALTY",
            "sec_fmcg": "^CNXFMCG", "sec_psubank": "^CNXPSUBANK", "sec_energy": "^CNXENERGY", "sec_infra": "^CNXINFRA", "sec_media": "^CNXMEDIA"}
     out = {}
+    alt = {"smallcap": ["^CNXSC", "NIFTYSMLCAP100.NS", "^NSMIDCP", "NIFTY_SMLCAP_100.NS"], "midcap": ["^NSEMDCP50", "NIFTYMIDCAP150.NS", "^CNXMIDCAP"]}
     try:
+        for k, cands in alt.items():
+            for c in cands:
+                try:
+                    t = yf.download(c, period="5d", interval="1d", progress=False, auto_adjust=False)
+                    if len(t.dropna(how="all")) >= 2:
+                        idx[k] = c; break
+                except Exception:
+                    continue
         df = yf.download(list(idx.values()), period="5d", interval="1d", group_by="ticker", progress=False, auto_adjust=False)
         for k, t in idx.items():
             sub = df[t].dropna(how="all")
@@ -509,7 +518,10 @@ def groq_classify(raw, mode, query, key):
 def dedupe(items):
     """One item per (company, category) for news categories; keep the most material / most detailed."""
     def norm(c):
-        c = re.sub(r"\b(ltd|limited|india|corp|corporation|the|co|company|inc)\b", "", (c or "").lower())
+        c = (c or "").lower()
+        if re.search(r"sensex|nifty|d-street|dalal|indian (shares|stocks|markets)|^markets?$|stock market", c):
+            return "indexwrap"
+        c = re.sub(r"\b(ltd|limited|india|corp|corporation|the|co|company|inc)\b", "", c)
         return re.sub(r"[^a-z0-9]", "", c)[:18]
     best = {}
     order = []
@@ -517,6 +529,8 @@ def dedupe(items):
         k = (norm(it.get("company")), it.get("category"))
         if it.get("category") == "calendar":
             k = (norm(it.get("company")), "calendar")
+        elif norm(it.get("company")) == "indexwrap":
+            k = ("indexwrap", "global"); it["category"] = "global"; it["company"] = "Sensex / Nifty"
         elif it.get("category") in ("movers", "global") and it.get("fact"):
             k = (norm(it.get("company")), it.get("category"), re.sub(r"\W+", "", it["fact"].lower())[:30])
         if k not in best:

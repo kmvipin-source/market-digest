@@ -19,51 +19,6 @@
    }
   },
   {
-   "id": "2026-10-26-full-4",
-   "label": "Mon 26 Oct 19:24 IST · Full digest",
-   "date": "2026-10-26",
-   "generatedAt": "2026-10-26T14:04:19Z",
-   "mode": "full",
-   "count": 175,
-   "counts": {
-    "global": 20,
-    "orders": 18,
-    "other": 22,
-    "results": 81,
-    "mna": 2,
-    "movers": 24,
-    "policy": 8
-   }
-  },
-  {
-   "id": "2026-10-26-full-3",
-   "label": "Mon 26 Oct 2026 · Full digest",
-   "date": "2026-10-26",
-   "generatedAt": "2026-10-26T13:53:25Z",
-   "mode": "full",
-   "count": 173,
-   "counts": {
-    "global": 20,
-    "mna": 6,
-    "orders": 16,
-    "other": 28,
-    "policy": 22,
-    "results": 78,
-    "movers": 3
-   }
-  },
-  {
-   "id": "2026-10-26-full",
-   "label": "Mon 26 Oct 2026 · Full digest",
-   "date": "2026-10-26",
-   "generatedAt": "2026-10-26T13:29:02Z",
-   "mode": "full",
-   "count": 3,
-   "counts": {
-    "movers": 3
-   }
-  },
-  {
    "id": "2026-10-27-full",
    "label": "Tue 27 Oct 2026 (news of Mon 26 Oct)",
    "date": "2026-10-27",
