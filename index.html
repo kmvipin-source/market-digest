@@ -184,6 +184,8 @@ footer{color:var(--muted);font-size:12px;margin-top:28px;line-height:1.5}
     <div class="row"><input id="wlIn" list="wlSug" placeholder="Ticker or company, e.g. MRPL or Ather" autocomplete="off"><button class="btn" id="wlAdd" type="button">Add</button></div>
     <datalist id="wlSug"></datalist>
     <div class="wlchips" id="wlChips"></div>
+    <div class="row" style="margin-top:12px"><input id="wlKey" type="password" placeholder="Passphrase (same as Run) — needed to sync across devices" autocomplete="off"></div>
+    <div class="wnone" id="wlSync" style="margin-top:6px"></div>
     <div class="btnrow"><button class="btn primary" id="wlDone" type="button">Done</button></div>
   </div>
 </div>
@@ -214,7 +216,15 @@ footer{color:var(--muted);font-size:12px;margin-top:28px;line-height:1.5}
   const $=id=>document.getElementById(id);
   let runs=[], current=null, cat="all", thr=10, q="";
   let watch=[]; try{ watch=JSON.parse(localStorage.getItem("md.watch")||"[]"); }catch(e){ watch=[]; }
-  const saveWatch=()=>{ try{ localStorage.setItem("md.watch",JSON.stringify(watch)); }catch(e){} };
+  let wlSynced=false;
+  async function pushWatch(){
+    const key=runKeyFor(); if(!key) return;
+    try{ const r=await fetch("api/watchlist",{method:"PUT",headers:{"content-type":"application/json"},body:JSON.stringify({key,list:watch})}); const d=await r.json().catch(()=>({})); if(d.ok){ wlSynced=true; $("wlSync").textContent="Synced across your devices"; } else { $("wlSync").textContent=d.error==="wrong passphrase"?"Passphrase didn't match — list saved on this device only":"Saved on this device only"; } }catch(e){ $("wlSync").textContent="Saved on this device only (offline)"; }
+  }
+  async function pullWatch(){
+    try{ const r=await fetch("api/watchlist",{cache:"no-store"}); const d=await r.json(); if(d.ok&&Array.isArray(d.list)&&d.list.length){ watch=d.list; try{localStorage.setItem("md.watch",JSON.stringify(watch));}catch(e){} wlSynced=true; renderWatch(); renderFeed(); } }catch(e){}
+  }
+  const saveWatch=()=>{ try{ localStorage.setItem("md.watch",JSON.stringify(watch)); }catch(e){} pushWatch(); };
   const STOPW=new Set(["ltd","limited","india","industries","the","co","company","corporation","corp","and","of","international","enterprises","technologies","technology","services","solutions","products","global","group","holdings","finance","financial","bank","power","energy","infra","infrastructure","pharma","pharmaceuticals","chemicals","steel","motors","textiles","mills"]);
   const toks=n=>String(n||"").toLowerCase().match(/[a-z]{3,}/g)?.filter(t=>!STOPW.has(t)).slice(0,2)||[];
   function matchesWatch(it,w){ const sym=w.sym.toLowerCase(); if((it.ticker||"").toLowerCase()===sym) return true; const t=toks(w.name||w.sym); if(!t.length) return false; const hay=((it.company||"")+" "+(it.fact||"")).toLowerCase(); return t.every(x=>hay.includes(x)); }
@@ -343,6 +353,7 @@ footer{color:var(--muted);font-size:12px;margin-top:28px;line-height:1.5}
   $("q").addEventListener("input",e=>{ q=e.target.value; renderFeed(); });
   $("runSel").addEventListener("change",e=>{ if(e.target.value) loadRun(e.target.value); });
   let mode="full", runKey=""; try{ runKey=localStorage.getItem("md.key")||""; }catch(e){}
+  function runKeyFor(){ const v=($("wlKey")&&$("wlKey").value.trim())||runKey; if(v&&v!==runKey){ runKey=v; try{localStorage.setItem("md.key",v);}catch(e){} } return v; }
   let polling=null, runningSince=null, lastSeenRun=null;
   $("fab").addEventListener("click",()=>{ $("sheetWrap").hidden=false; $("sheetMsg").hidden=true; $("runKey").value=runKey; });
   const close=()=>{ $("sheetWrap").hidden=true; };
@@ -386,13 +397,14 @@ footer{color:var(--muted);font-size:12px;margin-top:28px;line-height:1.5}
     if(watch.some(w=>w.sym===sym)) return;
     watch.push({sym,name}); saveWatch(); renderChips(); renderWatch(); renderFeed();
   }
-  $("wlBtn").addEventListener("click",()=>{ fillSuggestions(); renderChips(); $("wlWrap").hidden=false; $("wlIn").focus(); });
+  $("wlBtn").addEventListener("click",()=>{ fillSuggestions(); renderChips(); $("wlKey").value=runKey; $("wlSync").textContent=wlSynced?"Synced across your devices":(runKey?"":"Enter the passphrase once to sync this list to your other devices"); $("wlWrap").hidden=false; $("wlIn").focus(); });
+  $("wlKey").addEventListener("change",()=>{ runKeyFor(); if(watch.length) pushWatch(); });
   const closeWl=()=>{ $("wlWrap").hidden=true; };
   $("wlScrim").addEventListener("click",closeWl); $("wlDone").addEventListener("click",closeWl);
   $("wlAdd").addEventListener("click",()=>{ addWatch($("wlIn").value); $("wlIn").value=""; });
   $("wlIn").addEventListener("keydown",e=>{ if(e.key==="Enter"){ e.preventDefault(); addWatch($("wlIn").value); $("wlIn").value=""; } });
   $("wlChips").addEventListener("click",e=>{ const b=e.target.closest("[data-i]"); if(!b) return; watch.splice(+b.dataset.i,1); saveWatch(); renderChips(); renderWatch(); renderFeed(); });
-  init().then(checkStatus);
+  init().then(()=>{ checkStatus(); pullWatch(); });
 })();
 </script>
 </body>
