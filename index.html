@@ -171,7 +171,9 @@ footer{color:var(--muted);font-size:12px;margin-top:28px;line-height:1.5}
     const p=it.pct!=null?`<span class="pct ${pctClass(+it.pct)}">${fmtPct(+it.pct)}</span>`:(it.value?`<span class="pct">${esc(it.value)}</span>`:"");
     const tags=[];
     if(cat==="all") tags.push(`<span class="tag">${esc(CAT_LABEL[it.category]||it.category||"")}</span>`);
+    if(it.ticker) tags.push(`<span class="tag">${esc(it.ticker)}</span>`);
     if(it.cap) tags.push(`<span class="tag">${esc(it.cap)} cap</span>`);
+    if(it.reasonSource) tags.push(`<span>via ${esc(it.reasonSource)}</span>`);
     if(it.source) tags.push(it.link?`<a href="${esc(it.link)}" target="_blank" rel="noopener">${esc(it.source)}</a>`:`<span>${esc(it.source)}</span>`);
     if(it.when) tags.push(`<span>${esc(it.when)}</span>`);
     return `<article class="card ${it.materiality>=3?"mat3":""}" style="--c:${CAT_COLOR[it.category]||"var(--line)"}"><div class="co">${esc(it.company)}</div>${p}<div class="fact">${esc(it.fact)}</div><div class="meta">${tags.join("")}</div></article>`;

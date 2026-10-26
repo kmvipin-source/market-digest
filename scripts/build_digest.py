@@ -72,6 +72,7 @@ def segment_map():
 
 CATS = ["results", "orders", "mna", "policy", "movers", "global", "other"]
 STATS = {}
+NAMES = {}
 
 def stat(name, ok, n=0, err=""):
     STATS[name] = {"ok": ok, "n": n, "err": str(err)[:160]}
@@ -173,7 +174,7 @@ def nse_universe():
         for line in r.text.splitlines()[1:]:
             parts = [x.strip().strip('"') for x in line.split(",")]
             if len(parts) >= 3 and parts[2] in ("EQ", "BE") and parts[0]:
-                syms.append(parts[0])
+                syms.append(parts[0]); NAMES[parts[0]] = parts[1]
         if len(syms) > 500:
             log(f"nse full universe: {len(syms)} symbols"); return syms
     except Exception as ex:
@@ -263,6 +264,46 @@ def fetch_global():
     except Exception as ex:
         log(f"global FAILED: {ex}")
     return out
+
+# ---------------------------------------------------------------- mover reasons
+STOP = {"ltd", "limited", "india", "industries", "the", "co", "company", "corporation", "corp", "and", "of", "&", "international", "enterprises", "technologies", "technology", "services", "solutions", "products", "global", "group", "holdings", "finance", "financial", "bank", "power", "energy", "infra", "infrastructure", "pharma", "pharmaceuticals", "chemicals", "steel", "motors", "textiles", "mills"}
+
+def name_tokens(sym):
+    name = NAMES.get(sym, sym)
+    toks = [t for t in re.findall(r"[A-Za-z]{3,}", name.lower()) if t not in STOP]
+    return toks[:2] or [name.lower()[:6]]
+
+def find_reason(sym, items, raw):
+    toks = name_tokens(sym)
+    def hit(text):
+        t = text.lower()
+        return all(tok in t for tok in toks)
+    for it in items:
+        if it.get("category") != "movers" and (hit(it.get("company", "")) or hit(it.get("fact", ""))):
+            return f"Likely reason: {it['fact']}", it.get("source", "")
+    for r in raw:
+        if hit(r["title"]):
+            return f"Likely reason: {r['title'][:140]}", r["source"]
+    return None, None
+
+def news_lookup(sym):
+    """Targeted Google News search for a mover nothing local explains."""
+    import feedparser
+    name = NAMES.get(sym, sym)
+    q = requests.utils.quote(f'"{name}" shares')
+    try:
+        r = get(GNEWS.format(q=q + "+when:2d"))
+        for e in feedparser.parse(r.content).entries[:5]:
+            title = clean(e.get("title"))
+            if " - " in title:
+                title, src = title.rsplit(" - ", 1)
+            else:
+                src = "news"
+            if re.search(r"(surge|rall|jump|soar|zoom|plunge|crash|tank|fall|slump|circuit|order|result|profit|acqui|stake|deal|approv|launch|block|promoter|rating|contract|win|loss)", title, re.I):
+                return f"Likely reason: {title[:140]}", src
+    except Exception as ex:
+        log(f"news lookup {sym} failed: {ex}")
+    return None, None
 
 # ---------------------------------------------------------------- classify
 KEYWORDS = [
@@ -458,9 +499,15 @@ def main():
         log("falling back to keyword rules"); items = rule_classify(raw)
     if args.mode in ("orders", "results", "policy"):
         items = [i for i in items if i["category"] == args.mode]
+    lookups = 0
     for m in movers:
-        items.append({"category": "movers", "company": m["company"], "pct": m["pct"], "cap": m.get("cap", ""),
-                      "fact": f"₹{m['price']:,} · volume {m['volx']}× average" if m.get("volx") else f"₹{m['price']:,}",
+        reason, rsrc = find_reason(m["company"], items, raw)
+        if not reason and lookups < 25:
+            lookups += 1; reason, rsrc = news_lookup(m["company"]); time.sleep(0.5)
+        base = f"₹{m['price']:,} · volume {m['volx']}× average" if m.get("volx") else f"₹{m['price']:,}"
+        fact = f"{base}. {reason}" if reason else f"{base}. Reason: none found in today's filings or news"
+        items.append({"category": "movers", "company": NAMES.get(m["company"], m["company"]), "ticker": m["company"], "pct": m["pct"], "cap": m.get("cap", ""),
+                      "fact": fact, "reasonSource": rsrc or "",
                       "source": "NSE prices", "materiality": 3 if m.get("cap") in ("Large", "Mid") else (2 if abs(m["pct"]) >= 15 else 1)})
     items = dedupe(items)
     items.sort(key=lambda i: (-i.get("materiality", 1), i["category"]))
