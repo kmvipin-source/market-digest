@@ -1,6 +1,17 @@
 {
  "runs": [
   {
+   "id": "2026-10-26-full",
+   "label": "Mon 26 Oct 2026 · Full digest",
+   "date": "2026-10-26",
+   "generatedAt": "2026-10-26T13:24:11Z",
+   "mode": "full",
+   "count": 3,
+   "counts": {
+    "movers": 3
+   }
+  },
+  {
    "id": "2026-10-27-full",
    "label": "Tue 27 Oct 2026 (news of Mon 26 Oct)",
    "date": "2026-10-27",
@@ -17,5 +28,5 @@
    }
   }
  ],
- "updatedAt": "2026-10-26T12:42:00Z"
+ "updatedAt": "2026-10-26T13:24:11Z"
 }
