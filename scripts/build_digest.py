@@ -49,6 +49,26 @@ POLICY_FEEDS = {
 BSE_ANN = "https://api.bseindia.com/BseIndiaAPI/api/AnnSubCategoryGetData/w"
 NIFTY500_CSV = "https://archives.nseindia.com/content/indices/ind_nifty500list.csv"
 NSE_EQUITY_CSV = "https://archives.nseindia.com/content/equities/EQUITY_L.csv"
+SEGMENT_LISTS = {
+    "Large": "https://archives.nseindia.com/content/indices/ind_nifty100list.csv",
+    "Mid": "https://archives.nseindia.com/content/indices/ind_niftymidcap150list.csv",
+    "Small": "https://archives.nseindia.com/content/indices/ind_niftysmallcap250list.csv",
+    "Micro": "https://archives.nseindia.com/content/indices/ind_niftymicrocap250_list.csv",
+}
+
+def segment_map():
+    seg = {}
+    for name, url in SEGMENT_LISTS.items():
+        try:
+            r = get(url, headers={"Referer": "https://www.nseindia.com/"})
+            for line in r.text.splitlines()[1:]:
+                parts = [x.strip().strip('"') for x in line.split(",")]
+                if len(parts) >= 3 and parts[2] and parts[2] not in seg:
+                    seg[parts[2]] = name
+        except Exception as ex:
+            log(f"segment list {name} FAILED: {ex}")
+    log(f"segment map: {len(seg)} symbols")
+    return seg
 
 CATS = ["results", "orders", "mna", "policy", "movers", "global", "other"]
 STATS = {}
@@ -217,6 +237,9 @@ def fetch_movers(threshold, intraday):
                             "volx": round(vol / avgv, 1) if avgv else None})
         except Exception:
             continue
+    seg = segment_map()
+    for m in out:
+        m["cap"] = seg.get(m["company"], "Micro")
     out.sort(key=lambda x: -abs(x["pct"]))
     log(f"movers >= {threshold}%: {len(out)} of {len(syms)} scanned"); stat("NSE prices (Yahoo)", True, len(out), f"scanned {len(syms)}")
     return out[:60]
@@ -226,7 +249,7 @@ def fetch_global():
         import yfinance as yf
     except Exception:
         return {}
-    idx = {"sensex": "^BSESN", "nifty": "^NSEI", "sp500": "^GSPC", "nasdaq": "^IXIC", "nikkei": "^N225",
+    idx = {"sensex": "^BSESN", "nifty": "^NSEI", "midcap": "^NSEMDCP50", "smallcap": "^CNXSC", "sp500": "^GSPC", "nasdaq": "^IXIC", "nikkei": "^N225",
            "hangseng": "^HSI", "brent": "BZ=F", "usdinr": "INR=X", "gold": "GC=F"}
     out = {}
     try:
@@ -425,9 +448,9 @@ def main():
     if args.mode in ("orders", "results", "policy"):
         items = [i for i in items if i["category"] == args.mode]
     for m in movers:
-        items.append({"category": "movers", "company": m["company"], "pct": m["pct"],
+        items.append({"category": "movers", "company": m["company"], "pct": m["pct"], "cap": m.get("cap", ""),
                       "fact": f"₹{m['price']:,} · volume {m['volx']}× average" if m.get("volx") else f"₹{m['price']:,}",
-                      "source": "NSE prices", "materiality": 2 if abs(m["pct"]) >= 15 else 1})
+                      "source": "NSE prices", "materiality": 3 if m.get("cap") in ("Large", "Mid") else (2 if abs(m["pct"]) >= 15 else 1)})
     items = dedupe(items)
     items.sort(key=lambda i: (-i.get("materiality", 1), i["category"]))
 
@@ -439,7 +462,7 @@ def main():
 
     market = {}
     if glob:
-        market = {"sensex": glob.get("sensex", ""), "nifty": glob.get("nifty", ""), "brent": glob.get("brent", ""),
+        market = {"sensex": glob.get("sensex", ""), "nifty": glob.get("nifty", ""), "midcap": glob.get("midcap", ""), "smallcap": glob.get("smallcap", ""), "brent": glob.get("brent", ""),
                   "usdinr": glob.get("usdinr", ""), "sp500": glob.get("sp500", ""), "nikkei": glob.get("nikkei", ""),
                   "note": "Index and commodity figures are the latest daily closes from Yahoo Finance."}
     window = f"news since {since.astimezone(IST).strftime('%a %d %b %H:%M')} IST"
