@@ -246,32 +246,67 @@ Return ONLY a JSON object: {{"items":[{{"category":"...","company":"...","fact":
 HEADLINES (source | title | summary):
 {rows}"""
 
+PREFILTER = re.compile(r"\b(order|orders|contract|LOI|letter of|bags|wins|awarded|acqui|merger|amalgamat|stake|takeover|open offer|buyback|divest|JV|joint venture|demerger|Q[1-4]|quarter|results?|net profit|PAT|revenue|EBITDA|guidance|dividend|margin|RBI|SEBI|government|ministry|policy|circular|regulat|GST|budget|tariff|duty|PLI|cabinet|repo|yield|bond|Sensex|Nifty|GIFT|Wall Street|Dow|Nasdaq|S&P|Nikkei|Hang Seng|Fed|crude|Brent|rupee|dollar|gold|FII|DII|IPO|listing|rating|upgrade|downgrade|block deal|bulk deal|promoter|pledge|resign|appoint|CEO|MD|fund ?rais|QIP|rights issue|NCLT|SAT|penalty|fine|probe|surge|rall|jump|plunge|crash|tank|upper circuit|lower circuit|52-week)\b", re.I)
+NOISE = re.compile(r"(horoscope|astrolog|recipe|celebrit|bollywood|cricket|IPL|weather|quiz|crossword|how to|explained|top \d+|best .* to buy|multibagger|should you|opinion|editorial|podcast|live updates|gmp|grey market)", re.I)
+
+def prefilter(raw):
+    out, seen = [], set()
+    for r in raw:
+        t = r["title"]
+        k = re.sub(r"\W+", "", t.lower())[:60]
+        if k in seen or len(t) < 25:
+            continue
+        if NOISE.search(t) and r["source"] != "BSE filing":
+            continue
+        if r["source"] == "BSE filing" or PREFILTER.search(t + " " + r["summary"]):
+            seen.add(k); out.append(r)
+    log(f"prefilter: {len(raw)} -> {len(out)}")
+    return out[:400]
+
+GROQ_URL = "https://api.groq.com/openai/v1/chat/completions"
+PROMPT = """You turn Indian stock-market headlines into a structured digest. Rules: facts only, in your own words, each fact at most 25 words with the numbers; never add buy/sell/target language; drop items that are not material market news (listicles, opinion, lifestyle, ads, routine compliance filings, IPO GMP chatter); merge duplicates of the same story; company = the listed company or body (e.g. "RBI", "Bond market"); materiality 1-3 (3 = index name, or deal/number large relative to the company). Categories: results (quarterly numbers, guidance, dividends, buybacks), orders (order wins, contracts, LOIs), mna (acquisitions, stake sales, mergers, open offers), policy (RBI/SEBI/government/regulation/macro-India), global (overseas markets, crude, currency), other (management changes, ratings, fund-raises, bulk deals, legal). MODE: {mode}. {query}
+Return ONLY a JSON object: {{"items":[{{"category":"...","company":"...","fact":"...","value":"<rupee amount for orders/deals or omit>","source":"<source name as given>","materiality":1}}]}}
+HEADLINES (source | title | summary):
+{rows}"""
+
 def groq_classify(raw, mode, query, key):
-    items = []
-    batch = 45
+    items, errors, calls = [], [], 0
+    models = [os.environ.get("GROQ_MODEL", "llama-3.3-70b-versatile"), "llama-3.1-8b-instant"]
+    model = models[0]
+    batch = 25
     for i in range(0, len(raw), batch):
         chunk = raw[i:i + batch]
-        rows = "\n".join(f"{r['source']} | {r['title']} | {r['summary'][:200]}" for r in chunk)
-        body = {"model": os.environ.get("GROQ_MODEL", "llama-3.3-70b-versatile"), "temperature": 0.1,
-                "response_format": {"type": "json_object"},
-                "messages": [{"role": "user", "content": PROMPT.format(mode=mode, query=("Specific ask: " + query) if query else "", rows=rows)}]}
-        for attempt in range(3):
+        rows = "\n".join(f"{r['source']} | {r['title']} | {r['summary'][:160]}" for r in chunk)
+        done = False
+        for attempt in range(4):
+            body = {"model": model, "temperature": 0.1, "response_format": {"type": "json_object"},
+                    "messages": [{"role": "user", "content": PROMPT.format(mode=mode, query=("Specific ask: " + query) if query else "", rows=rows)}]}
             try:
-                r = requests.post(GROQ_URL, json=body, headers={"Authorization": f"Bearer {key}"}, timeout=90)
+                calls += 1
+                r = requests.post(GROQ_URL, json=body, headers={"Authorization": f"Bearer {key}"}, timeout=120)
                 if r.status_code == 429:
-                    time.sleep(8 * (attempt + 1)); continue
-                r.raise_for_status()
+                    wait = float(r.headers.get("retry-after", 0) or 0) or 10 * (attempt + 1)
+                    log(f"groq 429, waiting {wait}s"); time.sleep(min(wait, 60)); continue
+                if r.status_code in (400, 404) and model != models[-1] and "model" in r.text.lower():
+                    log(f"groq model {model} rejected: {r.text[:120]}; switching to {models[-1]}")
+                    model = models[-1]; continue
+                if r.status_code >= 400:
+                    errors.append(f"{r.status_code}: {r.text[:140]}"); time.sleep(3); continue
                 content = r.json()["choices"][0]["message"]["content"]
                 got = json.loads(content).get("items", [])
                 for it in got:
                     if it.get("category") in CATS and it.get("company") and it.get("fact"):
                         it["materiality"] = int(it.get("materiality") or 1)
                         items.append(it)
+                done = True
                 break
             except Exception as ex:
-                log(f"groq batch {i} attempt {attempt} failed: {ex}")
-                time.sleep(3)
-    log(f"groq classified: {len(items)} items from {len(raw)} headlines"); stat("Groq classifier", True, len(items))
+                errors.append(str(ex)[:140]); time.sleep(3)
+        if not done:
+            log(f"groq batch {i} gave up")
+        time.sleep(1.5)
+    log(f"groq classified: {len(items)} items from {len(raw)} headlines in {calls} calls; errors={len(errors)}")
+    stat("Groq classifier", len(items) > 0, len(items), ("; ".join(errors[:2]) if errors else ("model=" + model)))
     return items
 
 def dedupe(items):
@@ -322,7 +357,10 @@ def main():
     log(f"raw headlines: {len(raw)}")
 
     key = os.environ.get("GROQ_API_KEY", "").strip()
-    items = groq_classify(raw, args.mode, args.query, key) if (key and raw) else rule_classify(raw)
+    raw = prefilter(raw)
+    items = groq_classify(raw, args.mode, args.query, key) if (key and raw) else []
+    if not items:
+        log("falling back to keyword rules"); items = rule_classify(raw)
     if args.mode in ("orders", "results", "policy"):
         items = [i for i in items if i["category"] == args.mode]
     for m in movers:
