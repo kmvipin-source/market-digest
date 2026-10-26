@@ -1,6 +1,23 @@
 {
  "runs": [
   {
+   "id": "2026-10-26-full-3",
+   "label": "Mon 26 Oct 2026 · Full digest",
+   "date": "2026-10-26",
+   "generatedAt": "2026-10-26T13:53:25Z",
+   "mode": "full",
+   "count": 173,
+   "counts": {
+    "global": 20,
+    "mna": 6,
+    "orders": 16,
+    "other": 28,
+    "policy": 22,
+    "results": 78,
+    "movers": 3
+   }
+  },
+  {
    "id": "2026-10-26-full-2",
    "label": "Mon 26 Oct 2026 · Full digest",
    "date": "2026-10-26",
@@ -44,5 +61,5 @@
    }
   }
  ],
- "updatedAt": "2026-10-26T13:34:08Z"
+ "updatedAt": "2026-10-26T13:53:25Z"
 }
