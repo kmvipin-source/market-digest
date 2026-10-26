@@ -1,6 +1,25 @@
 {
  "runs": [
   {
+   "id": "2026-10-26-full",
+   "label": "Mon 26 Oct 21:03 IST · Full digest",
+   "date": "2026-10-26",
+   "generatedAt": "2026-10-26T15:37:25Z",
+   "mode": "full",
+   "count": 289,
+   "counts": {
+    "deals": 33,
+    "mna": 8,
+    "policy": 25,
+    "global": 41,
+    "movers": 24,
+    "orders": 18,
+    "other": 1,
+    "results": 119,
+    "volume": 20
+   }
+  },
+  {
    "id": "2026-10-26-full-2",
    "label": "Mon 26 Oct 19:34 IST · Full digest",
    "date": "2026-10-26",
@@ -35,5 +54,5 @@
    }
   }
  ],
- "updatedAt": "2026-10-26T14:15:03Z"
+ "updatedAt": "2026-10-26T15:37:26Z"
 }
