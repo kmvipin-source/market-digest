@@ -87,6 +87,8 @@ main{padding-block:14px 110px;max-width:760px;margin:0 auto}
 .tile .lvl{font-size:16px;font-weight:500;color:var(--fg)} .tile .chg{font-size:12px;margin-top:0} .tile .u{color:var(--up)} .tile .d{color:var(--down)}
 .note{font-size:13px;color:var(--muted);background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:10px 12px}
 .section{margin:20px 0 8px;display:flex;align-items:center;gap:8px}
+.section .open{margin-left:auto}
+.section .thrseg+.open{margin-left:0}
 .section i{width:9px;height:9px;border-radius:50%;background:var(--c,var(--muted))}
 .section h2{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--fg);margin:0;font-weight:700}
 .section .n{font-family:var(--mono);font-size:11px;color:var(--muted)}
@@ -94,6 +96,7 @@ main{padding-block:14px 110px;max-width:760px;margin:0 auto}
 .card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:12px 14px;display:grid;grid-template-columns:1fr auto;gap:4px 10px;min-width:0;border-left:3px solid var(--c,var(--line))}
 .card .co{font-weight:600;font-size:15px;min-width:0;overflow-wrap:anywhere}
 .card .fact{grid-column:1/-1;font-size:14px;line-height:1.5;min-width:0;overflow-wrap:anywhere}
+.card .why .src{color:var(--muted);opacity:.8;font-size:12px}
 .card .why{grid-column:1/-1;font-size:13px;color:var(--muted);line-height:1.45;min-width:0;overflow-wrap:anywhere}
 .card .meta{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:6px 10px;font-size:12px;color:var(--muted);align-items:center}
 .card .meta a{color:var(--muted)}
@@ -109,7 +112,9 @@ main{padding-block:14px 110px;max-width:760px;margin:0 auto}
 .co-pill em{font-style:normal;font-size:10px;letter-spacing:.04em;text-transform:uppercase;color:var(--muted)}
 .co-pill.large{background:#e0ecff} .co-pill.mid{background:#ede4ff} .co-pill.small{background:#e3f6ea}
 .more{font:inherit;font-size:13px;font-weight:600;color:var(--accent);background:var(--panel);border:1px dashed var(--line);border-radius:12px;padding:10px;cursor:pointer}
-.section .open{margin-left:auto;font:inherit;font-size:18px;line-height:1;border:0;background:transparent;color:var(--muted);cursor:pointer;padding:0 4px}
+.thrseg{margin-left:auto;padding:2px}
+.thrseg button{padding:4px 7px;font-size:11px}
+.section .open{font:inherit;font-size:18px;line-height:1;border:0;background:transparent;color:var(--muted);cursor:pointer;padding:0 4px}
 .empty{text-align:center;color:var(--muted);padding:40px 16px;border:1px dashed var(--line);border-radius:14px;background:var(--panel)}
 .empty b{display:block;color:var(--fg);margin-bottom:6px}
 .fab[disabled]{opacity:.7;cursor:default}
@@ -185,11 +190,6 @@ footer{color:var(--muted);font-size:12px;margin-top:28px;line-height:1.5}
   </div>
   <div class="tools">
     <input type="search" id="q" placeholder="Search company or keyword" autocomplete="off">
-    <div class="seg" id="thr" role="group" aria-label="Movers threshold">
-      <button type="button" data-t="5" aria-pressed="false">5%</button>
-      <button type="button" data-t="10" aria-pressed="true">10%</button>
-      <button type="button" data-t="15" aria-pressed="false">15%</button>
-    </div>
   </div>
   <div class="filters" id="cats"></div>
 </header>
@@ -201,7 +201,7 @@ footer{color:var(--muted);font-size:12px;margin-top:28px;line-height:1.5}
   <section id="watch" hidden></section>
   <div id="market" class="market" hidden></div>
   <div id="feed"></div>
-  <footer>This page organises publicly available information for informational purposes. It may contain errors or omissions and does not provide investment advice. Items are summarised from exchange filings, RSS news feeds and free price data at run time; confirm with the source before acting.</footer>
+  <footer>Information only, not investment advice. Summarised from exchange filings, news feeds and free price data; may contain errors — confirm with the source.</footer>
 </main>
 
 <button class="fab" id="fab" type="button">Run now</button>
@@ -296,7 +296,7 @@ footer{color:var(--muted);font-size:12px;margin-top:28px;line-height:1.5}
     if(m.dma&&Object.keys(m.dma).length){ html+=`<div class="bcard"><div class="bhead"><b>Trend</b><span class="muted">vs 50 / 200-day average</span></div><div class="trend">${Object.entries(m.dma).map(([k,v])=>`<span class="trow"><em>${esc(k)}</em><b class="${v.vs50.startsWith("+")?"u":"d"}">${esc(v.vs50)}</b>${v.vs200?`<b class="${v.vs200.startsWith("+")?"u":"d"}">${esc(v.vs200)}</b>`:""}</span>`).join("")}</div></div>`; }
     if(m.sectors&&Object.keys(m.sectors).length){ const names={it:"IT",auto:"Auto",pharma:"Pharma",metal:"Metal",realty:"Realty",fmcg:"FMCG",psubank:"PSU Bank",energy:"Energy",infra:"Infra",media:"Media"}; const rows=Object.entries(m.sectors).map(([k,v])=>{ const pm=String(v).match(/\(([+-−]?[\d.]+)%\)/); return {k,v,p:pm?parseFloat(pm[1].replace("−","-")):0}; }).sort((a,b)=>b.p-a.p); html+=`<div class="sectors">${rows.map(r=>`<span class="sec ${r.p>0?"u":r.p<0?"d":""}">${names[r.k]||r.k} <em>${r.p>0?"+":""}${r.p.toFixed(1)}%</em></span>`).join("")}</div>`; }
     html+=`<details class="world"><summary>Global &amp; commodities</summary><div class="mgrid">${world.filter(([k])=>m[k]).map(([k,l])=>tile(l,m[k])).join("")}</div></details>`;
-    if(m.note) html+=`<div class="note">${esc(m.note)}</div>`;
+
     el.innerHTML=html;
   }
   function calendarList(list){
@@ -315,18 +315,17 @@ footer{color:var(--muted);font-size:12px;margin-top:28px;line-height:1.5}
   function card(it){
     const p=it.pct!=null?`<span class="pct ${pctClass(+it.pct)}">${fmtPct(+it.pct)}</span>`:(it.value?`<span class="pct">${esc(it.value)}</span>`:"");
     const tags=[];
-    if(cat==="all"||cat==="watch") tags.push(`<span class="tag">${esc(CAT_LABEL[it.category]||it.category||"")}</span>`);
+    if(cat==="watch") tags.push(`<span class="tag">${esc(CAT_LABEL[it.category]||it.category||"")}</span>`);
     if(it.ticker) tags.push(`<span class="tag">${esc(it.ticker)}</span>`);
     if(it.cap) tags.push(`<span class="tag">${esc(it.cap)} cap</span>`);
-    if(it.reasonSource) tags.push(`<span>via ${esc(it.reasonSource)}</span>`);
-    if(it.source) tags.push(it.link?`<a href="${esc(it.link)}" target="_blank" rel="noopener">${esc(it.source)}</a>`:`<span>${esc(it.source)}</span>`);
+    if(it.source&&!["NSE prices","NSE"].includes(it.source)) tags.push(it.link?`<a href="${esc(it.link)}" target="_blank" rel="noopener">${esc(it.source)}</a>`:`<span>${esc(it.source)}</span>`);
     if(it.when) tags.push(`<span>${esc(it.when)}</span>`);
     const inWl=watch.some(w=>matchesWatch(it,w));
     let fact=String(it.fact||""), reason="";
     const ri=fact.indexOf(". Likely reason: "), rn=fact.indexOf(". Reason: none found");
     if(ri>0){ reason="Why: "+fact.slice(ri+17); fact=fact.slice(0,ri); } else if(rn>0){ reason="No filing or news found for this move"; fact=fact.slice(0,rn); }
     const name=String(it.company||"").replace(/ Limited$/i,"");
-    return `<article class="card ${it.materiality>=3?"mat3":""} ${inWl?"wl":""}" style="--c:${CAT_COLOR[it.category]||"var(--line)"}"><div class="co">${esc(name)}</div>${p}<div class="fact">${esc(fact)}</div>${reason?`<div class="why">${esc(reason)}</div>`:""}<div class="meta">${tags.join("")}</div></article>`;
+    return `<article class="card ${it.materiality>=3?"mat3":""} ${inWl?"wl":""}" style="--c:${CAT_COLOR[it.category]||"var(--line)"}"><div class="co">${esc(name)}</div>${p}<div class="fact">${esc(fact)}</div>${reason?`<div class="why">${esc(reason)}${it.reasonSource?` <span class="src">— ${esc(String(it.reasonSource).replace(/^www\./,""))}</span>`:""}</div>`:""}<div class="meta">${tags.join("")}</div></article>`;
   }
   function renderFeed(){
     const feed=$("feed");
@@ -337,7 +336,7 @@ footer{color:var(--muted);font-size:12px;margin-top:28px;line-height:1.5}
     if(cat!=="all"){
       const titles2={movers:"Big moves",results:"Results & guidance",volume:"Unusual volume",deals:"Bulk & block deals",high52:"New 52-week highs & lows",calendar:"Results due this week",orders:"Order wins",mna:"M&A & stakes",ratings:"Broker rating changes",actions:"Ex-dates this week",policy:"Policy & macro",global:"Global",other:"Other"};
       const body=cat==="calendar"?calendarList(items):(cat==="high52"?pills52(items):(cat==="actions"?actionsList(items):items.map(card).join("")));
-      feed.innerHTML=`<div class="section" style="--c:${CAT_COLOR[cat]||"var(--muted)"}"><i></i><h2>${titles2[cat]||CAT_LABEL[cat]}</h2><span class="n">${items.length}</span></div><div class="list">${body}</div>`; return; }
+      feed.innerHTML=`<div class="section" style="--c:${CAT_COLOR[cat]||"var(--muted)"}"><i></i><h2>${titles2[cat]||CAT_LABEL[cat]}</h2><span class="n">${items.length}</span>${cat==="movers"?`<div class="seg thrseg" role="group" aria-label="Movers threshold">${[5,10,15].map(t=>`<button type="button" data-t="${t}" aria-pressed="${thr===t}">${t}%</button>`).join("")}</div>`:""}</div><div class="list">${body}</div>`; return; }
     const order=["movers","results","volume","deals","high52","calendar","orders","mna","ratings","actions","policy","global","other"], groups={};
     items.forEach(it=>{ const k=vcat(it); (groups[k]=groups[k]||[]).push(it); });
     if(groups.calendar){ const rank={Large:0,Mid:1,Small:2,Micro:3,"":4}; groups.calendar.sort((a,b)=>String(a.sortDate||"").localeCompare(String(b.sortDate||""))||(rank[a.cap]??4)-(rank[b.cap]??4)); }
@@ -347,7 +346,10 @@ footer{color:var(--muted);font-size:12px;margin-top:28px;line-height:1.5}
       const shown=open?list:list.slice(0,LIMIT);
       const body=k==="calendar"?calendarList(list):(k==="high52"?pills52(list):(k==="actions"?actionsList(list):shown.map(card).join("")));
       const more=(!open&&!["calendar","high52","actions"].includes(k))?`<button class="more" type="button" data-more="${k}">Show all ${list.length}</button>`:(open&&list.length>LIMIT&&k!=="calendar"?`<button class="more" type="button" data-less="${k}">Show top ${LIMIT}</button>`:"");
-      return `<div class="section" id="sec-${k}" style="--c:${CAT_COLOR[k]}"><i></i><h2>${titles[k]||CAT_LABEL[k]}</h2><span class="n">${list.length}</span><button class="open" type="button" data-cat="${k}" aria-label="Open ${titles[k]}">›</button></div><div class="list">${body}${more}</div>`;
+      const collapsed=["global","other"].includes(k)&&!expanded.has(k);
+      const head=`<div class="section" id="sec-${k}" style="--c:${CAT_COLOR[k]}"><i></i><h2>${titles[k]||CAT_LABEL[k]}</h2><span class="n">${list.length}</span>${k==="movers"?`<div class="seg thrseg" role="group" aria-label="Movers threshold">${[5,10,15].map(t=>`<button type="button" data-t="${t}" aria-pressed="${thr===t}">${t}%</button>`).join("")}</div>`:""}<button class="open" type="button" data-cat="${k}" aria-label="Open ${titles[k]}">›</button></div>`;
+      if(collapsed) return `${head.replace('class="open" type="button" data-cat','class="open" type="button" data-more="'+k+'" data-x')}`;
+      return `${head}<div class="list">${body}${more}</div>`;
     }).join("");
   }
   function renderRunSel(){
@@ -414,8 +416,7 @@ footer{color:var(--muted);font-size:12px;margin-top:28px;line-height:1.5}
   $("watch").addEventListener("click",e=>{ if(e.target.closest("#wlToggle")){ wlOpen=!wlOpen; try{localStorage.setItem("md.wlopen",wlOpen?"1":"0");}catch(x){} renderWatch(); return; } const r=e.target.closest(".wrow[data-sym]"); if(r&&cat!=="watch"){ const s=r.dataset.sym; wlExpanded.has(s)?wlExpanded.delete(s):wlExpanded.add(s); renderWatch(); } });
   $("feed").addEventListener("click",e=>{ const m=e.target.closest("[data-more]"); const l=e.target.closest("[data-less]"); const o=e.target.closest(".open[data-cat]"); if(m){ expanded.add(m.dataset.more); renderFeed(); } else if(l){ expanded.delete(l.dataset.less); renderFeed(); const s=$("sec-"+l.dataset.less); if(s) s.scrollIntoView({block:"start"}); } else if(o){ cat=o.dataset.cat; try{localStorage.setItem("md.cat",cat)}catch(x){} renderAll(); window.scrollTo({top:0}); } });
   $("cats").addEventListener("click",e=>{ const b=e.target.closest("[data-cat]"); if(!b) return; cat=b.dataset.cat; try{localStorage.setItem("md.cat",cat)}catch(x){} renderAll(); window.scrollTo({top:0}); });
-  $("thr").addEventListener("click",e=>{ const b=e.target.closest("[data-t]"); if(!b) return; thr=+b.dataset.t; try{localStorage.setItem("md.thr",thr)}catch(x){} [...$("thr").children].forEach(c=>c.setAttribute("aria-pressed",c===b)); renderFeed(); });
-  [...$("thr").children].forEach(c=>c.setAttribute("aria-pressed",+c.dataset.t===thr));
+  $("feed").addEventListener("click",e=>{ const b=e.target.closest(".thrseg [data-t]"); if(!b) return; thr=+b.dataset.t; try{localStorage.setItem("md.thr",thr)}catch(x){} renderCats(); renderFeed(); });
   $("q").addEventListener("input",e=>{ q=e.target.value; renderFeed(); });
   $("runSel").addEventListener("change",e=>{ if(e.target.value) loadRun(e.target.value); });
   let mode="full", runKey=""; try{ runKey=localStorage.getItem("md.key")||""; }catch(e){}
