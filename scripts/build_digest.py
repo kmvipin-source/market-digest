@@ -45,6 +45,7 @@ GNEWS_FEEDS = {
     "Google News · FII DII": GNEWS.format(q="FII+DII+net+crore+(bought+OR+sold)"),
     "Google News · IPO": GNEWS.format(q="IPO+(opens+OR+closes+OR+listing+OR+%22price+band%22+OR+subscribed+OR+allotment)+India"),
     "Google News · SME IPO": GNEWS.format(q="%22SME+IPO%22+(opens+OR+listing+OR+subscription)"),
+    "Google News · IPO dates": GNEWS.format(q="IPO+%22opens+on%22+OR+%22closes+on%22+OR+%22listing+date%22+OR+%22allotment%22"),
 }
 POLICY_FEEDS = {
     "RBI": "https://www.rbi.org.in/pressreleases_rss.xml",
@@ -560,8 +561,8 @@ def fetch_flows(raw):
             best = " / ".join(parts) + " (NSE)"; break
     for rr in ([] if best else raw):
         text = rr["title"] + " " + rr["summary"]
-        f = re.search(r"FII[s]?[^.]{0,60}?(bought|buy|buying|sold|sell|selling|offload)[^.]{0,40}?(?:₹|Rs\.?|INR)\s?([\d,]+(?:\.\d+)?)\s*(crore|cr)", text, re.I)
-        d = re.search(r"DII[s]?[^.]{0,60}?(bought|buy|buying|sold|sell|selling)[^.]{0,40}?(?:₹|Rs\.?|INR)\s?([\d,]+(?:\.\d+)?)\s*(crore|cr)", text, re.I)
+        f = re.search(r"(?:FII|FPI)s?[^.;]{0,80}?(bought|buy|buying|sold|sell|selling|offload|net (?:buy|sell)\w*)[^.;]{0,60}?(?:₹|Rs\.?|INR)?\s?([\d,]+(?:\.\d+)?)\s*(crore|cr)", text, re.I)
+        d = re.search(r"DIIs?[^.;]{0,80}?(bought|buy|buying|sold|sell|selling|net (?:buy|sell)\w*)[^.;]{0,60}?(?:₹|Rs\.?|INR)?\s?([\d,]+(?:\.\d+)?)\s*(crore|cr)", text, re.I)
         if f or d:
             parts = []
             if f: parts.append(f"FII {'+' if re.search('bou|buy', f.group(1), re.I) else '-'}₹{f.group(2)} Cr")
@@ -671,6 +672,61 @@ def news_lookup(sym):
         log(f"news lookup {sym} failed: {ex}")
     return None, None
 
+# ---------------------------------------------------------------- LLM providers
+GEMINI_MODELS = ["gemini-2.5-flash", "gemini-2.0-flash", "gemini-flash-latest", "gemini-2.5-flash-lite"]
+
+def llm_json(prompt, key_groq, big=False, timeout=120):
+    """Ask whichever provider is configured for a JSON object. Returns (dict|None, provider_note)."""
+    gem = os.environ.get("GEMINI_API_KEY", "").strip()
+    cf_acct, cf_tok = os.environ.get("CF_ACCOUNT_ID", "").strip(), os.environ.get("CF_API_TOKEN", "").strip()
+    errs = []
+    if gem:
+        for model in GEMINI_MODELS:
+            try:
+                r = requests.post(f"https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent?key={gem}",
+                                  json={"contents": [{"parts": [{"text": prompt}]}], "generationConfig": {"temperature": 0.1, "responseMimeType": "application/json"}}, timeout=timeout)
+                if r.status_code == 404:
+                    continue
+                if r.status_code == 429:
+                    errs.append(f"gemini {model} 429"); time.sleep(5); continue
+                if r.status_code >= 400:
+                    errs.append(f"gemini {model} {r.status_code}: {r.text[:80]}"); continue
+                text = r.json()["candidates"][0]["content"]["parts"][0]["text"]
+                a, b = text.find("{"), text.rfind("}")
+                return json.loads(text[a:b + 1]), f"gemini:{model}"
+            except Exception as ex:
+                errs.append(f"gemini {model} {str(ex)[:60]}")
+    if cf_acct and cf_tok:
+        for model in (["@cf/meta/llama-3.3-70b-instruct-fp8-fast", "@cf/meta/llama-3.1-8b-instruct-fast"] if big else ["@cf/meta/llama-3.1-8b-instruct-fast", "@cf/meta/llama-3.3-70b-instruct-fp8-fast"]):
+            try:
+                r = requests.post(f"https://api.cloudflare.com/client/v4/accounts/{cf_acct}/ai/run/{model}", headers={"Authorization": f"Bearer {cf_tok}"},
+                                  json={"messages": [{"role": "user", "content": prompt}], "max_tokens": 4000}, timeout=timeout)
+                if r.status_code >= 400:
+                    errs.append(f"cf {model} {r.status_code}"); continue
+                text = r.json().get("result", {}).get("response", "")
+                a, b = text.find("{"), text.rfind("}")
+                return json.loads(text[a:b + 1]), f"cloudflare:{model}"
+            except Exception as ex:
+                errs.append(f"cf {str(ex)[:60]}")
+    if key_groq:
+        for model in pick_groq_models(key_groq, prefer="big" if big else "light"):
+            try:
+                body = {"model": model, "temperature": 0.1, "response_format": {"type": "json_object"}, "messages": [{"role": "user", "content": prompt}]}
+                r = requests.post(GROQ_URL, json=body, headers={"Authorization": f"Bearer {key_groq}"}, timeout=timeout)
+                if r.status_code == 400 and "json" in r.text.lower():
+                    body.pop("response_format", None)
+                    r = requests.post(GROQ_URL, json=body, headers={"Authorization": f"Bearer {key_groq}"}, timeout=timeout)
+                if r.status_code == 429:
+                    errs.append(f"groq {model} 429"); continue
+                if r.status_code >= 400:
+                    errs.append(f"groq {model} {r.status_code}"); continue
+                text = r.json()["choices"][0]["message"]["content"]
+                a, b = text.find("{"), text.rfind("}")
+                return json.loads(text[a:b + 1]), f"groq:{model}"
+            except Exception as ex:
+                errs.append(f"groq {str(ex)[:60]}")
+    return None, "; ".join(errs[:3]) or "no provider configured"
+
 # ---------------------------------------------------------------- classify
 KEYWORDS = [
     ("orders", r"\b(order|orders|contract|LOI|letter of (intent|award)|bags|wins|awarded|work order|purchase order|EPC)\b"),
@@ -759,77 +815,31 @@ def pick_groq_models(key, prefer="light"):
 
 def groq_classify(raw, mode, query, key):
     items, errors, calls = [], [], 0
-    budget_end = time.time() + float(os.environ.get("GROQ_BUDGET_SEC", "300"))
-    consecutive_429 = 0
-    models = pick_groq_models(key)
-    if not models:
-        stat("Groq classifier", False, 0, "no usable model found on this key"); return []
-    model = models[0]
+    budget_end = time.time() + float(os.environ.get("GROQ_BUDGET_SEC", "420"))
+    provider_used = ""
     batch = 35
     for i in range(0, len(raw), batch):
-        chunk = raw[i:i + batch]
-        rows = "\n".join(f"{r['source']} | {r['title']} | {r['summary'][:160]}" for r in chunk)
-        done = False
         if time.time() > budget_end:
             errors.append("time budget exhausted"); break
-        for attempt in range(4):
-            if time.time() > budget_end:
+        chunk = raw[i:i + batch]
+        rows = "\n".join(f"{r['source']} | {r['title']} | {r['summary'][:160]}" for r in chunk)
+        calls += 1
+        got, note = llm_json(PROMPT.format(mode=mode, query=("Specific ask: " + query) if query else "", rows=rows), key, big=False)
+        if got is None:
+            errors.append(note)
+            if "429" in note and len(errors) >= 3:
                 break
-            body = {"model": model, "temperature": 0.1, "response_format": {"type": "json_object"},
-                    "messages": [{"role": "user", "content": PROMPT.format(mode=mode, query=("Specific ask: " + query) if query else "", rows=rows)}]}
-            try:
-                calls += 1
-                r = requests.post(GROQ_URL, json=body, headers={"Authorization": f"Bearer {key}"}, timeout=120)
-                if r.status_code == 429:
-                    consecutive_429 += 1
-                    wait = float(r.headers.get("retry-after", 0) or 0) or 10 * (attempt + 1)
-                    if wait > 90 or consecutive_429 >= 6:
-                        errors.append(f"rate limited (retry-after {wait:.0f}s) — quota likely exhausted"); budget_end = 0; break
-                    log(f"groq 429, waiting {wait}s"); time.sleep(min(wait, 60)); continue
-                consecutive_429 = 0
-                if r.status_code in (400, 404) and "model" in r.text.lower():
-                    nxt = models[models.index(model) + 1] if model in models and models.index(model) + 1 < len(models) else None
-                    if not nxt:
-                        errors.append(f"model {model} rejected: {r.text[:100]}"); break
-                    log(f"groq model {model} rejected; switching to {nxt}"); model = nxt; continue
-                if r.status_code == 400 and "json" in r.text.lower():
-                    # model could not produce strict JSON: retry without response_format and parse leniently
-                    body.pop("response_format", None)
-                    r = requests.post(GROQ_URL, json=body, headers={"Authorization": f"Bearer {key}"}, timeout=120)
-                    if r.status_code >= 400:
-                        errors.append(f"{r.status_code}: {r.text[:140]}"); time.sleep(2); continue
-                elif r.status_code >= 400:
-                    errors.append(f"{r.status_code}: {r.text[:140]}"); time.sleep(3); continue
-                content = r.json()["choices"][0]["message"]["content"]
-                content = content.strip().strip("`")
-                if content.startswith("json"):
-                    content = content[4:]
-                a, b = content.find("{"), content.rfind("}")
-                try:
-                    got = json.loads(content[a:b + 1]).get("items", [])
-                except Exception:
-                    # salvage individual objects
-                    got = []
-                    for mobj in re.finditer(r"\{[^{}]*\}", content):
-                        try:
-                            got.append(json.loads(mobj.group(0)))
-                        except Exception:
-                            pass
-                for it in got:
-                    if it.get("category") in CATS and it.get("company") and it.get("fact"):
-                        it["materiality"] = int(it.get("materiality") or 1)
-                        items.append(it)
-                done = True
-                break
-            except Exception as ex:
-                errors.append(str(ex)[:140]); time.sleep(3)
-        if not done:
-            log(f"groq batch {i} gave up")
-        time.sleep(0.6)
-    log(f"groq classified: {len(items)} items from {len(raw)} headlines in {calls} calls; errors={len(errors)}")
-    stat("Groq classifier", len(items) > 0, len(items), ("; ".join(errors[:2]) if errors else ("model=" + model)))
+            continue
+        provider_used = note
+        for it in got.get("items", []):
+            if isinstance(it, dict) and it.get("category") in CATS and it.get("company") and it.get("fact"):
+                it["materiality"] = int(it.get("materiality") or 1)
+                items.append(it)
+        time.sleep(0.4)
+    log(f"llm classified: {len(items)} items from {len(raw)} headlines in {calls} calls; errors={len(errors)}")
+    stat("News classifier (LLM)", len(items) > 0, len(items), (provider_used + ("; " if errors else "") + "; ".join(errors[:2])).strip("; "))
     if items and len(items) < len(raw) * 0.15 and errors:
-        log("groq coverage low; merging keyword fallback for the rest")
+        log("coverage low; merging keyword fallback")
         seen = {re.sub(r"\W+", "", (i.get("company", "") + i.get("fact", "")).lower())[:30] for i in items}
         for it in rule_classify(raw):
             k = re.sub(r"\W+", "", (it.get("company", "") + it.get("fact", "")).lower())[:30]
@@ -880,24 +890,10 @@ def extract_ipos(raw, key):
         stat("IPO extraction", False, 0, "no IPO headlines"); return []
     rows = rows[:80]
     ipos = []
-    if key:
-        text = "\n".join(f"{r['source']} | {r['title']} | {r['summary'][:160]}" for r in rows)
-        for model in pick_groq_models(key, prefer="light"):
-            try:
-                r = requests.post(GROQ_URL, json={"model": model, "temperature": 0.1, "response_format": {"type": "json_object"},
-                                                  "messages": [{"role": "user", "content": IPO_PROMPT.format(today=now_ist().strftime("%Y-%m-%d"), rows=text)}]},
-                                  headers={"Authorization": f"Bearer {key}"}, timeout=120)
-                if r.status_code == 429:
-                    break
-                if r.status_code >= 400:
-                    continue
-                content = r.json()["choices"][0]["message"]["content"]
-                a, b = content.find("{"), content.rfind("}")
-                ipos = json.loads(content[a:b + 1]).get("ipos", [])
-                if ipos:
-                    break
-            except Exception as ex:
-                log(f"ipo extract {model} failed: {ex}")
+    text = "\n".join(f"{r['source']} | {r['title']} | {r['summary'][:220]}" for r in rows)
+    got, note = llm_json(IPO_PROMPT.format(today=now_ist().strftime("%Y-%m-%d"), rows=text), key, big=True)
+    if got:
+        ipos = got.get("ipos", []) or []
     if not ipos:
         seen = set()
         for r in rows:
@@ -917,7 +913,7 @@ def extract_ipos(raw, key):
             continue
         seen.add(name.lower()[:20])
         out.append({k: (str(v).strip() if v is not None else "") for k, v in i.items()})
-    stat("IPO extraction", len(out) > 0, len(out), "groq" if key else "rules")
+    stat("IPO extraction", len(out) > 0, len(out), "llm" if got else "rules")
     return out[:40]
 
 # ---------------------------------------------------------------- brief
@@ -936,30 +932,15 @@ ITEMS (category | company | cap | pct | fact):
 {rows}"""
 
 def groq_brief(doc, key):
-    if not key:
-        return None
     m = doc.get("market", {})
     rows = []
     for it in sorted(doc["items"], key=lambda i: -int(i.get("materiality") or 1))[:120]:
         rows.append(f"{it.get('category')} | {it.get('company')} | {it.get('cap','')} | {it.get('pct','')} | {str(it.get('fact',''))[:160]}")
-    prompt = BRIEF_PROMPT.format(market={k: v for k, v in m.items() if k not in ("sectors", "breadth", "note")}, breadth=m.get("breadth", {}), sectors=m.get("sectors", {}), rows="\n".join(rows))
-    for model in pick_groq_models(key, prefer="big"):
-        try:
-            r = requests.post(GROQ_URL, json={"model": model, "temperature": 0.2, "response_format": {"type": "json_object"},
-                                              "messages": [{"role": "user", "content": prompt}]},
-                              headers={"Authorization": f"Bearer {key}"}, timeout=120)
-            if r.status_code == 429:
-                stat("Morning read (Groq)", False, 0, "rate limited / quota"); return None
-            if r.status_code >= 400:
-                log(f"brief {model}: {r.status_code} {r.text[:120]}"); continue
-            b = json.loads(r.json()["choices"][0]["message"]["content"])
-            if b.get("regime") or b.get("leads"):
-                stat("Morning read (Groq)", True, len(b.get("leads", [])), f"model={model}")
-                return b
-        except Exception as ex:
-            log(f"brief failed on {model}: {ex}")
-    stat("Morning read (Groq)", False, 0, "all models failed")
-    return None
+    prompt = BRIEF_PROMPT.format(market={k: v for k, v in m.items() if k not in ("sectors", "breadth", "note", "dma")}, breadth=m.get("breadth", {}), sectors=m.get("sectors", {}), rows="\n".join(rows))
+    got, note = llm_json(prompt, key, big=True)
+    if got and (got.get("regime") or got.get("leads")):
+        stat("Morning read (LLM)", True, len(got.get("leads", [])), note); return got
+    stat("Morning read (LLM)", False, 0, note); return None
 
 # ---------------------------------------------------------------- main
 def main():
@@ -1000,8 +981,9 @@ def main():
     log(f"raw headlines: {len(raw)}")
 
     key = os.environ.get("GROQ_API_KEY", "").strip()
+    any_llm = bool(key or os.environ.get("GEMINI_API_KEY") or os.environ.get("CF_API_TOKEN"))
     raw = prefilter(raw)
-    items = groq_classify(raw, args.mode, args.query, key) if (key and raw) else []
+    items = groq_classify(raw, args.mode, args.query, key) if (any_llm and raw) else []
     if not items:
         log("falling back to keyword rules"); items = rule_classify(raw)
     if args.mode in ("orders", "results", "policy"):
@@ -1068,6 +1050,16 @@ def main():
                           "materiality": 2 if i.get("platform") == "Mainboard" else 1})
     if args.mode in ("full", "results", "custom"):
         cal = fetch_results_calendar()
+        if not cal:
+            try:
+                prev = sorted(DATA.glob("*-full*.json"))[-3:]
+                for f in reversed(prev):
+                    d_prev = json.loads(f.read_text())
+                    cal = [{"name": i["company"], "date": i.get("sortDate", ""), "purpose": "Results"} for i in d_prev.get("items", []) if i.get("category") == "calendar" and i.get("sortDate", "") >= t0.strftime("%Y-%m-%d")]
+                    if cal:
+                        stat("Results calendar", True, len(cal), f"carried over from {f.stem}"); break
+            except Exception as ex:
+                log(f"calendar carry-over failed: {ex}")
         seg = segment_map() if cal else {}
         by_name = {}
         for sym, nm in NAMES.items():
@@ -1107,7 +1099,7 @@ def main():
            "generatedAt": iso_utc(), "mode": args.mode, "query": args.query, "threshold": args.threshold,
            "market": market, "items": items[:200],
            "sources": sorted({r.get("link", "") for r in raw if r.get("link")})[:80],
-           "classifier": "groq" if key else "rules", "stats": STATS, "rawCount": len(raw), "prices": PRICES}
+           "classifier": "llm" if any_llm else "rules", "stats": STATS, "rawCount": len(raw), "prices": PRICES}
     if args.mode in ("full", "custom", "movers") and doc["items"]:
         doc["brief"] = groq_brief(doc, key)
     DATA.mkdir(exist_ok=True)

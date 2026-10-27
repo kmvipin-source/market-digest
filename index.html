@@ -468,7 +468,7 @@ footer{color:var(--muted);font-size:12px;margin-top:28px;line-height:1.5}
       }
       current=run;
       renderAll();
-      renderStatus(true,`Last run ${ist(current.generatedAt)} · ${current.items?.length||0} items`); const st=current.stats||{}; const bad=Object.keys(st).filter(k=>!st[k].ok); $("runInfo").innerHTML=`${current.overlayNote?esc(current.overlayNote)+"<br>":""}${esc(current.window||"")}${current.query?" · "+esc(current.query):""}${current.classifier==="rules"?" · keyword mode (no Groq key)":""}<br>Sources: ${Object.keys(st).length-bad.length}/${Object.keys(st).length} responded${bad.length?` · failed: ${bad.map(k=>esc(k)).join(", ")}`:""}`;
+      renderStatus(true,`Last run ${ist(current.generatedAt)} · ${current.items?.length||0} items`); const st=current.stats||{}; const bad=Object.keys(st).filter(k=>!st[k].ok); $("runInfo").innerHTML=`${current.overlayNote?esc(current.overlayNote)+"<br>":""}${esc(current.window||"")}${current.query?" · "+esc(current.query):""}${current.classifier==="rules"?" · keyword mode (LLM unavailable)":""}<br>Sources: ${Object.keys(st).length-bad.length}/${Object.keys(st).length} responded${bad.length?` · failed: ${bad.map(k=>esc(k)).join(", ")}`:""}`;
     }catch(e){ renderStatus(false,"Couldn't load that digest."); }
   }
   async function init(){
