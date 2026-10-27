@@ -123,6 +123,12 @@ main{padding-block:14px 110px;max-width:760px;margin:0 auto}
 .thrseg{margin-left:auto;padding:2px}
 .thrseg button{padding:4px 7px;font-size:11px}
 .section .open{font:inherit;font-size:18px;line-height:1;border:0;background:transparent;color:var(--muted);cursor:pointer;padding:0 4px}
+.ipos{display:flex;flex-direction:column;gap:8px}
+.ipo{background:var(--bg);border-radius:10px;padding:9px 11px}
+.ipo .it{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.ipo .co{font-weight:600}
+.ipo .idates{font-size:13px;margin-top:3px;font-weight:500}
+.ipo .ifact{font-size:13px;color:var(--muted);margin-top:2px;overflow-wrap:anywhere}
 .empty{text-align:center;color:var(--muted);padding:40px 16px;border:1px dashed var(--line);border-radius:14px;background:var(--panel)}
 .empty b{display:block;color:var(--fg);margin-bottom:6px}
 .fab[disabled]{opacity:.7;cursor:default}
@@ -250,8 +256,8 @@ footer{color:var(--muted);font-size:12px;margin-top:28px;line-height:1.5}
 <script src="config.js"></script>
 <script>
 (function(){
-  const CATS=[["all","All"],["watch","Watchlist"],["movers","Movers"],["results","Results"],["volume","Volume"],["deals","Deals"],["high52","52-wk"],["calendar","Calendar"],["orders","Orders"],["mna","M&A"],["ratings","Ratings"],["actions","Ex-dates"],["policy","Policy"],["global","Global"],["other","Other"]];
-  const CAT_LABEL=Object.fromEntries(CATS); const CAT_COLOR={watch:"#ca8a04",deals:"#9d174d",high52:"#166534",ratings:"#1d4ed8",actions:"#6b7280",calendar:"var(--c-calendar)",results:"var(--c-results)",orders:"var(--c-orders)",mna:"var(--c-mna)",policy:"var(--c-policy)",movers:"var(--c-movers)",volume:"var(--c-volume)",global:"var(--c-global)",other:"var(--c-other)"};
+  const CATS=[["all","All"],["watch","Watchlist"],["movers","Movers"],["results","Results"],["volume","Volume"],["deals","Deals"],["high52","52-wk"],["calendar","Calendar"],["orders","Orders"],["mna","M&A"],["ratings","Ratings"],["ipo","IPO"],["actions","Ex-dates"],["policy","Policy"],["global","Global"],["other","Other"]];
+  const CAT_LABEL=Object.fromEntries(CATS); const CAT_COLOR={watch:"#ca8a04",ipo:"#0369a1",deals:"#9d174d",high52:"#166534",ratings:"#1d4ed8",actions:"#6b7280",calendar:"var(--c-calendar)",results:"var(--c-results)",orders:"var(--c-orders)",mna:"var(--c-mna)",policy:"var(--c-policy)",movers:"var(--c-movers)",volume:"var(--c-volume)",global:"var(--c-global)",other:"var(--c-other)"};
   const $=id=>document.getElementById(id);
   let runs=[], current=null, cat="all", thr=10, q=""; const expanded=new Set(); let scrips={};
   fetch("data/scrips.json").then(r=>r.ok?r.json():{}).then(j=>{ scrips=j||{}; }).catch(()=>{});
@@ -318,6 +324,12 @@ footer{color:var(--muted);font-size:12px;margin-top:28px;line-height:1.5}
     const pill=i=>`<span class="co-pill ${esc((i.cap||"").toLowerCase())}" title="${esc(i.fact)}">${esc(i.company.replace(/ Limited$/i,""))}${i.pct!=null?`<em class="${pctClass(+i.pct)}">${fmtPct(+i.pct)}</em>`:""}</span>`;
     return `${hi.length?`<div class="day"><div class="dayh">New highs <span class="n">${hi.length}</span></div><div class="daylist">${hi.map(pill).join("")}</div></div>`:""}${lo.length?`<div class="day" style="border-left-color:var(--down)"><div class="dayh">New lows <span class="n">${lo.length}</span></div><div class="daylist">${lo.map(pill).join("")}</div></div>`:""}`;
   }
+  function ipoList(list){
+    const order=[["open","Open now"],["upcoming","Upcoming"],["closed","Closed · awaiting listing"],["listed","Listed"]];
+    const fmt=d=>{ if(!d) return ""; const x=new Date(d); return isNaN(x)?d:x.toLocaleDateString("en-IN",{weekday:"short",day:"2-digit",month:"short"}); };
+    const groups={}; list.forEach(it=>{ const st=(it.ipo&&it.ipo.status)||"upcoming"; (groups[st]=groups[st]||[]).push(it); });
+    return order.filter(([k])=>groups[k]).map(([k,l])=>`<div class="day" style="border-left-color:#0369a1"><div class="dayh">${l} <span class="n">${groups[k].length}</span></div><div class="ipos">${groups[k].map(it=>{ const i=it.ipo||{}; const dates=[i.openDate?`Opens ${fmt(i.openDate)}`:"",i.closeDate?`Closes ${fmt(i.closeDate)}`:"",i.listingDate?`Lists ${fmt(i.listingDate)}`:""].filter(Boolean).join(" · "); return `<div class="ipo"><div class="it"><span class="co">${esc(it.company)}</span>${i.platform?`<span class="tag">${esc(i.platform)}</span>`:""}</div>${dates?`<div class="idates">${esc(dates)}</div>`:""}<div class="ifact">${esc(it.fact)}</div></div>`; }).join("")}</div></div>`).join("");
+  }
   function actionsList(list){
     const byDay={}; list.forEach(it=>{ (byDay[it.when||"Date TBC"]=byDay[it.when||"Date TBC"]||[]).push(it); });
     return Object.keys(byDay).sort().map(day=>`<div class="day" style="border-left-color:#6b7280"><div class="dayh">Ex-date ${esc(day)} <span class="n">${byDay[day].length}</span></div><div class="daylist">${byDay[day].map(it=>`<span class="co-pill" title="${esc(it.fact)}">${esc(it.company)}<em>${esc(it.fact.split(/[-–:]/)[0].trim().slice(0,22))}</em></span>`).join("")}</div></div>`).join("");
@@ -344,18 +356,18 @@ footer{color:var(--muted);font-size:12px;margin-top:28px;line-height:1.5}
     const items=visibleItems();
     if(!items.length){ feed.innerHTML=`<div class="empty"><b>Nothing matches</b>Try another category, a lower movers threshold, or clear the search.</div>`; return; }
     if(cat!=="all"){
-      const titles2={movers:"Big moves",results:"Results & guidance",volume:"Unusual volume",deals:"Bulk & block deals",high52:"New 52-week highs & lows",calendar:"Results due this week",orders:"Order wins",mna:"M&A & stakes",ratings:"Broker rating changes",actions:"Ex-dates this week",policy:"Policy & macro",global:"Global",other:"Other"};
-      const body=cat==="calendar"?calendarList(items):(cat==="high52"?pills52(items):(cat==="actions"?actionsList(items):items.map(card).join("")));
+      const titles2={movers:"Big moves",results:"Results & guidance",volume:"Unusual volume",deals:"Bulk & block deals",high52:"New 52-week highs & lows",calendar:"Results due this week",orders:"Order wins",mna:"M&A & stakes",ratings:"Broker rating changes",ipo:"IPOs",actions:"Ex-dates this week",policy:"Policy & macro",global:"Global",other:"Other"};
+      const body=cat==="calendar"?calendarList(items):(cat==="high52"?pills52(items):(cat==="actions"?actionsList(items):(cat==="ipo"?ipoList(items):items.map(card).join(""))));
       feed.innerHTML=`<div class="section" style="--c:${CAT_COLOR[cat]||"var(--muted)"}"><i></i><h2>${titles2[cat]||CAT_LABEL[cat]}</h2><span class="n">${items.length}</span>${cat==="movers"?`<div class="seg thrseg" role="group" aria-label="Movers threshold">${[5,10,15].map(t=>`<button type="button" data-t="${t}" aria-pressed="${thr===t}">${t}%</button>`).join("")}</div>`:""}</div><div class="list">${body}</div>`; return; }
-    const order=["movers","results","volume","deals","high52","calendar","orders","mna","ratings","actions","policy","global","other"], groups={};
+    const order=["movers","results","volume","deals","high52","calendar","ipo","orders","mna","ratings","actions","policy","global","other"], groups={};
     items.forEach(it=>{ const k=vcat(it); (groups[k]=groups[k]||[]).push(it); });
     if(groups.calendar){ const rank={Large:0,Mid:1,Small:2,Micro:3,"":4}; groups.calendar.sort((a,b)=>String(a.sortDate||"").localeCompare(String(b.sortDate||""))||(rank[a.cap]??4)-(rank[b.cap]??4)); }
-    const LIMIT=5, titles={movers:"Big moves",results:"Results & guidance",volume:"Unusual volume",deals:"Bulk & block deals",high52:"New 52-week highs & lows",calendar:"Results due this week",orders:"Order wins",mna:"M&A & stakes",ratings:"Broker rating changes",actions:"Ex-dates this week",policy:"Policy & macro",global:"Global",other:"Other"};
+    const LIMIT=5, titles={movers:"Big moves",results:"Results & guidance",volume:"Unusual volume",deals:"Bulk & block deals",high52:"New 52-week highs & lows",calendar:"Results due this week",orders:"Order wins",mna:"M&A & stakes",ratings:"Broker rating changes",ipo:"IPOs",actions:"Ex-dates this week",policy:"Policy & macro",global:"Global",other:"Other"};
     feed.innerHTML=order.filter(k=>groups[k]).map(k=>{
       const list=groups[k], open=expanded.has(k)||list.length<=LIMIT;
       const shown=open?list:list.slice(0,LIMIT);
-      const body=k==="calendar"?calendarList(list):(k==="high52"?pills52(list):(k==="actions"?actionsList(list):shown.map(card).join("")));
-      const more=(!open&&!["calendar","high52","actions"].includes(k))?`<button class="more" type="button" data-more="${k}">Show all ${list.length}</button>`:(open&&list.length>LIMIT&&k!=="calendar"?`<button class="more" type="button" data-less="${k}">Show top ${LIMIT}</button>`:"");
+      const body=k==="calendar"?calendarList(list):(k==="high52"?pills52(list):(k==="actions"?actionsList(list):(k==="ipo"?ipoList(list):shown.map(card).join(""))));
+      const more=(!open&&!["calendar","high52","actions","ipo"].includes(k))?`<button class="more" type="button" data-more="${k}">Show all ${list.length}</button>`:(open&&list.length>LIMIT&&k!=="calendar"?`<button class="more" type="button" data-less="${k}">Show top ${LIMIT}</button>`:"");
       const collapsed=["global","other"].includes(k)&&!expanded.has(k);
       const head=`<div class="section" id="sec-${k}" style="--c:${CAT_COLOR[k]}"><i></i><h2>${titles[k]||CAT_LABEL[k]}</h2><span class="n">${list.length}</span>${k==="movers"?`<div class="seg thrseg" role="group" aria-label="Movers threshold">${[5,10,15].map(t=>`<button type="button" data-t="${t}" aria-pressed="${thr===t}">${t}%</button>`).join("")}</div>`:""}<button class="open" type="button" data-cat="${k}" aria-label="Open ${titles[k]}">›</button></div>`;
       if(collapsed) return `${head.replace('class="open" type="button" data-cat','class="open" type="button" data-more="'+k+'" data-x')}`;

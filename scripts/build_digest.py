@@ -43,6 +43,8 @@ GNEWS_FEEDS = {
     "Google News · ratings": GNEWS.format(q="(upgrade+OR+downgrade+OR+%22target+price%22+OR+%22initiates+coverage%22)+shares+brokerage"),
     "Google News · bulk deals": GNEWS.format(q="%22bulk+deal%22+OR+%22block+deal%22+shares"),
     "Google News · FII DII": GNEWS.format(q="FII+DII+net+crore+(bought+OR+sold)"),
+    "Google News · IPO": GNEWS.format(q="IPO+(opens+OR+closes+OR+listing+OR+%22price+band%22+OR+subscribed+OR+allotment)+India"),
+    "Google News · SME IPO": GNEWS.format(q="%22SME+IPO%22+(opens+OR+listing+OR+subscription)"),
 }
 POLICY_FEEDS = {
     "RBI": "https://www.rbi.org.in/pressreleases_rss.xml",
@@ -54,6 +56,7 @@ NSE_RSS = {
     "announcements": "https://nsearchives.nseindia.com/content/RSS/Online_announcements.xml",
     "board": "https://nsearchives.nseindia.com/content/RSS/Board_Meetings.xml",
     "actions": "https://nsearchives.nseindia.com/content/RSS/Corporate_action.xml",
+    "ipo": "https://nsearchives.nseindia.com/content/RSS/Public_Issues.xml",
 }
 BSE_FORTH = "https://api.bseindia.com/BseIndiaAPI/api/Corpforthresults/w"
 BSE_BOARD = "https://api.bseindia.com/BseIndiaAPI/api/BoardMeetings/w"
@@ -80,7 +83,7 @@ def segment_map():
     log(f"segment map: {len(seg)} symbols")
     return seg
 
-CATS = ["calendar", "results", "orders", "mna", "policy", "movers", "volume", "deals", "ratings", "actions", "global", "other"]
+CATS = ["calendar", "results", "orders", "mna", "policy", "movers", "volume", "deals", "ratings", "actions", "ipo", "global", "other"]
 STATS = {}
 NAMES = {}
 BREADTH = {}
@@ -848,6 +851,8 @@ def dedupe(items):
         k = (norm(it.get("company")), it.get("category"))
         if it.get("category") == "calendar":
             k = (norm(it.get("company")), "calendar")
+        elif it.get("category") == "ipo":
+            k = (norm(it.get("company")), "ipo")
         elif it.get("category") in ("deals", "actions") or it.get("subtype"):
             k = (norm(it.get("company")), it.get("category"), it.get("subtype", ""), re.sub(r"\W+", "", str(it.get("fact", "")).lower())[:40])
         elif norm(it.get("company")) == "indexwrap":
@@ -862,6 +867,58 @@ def dedupe(items):
             if score(it) > score(cur):
                 best[k] = it
     return [best[k] for k in order]
+
+# ---------------------------------------------------------------- IPOs
+IPO_PROMPT = """From these headlines about Indian IPOs (mainboard and SME), list each distinct IPO with what is stated. Dates must be ISO (YYYY-MM-DD) and only if the headline/summary gives them (today is {today}); leave unknown fields empty. No grey-market premium, no recommendations.
+Return ONLY JSON: {{"ipos":[{{"name":"...","platform":"Mainboard|SME","status":"upcoming|open|closed|listed","openDate":"","closeDate":"","listingDate":"","priceBand":"₹x-y","issueSize":"₹x Cr","subscription":"x times (day n)","listingNote":"listed at ₹x, +y% (if listed)","source":"..."}}]}}
+HEADLINES (source | title | summary):
+{rows}"""
+
+def extract_ipos(raw, key):
+    rows = [r for r in raw if re.search(r"\bIPO\b|public issue|listing", r["title"] + " " + r["summary"], re.I)]
+    if not rows:
+        stat("IPO extraction", False, 0, "no IPO headlines"); return []
+    rows = rows[:80]
+    ipos = []
+    if key:
+        text = "\n".join(f"{r['source']} | {r['title']} | {r['summary'][:160]}" for r in rows)
+        for model in pick_groq_models(key, prefer="light"):
+            try:
+                r = requests.post(GROQ_URL, json={"model": model, "temperature": 0.1, "response_format": {"type": "json_object"},
+                                                  "messages": [{"role": "user", "content": IPO_PROMPT.format(today=now_ist().strftime("%Y-%m-%d"), rows=text)}]},
+                                  headers={"Authorization": f"Bearer {key}"}, timeout=120)
+                if r.status_code == 429:
+                    break
+                if r.status_code >= 400:
+                    continue
+                content = r.json()["choices"][0]["message"]["content"]
+                a, b = content.find("{"), content.rfind("}")
+                ipos = json.loads(content[a:b + 1]).get("ipos", [])
+                if ipos:
+                    break
+            except Exception as ex:
+                log(f"ipo extract {model} failed: {ex}")
+    if not ipos:
+        seen = set()
+        for r in rows:
+            m = re.search(r"^(.*?)\s+(?:SME\s+)?IPO", r["title"], re.I)
+            name = (m.group(1) if m else r["title"]).strip(" :-|")[:60]
+            k = name.lower()[:20]
+            if not name or k in seen:
+                continue
+            seen.add(k)
+            st = "listed" if re.search(r"list(ed|s|ing) (at|debut)|debuts", r["title"], re.I) else ("open" if re.search(r"opens|subscri|day \d", r["title"], re.I) else "upcoming")
+            ipos.append({"name": name, "platform": "SME" if re.search(r"\bSME\b", r["title"], re.I) else "Mainboard", "status": st, "listingNote": r["title"][:120], "source": r["source"]})
+    out = []
+    seen = set()
+    for i in ipos:
+        name = str(i.get("name", "")).strip()
+        if not name or name.lower()[:20] in seen:
+            continue
+        seen.add(name.lower()[:20])
+        out.append({k: (str(v).strip() if v is not None else "") for k, v in i.items()})
+    stat("IPO extraction", len(out) > 0, len(out), "groq" if key else "rules")
+    return out[:40]
 
 # ---------------------------------------------------------------- brief
 BRIEF_PROMPT = """You are writing the morning read for an Indian equity trader who focuses on mid and small caps. Use ONLY the data below. No buy/sell/target language and no price predictions: describe the setup and what is worth researching, and say why using the numbers given. Plain English, concise.
@@ -995,6 +1052,20 @@ def main():
                       "fact": "New 52-week low" + (f" at ₹{p[1]:,}" if p else ""), "source": "NSE", "materiality": 2 if seg_all.get(sym) in ("Large", "Mid", "Small") else 1})
     for a in actions:
         items.append({"category": "actions", "company": a["name"], "ticker": a.get("sym", ""), "fact": a["purpose"], "when": a.get("exDate", ""), "sortDate": a.get("exDate", ""), "source": "NSE/BSE", "materiality": 1})
+    if args.mode in ("full", "custom"):
+        ipo_raw = list(raw)
+        for e in fetch_nse_rss("ipo"):
+            ipo_raw.append({"source": "NSE public issues", "title": clean(e.get("title")), "summary": clean(e.get("summary", ""))[:300], "link": e.get("link", ""), "when": None})
+        for i in extract_ipos(ipo_raw, key):
+            bits = []
+            if i.get("priceBand"): bits.append(f"band {i['priceBand']}")
+            if i.get("issueSize"): bits.append(f"size {i['issueSize']}")
+            if i.get("subscription"): bits.append(f"subscribed {i['subscription']}")
+            if i.get("listingNote"): bits.append(i["listingNote"])
+            when = {"upcoming": i.get("openDate"), "open": i.get("closeDate"), "closed": i.get("listingDate"), "listed": i.get("listingDate")}.get(i.get("status"), "") or i.get("openDate") or ""
+            items.append({"category": "ipo", "company": i["name"], "cap": i.get("platform", ""), "ipo": i,
+                          "fact": " · ".join(bits) or f"{i.get('status','').capitalize()} IPO", "when": when, "sortDate": when, "source": i.get("source", "news"),
+                          "materiality": 2 if i.get("platform") == "Mainboard" else 1})
     if args.mode in ("full", "results", "custom"):
         cal = fetch_results_calendar()
         seg = segment_map() if cal else {}
