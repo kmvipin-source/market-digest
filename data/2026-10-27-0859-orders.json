@@ -1,0 +1,335 @@
+{
+ "id": "2026-10-27-0859-orders",
+ "label": "Tue 27 Oct 08:59 IST · Orders",
+ "window": "news since Mon 26 Oct 15:00 IST",
+ "date": "2026-10-27",
+ "generatedAt": "2026-10-27T03:29:52Z",
+ "mode": "orders",
+ "query": "",
+ "threshold": 15.0,
+ "market": {},
+ "items": [
+  {
+   "category": "orders",
+   "company": "Defence Ministry",
+   "fact": "Defence Ministry cleared military procurement worth Rs 2.12 lakh crore, with 82% from Indian industry.",
+   "value": "2120000000000",
+   "source": "Fortune India",
+   "materiality": 3
+  },
+  {
+   "category": "orders",
+   "company": "SoftBank",
+   "fact": "SoftBank sold 1.21 crore Ola Electric rights entitlements to support a Rs 1,000 crore rights issue.",
+   "value": "10000000000",
+   "source": "Economic Times Stocks",
+   "materiality": 1
+  },
+  {
+   "category": "orders",
+   "company": "NCC",
+   "fact": "NCC: Seven factors that will shape its prospects over the next five years",
+   "source": "Mint Markets",
+   "materiality": 1,
+   "link": "https://www.livemint.com/market/stock-market-news/ncc-seven-factors-that-will-shape-its-prospects-over-the-next-five-years-11793020470405.html"
+  },
+  {
+   "category": "orders",
+   "company": "Merck",
+   "fact": "Merck drug extends survival in endometrial cancer trial, wins US priority review - Reuters",
+   "source": "Reuters India (via Google News)",
+   "materiality": 1,
+   "link": "https://news.google.com/rss/articles/CBMi2AFBVV95cUxONEdIZ0VwaGxubUJfcXBfUGhJTnliUTV0ZUU0SFNKdmlqd0VKdFBOSUdqZUFmLWRvT3N3Q0ZGZGd2a2FoejlrLXZXX3NOaThwX2RnbzFTcUREQ2FjOTdnQ2dlQzZQWUg0R1U3ejZJSTBudGNOWWxWY2pEanpuYllLZUlDNXlmX0VqLXJyZnBHSF9kRTktZlpVbmpMUk5zNzA3ZlBrZkZiaHVvYko0YTJGWl9iV0NLVWhhRkZMWDYtS0gwODhkV3NFYU13UWVhNEdwT1AzQkxxTEw?oc=5"
+  },
+  {
+   "category": "orders",
+   "company": "This Rs",
+   "fact": "This Rs 1,100-crore m-cap firm bags order worth Rs 949 crore; stock jumps 10%",
+   "source": "TradingView",
+   "materiality": 1,
+   "link": "https://news.google.com/rss/articles/CBMi1AFBVV95cUxPd0NKLTM5X21WN3VYMGhnT0s2bTdwX1dkSC0zcHV0S2RfczhuNnBtaElJWjVMejVfZXo3eVRlclptdGtPcmsxQlVYcTNuRHpjQURuLW9DWG8tcXQ2M0FkTU8xa2NQajBDNV9lbDhxbzU5al9DaGNLNWlsZ0FYQkZwRkVwdW1iNmVXMDZzclpweFN2Q0NKVmNmV2NjdFdieHFTT0NpVm5ib0RmcGJOdDlVbldONUtwMVo0aXc4NjBJUG54R0RPT3A1dVIzV0RIRFNBNUxGOA?oc=5"
+  },
+  {
+   "category": "orders",
+   "company": "Sigma Advanced Systems",
+   "fact": "Sigma Advanced Systems bags ₹973 crore order for 155 mm artillery ammunition components",
+   "source": "CNBC TV18",
+   "materiality": 1,
+   "link": "https://news.google.com/rss/articles/CBMizgFBVV95cUxObm1Uc3JPLXdyMDg4RGJUWEFWOUdhckNQdUlyR2Q1MVhIdGw0ZHZaVzljdGdLZjRhYVI0dVI3Smw0TlktN0JEUmgzYmYzZEJzSV9QTUNYR09aT0NfSW1HY0ZLZmRHNFA3R1VHTjBGYkpJaHBCRXJJYS1kYUNPdmN5azE0Z0d1VXBoUnNfRzNzSEhuUER3aWY3MU56blZEMDdYZS0zX1lfaUlLUXVvZmRFbkY0MXhrTHBGM0NXaXdBcElQZjhhSndRdEZxbEFzQdIB0wFBVV95cUxQMXVOT0U1TkwwUTVpTlpNZTdFNi0tSmFrLWFfUW96MGRpZU4ycnFqN2Z5bGhackNfem5fVWp0dzAydXBMMk5OYlpsQk9RZnpDUkpZTDk2WGpPVEhsd0tJRUJvNHNETjhVRWpkTi1ySVRVV0lUM0VqclluZ1g2aHdJdEgzbTk5bnJMWXIwVi00MVJxRmtCeVJoSnVwSVJmWHJYZEFiU1ZLaWlEeFN2c0hPRnhnZXJqUjVZWG1LR0poS2p4V3o1QzZOWkVFc0lhZjY0NURz?oc=5"
+  },
+  {
+   "category": "orders",
+   "company": "Jyoti Structures",
+   "fact": "Jyoti Structures bags ₹949.35 crore orders from Power Grid for 800 kV transmission lines in Rajasthan",
+   "source": "Business Upturn",
+   "materiality": 1,
+   "link": "https://news.google.com/rss/articles/CBMi5AFBVV95cUxQNXRCTkRnYmp5N0hIMTZYUlpObVVuQ2pIQmpTcWlsLTR5by01a2VpRm1JQ2oyOXg1dWpNVDZXaG81RGF6eVNibXF6ZnUxSWhfM2RKNjk1VUdtcmx0WHdGY2Jic1hPUUxnSUNnUWpGcTU5ZXA3ZjQ3Ml9aWnc4N3BzOWVzX2stS0hpMG1YZjNNbDFPcHMyZ2M5WXJfbXVUcmY3cGdlNUhoRFFSVFo3ZTZuRDcxRng2MzJIcjcyZlR1OXJxelZ6bTJfM21hSTJEVy16QlJZc0pyQy1rQndSRnNWS2czTWY?oc=5"
+  },
+  {
+   "category": "orders",
+   "company": "KEC International",
+   "fact": "KEC International bags INR 2,872 crore Power Grid orders for 765 kV transmission lines",
+   "source": "Prop News Time",
+   "materiality": 1,
+   "link": "https://news.google.com/rss/articles/CBMi1AFBVV95cUxQcVZkYXQtOVFMWWlabFBVd3p0UWhSWUVNWWV5c3dSakZHMlFTN3FkQm5oOVoxc19nXzVWajY5Rk91VmNtSEJrNU45cldtSE0wNk5XaUJxSmdwTGg3aHZGdkdhd29hMnJNWlBiS3N0eUE5Vm4ycmxIOFgtTnNZbnhITHpqdzJnUy1tZVZETkxWUVJGemRCM0VyYUtUd3ZfOGxxSlVPd25DVXBxMDdseERCYnFVdmFkeEM0WktQYVNXZGE4ZW9KY0h4U0xUNVBoaUxSZjdXQQ?oc=5"
+  },
+  {
+   "category": "orders",
+   "company": "Bajel Projects Bags",
+   "fact": "Bajel Projects Bags ₹200 Crore EPC Order For 400 kV GIS Substations In Mumbai",
+   "source": "Sahi",
+   "materiality": 1,
+   "link": "https://news.google.com/rss/articles/CBMipAFBVV95cUxPRTVtalR0QmI5UDdlYnYxbTR3RG5RWG91TUtSN0YzRklESzVQX096QmNTTHpWZ3dJSTgyenNzNjZCcUJ0dG9pUVQ3UTluaC1sQmxPZDRGcXg1UGpTZ0J3Z3RWVVNEUGtZNkszN01uejROUzRhWWwxZ1RGbEFuS1lGbFRlWFlIc0lCdkt6amgzaWdzdldIb1dwMlhIbDVXWWloVmtJNg?oc=5"
+  },
+  {
+   "category": "orders",
+   "company": "Bajel Projects",
+   "fact": "Bajel Projects wins largest-ever ₹1,500 crore order for 765 kV transmission lines in Gujarat",
+   "source": "CNBC TV18",
+   "materiality": 1,
+   "link": "https://news.google.com/rss/articles/CBMi7gFBVV95cUxOVkdOSGlnYngydE1WVXlxR0c3emJ3UFo4WmdaUTBuVFJKWkFsTDFjNmVwRFBIUjNUZnpVRmpHRG92SkNtWnJIbXRzdlVCejlOZ1dTQnpOSVdpT3pzeEZmS096WWRWWmlwOEUzSU5xV3ZORnp2bFhMV3hMNnNHRE9LTmUtT1BncW9mak9fa05WVGNWVmlhYnVsWFVxeVZ3b0l0ZzBSZlpTeU5sWGFZX2J6NUQtUW9RS0NuTjJMb18xNzRBMGM1ek82d1dveHcySDVreTJPNHdmVWhzY1RtNWZrQVVHd1pKV2ZpYUw4aDNB0gHzAUFVX3lxTE1ucW1adkZhOEpqWHVBdUNNTjhVTlljU3BydFFYY0JhcnVmM01sQkJaS2daVWM2QTd5b2dDdmc3RTBJTjFmbVc5ZVVqbTZCUTVwZFBuYk9MZVZOZFVlMDc0dWNlMU91ZFJOM1JvZC1ETzlHQzAtOTJ5SUswZkR6YXNIZ0doZ25GOUg2Smd5TDBkQmI0UzR3c0F3NnRYQXZydnQxTGRzajdwN2p1UmNCME95ams4bXBaQ1MwcExqQ1J2MGdSbWE5Mm9rWUdHb0xGYXQtNVJjSmkwcDNxR0dYZDN2TEhzMmJRRHVWYXhtOGN6dnpfaw?oc=5"
+  },
+  {
+   "category": "orders",
+   "company": "SRM Contractors",
+   "fact": "SRM Contractors (NSE:SRM) Bags Rs. 138.37 Crore MoRTH Landslide Contract",
+   "source": "Kalkine India",
+   "materiality": 1,
+   "link": "https://news.google.com/rss/articles/CBMi0wFBVV95cUxOZ0hyQVhiNTFHNnk2VW1qWWpOMXRtaGIzSWQ1WFBIdkVYZXpLU3FNUWZLQjZvWnRIQ2pyNk9HU2ZtalNMNGJJMEZNLWZlZGVCeU9URjJLUy1yTnYwX0ZFcUNabGwyb21GTktST1RUbnlld0ZsR2ZqbEYwN2V2QmtRbEJIY05GSUZBelR4dDVKci1QLUlBR1pLaDEwNkJqaUc5RkdhNzRUNE1LVDE1YVBqWE9LdldSejY0UFIzbnZ3VW1GYmR5WnYtOVVNY3c0YVNJeFNB?oc=5"
+  },
+  {
+   "category": "orders",
+   "company": "Paradeep Parivahan",
+   "fact": "Paradeep Parivahan bags 10-year contract from JSW Group to deploy 100 heavy-duty electric trucks for industrial freight",
+   "source": "Trade Brains",
+   "materiality": 1,
+   "link": "https://news.google.com/rss/articles/CBMi-gFBVV95cUxPZzg5TFI4Q2RGOXZuMjdGUGsyRjVoUzJKZHRZaVlVeldvd1EzdU9BYnlnQnZaRy15RkRkR25Pa2hRdUozb0owemViV21hYlFUQTZPSVp5TVRaMlpoUHFZTHJvc3o3RXM1X0FuUjZBTUl1Q3hpWUxuREpsR0o3ck1DeklfdW41RVo0djRWTEt1SVVTX0JiYk5KZkI5dnZCWEs0MHRsaXBqYWpkbDVnUFpKMGFqblJnUlpPYXRrMHBXa1BUcnpOaWxOQ3lkU1JRb09Pb0lUVzd5cGpSNjZsbTZZcTUwcURCUmtLeEpkLU5MdlA5eXpkYUF4OXFR?oc=5"
+  },
+  {
+   "category": "orders",
+   "company": "Ramky Infrastructure",
+   "fact": "Ramky Infrastructure bags ₹588.57 Cr EPC contract from RVNL for NMDC township residential project in Chhattisgarh",
+   "source": "Trade Brains",
+   "materiality": 1,
+   "link": "https://news.google.com/rss/articles/CBMi7wFBVV95cUxQYm1WQk9XSGpYYmNIMldqZlBrdi03bFpoZldoTTk4WFd3UFczQjJNN3c1S2pQc2d1MEFXbGEwYzZXZzFPMmdKMDA1U21oRTMxSC1RbWNqTFZkb3hzNDl4X2hVM3NxcnVtME02NlZudHpuaDdyZTNqMjNIWnZIQ0kxWmVfMDVUWWdSd09TblpzaF9XX1Y1XzdRVDZpaHNncXhOWVJkWkR6dGxBZkstVlVTa3pLVGRnQnJUeXhlal9FY2pZWWprMFFvdXdMbTJ5dWdzcm9kVHYwUUxfX1Y0X0FCMmVtNmNBak1jdk8zX2pKQQ?oc=5"
+  },
+  {
+   "category": "orders",
+   "company": "Lula",
+   "fact": "Lula wins fourth term in Brazil as Bolsonaro contests result, markets plunge",
+   "source": "PRESS Insider",
+   "materiality": 1,
+   "link": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxPckh0RDNDbDduQjlFWndsUnFCS29OMTRBallOQ1JMUXM2SFZjOHRJUDNQT0ZKcklGVDJIdlhIQ2FMLTdvZGowV1NuRlNXSEpKcEh2T2ZZa2RaLXU1ZlJ6V0hLNVZRWjRKZDdva05WWE4yOEVmMGI1N1pQSlN4ZjdJZUx1NVRsR1IwTUh0RDNNdF9MVWs0VVJxVHdSLWJRZFBDdnlXS3IyZ2x6QQ?oc=5"
+  },
+  {
+   "category": "orders",
+   "company": "VA Tech Wabag Limited",
+   "fact": "VA Tech Wabag Limited: Bagging of Order/Contract - WABAG secures order from RIL to deliver Mega Desalination Plant and Remineralisation Plant at Jamnagar |SUBJECT: Bagging/Receivin",
+   "source": "NSE filing",
+   "materiality": 1,
+   "link": "https://nsearchives.nseindia.com/corporate/VATECH_27102026082542_SI_RIL_27102026v2.pdf"
+  }
+ ],
+ "sources": [
+  "https://economictimes.indiatimes.com/markets/commodities/news/digital-gold-purchases-surge-83-to-rs-2590-crore-in-september/articleshow/135222637.cms",
+  "https://economictimes.indiatimes.com/markets/commodities/news/gold-eases-as-stronger-dollar-weighs-fed-meeting-in-focus/articleshow/135222653.cms",
+  "https://economictimes.indiatimes.com/markets/commodities/news/oil-price-today-october-27-crude-oil-below-115-amid-peace-talk-hopes-but-attacks-continue-what-are-experts-saying/articleshow/135222687.cms",
+  "https://economictimes.indiatimes.com/markets/expert-view/etmarkets-smart-talk-bond-yields-may-rise-further-over-the-next-few-months-avoid-aggressive-duration-and-credit-bets-suyash-choudhary/articleshow/135223491.cms",
+  "https://economictimes.indiatimes.com/markets/forex/forex-news/wary-of-rbi-banks-back-off-from-forex-deals/articleshow/135222615.cms",
+  "https://economictimes.indiatimes.com/markets/forex/forex-news/yen-slips-ahead-of-central-bank-bonanza-dollar-firms-on-tech-rebound/articleshow/135222721.cms",
+  "https://economictimes.indiatimes.com/markets/forex/rupee-slips-below-to-95-18-against-dollar-on-elevated-oil-prices/articleshow/135222166.cms",
+  "https://economictimes.indiatimes.com/markets/ipos/fpos/can-sfc-environmental-technologies-ipo-deliver-long-term-growth-for-high-risk-investors/articleshow/135222205.cms",
+  "https://economictimes.indiatimes.com/markets/stocks/earnings/bank-of-maharashtra-q2-profit-jumps-41-5-as-bad-loans-decline/articleshow/135214440.cms",
+  "https://economictimes.indiatimes.com/markets/stocks/earnings/dalmia-bharat-posts-rs-205-crore-q2-loss-on-exceptional-hit/articleshow/135217688.cms",
+  "https://economictimes.indiatimes.com/markets/stocks/earnings/itc-hotels-reports-revenues-of-rs-1054-cr-for-q2-pat-at-rs-203-cr/articleshow/135210456.cms",
+  "https://economictimes.indiatimes.com/markets/stocks/earnings/mankind-pharma-q2-profit-rises-38-to-rs-716-crore/articleshow/135222585.cms",
+  "https://economictimes.indiatimes.com/markets/stocks/earnings/mmt-reports-net-profit-of-1-8-million-in-q2-revenues-at-235-2-million/articleshow/135214497.cms",
+  "https://economictimes.indiatimes.com/markets/stocks/earnings/paytm-q2-results-profit-rockets-976-yoy-to-rs-226-crore-revenue-jumps-28/articleshow/135214973.cms",
+  "https://economictimes.indiatimes.com/markets/stocks/earnings/sunteck-realty-h1fy27-net-profit-rises-20-pre-sales-up-19/articleshow/135217893.cms",
+  "https://economictimes.indiatimes.com/markets/stocks/earnings/tamilnad-mercantile-bank-q2-results-net-profit-rises-42-to-record-rs-451-crore-on-high-net-interest-income/articleshow/135214844.cms",
+  "https://economictimes.indiatimes.com/markets/stocks/earnings/tata-consumer-q2-net-profit-up-despite-higher-costs-weak-tea-demand/articleshow/135222523.cms",
+  "https://economictimes.indiatimes.com/markets/stocks/earnings/tata-consumer-q2-results-net-profit-rises-16-yoy-to-rs-470-crore-revenue-up-14/articleshow/135211637.cms",
+  "https://economictimes.indiatimes.com/markets/stocks/news/ahead-of-market-10-things-that-will-decide-stock-market-action-on-tuesday/articleshow/135215629.cms",
+  "https://economictimes.indiatimes.com/markets/stocks/news/ather-energy-shares-skyrocket-19-after-ev-maker-swings-to-rs-1-26-crore-profit-in-q2/articleshow/135209355.cms",
+  "https://economictimes.indiatimes.com/markets/stocks/news/d-st-makes-a-comeback-after-weeks-of-decline-yet-investors-remain-cautious-amid-ongoing-market-concerns/articleshow/135221724.cms",
+  "https://economictimes.indiatimes.com/markets/stocks/news/govt-seeks-investor-and-expert-views-on-ltcg-and-stt-as-it-reviews-capital-market-levies-amid-fpi-exodus/articleshow/135222361.cms",
+  "https://economictimes.indiatimes.com/markets/stocks/news/india-earns-nearly-50-more-from-fuel-exports-in-april-september-as-costlier-oil-and-weak-rupee-outweigh-lower-volumes/articleshow/135222347.cms",
+  "https://economictimes.indiatimes.com/markets/stocks/news/indian-overseas-bank-to-raise-500-million-as-q2-profit-jumps-56/articleshow/135214567.cms",
+  "https://economictimes.indiatimes.com/markets/stocks/news/jio-ipo-brings-a-smaller-payday-for-bankers-than-other-large-offers/articleshow/135222126.cms",
+  "https://economictimes.indiatimes.com/markets/stocks/news/market-wrap-dr-reddys-jsw-steel-shriram-finance-tata-consumer-top-gainers-and-losers-on-nifty-and-sensex-on-monday/articleshow/135209828.cms",
+  "https://economictimes.indiatimes.com/markets/stocks/news/pre-market-action-heres-the-trade-setup-for-todays-session/articleshow/135217191.cms",
+  "https://economictimes.indiatimes.com/markets/stocks/news/rising-concentration-in-ai-stocks-poses-a-risk-kunal-kapoor-morningstar-ceo/articleshow/135221935.cms",
+  "https://economictimes.indiatimes.com/markets/stocks/news/sbi-chairman-cs-setty-sees-discretionary-credit-demand-moderating-expects-50-bps-rate-hike-in-december/articleshow/135222275.cms",
+  "https://economictimes.indiatimes.com/markets/stocks/news/softbank-sells-1-21-crore-ola-electric-rights-entitlements-as-ev-maker-seeks-to-raise-rs-1000-crore/articleshow/135209308.cms",
+  "https://economictimes.indiatimes.com/markets/stocks/news/stocks-in-news-paytm-tata-consumer-dalmia-bharat-rec-and-dcm-shriram/articleshow/135216594.cms",
+  "https://economictimes.indiatimes.com/markets/stocks/news/the-rs-1-5-lakh-crore-mtf-problem-how-shrinking-leveraged-positions-are-deepening-indias-smallcap-sell-off/articleshow/135214401.cms",
+  "https://economictimes.indiatimes.com/markets/stocks/news/yes-bank-among-6-stocks-to-hit-52-week-lows-and-fall-up-to-32-in-a-month/slideshow/135212417.cms",
+  "https://economictimes.indiatimes.com/markets/us-stocks/news/anthropic-takes-ai-test-with-filing-for-wall-street-debut/articleshow/135222407.cms",
+  "https://economictimes.indiatimes.com/markets/us-stocks/news/global-market-today-wall-street-gains-lift-asian-stocks-as-fed-decision-looms/articleshow/135222218.cms",
+  "https://economictimes.indiatimes.com/markets/us-stocks/wall-street-guide/anthropic-ipo-5-jaw-dropping-numbers-investors-need-to-know-about-1-5-trillion-public-offer/articleshow/135214380.cms",
+  "https://economictimes.indiatimes.com/markets/us-stocks/wall-street-guide/anthropic-ipo-halts-ai-training-for-over-a-month-over-security-concerns-as-models-breach-testing-systems/articleshow/135218073.cms",
+  "https://economictimes.indiatimes.com/markets/us-stocks/wall-street-guide/anthropic-ipo-rising-costs-risks-rapid-growth-market-ai-frontrunner/articleshow/135213738.cms",
+  "https://economictimes.indiatimes.com/markets/us-stocks/wall-street-guide/anthropic-vs-openai-how-claude-makers-growth-is-challenging-chatgpt-ahead-of-ipo/articleshow/135215446.cms",
+  "https://economictimes.indiatimes.com/markets/us-stocks/wall-street-guide/us-markets-today-us-stocks-end-higher-as-anthropic-ipo-filing-revives-ai-optimism-tesla-hits-3-month-high/articleshow/135219329.cms",
+  "https://news.google.com/rss/articles/CBMi-AFBVV95cUxNU3dCR3VyTnRISjBxSHhKQVdVMWtYcUJXZGJmWkUtMUQ5d2c5c2dQXzgxdmQwRVBJVVlBaFBWbXVTeGNpalRpRFJCSXFMeFpXWTBNa3Z3Z3htY0JmdnU4cVE4WDlFS3JydlpXQ2F4Sy1oQTY2aDJSTFdOR3djNGJOOTFfYWR5aEdkNzRIaHlXZkk3bk5ZUlpidE01eDBDS2JqZ3VFT00yR0lqR1NUSzhJV3dJNE5KYklNQjZPRnIxdFBtYjUtYmlIT0M2bkVwSlJhRDFnR3EwcGZlbjlfcngwT0pucE03MjVOa2NlUVhXb3VwQ29RVVNHVtIB_gFBVV95cUxOa21JOTJXTTdXajRoWVRSYUFuWl9yRHdGek5ZU3hZMFE0cDJyenJvLXo0WVpUYWNsVm11aDhyTS10MU56Zk0tSEMtSk1XUkRIMklkSG5hSkZGRFhoZjBzMTkwYXp3WWE0S0Vhc3lFc3JvTTYtQW9jZmJBdmRtejdUcFgxN1FTUFkwT2t1aFJ0ZVZpcWRYVUh4dHdDazJZNzRrNXJwS2ozR3FidnhLWE11OGV6YXpDWm5EdmxIa3pkZUNLT2JIbkpBbmhuWmE2dGpRbWNta0RvcUw5TmZrTkZzU3h0am5hQ2hmeExaalpleUJHa193cHpnTGl0RjE0Zw?oc=5",
+  "https://news.google.com/rss/articles/CBMi-gFBVV95cUxNb2VIWGc1WUozNGVnb2xaanlxLUc2NGNKRTR5S3g5bTZ5a0pfWjJ2ODJaT0RDbFh1YWoyWno0eERoeDNhdkhZX3k2cHFxcG9acnBReGhRTl81VHhkYWZkRlRVcHh1bi1oZTZsVEoxYS1PWmNtbW5BY1NHWDBzQ3l1VExjcFZVRFliQWVic0JqcmpyRm1TV1VTRVB3dTU4Y3NUajVmVkFPTUR4aWstUmxFOWhRUUF6SVBUZjMxaERjUF9LT2c4cWl0SWxha0Vaa1FWRk1oalotcG1sUlZ0XzFoSmlJYTBVRjRiZWRnOEMzNWFhM2g4UUduSFJ3?oc=5",
+  "https://news.google.com/rss/articles/CBMi-gFBVV95cUxOUnFuVUxZWERJTmtHMWI2Q2dkZlc5dVRVX3FaWUwtcjdzbS05YWZvSzJKc3hBUU5zSmVMWTg3a2FjYlF1VURmbzNkam02T2JnWkxvVDlZZ0ZQaWV2dEVFWGJuNzV3RjRSWkFVRExiN0dpbmg3TVdsVTdRdEdjLXlXb3VGVDAzRk1SQ2xpNV8tU1Vrb2VxYndOWkVuVlc5Q2V4THB5dkd1cXAtNzE0eG9raDJEbG9vQThvOEJVSTVKOUVwa1d2WjlfOExoTXJjNlh3SmQwOElrTTU3TTdwQU1tUjJsd1FUZUs5MjFSRm5OQ0xxalM4Rmx0VDZB0gH6AUFVX3lxTE5ScW5VTFlYRElOa0cxYjZDZ2RmVzl1VFVfcVpZTC1yN3NtLTlhZm9LMkpzeEFRTnNKZUxZODdrYWNiUXVVRGZvM2RqbTZPYmdaTG9UOVlnRlBpZXZ0RUVYYm43NXdGNFJaQVVETGI3R2luaDdNV2xVN1F0R2MteVdvdUZUMDNGTVJDbGk1Xy1TVWtvZXFid05aRW5WVzlDZXhMcHl2R3VxcC03MTR4b2toMkRsb29BOG84QlVJNUo5RXBrV3ZaOV84TGhNcmM2WHdKZDA4SWtNNTdNN3BBTW1SMmx3UVRlSzkyMVJGbk5DTHFqUzhGbHRUNkE?oc=5",
+  "https://news.google.com/rss/articles/CBMi-gFBVV95cUxPZzg5TFI4Q2RGOXZuMjdGUGsyRjVoUzJKZHRZaVlVeldvd1EzdU9BYnlnQnZaRy15RkRkR25Pa2hRdUozb0owemViV21hYlFUQTZPSVp5TVRaMlpoUHFZTHJvc3o3RXM1X0FuUjZBTUl1Q3hpWUxuREpsR0o3ck1DeklfdW41RVo0djRWTEt1SVVTX0JiYk5KZkI5dnZCWEs0MHRsaXBqYWpkbDVnUFpKMGFqblJnUlpPYXRrMHBXa1BUcnpOaWxOQ3lkU1JRb09Pb0lUVzd5cGpSNjZsbTZZcTUwcURCUmtLeEpkLU5MdlA5eXpkYUF4OXFR?oc=5",
+  "https://news.google.com/rss/articles/CBMi-wFBVV95cUxPb2RzeERyRGxEZ25iMi1aTDYwbVBVYUFZSUxqUXVNUnlUVkdOSVFLTUFIQlA3YUtlTEluUi1ia21KRWNMY0xHMkJjbmdxVENDY0RrRURTM1BSVTItaERsTWN5RWwtSGNYeDhJN2xtQjhRWWlLeWY4Y3ZyYlJwZW1seUhnUHk2M0hXaXZfcGxmc0xCRlc3TWN3aGljd0tLMklOY3FtbGx6ZmlDdi1venRUeFI1QWd3VDdvbl9kamdCQlg0Y25GU3J0RlZDb1pOekJLXzZMS2tGa1puOUZqbUxaM1k4RG9CQzN0N2hHRWpFMHZEQVZpamJQSkQ0RQ?oc=5",
+  "https://news.google.com/rss/articles/CBMi0AFBVV95cUxQWVBtSHNqNVZPemlFd3VqTzdQMW5jZ0FibWRxZGVCb0N3Y0tDVzRnY2pNenl3VHJlNDJqdlNVa1dKdGc5LTI2V0phMmlOSktqcEpzeV9uYmJEYXVqY0xMTWdyVUEtQlZkTG56Y1JISjVOeE1BUlc5amFwbmtOS09US0Z5YjVQa0VsdE52RE1ZbG9aWGFIOEw1TVVrQlJSSGh6QWJNZUU2UjNMUlBFVEN1cG5hN1lCNDNGNVlJdzBLaXdNd2JkUU55WXk1ajlNLS1Z?oc=5",
+  "https://news.google.com/rss/articles/CBMi0gFBVV95cUxOM3pNR1kzcmV4VVk1YUxaVV9yUjFJUjNjdjlCOVRLMWFWa083ZzY3czMyVTFCT3IyVkhPYTI4alFQUVZac1JLY2dqQnRHS0JZMTZ2SDg5QThCMjlUb0hmSERoVDR5bFA1LXFiSi1YbVFDYk55RWhpdHNiaS05cTQ5TUl0bGxXc3NOM1oyXzJRQVF2bG5aNnM2Z0tVVnpuNnJ2QWJFYURsNFljbV9qaDA5eXBoeV9QYXhXUUJKajhfTEF1TGdSS0lUV0lqUjN4b2xRMGfSAdgBQVVfeXFMTV9JN1ZEWHVSd3dIcjJyRHNvV3RRZkVaMkxQc2tGRTI0bDlMWTdFRHFzQ29Ga2d1NHdLWl9GLW9jOFI5eEwtcHkzTkxkbklqWGJhdDIzZFRmUjVTaGd2bTNRbGdqdkhHWW00angtdzg3T1R3N0dqZmViaU53WWE4YjdteV94UWY4TnRzbjhqZHB6YkxkLXlJSWE3dFVjdktSc09IRzB3SUYtWUdwb0YzOHFwc1A5UXBHMy13MDRtd0pfZnc0UkJZblYzNVlpSlJ3X001LVFJR2Ft?oc=5",
+  "https://news.google.com/rss/articles/CBMi0gFBVV95cUxOWGsyWmZSZHI1OUZ4QW9ieVhVaVU4eTZvNF8wUzhuQ2hYR2Z3NzBVTU45MGhPZTk4T3lNOEpMWGg3UDBqUW10Z3dValV3SW5IOENpdmFfTHRZYWViWFZBT1g0NllHaUxWN245OGliRUZmamowZTR5VVRsbG80TXR6aTR0ZEVBREEtMVJLWmJIYVBDcVdjanc2VDVuTGM3Zlg3RnVDamw1blE3ZTNBLVFhMnB0TzNnczBuLVl4cUJJMXpOb0RRTmd6MzFRZFd4N3dVRnfSAdcBQVVfeXFMTWNKcVhvcmEtZW5pYzNNSlN1S0JkQkFpNXhieUM5SHNKNWo4X2czdm5mSWxhbUt4d1V6WmhmNTdsYVB4ZUh1TDlVZXJHVXJFSWJCYWZOZUJ4eWNJaG5tTGFUOGtrTENfekVTWi00ZnBDU0Z1TXl3cVB3dzlvYmhwSjRxSkQ1akhHQVRWOUp3SW5TcWVvM3duT2w5Y2NBTnZQSVBqc0FTbExnbGNxMmtxeVkyUTJxZ1FaQWlhRC1Bb0RWLVlrQkhCNnlnVTJDcVlDWjR3U2VSZ28?oc=5",
+  "https://news.google.com/rss/articles/CBMi0gFBVV95cUxQZU9zQUUycTh6SXBkQ25GQUJKTWJabmR3Q1gtYXlZWDJSUWk2cmxGWWRsUlZlSTdVNEtsdDY5d0hVakZ1ZkVDMDFiV2NrdjFaQnNVZUxRMjNESzluZFVBc0s3YU9pZjNZMVR1WEdIOVFrc2phbnRZYWpuYnRXY29Rd0FiVnItWTR1akVvNXhfWDAyNHJId040M2R0Q29HZTAwVzYxUl9OVy0wNWFrV2M3ME1Td25NUGI5cnhOY2JyQUVFS3ZOUGdEZVh1X2pQZWp4NGc?oc=5",
+  "https://news.google.com/rss/articles/CBMi0wFBVV95cUxNRG5CWVRZVE1PVGlMZkZUUWdsWl9scWcxTEFGaGtZVTgzZ3dXc0ZUZWhtandremNac1hzYmRjQXpndGZRTDdCSzFkeENBR0VtTXBramFmRmZnZTA1OFItbVFYV3BpZWczaXFuOWZYcUU4Z21EWlN1RGNFUldQWS1DN2VwbXFzbXZ2WWpFbHYtNDY3QTdtMlBqcGgxcWR1MTNiZEJUNDVWWk9PTG9KNnZDTENhVzlWY0xBcmtibGdadUxjRFByOVpkbndvQjhELWllNkZZ0gHYAUFVX3lxTE1lZGFNelZzYnMzeGd2ckhKVWw1YVZaZHFCOFNTUDBXeHBGMXhvandnMlhLUlJEWV9iNGNOVERQLW5kZ2R0XzRzNllKN1RQa1NOZnhMVWVQTFhGRURxaHN0bjUwdkpLZzRUOTh6T0RxcVpKZjlvRmM3MG95QVBtS3E5bklYQmkydHQydGxvVVBQQklNTnBrdzcwWTZlZWhuZzZWOEE1Q0E1bHBiRkI2V09FemRadkZjZlRyUUVjWFd0MHZqYmdVRTQ3T0o3UDZYY1RJWThhUFdSTw?oc=5",
+  "https://news.google.com/rss/articles/CBMi0wFBVV95cUxNS0hJaWd4UDNyZXFId1FLSVhReEwyS3ZDQ2ppZVdxQUFCMVhhNnd4QkZiSmxHVkh6QWhia0xxdkFiUklLbEZlN1hIeVpoQTRVdGNwZjF5cjZndVlIcDRIQlJMVjRFaE1TLURoa0lMX282dWcyZFFmN1FwanpNb2huSThxdTQ3cUFjOTdlQ19ZdTltM2pLaEtVSlRNc19FSUttM25mWkxhTVpVcWxWWUpSbmM0UWxKNjduZElMS0FsYjZjMkdOQm1qMVNyNWI1UXNSTmQ40gHYAUFVX3lxTE9qMGs2NTdHWGZneGFtWXBVT1Y1c2Q1cThGekRWSkppWGtvZEFtTV9VRExGY3JQSUdpQWdkbWgwUjE0cmROalIwSWVxakVtV2xQWmYtNjVCZmVwanEtVTdJSTBMUVd0ZnpzWEZXQ3dObHB6MVNwRVhqcS1LSWFiWFA2bHFtdFdTd1FvdEp3ZTh2dUdwZmk3eTFZWXc0MDZ0U3lra3AtZ3hlNE1qNFkwNUtob0kzSU1SRzk5Q2E4WGUtUk1HT0VXZkpYME9BQmZfNE5yOUhJbUQxRw?oc=5",
+  "https://news.google.com/rss/articles/CBMi0wFBVV95cUxOZ0hyQVhiNTFHNnk2VW1qWWpOMXRtaGIzSWQ1WFBIdkVYZXpLU3FNUWZLQjZvWnRIQ2pyNk9HU2ZtalNMNGJJMEZNLWZlZGVCeU9URjJLUy1yTnYwX0ZFcUNabGwyb21GTktST1RUbnlld0ZsR2ZqbEYwN2V2QmtRbEJIY05GSUZBelR4dDVKci1QLUlBR1pLaDEwNkJqaUc5RkdhNzRUNE1LVDE1YVBqWE9LdldSejY0UFIzbnZ3VW1GYmR5WnYtOVVNY3c0YVNJeFNB?oc=5",
+  "https://news.google.com/rss/articles/CBMi0wFBVV95cUxQT0swMlA2X2VCSnBhN3BWQWtiY3RuRG5TaE9PNHZiZGpuTWRQc1I4S1ZWRmpucDJpdEkzdDFXdVlCTk40RVpoanE1aC1vLTIta0ZTdGlsQjVDNGVNMGhCME4yak1PVUN0NUZMcmFUWk4tZ2FTWEdwa2JxbDFrY0JVa09tdE10XzBvV2NHYnhnVkxUczUycWVNNGpwbzdSNy1QYTIyWW40MmprTHRabkRXazRRLXVkMngwVGVKLWVCVFVGN2k4Vi1fVGxsVXVfYUNid29R?oc=5",
+  "https://news.google.com/rss/articles/CBMi1AFBVV95cUxPZjl0TDlnd241UFNvcmdodjQtYVEwWFNhdlBXNmdmZGNFSDlOSlE1elFVLWVSMUVUaVVmdVRMdkRlMmxUSnlaUFlqRmZuRm1qQVd5cWt2VzhodjBxVl8zVV9DaWIycjViOUNIbTJMQ3BiR0VRVFU0SS1mV2NYajg3WXFGWU5QZnZudHo4RU1SX3FCTXBmVC04WTVmUUNzd3RVVk0tTV9SZVYycDJBYW5tQTNKQ3Z4WWlhTDNybk9LUkdOUXUzU0pWT2gzdGRUNW8wWExwSNIB4gFBVV95cUxQU0gtdGQ5SHdiNEx3alFZRXBxYU5Od0dXcDFQNzJoSzNRSEc5Nm44WUpCdWFvV1h1WndtZFBuUEg5dHlxSnZ6YTdmMHdhbEdvWng2Nm5pMHhJVlVCN2VzTkRUbk1KYXpGdFRndF9DWVlzSWtWem0wS240ZVYta1FBMTBlM1NGNUZzZkdXekpPVGxjbTA1QzlfSHg0RzdDTVZHQlNzcVFral96OFAxQjgzdXZDYjlnZWY3WkMweFBLVnAtVGZnRUx4RXlCa3Y1N3FRTC05eHJlX1ppdHJWY2p4cUJR?oc=5",
+  "https://news.google.com/rss/articles/CBMi1AFBVV95cUxPd0NKLTM5X21WN3VYMGhnT0s2bTdwX1dkSC0zcHV0S2RfczhuNnBtaElJWjVMejVfZXo3eVRlclptdGtPcmsxQlVYcTNuRHpjQURuLW9DWG8tcXQ2M0FkTU8xa2NQajBDNV9lbDhxbzU5al9DaGNLNWlsZ0FYQkZwRkVwdW1iNmVXMDZzclpweFN2Q0NKVmNmV2NjdFdieHFTT0NpVm5ib0RmcGJOdDlVbldONUtwMVo0aXc4NjBJUG54R0RPT3A1dVIzV0RIRFNBNUxGOA?oc=5",
+  "https://news.google.com/rss/articles/CBMi1AFBVV95cUxQZGpUVjJFcm56YlFqZl90NmpvUVlnQWd6ZXNCTHZ4aTd3Y01wLWpKZVljcmR5Q19pLXRfNTdkRGNBUEd5MTJscW5zQmRGSEpWdXN6OTVPWEJwQ1FVMjJ3Q1l4WTZycGg5ZWZHMWpmM0R1TFRlczVUMGRlZUJnRTRZRnZkSW9JZFlaS21ORGtPRUhHVHgtQmVPdExVNHl2Q3VjNlBpNmVxbnJ5VGM1NjdqUkdySVQ2Y2xkb0ZtVE80cmhXV0lMenJkbnhmdDBHbFcwRHh1Y9IB4gFBVV95cUxPSFN0WU5kMkxON3lVQlJtSHRPVEpQTS1yOEEtRnJNODVfc09lYmxlZkxzNWVSaFZCQTA5WHhOX3ZfNG14b1ZVMmRlNTZpdUF2cFhlY1BTdC1YbHZ5NXdHbkJxam5QWWtnUzVxR2otR0FjRjJuWWxfU0F0Y3dnZHZfSG5YUmVEeFNYMU5NamJadlhLQ29jRF9QMGFySTh0VGZZNGI0T0JOU2tnekZaVW5wa3JETWpvejAxbGd0LWw4QlZhWlQ5SVVSQ3RsNE54SDRFR0d0Z1EtOURGRUpJc2tpS19n?oc=5",
+  "https://news.google.com/rss/articles/CBMi1AFBVV95cUxQcVZkYXQtOVFMWWlabFBVd3p0UWhSWUVNWWV5c3dSakZHMlFTN3FkQm5oOVoxc19nXzVWajY5Rk91VmNtSEJrNU45cldtSE0wNk5XaUJxSmdwTGg3aHZGdkdhd29hMnJNWlBiS3N0eUE5Vm4ycmxIOFgtTnNZbnhITHpqdzJnUy1tZVZETkxWUVJGemRCM0VyYUtUd3ZfOGxxSlVPd25DVXBxMDdseERCYnFVdmFkeEM0WktQYVNXZGE4ZW9KY0h4U0xUNVBoaUxSZjdXQQ?oc=5",
+  "https://news.google.com/rss/articles/CBMi1AFBVV95cUxQem9CbDhnM0pya3ljb3E0QU55RmRIUmhyTU5Qb0pkWnREWlVkQlFoVTZHdld0YWVYcjlvZnBYUjNxN294ak9tVTNDbnJZSTBQTUdVNmVqZmFnanFOTTg0ekRrUUtiX2ZFVVZ6QU5PWU5TcHV6NHhmY1E1SFJzZFozME1KY2JlSmFYMXhzdVo1VENJUUx6Sm1zbG9SS2Z0Mm5xdHNPUlVQWnZZNzNMcWc1SWc1SVZ0QW44WUpCekdpVC1zVk91YlV2WDd6amVtOVZqQUREWNIB1wFBVV95cUxQSHVReDk4Q0o0Z0pmTUpnejB5UFlIQXVNeVh1S1hfcFE3aVI1c2FDYV9WSmxFdVRYYkRMREt0ZUVTYkhiRGhrTDRseHNPZkVhaFMzZUNDOUdkeFFaQzR6dGREUk5YSlFWYVBGMzcya3RUTUR6RGRESWVGUHhJVjZwV0d5Q0hRN1VjbFBkZ1dBMkJYMHU5T3BoZ2l1cjh3NFhDaTlzTHh6ZUp0NE5UeWl1TW1CbXV2NzNkdnlnMDNVSURRVUNkbWdaWFpUcFp5SGpmUlBOMnlESQ?oc=5",
+  "https://news.google.com/rss/articles/CBMi1gFBVV95cUxNQy1TRFdKTUJ4Z3RNWUN1UW1BYlpFb0hJNzdXNWkzZi1aTWU4TllmZVlGaEJUaW96cHprZHlnRXdPNG1WTjZDZTI1Rkl2eEk3N0c1R1lTajBIVVBmVFFLSmRxVy03NV8ycFR5Z3g5SWR3QVd5RDZXQVg0eXl1WnNfcEV6NjQ4cmcwZjM0eFNhcTE1elJsRDdDck9wQXZLQnJFa1V2LThFaUVxdE9zd1E1WG90TkN4UmM1cGZPRGZ4UWZhdHlPNW1QU050a1I3X2FTbU9wbjJR0gHbAUFVX3lxTE1vZ1JXaHBidzNhdjA3S3llSTFBMm1qTDI5T3NvWEV2WmQtdnJzMXNkZS05VjlrQlRYdVQ3WDVyQ1N2cWdtQ2dPOWlSNmNVYWhabjBnMnRHWDFxYlZSZ3BVbl9VRy1Dc0h0QzItZEhMUTJQTDFZcTlhUnpkUGhzel95UTlaY2N1eU1wa1Q2UnJ2RVdfT1gycTJaRlFoUUpzQkhEM3ZhSTljb2pwaDQ2RmpNUDJSbnBiOTJRWUlwR0MyV1ZYQVlOVjlQYkkwSkpwTm9TbEFrdGhiRGs2NA?oc=5",
+  "https://news.google.com/rss/articles/CBMi1gFBVV95cUxNWHl1OUFJSmtiR3hKMDhRd2gtQnBaZUxyY1VaUjJmUWFhOG54cE5YWl94VENHY3dwVXVEMWZ0aEhERkRnME5rb1pDUXBwbGJYRi12SVFGOGFfUDdSQ1ozVUppaFJEaTcwRkl3SVpVOWZfV1JRY1VmaWVEQll5dlJxN3lIQnVjRm5EWE0wRjBEY2NZWE9sQUpjeTJYM2ZKV3pRekJ2UkFpS2R0cGhtYkJ5RWtidXhYT05mTXFpNmd4VWhKTExXRWdabVh4MEJSMVhjRnJSRk1B0gHbAUFVX3lxTE1tN2FuN3NIMS0xMnczYzN4LTRlck80MjZQOEN4S1dRQTdBNzhISld0OU5RQk1EVy1Fd2g3alN6WkE0d25RQkZfdTlGNnVnZGtIWV9PVllTcW91VXJReldBakp5M0lmRVFJcWoxMUNlcG0tR3JNZHk0OXBuSFNqazZ5TFV3Q0VBX2lpb2pxSkhheFhFUDlfcHh5eUJoNXF2WVBRVHN6d1BMMldRQnNvYXNZd2hDZ1BKRFpfbHVZaWRzTVFjZlpVYVJJY0owRno0SnIxWEJhUWNPUEFUNA?oc=5",
+  "https://news.google.com/rss/articles/CBMi1gFBVV95cUxQMDJpSzEwNEpEZDVGSkdya2t3Z1BzUDBuVjZmc2pseGE3ZWFMODRZYk9EdkVCaVJKdkUzb2xHTV9JOWVNMEF0QVQ4M1hrLU5jWkhscVZ0VXdja05BTmZ4M2tlSzJubHBHcno2ejlaZ0ZHMXlLeFBHdVR4ai1qSmpHaWtRNHFHMnRuUjlybDRwdFpmaFBvanBJbDBZa2Vxek5zUkUyZWVDRUkxdl93UFY3MEM1eDdlcHMwN3N0a3dnSGpQWG9uaFNFdGFvTUxnMjFoNDVOWmdn0gHbAUFVX3lxTFBaOGZIN0M5X0liVEpPcHNGVEJTV1AzOWY1UXExaWNrbnFvQWdHd1dCd3hNd2FhQlM4NnlmQldjbHZGTnFwNE02S0dUYjdfNmswSGV0Qmh2TmwyVkNQR1BlTnhtNlhYeXhYT3BOcFBSWmVxbzlNMFBvWVBXVVdwQlhFbVNtaWpCRkVCdlNtR1ZmaGczVDlTaE9VVGtBSUJwd1ZGX3lpdTVKcjRrUFJUYXVZY2lYLUI5emw2UXoyZTFtd2hTOEs0QXpGNktfdHNVQ09EeTZLR3IwQVRHbw?oc=5",
+  "https://news.google.com/rss/articles/CBMi1gFBVV95cUxQQlkzVFRuOXRWSk1FLVR3RFNCVFlNa0dYTE5UblpZM2E2emNuQjRwcUJDV3FlR1QxTjRrMXJlUExLM1JPUGlfN1c2M2xEN2ZSYS1RTFRvLWM4TGxWb01yQlZQWDRFbkN3cFpNOVhpbGVtQ3ZhT0VvdjFvdkxnTEpXVy03b3ctN2x3UlJoZzNOczN2ZjI0MXZ1emxIdlVKMjBZUnd3VzJZZFpfVEFKRUxpUVhQTm13eGRKRDllZS1UdndXeXdVUklEZW5GMXRyWUxjc3NzTjdR?oc=5",
+  "https://news.google.com/rss/articles/CBMi1wFBVV95cUxNRUFMQ01xTmxIR0Q3ZmExR05XeXdzRmEtUEM5cVR3UmwxV1pKOVA1RWNQUXN2UzRvbnFJVFUwd0V4SkthYno4aHViMFZqcllXbzIzNlR6Tl9UNlhPNXZLSmU4cHE1QjloVm9UUzA0RUh6Q2pod1V6QVdRV1dIZ05oTm9zSTEzYVNGbTJtUGxNTXlMRWxFbndVUXI2TVF1T25PbmpJR2o1bms2MVJzRTFxcjZIQWZzRDRHVnRDeUZ3NzJDaDBVM1k2WTFaS2FmT25Na2VFeXAxQdIB1wFBVV95cUxNRUFMQ01xTmxIR0Q3ZmExR05XeXdzRmEtUEM5cVR3UmwxV1pKOVA1RWNQUXN2UzRvbnFJVFUwd0V4SkthYno4aHViMFZqcllXbzIzNlR6Tl9UNlhPNXZLSmU4cHE1QjloVm9UUzA0RUh6Q2pod1V6QVdRV1dIZ05oTm9zSTEzYVNGbTJtUGxNTXlMRWxFbndVUXI2TVF1T25PbmpJR2o1bms2MVJzRTFxcjZIQWZzRDRHVnRDeUZ3NzJDaDBVM1k2WTFaS2FmT25Na2VFeXAxQQ?oc=5",
+  "https://news.google.com/rss/articles/CBMi2AFBVV95cUxNS1FUS0RXSHVvWjRrb3R5Vm9wM2R4SVdkZklrZmVaa0l1YXQ2bmVMNkdJVjFxdkFaMHpkSjUwSjRwekd6dVVJX0puX2RhSndnQUlzNTE3ZnVSWi1hRDFWdkl1RFJNSXdKczVRREh0LXhGQUtPNkx0YTlBUXRya0FHQkdWV2pKc0E5RDBWMVgyblFkODg4LXJRc1gwU290cEFLVVFNSlVlZmtXMFVxVjdfTzJaeGw3bkxCaFNoUnlMQW5RdFFpbC1YTW5oaE45dERaNl9KSUdzUWHSAd4BQVVfeXFMT1hTQ1dPU0F0bklDNERfMVNXX0hQYVNTTy15UC1pTTIxRlVWVUl4TmJvWl9RUno3eGNXQ3ZsMUoyRVNsNDhGWFhSeFRoY0Y1a1JYV3FxbFZiRVMtaXoyc194SGQ3Q2lZQUpBdy0ycW01NkRvT0RSWUktUXVYaW4xcnNIUUVLY0Y2azFEYWxYem1hVUlkRllOSlNzWkFacWdaekVWb0cwUURUYWFsWGVPUk1WOXJMYVBWelV0QlczaFlZUkFjeXdFTDBkZWxMNU9WVXJFS3lGVXd0bWNydE53?oc=5",
+  "https://news.google.com/rss/articles/CBMi2AFBVV95cUxNdDVod1VabjhjQ1ZLSzJ0WmZ0a0lQODdHam5OeDFHVDJPWWlzZE1HRTIxOWpLaC1kMTNudkpSdF9KYlo5UFFScTFiMlJJX1Jjblc5Y09KOU1SODVzQ2loOTh0YmNKbnFSSWVoemlSTkhBS1R2NnhKdEl5WDdqY1F6VmRkLUFUbTFLdmxvc01XT1Bkc2JLZzZoaXFEdUJWWGlVa0p4UVdQd2N0Q3pnZThEQVp5SXhvUW1oNG1xRzdSeGtDR2ZPeDExLXNlcFBJTVNLNlV0LWhfZ3fSAdgBQVVfeXFMTXQ1aHdVWm44Y0NWS0sydFpmdGtJUDg3R2puTngxR1QyT1lpc2RNR0UyMTlqS2gtZDEzbnZKUnRfSmJaOVBRUnExYjJSSV9SY25XOWNPSjlNUjg1c0NpaDk4dGJjSm5xUkllaHppUk5IQUtUdjZ4SnRJeVg3amNRelZkZC1BVG0xS3Zsb3NNV09QZHNiS2c2aGlxRHVCVlhpVWtKeFFXUHdjdEN6Z2U4REFaeUl4b1FtaDRtcUc3UnhrQ0dmT3gxMS1zZXBQSU1TSzZVdC1oX2d3?oc=5",
+  "https://news.google.com/rss/articles/CBMi2AFBVV95cUxONEdIZ0VwaGxubUJfcXBfUGhJTnliUTV0ZUU0SFNKdmlqd0VKdFBOSUdqZUFmLWRvT3N3Q0ZGZGd2a2FoejlrLXZXX3NOaThwX2RnbzFTcUREQ2FjOTdnQ2dlQzZQWUg0R1U3ejZJSTBudGNOWWxWY2pEanpuYllLZUlDNXlmX0VqLXJyZnBHSF9kRTktZlpVbmpMUk5zNzA3ZlBrZkZiaHVvYko0YTJGWl9iV0NLVWhhRkZMWDYtS0gwODhkV3NFYU13UWVhNEdwT1AzQkxxTEw?oc=5",
+  "https://news.google.com/rss/articles/CBMi2AFBVV95cUxQcEpFVks5QWFQR3hpa2NXQnBJQjdsNF9PaW1uUld4VHItaFB2OGpQRGxmYllKTTB5QmJVLU4wclhmNGJ5ZTlQdnN4SElCMms1Y1R3ZVhRYXA3WWZqYWdYTHphOE5JeklkOHhFSWZVYi00VWZEU1RNQ1N5c2o0SXUzVmZCVEFlaXotYWtEU0doOWZ6MW10QXhIM2JyQ1ptV3NPZDRLWll0dHRJWlF1b0JfODlrQUlwV2lQblVLRXdqYVp1M2RUX09qUm9TTVVFSmo1dVJQRFRjTmk?oc=5",
+  "https://news.google.com/rss/articles/CBMi2AJBVV95cUxQVnZ2WmZZU3VCa1Ayb0JPTjdzeElZVDZIc3llSmJ0VWxTakJNU21ZdUszTmItTUxGUHdUT0dqUW4xbFhyaTA2RjZqMFAyQ0pIYldlQ1J4aTdmV09nQkUwd291MW5DOGtIQ2ZUODRkdlpjRmZHRzNxOXh1aU9paHVZR2huNHowSmJ0VUpkWDJhX0p4SmpwLUNHMGpGNGV0dW5WQkFBTFRhSUY2LXRNUWxoNFF2WllNYXEzTEt1Z1hVQ195T3phM3lxT1Bfc0ZJUUJkZjN1NGZRRndLTWxPVFA4RDMwcEEyMlpJQ0pLRHQ3TEEzcXlRajQ1TVpPNUQ3WVlNUk50Qjl6RGNtRGY2eFJ4VWo3WEtWV0dZbEkyR0hQXzJpaDhFZnZvUElsVklsOWp4c2U3bmxueHNRSG9VVGxPS2p4aWFXRDZsamoyVXFkT2VzWjhJdzUwSw?oc=5",
+  "https://news.google.com/rss/articles/CBMi2gFBVV95cUxOaC1sRVBIdlJKRXRwLVp2Y2RtYjVoUFRoSU00anpHOHdsMzR0ZUJfcmoybHF5UG5PRW1uZVc0VTdIV1hJWVR3R0t0cGljZDlkNGppY0VjaXVmRlBQMWs3alMxS2NCbjRpakVTbzVoOTRZYVdxbmRJVmE0NnZ6MGdHM1VYUmhCMmlERHFrX3BnR1lhSjJFY1htZlhvbWxUWERzWWJCVGh1WEhJeUF2UW8xVm50ME1rNDJ1Y2pjQVp1dG1UTVd4dEp2aHZPdE5jMWI0ekNPNzhnY1V0UQ?oc=5",
+  "https://news.google.com/rss/articles/CBMi2gFBVV95cUxPQ1ctbVB1WXFoWlZWdlUzellJc0l3Zng0WDVkRjZqRm1VY3Zrb0w2WWtZV3lZOTA3Y3ZvWWlRdzRwX1RYSmUwYTIxT2RWbHpwOVlOZi1BYWxYWTRGOGdHbmJ4YjZ5eHVGcGZJaW1KZmdEYzJvMi1GbVpQcFlZRWN4V2w2NGduYTltNVZEei13YkhqdTItYktWNE4wNGRscjk2V05TMXdJUHM5eUhjZWRFMmk2Ym1JU1dES3R6dWVRMV8xakUwaXdXZUVtaHc1c2U1b1pRVVJjM3NXQQ?oc=5",
+  "https://news.google.com/rss/articles/CBMi2wFBVV95cUxPUUVRdWdTMk5LU1p6U3VYM19XMFJ5QVpONHBFWmdtNkNnMTY1UVdjOWZJRjlJRTlEYW8tV3pKbHhrS3h6aEZDcHdvczhmZXdtX1o5MGNXSEZxaTN3Y1Z0WGtqZWp1VkpDZkg0WHlxVGtXUTlpS0d5S29MQUpvTW1PQWQyTy1qVWRpejNwQkRrR2xFV0JpeWVMMGh4V19ReVRXYUd4eW1wNUppVl9HdmpQU0FMZVZISG41Ujl3TjF1X2RkYUJXZ0tXZV9xWTdMcVpDRFNQQ3FyQ2FMM2vSAdsBQVVfeXFMT1FFUXVnUzJOS1NaelN1WDNfVzBSeUFaTjRwRVpnbTZDZzE2NVFXYzlmSUY5SUU5RGFvLVd6Smx4a0t4emhGQ3B3b3M4ZmV3bV9aOTBjV0hGcWkzd2NWdFhramVqdVZKQ2ZINFh5cVRrV1E5aUtHeUtvTEFKb01tT0FkMk8talVkaXozcEJEa0dsRVdCaXllTDBoeFdfUXlUV2FHeHltcDVKaVZfR3ZqUFNBTGVWSEhuNVI5d04xdV9kZGFCV2dLV2VfcVk3THFaQ0RTUENxckNhTDNr?oc=5",
+  "https://news.google.com/rss/articles/CBMi3AFBVV95cUxPRVRzWEJWUE53UVRBWnBUeUdja1pLY3hBU0FXcERUdXFacEpJeWVoUmxwMFFPR2w1ZE5CMW56SmIzRTUzaVJMZEt0X1N3enk0a3RUbXdiYU51dlo3dGJOUGVEVFg5V3dxTW5ERmRPWVRTNVI5dUl1RU5WXzJ5aWM3YjEtbEFmT2JaNmg5TEVLa3pTX0E1V2w4VHcyVTJwb2JZZ01VVnVBVlQzNm5kMDlJemU1UEJ1cWFHWkFMWmRvak5TRHQzaWlxdTMxdHI3NWlncTUxd1lUVl9ISnJz?oc=5",
+  "https://news.google.com/rss/articles/CBMi3AFBVV95cUxPd3QyT0tValVLenVsQ0dLLVhtUGFSNlMyN1hxZGMyY09uRnF1QVJhZHBNNEQ3VEIzQXI0NWZBZDh4X2lLdVVaVHo1MkVDaUUzTV9tX3VubnZTdFdIU0JkTnc5MXQ5WlpselM2WlQwd1pUZjVRdThEOW5ZR2o1WmxEMElrNmpMcEM3VkVDaXl5U3kwZU5idnR3Q3Q0WjUwU2Fod09xRGwwMEV0bHZmWmVnd1FnV0hvVlBNdFhuT2Y0V3lPdS1hMXNsOEhlYk9HX2QwR1JTcmNOMmJWcGVB?oc=5",
+  "https://news.google.com/rss/articles/CBMi3gFBVV95cUxOYk1LNExFU3NKQjY0M0x2VTFEQlRLc3FrZFR0MzBpX0RLVjJ0aGVHdVFYLWJoU0FvNTdqR2ZaTG4zYmJ5ZGVZZlF4Q3VaVlp3THV2Slk1anpySjdRYWpFRUNHVUZuOThuZWVOb1NOOGlpd3BSdFhGTnFiZ3B1cHBnUUx0WkFjVkhqVDVyRkZ5VmRuanBCelY2ZnhMZTZSNHVKZWlsZUJaaVNpZDZRMVpodE5GVFAySWNfekE1dl9KNVJFTTBpUUcxRVFwTmRjNjdIZFExTENzU2hnRDBtZnfSAd4BQVVfeXFMTmJNSzRMRVNzSkI2NDNMdlUxREJUS3Nxa2RUdDMwaV9ES1YydGhlR3VRWC1iaFNBbzU3akdmWkxuM2JieWRlWWZReEN1WlZad0x1dkpZNWp6cko3UWFqRUVDR1VGbjk4bmVlTm9TTjhpaXdwUnRYRk5xYmdwdXBwZ1FMdFpBY1ZIalQ1ckZGeVZkbmpwQnpWNmZ4TGU2UjR1SmVpbGVCWmlTaWQ2UTFaaHRORlRQMkljX3pBNXZfSjVSRU0waVFHMUVRcE5kYzY3SGRRMUxDc1NoZ0QwbWZ3?oc=5",
+  "https://news.google.com/rss/articles/CBMi3gFBVV95cUxPUmxiZF9qaklLTDEwM2JfbkN2WWZOaWpMb1hUSXl2SEhEQ1piUnEtQkkxVzFzNU1IQm5ZMFZBNTd6bHQ5RlQxdVlYWW1xdzMwVlU2VE5Meldkd0pvMDZhMjFXV2hCT0t4VjlSRmNvNU45WDRjTUZ6NldyRDBsM3hJRmdhVTBsNEVKS0FJdkpjSllseElzcFRIcUIxMFRiQ1p6R2Y2TDRqeHQ4MEpNU0pBQjh4c0lNQlpYMXExYURpdWNrbU1KaTFsX09XT2lfT1haQ19QakRTVlE2Mk1JbmfSAeMBQVVfeXFMT2hzR0dwdF8yVi01d2VoMGhrTm16bGNJOGhTU1I5TVVaWERFQ29QVmNWc1NsNlVoUWl2S2N0ZWRCZmZNQkJSTzV3UDZkRGJROGdlSC1udnYwcUlsLUluYy12NGxSXzdYb0YzZ25UUE95X1NHYmJUajh0Q3lzakR2ckRnaEVWX1I5eU9lNVBweGFJeFAxWENLNGlCX3UwcVJsTUhWakRDWkxrNUoyeHFPODBYMFVUQ2lGYXVQczZlRjA5dGxQZVE0TEFrWkU0YVg3UGZTc2RzeGZDTWhDOU1oWDhEN00?oc=5",
+  "https://news.google.com/rss/articles/CBMi3gFBVV95cUxPVnM0LTlmYkdVeElzUmJLN05QYnhYSW1zLTVlNGV4Z0hnRjdZM2lybFd1U2Z3UlZoUXNteGFFMV9wMDl0ZHdUSHdjclRGbWtHUlZoZkRHVTQ4M1dpUGZmeGV3WExqeDV0dXhGOHpNYnI4aWtPOGJQbUx2M2hhYzdKSDJ6ajFtT01OM3JxZGxPWjE3UE5DTnlsVkU4LVhpYTJNc2Y3MGdLWUdfZDBMaDZfa0FzaXI0VWxZVXNPQlRCeGZ2T1NNS2t5OFZJeGlnQ3luU3JJMExxWGFpbVdIWFE?oc=5",
+  "https://news.google.com/rss/articles/CBMi3gFBVV95cUxQWFlwNkJsZlpKOFUtZEpqQ0xlME5KSS1ZcDF3TTdGamtHNDNjRlV0N1YxRTNKWTNIa0JtenRaWVZvNVB1TmxYbW1OTlFQWFhQSGN3MUUyank4QWszUndvZU5wSE4zTjdWcFBhX09MdjFGRG5zWU8yOWJCdlYtTWFDcmU4bzROaXFIYVZ0ZGQwZ21DR25NRDlZcHAxdTdidjhTazNTakV0NVBxNjkwQ09LTGxEMXJ6Q3JrVUZxT28zYmhXSjlpekxlS2JuYUpHaGxhQWNtY0xMWGh5enkxd3fSAeQBQVVfeXFMTkl4UWRRZVBneHNkMnBHYnFJVW5VS0FqcHZiX3ROU0hRaWpqMFNORzZ2ZWFUMFhfSVJjV0lJbFcxd2FlVEJCSW81eDhGbE5tWXE0Ql95eW4tRy1sdlpfZThRa1Q5UFRMS2pWM0tuNUhLYldpTVBJUTRoYlpBRGV4Ymo5WllITjBPb3F4aldQV2RZamY2UWEwbUJWWlZpR29fTFlna1JBNW55Skl6RVJGUzJZa3JJMEdGd3pQTFdTeEF2QkNROUZoWWthM3JrR2Z5T3lTMEYxUkxOaHVxWmM0RkxNd3d3?oc=5",
+  "https://news.google.com/rss/articles/CBMi4AFBVV95cUxNbjJ3U0d2akh5UXo4M2FKY0hiTVY4TEFwNkxFMnVDcG4zNnI0T0J1ME1jSktZOWlLWmdVYkJxMWFSVTItYTRCNXo1RGc1SlVfdW9fcXJHaFl6QV8zdEhzcUI5b3c2Nzd4b2FqQjF3LU5zMlpmN1Q0T1JFN2p3SldGMmNYaEhNMHhQcElLTmJyLTN2d3BxVUFZOHlhYXN1QjhpTkZ2WkhxdThGUzdESmM3S1pORXh2NUtJakFlQ1hGWUViY3k1dlFKLXlZYzRGUFFSdDJGS3cyV3YwSVNDYjlXRQ?oc=5",
+  "https://news.google.com/rss/articles/CBMi4AFBVV95cUxQSFZfTVJlbVBHSzdMVUtfSGdJdTl0OTJnamJRekZMTVZuLXg0Q01MRXZUYjVsY3pQMHo1azFCVVhBRy12T0tod3RXTVNscGdQM041RHFGOWpsa2Rhd0Zzck5WdzkxeW9uQmZZMVY1Q1AtcEFNWHV4ZlpYSWUtb0h3Mi1VRlhqZzhxNW5NaXB2MGE4RXNEQXJFeDBxVGNfTVlSNDFWQTBOMV9ycXdBZmhTMC1mWGk1MnItNUtrNHpSVzdDcTVuMDdNY0NtLVlZS3E2X2VUYzJCLWxaWlhVbDJWT9IB5gFBVV95cUxPYl9oWmZaSjJ0WG1MVDlEdVdXOGRFVkRta1BzRURhQVJpZ1dyX0NwM1dYc2pEa08waS1hRE1kU01WY1ZOd2ROd1hlWVdLT2ZLdWpQNWIwOU5IQTk4VWxDd0lLMjRia1hqenNMeGI0eXU0QzU2bkRhRFIxZ2MwVnlUcnpMaGtZWFhOT2NlNmtZVXNLS1VHLVNjWTlvQTFOenB0Q0lUcW5DMEtrUUlXLVRrVFhvMTd1b1VmS0RHeUxlYU94OGJwamUwa3dXOGxDekU3UDRhbUtQWlV0bGRBQ1ZiZU9RcnJCQQ?oc=5",
+  "https://news.google.com/rss/articles/CBMi4AFBVV95cUxQV0Q4N2Vpc3A5TzNTNDVERGx2Y0d0QmxVLXU0ZjljT3pRbkJwUjNCMnYxU2RXcUlEYzYtZUxVYWQ4aW42YWhyNGNvRkx2T1ZjbHhHbDVGSWNZRTg0dEdFRGRuVmU4b3JHVEJFQ1NaRFZsTElxcDFDUlJIVnJLM1lOQTBvM24wYlRrVkdNdEcyN2xGOHJzRFlDVGZxZUFTc2RQdVlCTHF0b1JBUUpVbkRkQ096Q2x1cDN4RE5WSGJpTDlJMnBkckN3OU1pRDFSMS1nOEg3R2xGSW5xcnNqSUpWSNIB5wFBVV95cUxQN2RiQ0ZWTVBRSmZoNlg5a0hLZ3NhRmFaWkFyZThPSkY1VWYyU2Y2d3hnQ25nYUhqYWZILWIwTzBTZm9fNzVQb3lTbzNQd05saHZQbnAzd1ZEME9XSXloTGpIdWM2VDdQaVRidmZPYWlXNks4UlhpekVtZFd2N1ZIVkdpYTJwWHFhUmtsUnNhNnNCWUpxLTFVV3JibHZTN2E0ajlDeW1RcjNLaGFueEtkRWVrTDliakpvZjFLVzNHRHNPaGFIWlhXSU1VSVFwdXRjRGRYY2JYby0yQlVSOVB5RzV6UmF1azg?oc=5"
+ ],
+ "classifier": "llm",
+ "stats": {
+  "Economic Times Markets": {
+   "ok": true,
+   "n": 50,
+   "err": ""
+  },
+  "Economic Times Stocks": {
+   "ok": true,
+   "n": 38,
+   "err": ""
+  },
+  "Moneycontrol": {
+   "ok": true,
+   "n": 0,
+   "err": ""
+  },
+  "Moneycontrol Business": {
+   "ok": true,
+   "n": 0,
+   "err": ""
+  },
+  "Business Standard Markets": {
+   "ok": true,
+   "n": 18,
+   "err": ""
+  },
+  "Business Standard Companies": {
+   "ok": true,
+   "n": 11,
+   "err": ""
+  },
+  "Mint Markets": {
+   "ok": true,
+   "n": 25,
+   "err": ""
+  },
+  "Mint Companies": {
+   "ok": true,
+   "n": 19,
+   "err": ""
+  },
+  "Reuters India (via Google News)": {
+   "ok": true,
+   "n": 29,
+   "err": ""
+  },
+  "Google News · order wins": {
+   "ok": true,
+   "n": 14,
+   "err": ""
+  },
+  "Google News · results": {
+   "ok": true,
+   "n": 82,
+   "err": ""
+  },
+  "Google News · M&A": {
+   "ok": true,
+   "n": 21,
+   "err": ""
+  },
+  "Google News · policy": {
+   "ok": true,
+   "n": 32,
+   "err": ""
+  },
+  "Google News · markets": {
+   "ok": true,
+   "n": 32,
+   "err": ""
+  },
+  "Google News · stocks in focus": {
+   "ok": true,
+   "n": 67,
+   "err": ""
+  },
+  "Google News · ratings": {
+   "ok": true,
+   "n": 8,
+   "err": ""
+  },
+  "Google News · bulk deals": {
+   "ok": true,
+   "n": 7,
+   "err": ""
+  },
+  "Google News · FII DII": {
+   "ok": true,
+   "n": 6,
+   "err": ""
+  },
+  "Google News · IPO": {
+   "ok": true,
+   "n": 29,
+   "err": ""
+  },
+  "Google News · SME IPO": {
+   "ok": true,
+   "n": 6,
+   "err": ""
+  },
+  "Google News · IPO dates": {
+   "ok": true,
+   "n": 51,
+   "err": ""
+  },
+  "NSE RSS announcements": {
+   "ok": true,
+   "n": 183,
+   "err": ""
+  },
+  "News classifier (LLM)": {
+   "ok": true,
+   "n": 2,
+   "err": "groq:qwen/qwen3.8-27b; groq llama-3.3-70b-versatile 404; groq openai/gpt-oss-20b 429; groq qwen/qwen3.8-27b 429; groq llama-3.3-70b-versatile 404; groq openai/g"
+  }
+ },
+ "rawCount": 356,
+ "prices": {}
+}
