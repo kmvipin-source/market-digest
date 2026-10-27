@@ -534,6 +534,7 @@ def fetch_52w():
     today = d.strftime("%d-%b-%Y") if d else ""
     header = lines[start] if lines else ""
     log(f"52w header: {header[:160]}")
+    sample = lines[start + 1][:160] if len(lines) > start + 1 else ""
     for row in csv.DictReader(io.StringIO("\n".join(lines[start:]))):
         row = {k.strip().upper(): (v or "").strip() for k, v in row.items() if k}
         if row.get("SERIES", "EQ") not in ("EQ", "BE", ""):
@@ -545,7 +546,7 @@ def fetch_52w():
             highs.append(sym)
         if sym and today and ld.lower().startswith(today.lower()[:6]):
             lows.append(sym)
-    stat("52-week lists (NSE)", True, len(highs) + len(lows), (f"for {d:%d %b}; " if d else "") + "cols: " + header[:90])
+    stat("52-week lists (NSE)", len(highs) + len(lows) > 0, len(highs) + len(lows), (f"for {d:%d %b}; " if d else "") + "row: " + sample[:110])
     return highs, lows
 
 def fetch_flows(raw):
@@ -569,7 +570,8 @@ def fetch_flows(raw):
             if d: parts.append(f"DII {'+' if re.search('bou|buy', d.group(1), re.I) else '-'}₹{d.group(2)} Cr")
             best = " / ".join(parts) + f" (per {rr['source']})"
             break
-    stat("FII/DII flows (news)", bool(best), 1 if best else 0, "" if best else "not found in headlines")
+    sample = next((rr["title"][:100] for rr in raw if re.search(r"\bFII|\bFPI|\bDII", rr["title"])), "")
+    stat("FII/DII flows (news)", bool(best), 1 if best else 0, "" if best else ("not parsed; e.g. " + sample if sample else "no FII headlines"))
     return best
 
 def fetch_corp_actions(days=7):
@@ -674,6 +676,27 @@ def news_lookup(sym):
 
 # ---------------------------------------------------------------- LLM providers
 GEMINI_MODELS = ["gemini-2.5-flash", "gemini-2.0-flash", "gemini-flash-latest", "gemini-2.5-flash-lite"]
+_GEMINI_CACHE = None
+def gemini_models(key):
+    """Discover available Gemini models for this key; prefer flash-class, newest first."""
+    global _GEMINI_CACHE
+    if _GEMINI_CACHE is not None:
+        return _GEMINI_CACHE
+    try:
+        r = requests.get(f"https://generativelanguage.googleapis.com/v1beta/models?key={key}&pageSize=100", timeout=30)
+        names = [m["name"].split("/")[-1] for m in r.json().get("models", []) if "generateContent" in m.get("supportedGenerationMethods", [])]
+        flash = [n for n in names if "flash" in n and "tts" not in n and "image" not in n and "audio" not in n and "live" not in n and "embedding" not in n]
+        def rank(n):
+            m = re.search(r"(\d+(?:\.\d+)?)", n); v = float(m.group(1)) if m else 0
+            return (-v, "lite" in n, "latest" not in n, "preview" in n, len(n))
+        flash.sort(key=rank)
+        pro = [n for n in names if "pro" in n and "tts" not in n and "image" not in n]
+        pro.sort(key=rank)
+        _GEMINI_CACHE = (flash[:4] or GEMINI_MODELS) + pro[:1]
+        log(f"gemini models: {_GEMINI_CACHE}")
+    except Exception as ex:
+        log(f"gemini model list failed: {ex}"); _GEMINI_CACHE = GEMINI_MODELS
+    return _GEMINI_CACHE
 
 def llm_json(prompt, key_groq, big=False, timeout=120):
     """Ask whichever provider is configured for a JSON object. Returns (dict|None, provider_note)."""
@@ -681,14 +704,14 @@ def llm_json(prompt, key_groq, big=False, timeout=120):
     cf_acct, cf_tok = os.environ.get("CF_ACCOUNT_ID", "").strip(), os.environ.get("CF_API_TOKEN", "").strip()
     errs = []
     if gem:
-        for model in GEMINI_MODELS:
+        for model in gemini_models(gem):
             try:
                 r = requests.post(f"https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent?key={gem}",
                                   json={"contents": [{"parts": [{"text": prompt}]}], "generationConfig": {"temperature": 0.1, "responseMimeType": "application/json"}}, timeout=timeout)
                 if r.status_code == 404:
                     continue
-                if r.status_code == 429:
-                    errs.append(f"gemini {model} 429"); time.sleep(5); continue
+                if r.status_code in (429, 503):
+                    errs.append(f"gemini {model} {r.status_code}"); time.sleep(4); continue
                 if r.status_code >= 400:
                     errs.append(f"gemini {model} {r.status_code}: {r.text[:80]}"); continue
                 text = r.json()["candidates"][0]["content"]["parts"][0]["text"]
@@ -938,6 +961,8 @@ def groq_brief(doc, key):
         rows.append(f"{it.get('category')} | {it.get('company')} | {it.get('cap','')} | {it.get('pct','')} | {str(it.get('fact',''))[:160]}")
     prompt = BRIEF_PROMPT.format(market={k: v for k, v in m.items() if k not in ("sectors", "breadth", "note", "dma")}, breadth=m.get("breadth", {}), sectors=m.get("sectors", {}), rows="\n".join(rows))
     got, note = llm_json(prompt, key, big=True)
+    if not got:
+        got, note2 = llm_json(prompt, key, big=False); note = note + " | " + note2
     if got and (got.get("regime") or got.get("leads")):
         stat("Morning read (LLM)", True, len(got.get("leads", [])), note); return got
     stat("Morning read (LLM)", False, 0, note); return None
