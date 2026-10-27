@@ -446,12 +446,29 @@ footer{color:var(--muted);font-size:12px;margin-top:28px;line-height:1.5}
   }
   function renderAll(){ renderRunSel(); renderCats(); renderMarket(); renderBrief(); renderTicker(); renderWatch(); renderFeed(); }
 
+  async function fetchRun(id){ const r=await fetch(`data/${id}.json?v=${Date.now()}`); if(!r.ok) throw new Error(r.status); const d=await r.json(); d.id=d.id||id; return d; }
   async function loadRun(id){
     try{
-      const r=await fetch(`data/${id}.json?v=${Date.now()}`); if(!r.ok) throw new Error(r.status);
-      current=await r.json(); current.id=current.id||id;
+      let run=await fetchRun(id);
+      if(run.mode&&run.mode!=="full"){
+        // overlay a partial run on the latest full digest generated before it
+        const base=runs.find(r=>r.mode==="full"&&r.generatedAt<=run.generatedAt)||runs.find(r=>r.mode==="full");
+        if(base&&base.id!==run.id){
+          const b=await fetchRun(base.id);
+          const cats=new Set((run.items||[]).map(i=>i.category));
+          const merged=Object.assign({},b);
+          merged.items=(b.items||[]).filter(i=>!cats.has(i.category)).concat(run.items||[]);
+          merged.market=(run.market&&Object.keys(run.market).length>3)?run.market:b.market;
+          merged.prices=(run.prices&&Object.keys(run.prices).length)?run.prices:b.prices;
+          merged.brief=run.brief||b.brief; merged.stats=Object.assign({},b.stats||{},run.stats||{});
+          merged.generatedAt=run.generatedAt; merged.label=run.label; merged.id=run.id; merged.mode=run.mode; merged.query=run.query;
+          merged.overlayNote=`${run.label.split("·").pop().trim()} refreshed on top of the full digest from ${ist(b.generatedAt)}`;
+          run=merged;
+        }
+      }
+      current=run;
       renderAll();
-      renderStatus(true,`Last run ${ist(current.generatedAt)} · ${current.items?.length||0} items`); const st=current.stats||{}; const bad=Object.keys(st).filter(k=>!st[k].ok); $("runInfo").innerHTML=`${esc(current.window||"")}${current.query?" · "+esc(current.query):""}${current.classifier==="rules"?" · keyword mode (no Groq key)":""}<br>Sources: ${Object.keys(st).length-bad.length}/${Object.keys(st).length} responded${bad.length?` · failed: ${bad.map(k=>esc(k)).join(", ")}`:""}`;
+      renderStatus(true,`Last run ${ist(current.generatedAt)} · ${current.items?.length||0} items`); const st=current.stats||{}; const bad=Object.keys(st).filter(k=>!st[k].ok); $("runInfo").innerHTML=`${current.overlayNote?esc(current.overlayNote)+"<br>":""}${esc(current.window||"")}${current.query?" · "+esc(current.query):""}${current.classifier==="rules"?" · keyword mode (no Groq key)":""}<br>Sources: ${Object.keys(st).length-bad.length}/${Object.keys(st).length} responded${bad.length?` · failed: ${bad.map(k=>esc(k)).join(", ")}`:""}`;
     }catch(e){ renderStatus(false,"Couldn't load that digest."); }
   }
   async function init(){

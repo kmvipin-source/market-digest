@@ -4,6 +4,8 @@ on:
   schedule:
     # 08:10 IST = 02:40 UTC, Monday to Friday
     - cron: "40 2 * * 1-5"
+    # backup slot in case the first is skipped or delayed
+    - cron: "5 3 * * 1-5"
   workflow_dispatch:
     inputs:
       mode:
