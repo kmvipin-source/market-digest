@@ -1,6 +1,18 @@
 {
  "runs": [
   {
+   "id": "2026-10-27-0716-results",
+   "label": "Tue 27 Oct 07:16 IST · Results",
+   "date": "2026-10-27",
+   "generatedAt": "2026-10-27T01:51:10Z",
+   "mode": "results",
+   "count": 73,
+   "counts": {
+    "global": 1,
+    "results": 72
+   }
+  },
+  {
    "id": "2026-10-26-2122-full",
    "label": "Mon 26 Oct 21:22 IST · Full digest",
    "date": "2026-10-26",
@@ -91,5 +103,5 @@
    }
   }
  ],
- "updatedAt": "2026-10-26T16:00:17Z"
+ "updatedAt": "2026-10-27T01:51:10Z"
 }

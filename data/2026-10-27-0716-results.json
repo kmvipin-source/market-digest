@@ -1,0 +1,792 @@
+{
+ "id": "2026-10-27-0716-results",
+ "label": "Tue 27 Oct 07:16 IST · Results",
+ "window": "news since Mon 26 Oct 15:00 IST",
+ "date": "2026-10-27",
+ "generatedAt": "2026-10-27T01:51:10Z",
+ "mode": "results",
+ "query": "",
+ "threshold": 15.0,
+ "market": {},
+ "items": [
+  {
+   "category": "global",
+   "company": "Sensex / Nifty",
+   "fact": "Stocks in news: Paytm, Tata Consumer, Dalmia Bharat, REC and DCM Shriram",
+   "source": "Economic Times Markets",
+   "materiality": 1,
+   "link": "https://economictimes.indiatimes.com/markets/stocks/news/stocks-in-news-paytm-tata-consumer-dalmia-bharat-rec-and-dcm-shriram/articleshow/135216594.cms"
+  },
+  {
+   "category": "results",
+   "company": "Axis Bank",
+   "fact": "Axis Bank discloses Q2FY27 earnings call transcript for quarter ended September 30, 2026",
+   "source": "scanx.trade",
+   "materiality": 1,
+   "link": "https://news.google.com/rss/articles/CBMivwFBVV95cUxNS0tXejVNc2x6bXBTMEJWZ2p4R0x3VUVUaEx4dUg5ZS1DMXZnU2pZVGtIc2F4TzUtZzNVNGE0bWtZTC1KQ3ZETU9mdTVIMTdRY0RzRFJhakIydWZuTXRQVUlSVmZENXAtcktTbHg0eGZ6TkM0cHhMTzIwLWxZNXJQZno1d1RXckFrazFOUFo3Ukl0UlI0MDl2UURzVUF4ZEZhZUplS3pab2V5WHNocHlDTmRCZ0V3UzVBdkdXM19rcw?oc=5"
+  },
+  {
+   "category": "results",
+   "company": "Ather Energy",
+   "fact": "Ather Energy posted ₹1.26 crore profit in Q2 FY27 and plans 2.25 lakh unit capacity expansion by FY28.",
+   "source": "Free Press Journal",
+   "materiality": 1
+  },
+  {
+   "category": "results",
+   "company": "Mankind Pharma",
+   "fact": "Mankind Pharma's Q2 profit rose 39%, boosting share price to day high.",
+   "source": "Equitypandit",
+   "materiality": 1
+  },
+  {
+   "category": "results",
+   "company": "ITC Hotels",
+   "fact": "ITC Hotels shares gain 8% as Q2 PAT rises 51% to ₹201 cr, RevPAR up 21%",
+   "source": "Business Standard Markets",
+   "materiality": 1,
+   "link": "https://www.business-standard.com/markets/news/itc-hotels-shares-gain-8-as-q2-pat-rises-51-to-201-cr-revpar-up-21-126102600738_1.html"
+  },
+  {
+   "category": "results",
+   "company": "Can SFC Environmental Technologies",
+   "fact": "Can SFC Environmental Technologies IPO deliver long-term growth for high-risk investors?",
+   "source": "Economic Times Markets",
+   "materiality": 1,
+   "link": "https://economictimes.indiatimes.com/markets/ipos/fpos/can-sfc-environmental-technologies-ipo-deliver-long-term-growth-for-high-risk-investors/articleshow/135222205.cms"
+  },
+  {
+   "category": "results",
+   "company": "Anthropic",
+   "fact": "Anthropic halts AI training for over a month over security concerns as models breach testing systems ahead of IPO",
+   "source": "Economic Times Markets",
+   "materiality": 1,
+   "link": "https://economictimes.indiatimes.com/markets/us-stocks/wall-street-guide/anthropic-ipo-halts-ai-training-for-over-a-month-over-security-concerns-as-models-breach-testing-systems/articleshow/135218073.cms"
+  },
+  {
+   "category": "results",
+   "company": "Sunteck Realty H1FY27",
+   "fact": "Sunteck Realty H1FY27 net profit rises 20%, pre-sales up 19%",
+   "source": "Economic Times Markets",
+   "materiality": 1,
+   "link": "https://economictimes.indiatimes.com/markets/stocks/earnings/sunteck-realty-h1fy27-net-profit-rises-20-pre-sales-up-19/articleshow/135217893.cms"
+  },
+  {
+   "category": "results",
+   "company": "Dalmia Bharat",
+   "fact": "Dalmia Bharat posts Rs 205 crore Q2 loss on exceptional hit",
+   "source": "Economic Times Markets",
+   "materiality": 1,
+   "link": "https://economictimes.indiatimes.com/markets/stocks/earnings/dalmia-bharat-posts-rs-205-crore-q2-loss-on-exceptional-hit/articleshow/135217688.cms"
+  },
+  {
+   "category": "results",
+   "company": "Paytm Q2 Results",
+   "fact": "Paytm Q2 Results: Net profit jumps over 10-fold to ₹226 crore, revenue surges 29% - CNBC TV18",
+   "source": "LinkedIn",
+   "materiality": 1,
+   "link": "https://news.google.com/rss/articles/CBMitwFBVV95cUxQOWZRX1Q2OTJoQzFueTJNZWgwci0xVVhzb3pkNF9tczdhU0EtY3VVMjhzYzFTbEwwUVMtaEp1YmpiMXIyMmhsUndKazE0ZE5UcGRxUlNCZnRLSmh2SF9jMEFCSVYxZTRFR2JPcmlITjc0ZWNEVlNnd0lvbjVBQWJRM3VBMEdLZVM1WDdFN3RJOXhlMXhrNURjV1BySVFyNV9iNmRtWjVYOWgzWXp6Y0xVWlE0cVlBV1E?oc=5"
+  },
+  {
+   "category": "results",
+   "company": "Tamilnad Mercantile Bank Q2",
+   "fact": "Tamilnad Mercantile Bank Q2 Results: Net profit rises 42% to record Rs 451 crore on high net interest income",
+   "source": "Economic Times Markets",
+   "materiality": 1,
+   "link": "https://economictimes.indiatimes.com/markets/stocks/earnings/tamilnad-mercantile-bank-q2-results-net-profit-rises-42-to-record-rs-451-crore-on-high-net-interest-income/articleshow/135214844.cms"
+  },
+  {
+   "category": "results",
+   "company": "Indian Overseas Bank",
+   "fact": "Indian Overseas Bank to raise $500 million as Q2 profit jumps 56%",
+   "source": "Economic Times Markets",
+   "materiality": 1,
+   "link": "https://economictimes.indiatimes.com/markets/stocks/news/indian-overseas-bank-to-raise-500-million-as-q2-profit-jumps-56/articleshow/135214567.cms"
+  },
+  {
+   "category": "results",
+   "company": "MMT",
+   "fact": "MMT reports net profit of $1.8 million in Q2, revenues at $ 235.2 million",
+   "source": "Economic Times Markets",
+   "materiality": 1,
+   "link": "https://economictimes.indiatimes.com/markets/stocks/earnings/mmt-reports-net-profit-of-1-8-million-in-q2-revenues-at-235-2-million/articleshow/135214497.cms"
+  },
+  {
+   "category": "results",
+   "company": "Bank",
+   "fact": "Bank of Maharashtra Q2 Results: Net profit jumps 41% as NII rises 22%; asset quality improves",
+   "source": "CNBC TV18",
+   "materiality": 1,
+   "link": "https://news.google.com/rss/articles/CBMi6AFBVV95cUxNWUM0a1dlS20xNTRlZ1QxSmZEMnlJQ0pBUmxIclh1alBzUVVJcUFfSC1pd1FydWs2U2Vnd19XRFFlSFlxdzdGY25FQU1vSzJvVkdSdnFOQmpsU25zck9GTTlMeWM2V082amNwNDVCRV9uWmFyamhJbm1IcnNCN2pSWGNmUzlpV0N3T0xVRTIwUFFqRXJlb3Q0a2RGRWVUM3RVSGNBOE9Ub2x6ZmpON0tsOTg4al9yMV9OWXpScnpMeDQxSW1OVURuU1hXNVljSF9zLXZvV1FYT3RSc0s5OWFIU3g0X0ptQWJh0gHuAUFVX3lxTE5WOGFwTmdyRnZCalp2ZlZsdHNxbTdpczlad0Ftb1ZtTG16emJ2VEFwc3d2MnVGa3Vxekk0NWNTQ2Q2aVA0QzZIWXh6a0E0SWJhdG5ZbmU3TF80dVBsQXFISFdyZmNLbUtfU1JvZ3VzWEhVU1dmMnM5clI0bzZyd3dWcDVsYWFndzNxZDFacl9EeEpDcF9KOXdTZlZYQ3h2S3FpSTJncHBqeTFETHUtUlh4bVQ1RmUwNFI1MzQxd2hBaFRDWk5wejlGNWR1NUZsRjNzUzcwZlpwWlYyUjBySTZaRnRka1BXenc3RjF1QlE?oc=5"
+  },
+  {
+   "category": "results",
+   "company": "The Rs",
+   "fact": "The Rs 1.5 lakh crore MTF problem: How shrinking leveraged positions are deepening India's smallcap sell-off",
+   "source": "Economic Times Markets",
+   "materiality": 1,
+   "link": "https://economictimes.indiatimes.com/markets/stocks/news/the-rs-1-5-lakh-crore-mtf-problem-how-shrinking-leveraged-positions-are-deepening-indias-smallcap-sell-off/articleshow/135214401.cms"
+  },
+  {
+   "category": "results",
+   "company": "Anthropic IPO",
+   "fact": "Anthropic IPO: 5 jaw-dropping numbers investors need to know about $1.5 trillion public offer",
+   "source": "Economic Times Markets",
+   "materiality": 1,
+   "link": "https://economictimes.indiatimes.com/markets/us-stocks/wall-street-guide/anthropic-ipo-5-jaw-dropping-numbers-investors-need-to-know-about-1-5-trillion-public-offer/articleshow/135214380.cms"
+  },
+  {
+   "category": "results",
+   "company": "Tata Consumer Q2 Results",
+   "fact": "Tata Consumer Q2 Results: Net profit rises 16% YoY to Rs 470 crore, revenue up 14%",
+   "source": "Economic Times Markets",
+   "materiality": 1,
+   "link": "https://economictimes.indiatimes.com/markets/stocks/earnings/tata-consumer-q2-results-net-profit-rises-16-yoy-to-rs-470-crore-revenue-up-14/articleshow/135211637.cms"
+  },
+  {
+   "category": "results",
+   "company": "Asia-focused",
+   "fact": "Asia-focused banks face bond market risks ahead of Q3 earnings",
+   "source": "Economic Times Markets",
+   "materiality": 1,
+   "link": "https://economictimes.indiatimes.com/markets/us-stocks/wall-street-guide/asia-focused-banks-face-bond-market-risks-ahead-of-q3-earnings/articleshow/135209404.cms"
+  },
+  {
+   "category": "results",
+   "company": "SoftBank",
+   "fact": "SoftBank sells 1.21 crore Ola Electric rights entitlements as EV maker seeks to raise Rs 1,000 crore",
+   "source": "Economic Times Markets",
+   "materiality": 1,
+   "link": "https://economictimes.indiatimes.com/markets/stocks/news/softbank-sells-1-21-crore-ola-electric-rights-entitlements-as-ev-maker-seeks-to-raise-rs-1000-crore/articleshow/135209308.cms"
+  },
+  {
+   "category": "results",
+   "company": "Eternal",
+   "fact": "Eternal extends rally; stock soars 8% in two days post Q2 results",
+   "source": "Business Standard Markets",
+   "materiality": 1,
+   "link": "https://www.business-standard.com/markets/news/eternal-extends-rally-stock-soars-8-in-two-days-post-q2-results-126102600750_1.html"
+  },
+  {
+   "category": "results",
+   "company": "MakeMyTrip",
+   "fact": "MakeMyTrip swings to $1.8 million profit in Q2 FY27 despite headwinds",
+   "source": "Business Standard Companies",
+   "materiality": 1,
+   "link": "https://www.business-standard.com/companies/news/makemytrip-swings-to-1-8-million-profit-in-q2-fy27-despite-headwinds-126102700032_1.html"
+  },
+  {
+   "category": "results",
+   "company": "Paytm Q2FY27",
+   "fact": "Paytm Q2FY27 net profit jumps 10-fold to ₹225 crore, revenue up 28 %",
+   "source": "Business Standard Companies",
+   "materiality": 1,
+   "link": "https://www.business-standard.com/companies/quarterly-results/paytm-q2fy27-net-profit-jumps-10-fold-to-225-crore-revenue-up-28-126102601539_1.html"
+  },
+  {
+   "category": "results",
+   "company": "Tata Consumer Products Q2",
+   "fact": "Tata Consumer Products Q2 Results: Net Profit, Revenue Beat Estimates; Margin Expands To 14%",
+   "source": "NDTV Profit",
+   "materiality": 1,
+   "link": "https://news.google.com/rss/articles/CBMizAFBVV95cUxQM1p6M2FUOGFjMWhvc1lEeUVmWVIxZ0FuV3B5RnlKY3hZVXZESDMtakJoSWlYNXBRRkhjRk1ZbFV3YjJSUkRkSVQ5WVNoRERxZWx2YjhTWHdxVzVXRk1yQm1QNkVsVDl6T014NHJ1NVpXbzJaQzU3T3BlSFRaRHNkbnVqUHR5MnlPQ004WFROTndqSUQyQ1FFaS1yQ0xiSzVybGVQOWZJOElGaVpKWFpqTldJM2MtOEpxa0ZCaTVfeThBZTlVSllmZ3FCV2rSAdQBQVVfeXFMTy1wcDNmdGJHU1NteHpXVE1Bdy1tTTdsOWcwNXRsSDJzVUNpaFI3ajhRVXBPLW5rMXdoWXNFazctRGcyWWx0aEo3UU1palFCZUp5eTZlSktRR3VRRUhDdHlXVkNlOXI5SElOZHdhSnRUcGdlSG5SUEpSMWVqX2dzVFQwWVFhQUdNS0lHeEV5dlowMGVOOGh3MkJIUVBxamwwbDh2YnlPc3kxdlpvQmQ3MjRQcGNwVnc5b05MSW1pemo2c1hKenduR2U3TDZkWEtQM0JmSTU?oc=5"
+  },
+  {
+   "category": "results",
+   "company": "Brigade Hotel Ventures Reports",
+   "fact": "Brigade Hotel Ventures Reports Q2 Consolidated Net Profit Of ₹19.94 Crore Versus ₹9.10 Crore YoY",
+   "source": "Sahi",
+   "materiality": 1,
+   "link": "https://news.google.com/rss/articles/CBMivAFBVV95cUxNb1N4Y0kyRTM1YlFsR0ZHZjFHSFIwN1VaUEEtOW1hWEQxTFAtcE45dlhQaTVvc3ViUnlIQjVFYjI3alRWb2lBV2FRQnl1bE41dHluNVNoakE4cGVXT1B1Q0VlRnliUWh4U0s3cVdhSHZtZ3g5cXNDV0FNNTFQWWlqZkhxOVdST0lGaTBKVXliSlozYk95TnR3c1N3aS1EODM1bXFWXy10ZVotbC1pUC11YlYzVWxVaGFJakxxYg?oc=5"
+  },
+  {
+   "category": "results",
+   "company": "Mankind Pharma Q2 PAT",
+   "fact": "Mankind Pharma Q2 PAT rises 37.7% on strong domestic chronic business",
+   "source": "Business Standard Companies",
+   "materiality": 1,
+   "link": "https://www.business-standard.com/companies/quarterly-results/mankind-pharma-q2-pat-rises-37-7-on-strong-domestic-chronic-business-126102601083_1.html"
+  },
+  {
+   "category": "results",
+   "company": "ITC Hotels Q2",
+   "fact": "ITC Hotels Q2 net profit rises 52% to ₹202.6 crore, revenue up 26%",
+   "source": "Business Standard Companies",
+   "materiality": 1,
+   "link": "https://www.business-standard.com/companies/quarterly-results/itc-hotels-q2-net-profit-rises-52-to-202-6-crore-revenue-up-26-126102600976_1.html"
+  },
+  {
+   "category": "results",
+   "company": "Dhanlaxmi Bank Q2",
+   "fact": "Dhanlaxmi Bank Q2 results: Net profit more than doubles to ₹48.55 crore",
+   "source": "Business Standard Companies",
+   "materiality": 1,
+   "link": "https://www.business-standard.com/companies/quarterly-results/dhanlaxmi-bank-q2-results-net-profit-more-than-doubles-to-48-55-crore-126102600661_1.html"
+  },
+  {
+   "category": "results",
+   "company": "Nippon Life AMC",
+   "fact": "Nippon Life AMC shares: Last chance to buy for ₹9.50 interim dividend; record date, dividend yield",
+   "source": "Mint Markets",
+   "materiality": 1,
+   "link": "https://www.livemint.com/market/stock-market-news/nippon-life-amc-shares-last-chance-to-buy-for-rs-9-50-interim-dividend-record-date-dividend-yield-11793035793393.html"
+  },
+  {
+   "category": "results",
+   "company": "Dividend",
+   "fact": "Dividend stock down 4% today; declares ₹12 per share dividend, record date fixed | Check yield, stock split history",
+   "source": "Mint Markets",
+   "materiality": 1,
+   "link": "https://www.livemint.com/market/stock-market-news/dividend-stock-down-4-today-declares-rs-12-per-share-dividend-record-date-fixed-check-yield-stock-split-history-11793011222536.html"
+  },
+  {
+   "category": "results",
+   "company": "Top IT",
+   "fact": "Top IT stocks to buy after Q2 results: TCS vs Infosys vs Wipro vs HCL vs Tech Mahindra - What market experts recommend",
+   "source": "Mint Markets",
+   "materiality": 1,
+   "link": "https://www.livemint.com/market/stock-market-news/top-it-stocks-to-buy-after-q2-results-tcs-vs-infosys-vs-wipro-vs-hcl-vs-tech-mahindra-what-market-experts-recommend-11793003820220.html"
+  },
+  {
+   "category": "results",
+   "company": "From LIC",
+   "fact": "From LIC, NSE to Hyundai: Can Jio Platforms IPO break India’s mega listing jinx on 28 Oct Wed ? What market experts say",
+   "source": "Mint Markets",
+   "materiality": 1,
+   "link": "https://www.livemint.com/market/ipo/from-lic-nse-to-hyundai-can-jio-platforms-ipo-break-india-s-mega-listing-jinx-on-28-oct-wed-what-market-experts-say-11793004649102.html"
+  },
+  {
+   "category": "results",
+   "company": "Tata Consumer",
+   "fact": "Tata Consumer’s Q2 profit rises 16%, in line with estimates",
+   "source": "Mint Companies",
+   "materiality": 1,
+   "link": "https://www.livemint.com/companies/company-results/tata-consumer-s-q2-profit-rises-16-in-line-with-estimates-11793023468609.html"
+  },
+  {
+   "category": "results",
+   "company": "Google CEO Sundar Pichai",
+   "fact": "Google CEO Sundar Pichai says company is giving up short-term cloud revenue to prioritise advanced AI development",
+   "source": "Mint Companies",
+   "materiality": 1,
+   "link": "https://www.livemint.com/companies/news/google-ceo-sundar-pichai-says-company-is-giving-up-short-term-cloud-revenue-to-prioritise-advanced-ai-development-11793008515829.html"
+  },
+  {
+   "category": "results",
+   "company": "Airtel Money",
+   "fact": "Airtel Money reports 25% growth in first-half revenue in maiden results - Reuters",
+   "source": "Reuters India (via Google News)",
+   "materiality": 1,
+   "link": "https://news.google.com/rss/articles/CBMiswFBVV95cUxPcVlFZ0d1WHloRlFVVjA1QlowLXNHUGY5bkhCRVgzeEt1aG1CS09DY0R4S0h4cWJUY3VNb3FQY0wtZEFvQUhVdE1DY19KWC0tb2MxM3J2VDg2a2JJTXR2UWU2cF9tMUhPWXBQcmtpV3RoOFJYNFpBRmUzTHZZaE5wcG5IdHNFTHZuNzhUdGxTNVpvUmRzcnRGb29USWZBSHkwZm5ZYlhEMkxOdElTZkZWWVhBRQ?oc=5"
+  },
+  {
+   "category": "results",
+   "company": "Genus Power Infrastructures Approves",
+   "fact": "Genus Power Infrastructures Approves Equity Share Buyback Worth ₹148.20 Crore At ₹312 Each",
+   "source": "Sahi",
+   "materiality": 1,
+   "link": "https://news.google.com/rss/articles/CBMitAFBVV95cUxNVUpDSFRaS3JTcXoybk9UNE5CWnd0ZlhsaGIwWE96cGc4T1NDbEhoeTJ3ZUxoaXZyc2ZZRkVxN2tyUFpSZ29meTBFSldrSzlIQUFxUW93eVQtSTFVWGVsVldxb3VwY296aGFtbzZ2dlIwdDNvcWQwTXVJVjNvTlgxN2FMLUFrdlhBYVFLcllJQ1NkOVNiVTd5dlBlLWtfSE1PTlhuMUZNdFpCTUgwX3hUQWdJczM?oc=5"
+  },
+  {
+   "category": "results",
+   "company": "Five-Star Business Finance Q2",
+   "fact": "Five-Star Business Finance Q2 Results: Net profit up 5% on higher NII; AUM expands 14%",
+   "source": "IndiaIPO",
+   "materiality": 1,
+   "link": "https://news.google.com/rss/articles/CBMiugFBVV95cUxPcTdZVjJhdUdRazdDaGFuNm5ObzRKeHVOOTk5cmw3dWUyd2I4UVBHSUxDa2p5d1lqSmNPVU56aHN5ZFBiR3lSZFY0Z1FPTjVLYkprUnRJa0xTd3hhLTZESG1MV2ZpRHltMmZtb2JkSFdpTjJCb2g5TmpDeGY2Qi11N1hFU1piVUkyUEVvZDBrVS0yVENkLUxhaEpHcXZoTnNUWm5HcEctRWxOaEhCWDZ0WlBwbG5vN2tZSmc?oc=5"
+  },
+  {
+   "category": "results",
+   "company": "Paytm Q2",
+   "fact": "Paytm Q2 results: Revenue jumps 28% YoY and net profit rises to ₹225 crore; EBITDA jumps 90% YoY",
+   "source": "Upstox",
+   "materiality": 1,
+   "link": "https://news.google.com/rss/articles/CBMi6gFBVV95cUxNLVdmY2FkSG5EaWNzeFFmTy1TdGxjdG5NaWlrb01pUGdNZHkybWFyUFJzWGptbFRWUEJOdTBPbUx3MXJ5Z2JFU0hJTXNVbVZ2bTFzZmx0dXZLTGtTbGVHdUFzeEZyaGw1TVhWQTd1SkNzdzN4WWV4dVU5Z0h2dlVHSHN0NmtLMkRDb01sMnNmamg5SFcxOVhSdGZuZlprT00ya0dLS1pTX21tdVNfQTdYUkNEZzU2VUJtYzVzcm1WLUwwOXFtVXdaR3g0eUluaGRDVkQ1SUJTOWplMXNBQ1N5ckUwRi1ZbFg4VVE?oc=5"
+  },
+  {
+   "category": "results",
+   "company": "Aegis Logistics Q2",
+   "fact": "Aegis Logistics Q2 results: Net profit rises 45% to ₹261 crore despite revenue decline",
+   "source": "CNBC TV18",
+   "materiality": 1,
+   "link": "https://news.google.com/rss/articles/CBMi1gFBVV95cUxNWHl1OUFJSmtiR3hKMDhRd2gtQnBaZUxyY1VaUjJmUWFhOG54cE5YWl94VENHY3dwVXVEMWZ0aEhERkRnME5rb1pDUXBwbGJYRi12SVFGOGFfUDdSQ1ozVUppaFJEaTcwRkl3SVpVOWZfV1JRY1VmaWVEQll5dlJxN3lIQnVjRm5EWE0wRjBEY2NZWE9sQUpjeTJYM2ZKV3pRekJ2UkFpS2R0cGhtYkJ5RWtidXhYT05mTXFpNmd4VWhKTExXRWdabVh4MEJSMVhjRnJSRk1B0gHbAUFVX3lxTE1tN2FuN3NIMS0xMnczYzN4LTRlck80MjZQOEN4S1dRQTdBNzhISld0OU5RQk1EVy1Fd2g3alN6WkE0d25RQkZfdTlGNnVnZGtIWV9PVllTcW91VXJReldBakp5M0lmRVFJcWoxMUNlcG0tR3JNZHk0OXBuSFNqazZ5TFV3Q0VBX2lpb2pxSkhheFhFUDlfcHh5eUJoNXF2WVBRVHN6d1BMMldRQnNvYXNZd2hDZ1BKRFpfbHVZaWRzTVFjZlpVYVJJY0owRno0SnIxWEJhUWNPUEFUNA?oc=5"
+  },
+  {
+   "category": "results",
+   "company": "REC Q2",
+   "fact": "REC Q2 results: Net profit declines 21% YoY to ₹3,478 crore; second interim dividend declared",
+   "source": "Upstox",
+   "materiality": 1,
+   "link": "https://news.google.com/rss/articles/CBMi5gFBVV95cUxOWXdMY2MxRlZWZEVEQWxTbjh6dXUxUXV3LVRoN2FmbDl5M0t3UjJ4WFRIal85WG5nQjlKd3VtS0tKLWF4a2pmank0eFdxX1RXblZHZ1A2S21RcndadUU2MVoxYzZYRDQ2a2JGclFfelZqZ1lueUk0ei1pQkZBRHl0S2RJcVRCYlRheGVjcngxMHBkQUFQN08zb25xRVhRVVVReUNUX1NLOWo2eks2aVVEWUxTSVBjN2xGZEphbHJITnhfYlBtdXBub1lhQld2QVhxX29wZnBxUXpfcFdVWlpXWTg4dWRFdw?oc=5"
+  },
+  {
+   "category": "results",
+   "company": "Sumitomo Chemical Q2 Results",
+   "fact": "Sumitomo Chemical Q2 Results: Net profit falls 12% as revenue and EBITDA decline",
+   "source": "IndiaIPO",
+   "materiality": 1,
+   "link": "https://news.google.com/rss/articles/CBMitAFBVV95cUxQdDU1V0tjNGtxSGVZckdiYnFxc0hOcS1wQkZITVVsSERIRjIyRUh0cVhCak5jR3NKbFRvaHdES2xGOGRscEpleXhpblhFQ1JIekdYRzBoQUpnX245bG9FN2ZUUEdtMXJIc24zanpqdWtzck5PdGI5V2cxMHViTWxxcmNTWC1yOUpJc3NYOFVHYlBwM1JmYlE1cDBEbDRMYmJGVTZ1Ul9PTnZTb1pHeFhBOTFzZFk?oc=5"
+  },
+  {
+   "category": "results",
+   "company": "KFin Technologies Q2",
+   "fact": "KFin Technologies Q2 results: Net profit jumps 33% sequentially to ₹100 crore, revenue rises 13%",
+   "source": "CNBC TV18",
+   "materiality": 1,
+   "link": "https://news.google.com/rss/articles/CBMi4AFBVV95cUxQSFZfTVJlbVBHSzdMVUtfSGdJdTl0OTJnamJRekZMTVZuLXg0Q01MRXZUYjVsY3pQMHo1azFCVVhBRy12T0tod3RXTVNscGdQM041RHFGOWpsa2Rhd0Zzck5WdzkxeW9uQmZZMVY1Q1AtcEFNWHV4ZlpYSWUtb0h3Mi1VRlhqZzhxNW5NaXB2MGE4RXNEQXJFeDBxVGNfTVlSNDFWQTBOMV9ycXdBZmhTMC1mWGk1MnItNUtrNHpSVzdDcTVuMDdNY0NtLVlZS3E2X2VUYzJCLWxaWlhVbDJWT9IB5gFBVV95cUxPYl9oWmZaSjJ0WG1MVDlEdVdXOGRFVkRta1BzRURhQVJpZ1dyX0NwM1dYc2pEa08waS1hRE1kU01WY1ZOd2ROd1hlWVdLT2ZLdWpQNWIwOU5IQTk4VWxDd0lLMjRia1hqenNMeGI0eXU0QzU2bkRhRFIxZ2MwVnlUcnpMaGtZWFhOT2NlNmtZVXNLS1VHLVNjWTlvQTFOenB0Q0lUcW5DMEtrUUlXLVRrVFhvMTd1b1VmS0RHeUxlYU94OGJwamUwa3dXOGxDekU3UDRhbUtQWlV0bGRBQ1ZiZU9RcnJCQQ?oc=5"
+  },
+  {
+   "category": "results",
+   "company": "Aavas Financiers Q2",
+   "fact": "Aavas Financiers Q2 results: Net profit rises 11% to ₹182 crore, NII grows 10%",
+   "source": "CNBC TV18",
+   "materiality": 1,
+   "link": "https://news.google.com/rss/articles/CBMiyAFBVV95cUxOWV9TQlN5amJuSWhmUjhRTk5Udmp4c3pJUnQwdUZacmJoWlVJZHoxaFNwNlktT3NWUHlqdjlxM0pRcmo1X0JzRGlJN1JzWDBsRVZyYjl3enBIREJucHZYMDlFRVF2V3BKVXNhSjRyNjNiX1FMR183bW5nbWd2bW5qcHV5T3NQTEtXLS1MZnZKRWNBdFJEdkt2elV6U0pkZFBSM0QzNGxHVzVvSDFvYmhPSkxSR3Z4TVcxZXM1bVFDYlRTUjNCOGs2NtIBzgFBVV95cUxQLWpqSnpPTF9VMzZlRHJHczNTOUxHNGNmS3pMR0J5ckhidHY3RjZ1WVM1Z3EyOG1wcUl4eEw2OWhTaDU5YzhlQl9uQVBlaUJZaUF2VHNxUVRxYURIeThCRkZnemRjQ2Z0bnhsaDZQRXowX21hWjF2VE5XYkRuQWZReks0MlVFUTZ0V3NQSE1uV2Z6RTdLRy1BQzhRUHVmTEZnNzgtNVg3SndWTVdfM1ZXa3hCeGhFaTJkRVl4TjBsTkQ1YTVETUFPNHhycnFIUQ?oc=5"
+  },
+  {
+   "category": "results",
+   "company": "JBM Auto Q2 Net",
+   "fact": "JBM Auto Q2 Net Profit Rises 12.46% To Rs 58.76 Crore, Revenue Grows 21%",
+   "source": "BW Auto World",
+   "materiality": 1,
+   "link": "https://news.google.com/rss/articles/CBMirAFBVV95cUxOUWlQcGlWX1dGM296ZmsxTTljSDU0b2dRSXBmbm1weklwUmNLblpyalpOQy1XZjV0cm5LWUpEVnl3eTlJVFFnTHhlZ244cW5wN2dBdzd3Vk51T3F2R0xWU1EzWHU2OC1QQXY4V0VvVmI3cFMtRU1PSUxBRk5hdXRFRE9qWHNOUUZJVmJwdTJTUVBUX3BkUE5oVHdzZGRfTi10M01TcHNXWTEzWkZu?oc=5"
+  },
+  {
+   "category": "results",
+   "company": "Mankind Pharma Q2 Results",
+   "fact": "Mankind Pharma Q2 Results: Net Profit Jumps 39% To Rs 711 Crore, Margin Expands",
+   "source": "NDTV Profit",
+   "materiality": 1,
+   "link": "https://news.google.com/rss/articles/CBMivAFBVV95cUxPWDZLYUQzT3JIeFVDdjRxNE44RnFHQl9BcFVGaWtrMTRVNFREV2tocngyRmRST0hBS3piWEs1cG93and3ZDdLeUlwVVNPaXJUcFpOMGh6VHpKSDBpUmJmWUFEM1kyRnI0Rkp3amlkb2Iwenl4bjZ0LWFOWU9MeWFlZWNtZFc3dVNuZE1Obmh6ckk4aERHMXlabUNxUXFKZnc1RjUyT2I0QWtrcThuRjM1dXVpbXE2ZWY0bXg1etIBxAFBVV95cUxOQjVjdXhuMnJmZGx2UHJZVWRQQnF6OHFEbWVhNjg2M3NPaUFjc1lKd1FQTUpWdlFnY2tiREc0eDYzUVFPejlhdzRXbklSb0daMkJNWThVR2lWR2xGVW12MGNKNmhYUmFPUWxfd1hwSnBiWlNJSnhFanYtUTJrMXBFTUt2ZkdxN3NWRjZUZEhoTGRqSXlJVDd4RFNmZjd1NHZldE95ZGtLWkJldF8zOERvTkhfLVlDeEdPTWdyQ1RDTENHNE94?oc=5"
+  },
+  {
+   "category": "results",
+   "company": "Sona BLW Precision Q2",
+   "fact": "Sona BLW Precision Q2 Results: Profit Rises 29% To Rs 223 Crore; Revenue Up 35%",
+   "source": "NDTV Profit",
+   "materiality": 1,
+   "link": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxPdDJXVW5JVEUtVFhLQmFfN1llSmMwZmFkcDJtTVNuYVB0anJWQ3VOSl9Yd3hDVE1KRktiQlFqTU9JS3o0Qi1vV3E5YnoyUG5TVURxN1BFeWluM2NsMDI0bnRkVXVwRFJGc1Q0Q2NkVU0tSWplWjk2Rk5IWURlVEtaNjV4QmVlT1pyMndMWmhxYjJJRzcwX0xOVURGLTJia3VDanZMZHNVQXFhNm4yZzNGS3l6NDhyUEJo0gHAAUFVX3lxTE5nTTRqSlp3bHpCdjZScjFIYUNZdV96VHBCMnFOengySklPdGp0bjhLQkhhemxuVTZRbWhnSTFaX2VtZWFsSG5VYjNudzFaX1NoSkYxN295THJZWTFYMHZ3Zml5eVU0Vlhyaml1ZDJCRF9UZFRXbFhsYkpMTkQ3bE9Yek1HaUo5V1pyNzJFczBSR0xWc2lSRFFjZnRDbElSd0VVRHlBYkU0NTBkSGdJZ1JkUFdqSGZDSHNpWWNUM1FoeA?oc=5"
+  },
+  {
+   "category": "results",
+   "company": "DCM Shriram Q2 Results",
+   "fact": "DCM Shriram Q2 Results: Profit Drops 35% To Rs 105 Crore As Margins Shrink, Dividend Declared - Check Record Date",
+   "source": "NDTV Profit",
+   "materiality": 1,
+   "link": "https://news.google.com/rss/articles/CBMi5wFBVV95cUxONFJpUEpsMEI3elN2QUhQQk5sYUU2cUl1MVlhNTc2UDFmaEh4Wm11TWNCUnNoc2JnakhYTEJqNjhfWFBOUHNkLTBRcGRiOWRLT2pvQlgwdXhhV0xOQWdWcFhWeWh5QlZYbzdzSmR5UzR1MmdUbTdjeWo5aTVJSlh5QzVlaFBoTXhTZTdjUGpVSi1maWxwXzZlMWlYSm54SUduZFNwNUtrRVRPbmF5ckFRVnhscDU0WmpVbFBvblB3V2prNUxpdkhUZ2Jtd2h5UGhjTHFidmFpeUliSVhqWnJ2WGU2bHRlaVnSAe8BQVVfeXFMTUx6eURFbXRlcmd6QkV2dnhCZDgzdTJSV0ZISGxWSTMyNlE3VHdhejhneE5qejdZVG5nZWxGdFNWTldmMVVVeVZlc1BNMUFHSU9oalNGU1czYzRyZXRoUXZ3TGhPVlZTd2p0UVB4VS1xNGY1VXprUjJOd3ZjMUlrQk1GcS05SnZQWjNwVEYzSUgtU2dxVWs0dS1ZR2hPb3pFUjF1UHl5eThIdlhPeDhRcDVYRHhKbWptLW1nbEJZbVRlRWRoV2JiWnBVekhqN0VuUnlPdFhpNTgzWFNseTRydWFJZXgybjVSVGsxTkNYWEk?oc=5"
+  },
+  {
+   "category": "results",
+   "company": "Mankind Pharma Q2",
+   "fact": "Mankind Pharma Q2 results: PAT rises 38% to ₹716 crore, revenue grows 17%",
+   "source": "Fortune India",
+   "materiality": 1,
+   "link": "https://news.google.com/rss/articles/CBMiugFBVV95cUxNV3dwWHpVaTdNZFl6dmk5VTFBTnQxaFVxSENia1ZNeWZPLURmODRNRmppdFhWc1pVQkktNTh4eHRTcDk1Z19tZ2syZ2NrXzhvVWVrSnpocmRUUVJ4ZmRHcG1hNmx3ZzNRWXZRbVFDaTBIWmRKNTBnVDJrU3dUYnNLYkZ1ZHRaX25QbW51YkprYlRJb0RDeklJZXdRc1FTUkFNck9JemdwdWJlWllkRnc5M0xvRlJNV0NhVkHSAccBQVVfeXFMT012MXZuZThySi1FUXVnNnN3MXF4dlhQNDFubnBuM0NtVEtkVFlOX0cwcVlKWHd6ZmhqekR3b28xZk12dUJFQU9JR2Q4bU5vQzhfUURuTzU5d2c5NFdOVnBKME1jaEV3SUE4eTh6QndjajlHSk5NbDlvYVg2aVlyYjV5TldmNFpQYmVGV01BeUppTFFHRjZhZmpCeGVNZ1MzbDlOb1p6NUlKYjNWdXV5d2xGWVN0WVREYlFVRDNKdnNDR1ZDNERmSQ?oc=5"
+  },
+  {
+   "category": "results",
+   "company": "REC Q2 Results",
+   "fact": "REC Q2 Results: Loan Book Rises To Rs 6.17 Lakh Crore; Renewable Portfolio Grows 27%; Dividend Declared",
+   "source": "NDTV Profit",
+   "materiality": 1,
+   "link": "https://news.google.com/rss/articles/CBMiygFBVV95cUxOX0xMR1dzSHhhVmpXVmhDcUtwSXFBQUhXOE9RZHdaREtKb1FTZ3ZFSUhZSlhISXYtQ05abVBuLUFwN3R4M0dxdnJoMnFRdExmZVV2NGpqV05ObGUwcEx3SnFTNExZUEo4NHRjZElzbzZCUVVMNkZNaXdZd1J0cFVzRXhGREU2eFc1NDBJdWg0QnRUZUQ1RFE3NUJUaHNGUFdwQ0t3alpPZE1hTDhKSGQ2Y0dVR0lsTk9DSm5yZjQ5dmtvMUM0NXdPMFln0gHSAUFVX3lxTE8wNWRSbmdGSUJ3OUJ6UGN1SnZDckVyWHgya0ZqYXRhYThfajk0eTVuWEtYX1MxYjFMck5fV3hSU1N2NzFRM0xMQ2lERHZ2NHdNNzQxUVpaUUhjdU5RUVg4YktIMTV3ak9HMU0tMExyZlVrc1NBbVhXM1ExbVdvSjZGSkJHNmNwOXUzdVczSml5X0xsV2lxamxsSmx6M0g2Zmhqa0Y1al9acDVNdnAtdXVFcFhqbTRzcHFnRlpYQ05oVjBORlRwUGRrY1hydFB4VFZkUQ?oc=5"
+  },
+  {
+   "category": "results",
+   "company": "Tata Consumer Reports Q2",
+   "fact": "Tata Consumer Reports Q2 Net Profit Of ₹470 Crore With Revenue At ₹5,660 Crore",
+   "source": "Sahi",
+   "materiality": 1,
+   "link": "https://news.google.com/rss/articles/CBMipAFBVV95cUxNWmtERkJDdC1iX1ZsUkpOWGxmMnBkVFBHbVZKMUlvMjQwUmhibnJjX2U1elBoZm1wZHFTOU1UMHNYNXB5UUo4UmdSV1ZXdDdndWloMGZuYWpVYlRVZkE3emwzMTBIdER6cWI3Qm14NEJHVTlMa05hamJxbG9lOU9fLURmY0xRVk1zd3dEUnlPRFNUV18yTnNpbVJsWjJjbC1JcGVqWg?oc=5"
+  },
+  {
+   "category": "results",
+   "company": "Nazara Technologies Q2",
+   "fact": "Nazara Technologies Q2 results: Company swings to ₹35 crore profit, revenue hits record high",
+   "source": "CNBC TV18",
+   "materiality": 1,
+   "link": "https://news.google.com/rss/articles/CBMi3gFBVV95cUxPUmxiZF9qaklLTDEwM2JfbkN2WWZOaWpMb1hUSXl2SEhEQ1piUnEtQkkxVzFzNU1IQm5ZMFZBNTd6bHQ5RlQxdVlYWW1xdzMwVlU2VE5Meldkd0pvMDZhMjFXV2hCT0t4VjlSRmNvNU45WDRjTUZ6NldyRDBsM3hJRmdhVTBsNEVKS0FJdkpjSllseElzcFRIcUIxMFRiQ1p6R2Y2TDRqeHQ4MEpNU0pBQjh4c0lNQlpYMXExYURpdWNrbU1KaTFsX09XT2lfT1haQ19QakRTVlE2Mk1JbmfSAeMBQVVfeXFMT2hzR0dwdF8yVi01d2VoMGhrTm16bGNJOGhTU1I5TVVaWERFQ29QVmNWc1NsNlVoUWl2S2N0ZWRCZmZNQkJSTzV3UDZkRGJROGdlSC1udnYwcUlsLUluYy12NGxSXzdYb0YzZ25UUE95X1NHYmJUajh0Q3lzakR2ckRnaEVWX1I5eU9lNVBweGFJeFAxWENLNGlCX3UwcVJsTUhWakRDWkxrNUoyeHFPODBYMFVUQ2lGYXVQczZlRjA5dGxQZVE0TEFrWkU0YVg3UGZTc2RzeGZDTWhDOU1oWDhEN00?oc=5"
+  },
+  {
+   "category": "results",
+   "company": "REC Limited Loan Book",
+   "fact": "REC Limited Loan Book Grew By ₹26,537 Crore In Q2 FY27 To ₹6.17 Lakh Crore.",
+   "source": "Sarkaritel.com",
+   "materiality": 1,
+   "link": "https://news.google.com/rss/articles/CBMickFVX3lxTE5EOUZHekhnbHR6RXdObktPWWZkbDVJaFNuaDFvNGdleTdDc3JyY3l1TjZCSmh5cE5JRndlS0ZnQ2s1LVZGZmhWSWM2am1CZ2VEWWNWQkwycmRZWnB6TjlvMkxON2Z3MXNST2QxRVNWQW5EQQ?oc=5"
+  },
+  {
+   "category": "results",
+   "company": "IOB Q2",
+   "fact": "IOB Q2 net profit jumps 56% to ₹1,912 crore; gross NPA ratio falls to 1.19%",
+   "source": "Fortune India",
+   "materiality": 1,
+   "link": "https://news.google.com/rss/articles/CBMiywFBVV95cUxQanQ2TkZlTG9tNzRpWlRWWHdOaGgtU3pyZVNSOTJ6YmlQWEFDN0FIZllkenlZQTE5WkxsLTJ1TmltbEtHb3RzS3R0RmdEVmVya1hIZkhMTDUwRm96aTJ3LU5zNFp4OFZGX0FMdkNUU1RhNTJsLTMxeGZwNzhlYlAtT3huN1o1d05rRzFYLTFIWDI0S216dkdVcGRhSl9wdFFzQklWYXc5NThaZHh1VmlPRDVlY0NhWDAzOXJTWEFjX2c3Y1lfMXNreWlYSdIB2AFBVV95cUxOcTQ1RDZCdW8zSVR2NVFyUGxmczhZSDU1Tmxnc0Z5MjEzUHBSbXpfYkd6R1NUNFVrZk5kVExiNkt2ajNrSWI4MWtxYVVOa01sVDF0RGNyTVNqS18wTHpZalFiSUctb0dtZm5xZjNyZ2RUTVNiV1V3X0tfRFU3R19LV2hJS3p6MkZ0a0pZaGRoV1I5WEhJWnAxbjBjQ0lncGJ1MkIwY0Vid1dnaGZfZ2g1ZlZJUmdWLS1GV3pseHk0c3J1eG9Mam5oQWVRcG9udmp3dWo4VzVvUjQ?oc=5"
+  },
+  {
+   "category": "results",
+   "company": "Dalmia Bharat Q2",
+   "fact": "Dalmia Bharat Q2 results miss estimates, swings to ₹205 crore loss on exceptional charge",
+   "source": "CNBC TV18",
+   "materiality": 1,
+   "link": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxPN3h0Zl9Tb2NGRXNySnA4bDZUWS1YdDYzaDdoNHpNcW5EU3RjNm9QNF8yWEluU2ViczAwUWk0SGtNV21pQjNmQzdFc0NLUnNwS1hUdmRjdGNiZVh4MENRMFNQSFR0YkVsVEJObE9nSF9RTjBLcVFvLVhhbE04TlNZM3hLRXhEd2p1cnhPZ2c2Vl9NMUo1ZXNNckY3MUgzb0FqM3VkbFZvTVVtVEhMV0ZHcU1nS3hpQV9C0gG-AUFVX3lxTE83bG0zR2dHM0RILWtFWHYycF9sR1hheEVDME1fSUd3dERvMG9BUXgtTXNJaDUzb3ZNemx0YmtlbjRiaU1fREp5Q3hqeUViY2tMRTRFV2ZUSHpmNGN6dXE3WWE4cUIwQkpzZkpwSUt5VVJhVHBkR3VmRjFqQUlCRkExT3B5QWZBTGNTSVVaTXhlcEFQOHpqTHd5UlRWLVVMbWtSZUVDY2VxZURyMFRkdUJqbkFFbW5oQWNDVWg4SEE?oc=5"
+  },
+  {
+   "category": "results",
+   "company": "JSW Steel",
+   "fact": "JSW Steel shares rise 6% as Q2 results beat estimates; brokerages see up to 39% upside",
+   "source": "Moneycontrol.com",
+   "materiality": 1,
+   "link": "https://news.google.com/rss/articles/CBMi4gFBVV95cUxQMHltOFhHZGl4am9tODNTR2ptYkM4UE9aVC1ZNnpiaHU3T1NqZGJCSkFseEVPR3RtU01ReHBqVFdRVndHbHpTVWxjNDFva0xTQUZkbVJkMjZIdzdoaWFGeHVKb3lsSlFKT1o1STMxN2ZmSF9hcTFWY0Zhc0YtVUtZN0owMDlrWnJTczRGZTJJazhwQkxibms1WVVKQWF4OF96TW9mVTJGUkNnVE9SdDF2SXRFblotTHY1QWhJZkp2UWRobzlsU2R0SmkwdUZaUm5sdF82SW9hUnZ4anZRR0hVZjJB0gHnAUFVX3lxTE96WXMxaHJwd3l3dnd2Tlc2ZVdyTjdyU1UtUFZlb0JIMUpIVV94b3ZnWERtRzBDZl9YTmVvUzBsaHczUGhiblgtMURKaUVtN1JCT3NaLUtodzZ4T0lZdC1LcHM3dzN4YXpEdVU3bTJJYjlYT0Zyc1h1V0hpOWZwYkluZkpyZkJUcnBKTEV3bTdaamc4UjlsNlA5emNvS29ab25WYXh1TGlSdThhT0NnSWpiSzl3NzBtV0l5MjMwMUlMRmMzcWJpWDlhVEY5WnNyX3dUa29MendNcVh1NmNuSklxM1ROSXBXaw?oc=5"
+  },
+  {
+   "category": "results",
+   "company": "Sona BLW Q2 Results",
+   "fact": "Sona BLW Q2 Results: Net profit surges 30% on higher revenue; BEV revenue jumps 129%",
+   "source": "CNBC TV18",
+   "materiality": 1,
+   "link": "https://news.google.com/rss/articles/CBMi9gFBVV95cUxNNUwtZWFKRUJsbmhFUjFUVG9TUU16WlgwXy1EQnFJeFAxREtwaEEtRHY2UzcwNDBFTW9nRUFYYW96aE14d3p3Zm03bmRHY2xHbWpxRmh2MVJYX3NsVVpkRVBCWDhnaDZHZ252ZXZTS20wMmZzb2pjYXQyaVNRaHdrcDB5NWs4T0p4N2IzVlZxR01lYTlVVmFXRTc3WmVzNEFxSUp5VklYcHEtUTVvUHRuUFN5V0VmamhobFZ2VzFRQnVlM0lHTWcta0ROQjRGNWFCcWJ4UmEtbXhhNm8zakotVVRKM01mQkwxdUVadEdjNi1lZE9EbmfSAfsBQVVfeXFMUDhaam5MWWJWejRkVkRqcHhtTDJUUWo2Zmo2WTV4OUx2OFM1akRINUNIS3hpYlVfVWo1ZXM2cVV5MlZHYkd6UHJuYmRVWmVoVklXVlBUc3NUcmFxTlpMNTlYZE5uRHJLa2c5ZndSWVo3cERXQVJ3N1ZvME4wQnVmNmticGdnZ2k2MTFESW1DT243RllSdEplU2xieXlJNEdmdG9tVTVxX2dUXzhkMXRGQlhJcGVTZzE3S1JzT3dJMzVjYnBiX1JJQjJaeVJzLTUxM3pvWFBHeU14a3MzelRJbFVHaDJ0bUYwV0EwMzhKUnV6UV9xc2g0YngtcDg?oc=5"
+  },
+  {
+   "category": "results",
+   "company": "Nazara Q2-FY27",
+   "fact": "Nazara Q2-FY27 revenue surges 53% to record Rs 803 crore as Bluetile acquisition fuels growth",
+   "source": "Moneycontrol.com",
+   "materiality": 1,
+   "link": "https://news.google.com/rss/articles/CBMi7gFBVV95cUxOd1gxNDZvdXFOX2N2S2dGYm5RaWUyM0NWbmNhaFVEUS1KZThSeHYwSUYtOTZCNVpMSGdTQW03akVzcmkwT3hqNFRCUnVXNXpqMGJCTm84WWlpaFQtSmdXUENPMG5aWjZNcEk4MGNvZWFLck5wXzVaWXFMTVFoa01lY0hUaldlUnJrT3Rld200ZWZJSHQycDBFREdlSzZnSXZDVlhuUVBNTC01YUtiNUV2UHUydDVaVlY0SFEwNGdYYjNTdWFfQXM0UDdid1AxbnBjTm1IamFxelR1eGxLUTZBWFBEOEFDZmJsNHBDdE9n?oc=5"
+  },
+  {
+   "category": "results",
+   "company": "JBM Auto Q2 FY27",
+   "fact": "JBM Auto Q2 FY27 Results: Revenue Rises 21%, Net Profit Reaches Rs. 58.76 Crore",
+   "source": "Auto India Daily",
+   "materiality": 1,
+   "link": "https://news.google.com/rss/articles/CBMibkFVX3lxTE1rNXljTThKUGwtaVhidW91Q2kzS0JyY013V3lXQnhBbHZJTjBWeUFTeUFaUW5DR2ItWkxJeFhEQkF1MjJrb2xaRkphZXZKN2hqb3N3cnFDZWNzaVU1MFIzazd6NzJlbXMxdE1wcjR3?oc=5"
+  },
+  {
+   "category": "results",
+   "company": "BoM Q2 FY27",
+   "fact": "BoM Q2 FY27 results: Profit rises 41% to Rs 2,310 crore; stock climbs",
+   "source": "Business Today",
+   "materiality": 1,
+   "link": "https://news.google.com/rss/articles/CBMizgFBVV95cUxOMzdBREFPbWpqV1JSczVLNG5yMXJMd0d3V2NFUUl6OFhxOExYSnotYnBWNHB6ekVEOGxCS2NzNkpTSXZpSFctdnA0RVN4Z2ZzU3JUZnJoWlVWSlIzSEFrNmNlYzhnN010eEMwQXl5NkF6THM5aTk4LTZJdlVZUU5ia0ZJdU90MkxpOWdDRG5rd1NnT25qUVJBaTQ0MTRfVVIxeFpUakdXazFxbHFtVnlVSkE0TkpyanE1OHNPM01IQnUwUkJkOE5YX0VzNGFoZ9IB0wFBVV95cUxQVjBIcHdIWGxITHBJZ1BQNHczOE9idUxjY2ZDZkhsTWUtcU1SVl9IUERMMjUtTlJ5M1dJOE1tbnF6RmZ6N2NmT2k4dm5yQVVUSnViRUlBUVFES09sM0VhazFSSHF3ak9tems5MHpCbWtBNnJqRjhvdkE5cFVWc042S0lKZktld2M0YXVTbWpwVkJ4eDAtMGE3eTNDdVlNRXE1UnFsenV4TjcxSm0teE02ZzVueTh3OG1QeXRmck1rOFk0MVNJc0d0b2NXY3VnSUU5WkZF?oc=5"
+  },
+  {
+   "category": "results",
+   "company": "DCM Shriram Q2",
+   "fact": "DCM Shriram Q2 results: Profit falls 34% despite revenue growth of 21%; declares dividend",
+   "source": "CNBC TV18",
+   "materiality": 1,
+   "link": "https://news.google.com/rss/articles/CBMi1gFBVV95cUxQMDJpSzEwNEpEZDVGSkdya2t3Z1BzUDBuVjZmc2pseGE3ZWFMODRZYk9EdkVCaVJKdkUzb2xHTV9JOWVNMEF0QVQ4M1hrLU5jWkhscVZ0VXdja05BTmZ4M2tlSzJubHBHcno2ejlaZ0ZHMXlLeFBHdVR4ai1qSmpHaWtRNHFHMnRuUjlybDRwdFpmaFBvanBJbDBZa2Vxek5zUkUyZWVDRUkxdl93UFY3MEM1eDdlcHMwN3N0a3dnSGpQWG9uaFNFdGFvTUxnMjFoNDVOWmdn0gHbAUFVX3lxTFBaOGZIN0M5X0liVEpPcHNGVEJTV1AzOWY1UXExaWNrbnFvQWdHd1dCd3hNd2FhQlM4NnlmQldjbHZGTnFwNE02S0dUYjdfNmswSGV0Qmh2TmwyVkNQR1BlTnhtNlhYeXhYT3BOcFBSWmVxbzlNMFBvWVBXVVdwQlhFbVNtaWpCRkVCdlNtR1ZmaGczVDlTaE9VVGtBSUJwd1ZGX3lpdTVKcjRrUFJUYXVZY2lYLUI5emw2UXoyZTFtd2hTOEs0QXpGNktfdHNVQ09EeTZLR3IwQVRHbw?oc=5"
+  },
+  {
+   "category": "results",
+   "company": "JBM Auto Q2",
+   "fact": "JBM Auto Q2 results: Profit rises 11%, revenue jumps as EBITDA margin expands",
+   "source": "CNBC TV18",
+   "materiality": 1,
+   "link": "https://news.google.com/rss/articles/CBMiywFBVV95cUxOWDB0Tko2M2JXUTZmdDV3M1RMS0xsR0czTjdzWk5XOHBvcGRmMDVLZTdZOTd3anNVdXQ5dW9xTTd2N1BuVHVNNEdZVlRUZzBGOHJYS3RqNVg1LUFTc2RXeFEyWEFsYmJmeTBDM3NaSW9pcWRlTm92SDdSM1dNY0VzUzFXM1RZNVplY1RrOEJxZGFtZmZwR3MxalZ5UlBSVUxIOEx6OHRvREtiVTRSTWVPMEM2RlM5LWZUX3h6T0dKckxCcmhrSUJNNHZHWdIB0AFBVV95cUxOTVhOZ2w2dWUtRHdkbC1iaE1BajVuZXlzNzBKb0tGNkhvdjBxOEZfNDdGaTQwNDdGX2pSZE1kMkJKYkd0Ym5UWl9jTFEyY3c0ZmszbFZsaTdRcGh2WW9pbjlua0dFNHg5MzdYS3ZpRkxyVjRFMEt2WXJETVAzZ29CVVdZUzl2ejBlbUZXT2VLbWFkMUxLUnRFcjlFSU1CS3hYckphQldybW9sekc2RllaSm90TWVyYmtZSDYwM0VSU1lobHlIU2Vuc05VTWd1RG9y?oc=5"
+  },
+  {
+   "category": "results",
+   "company": "Aditya Birla Real Estate",
+   "fact": "Aditya Birla Real Estate Q2 Profit Soars to Rs 918.7 Cr",
+   "source": "Rediff MoneyWiz",
+   "materiality": 1,
+   "link": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxNQV9Vcmh3ZEdzM2ZJRUNSRXVSOFR3ejJYeGRPWG9pN0xfQW5qb0NxWGtYaDBMLUF6ZzVGQ1ZDZ0Zvd0ROdnBRZWZLVnRXZHN1eHpQY19jMVlSRllWNWNkRDVQZFR3WEZnenNtQU5zTXJ1VzVKLXFzNUY4YUFPSmlaSGktOE1tV3VRVnBkTHpjRk9TQXpqMkhBSzZrNGVWcXhTc25NbXF4LXg0WWfSAbABQVVfeXFMTXFVazhPUHFNdHFjQWdzeDFvZ0ctWDcxS001LWJBU1hBdFdOZ3hCNFdVMzhkV1hBMXpNQUtOb2JBU1QxckJ2bGtnSDJKWWU1c1lhckdONU5GTHhYT3ZkMjhwMUZuVVh1RmJfYkZwem1SOTNBUlBxYk56bkx5SG5TR0VIcm93RjlXN2hVbXppaTAzbi03MEdscUNKam8wOE5kNGZJQ00yYndfcTNjZTJ0a2k?oc=5"
+  },
+  {
+   "category": "results",
+   "company": "Avantel Q2 Consolidated Net",
+   "fact": "Avantel Q2 Consolidated Net Profit Rises To ₹6.8 Crore Vs ₹4.3 Crore YoY",
+   "source": "Sahi",
+   "materiality": 1,
+   "link": "https://news.google.com/rss/articles/CBMipAFBVV95cUxNQnJWa3dMX2gwUWU1bFo2VXdJZFFxOUZwRUo0ZXJFUDZPZkZ5WlA5a2hlVkd6SUlkNkQzSlJFTGRTZEVtYjZRVk4ycHdVUWNzclNoR3N1NXhSWkhISGNDOUhZVVRiMjNaX1FTbDAzYUprT1htQkNjZ1dYcEZwYnJkU05vV0JBUUpVdzhtMHZ4N1AyTF9GNHhONGlBZ0tjZS1WclFheg?oc=5"
+  },
+  {
+   "category": "results",
+   "company": "Adani Power",
+   "fact": "Adani Power, BPCL, CG Power Q2 results review: What brokerages expect next",
+   "source": "ET EnergyWorld",
+   "materiality": 1,
+   "link": "https://news.google.com/rss/articles/CBMi0gFBVV95cUxQazBfSE9oS2FMUFdUQ3ctaVVoeW54OHg3aEdva1EzM0dzTEJZS2JBYkJTel9CQnlWaDQwMGZQVm5qQWhjczhSclAzZnNkdFprclB6eFZzWTR5WUhfMVVYLVlZdXhNN1V2dHlacUtNOFNDclVCc2tQR3owdU55RTZSMmYteG9xRWZIVFdYb0JDeDUydHRrSDZuNE9INkJfX3B2TXZ4eWZaYUJzVWtpeGpPc1JpQVlLbFAzYXZSMnIxZVZWNzhaXzZpR2QzSERBdzNEalHSAdcBQVVfeXFMTm9VZktQUnBKV1NfZEpucHB2WEh6aUtUSFk4MnRHVHhRb285YU1TZlUxRGRQU3l0VHFsdUFvUEZyYmQ4REhNSnBUMW1RMVFvUm9zYWlqVXFSMEZRM0J5N2E2WTRGdHYwN1JpdjZ1eVRuTGNUNTFIWU1sRnZ6ZXlfTkVHdElYb1VRWmZIRTl6VkFscjNzaEJEZ19UQXl3VUFXOUtieXlEb0VKT2s4Smd2MVdTTXN2ejQwdmk2dlpYU3NMY0VNZmc3SWdUaEVGcEs5X2FDSVFDa2c?oc=5"
+  },
+  {
+   "category": "results",
+   "company": "Lumax Industries Q2FY27 Results",
+   "fact": "Lumax Industries Q2FY27 Results: Net profit up 46% to ₹52 crore",
+   "source": "scanx.trade",
+   "materiality": 1,
+   "link": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxOZ1VnV2o3X3JHSjFQUE1HR3RZaDl2UlpCaEh5aEw3OXl6SjFHREFYREpCeG5ncHR4bVlWaWxOVFJuREFZMllCNWMwQUJnVHc4eUxwNFg4RVN2ai05VVZYcnZ2bi1iUXQ3RE9IRUhaT1dpcE14cWhoMEtsTFhQMy1uc3BWTURKQ3lNUHBpY08wTTFPNEc1NDR6SmFvS09jcWJJS2JVck5wRkY?oc=5"
+  },
+  {
+   "category": "results",
+   "company": "Aavas Financiers Q2FY27 Results",
+   "fact": "Aavas Financiers Q2FY27 Results: Net profit up 11% YoY to ₹182 crore",
+   "source": "scanx.trade",
+   "materiality": 1,
+   "link": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxPMDhJUF9ERXVxM1dwVGJqYzYzS2xaVkYyaEJtY3ZkbFN3OXRCR0tSenVDYWM4YjZJdTFQZksxcHVIdFBnS2h4TlhfbzVOX0NkM0RTT2UxclNFZEtvRjNxeDhDa2NvUVRzdnFhSTJHenMtRll5cWFKdmxCQV95bFBOZVNhZHZnT0RIbzJaUHVFcjNjTWJxUUwwT3owZ0ZEN2tQSGZvWGtRRjFQdw?oc=5"
+  },
+  {
+   "category": "results",
+   "company": "Dhanlaxmi Bank",
+   "fact": "Dhanlaxmi Bank shares tank 13% post Q2 results despite stable asset quality, lower provisions",
+   "source": "CNBC TV18",
+   "materiality": 1,
+   "link": "https://news.google.com/rss/articles/CBMi1gFBVV95cUxQd25TMUNfZmYwaV9iRDdRSThuYWJTSGdUVU9HMl94WVFjRm1TVDdSd09JdVpvemxESi1Db0hvc0RXZDFCNy1YdWp3Skcxc1BPQ01VclE0UHBRdVloZnNVN0dPWXVNMVUyclM5OWNrYzBacnpZaklIUDFLMVJLSFR3U1ZfSWNrSkl1MkhyanJtVUMyOWFuOW15VEdHd1JINWlCOTZ3cGFIOUI3a2R2OXljMThMTElSVW42VVRzUkZrZFctaUJCb0RKUHlBdG9CVEhzYndtcTB30gHbAUFVX3lxTFBvR3JjWUp4WlhFSE40V1J4bERvQ3p1SXRPUzd3TWk1UTI4X1U5eWJ3THltWlhzVDlmRXJWMmw5dFBJLTdEYktlcDVkcnlwc3pWckhOZnhCSm1DVENJaEpmdUlUaWNjWlFQb2hOaVMyd0FXYjFiaTd2ZTF0U2Y5XzBPMGtCeWE3NkxrX1FyMkRHZzdCX0tHWGZjRTVOSlBQOUxxbUtqR0xIRmNlNTNKV0xIeHlvUEZQV0JzT01QQ0FEeEt0bzgydjZ0STN5aGRVTDJWUW54QnBFSnM4RQ?oc=5"
+  },
+  {
+   "category": "results",
+   "company": "Paytm",
+   "fact": "Paytm reports Rs 2,648 Cr revenue in Q2 FY27; profit jumps 10.7X",
+   "source": "Entrackr",
+   "materiality": 1,
+   "link": "https://news.google.com/rss/articles/CBMiowFBVV95cUxQX2NkTV9KeGgwVFd6aFVMbDJzcTlWSHNObTltM0VGOGtpRzRiMVlhd0hBdTYwTGVkRnRFck9rUk9VRlNPbHZNbTc2Q2tCOW9jLUV4d21ZdU9UY29yVUtPc3BvYU5vbFBuanlCVGRZV2czbmt1eXN4anhUR1VIN3dXU1BMQUpsc2NENFRoM1RKU0F5amtJRHlVY1c0NkVqM1I5N1Yw0gGjAUFVX3lxTFBfY2RNX0p4aDBUV3poVUxsMnNxOVZIc05tOW0zRUY4a2lHNGIxWWF3SEF1NjBMZWRGdEVyT2tST1VGU09sdk1tNzZDa0I5b2MtRXh3bVl1T1Rjb3JVS09zcG9hTm9sUG5qeUJUZFlXZzNua3V5c3hqeFRHVUg3d1dTUExBSmxzY0Q0VGgzVEpTQXlqa0lEeVVjVzQ2RWozUjk3VjA?oc=5"
+  },
+  {
+   "category": "results",
+   "company": "Medibank Private And",
+   "fact": "Medibank Private And 2 More Australian Dividend Stocks To Watch",
+   "source": "Simply Wall Street",
+   "materiality": 1,
+   "link": "https://news.google.com/rss/articles/CBMi1gFBVV95cUxNQy1TRFdKTUJ4Z3RNWUN1UW1BYlpFb0hJNzdXNWkzZi1aTWU4TllmZVlGaEJUaW96cHprZHlnRXdPNG1WTjZDZTI1Rkl2eEk3N0c1R1lTajBIVVBmVFFLSmRxVy03NV8ycFR5Z3g5SWR3QVd5RDZXQVg0eXl1WnNfcEV6NjQ4cmcwZjM0eFNhcTE1elJsRDdDck9wQXZLQnJFa1V2LThFaUVxdE9zd1E1WG90TkN4UmM1cGZPRGZ4UWZhdHlPNW1QU050a1I3X2FTbU9wbjJR0gHbAUFVX3lxTE1vZ1JXaHBidzNhdjA3S3llSTFBMm1qTDI5T3NvWEV2WmQtdnJzMXNkZS05VjlrQlRYdVQ3WDVyQ1N2cWdtQ2dPOWlSNmNVYWhabjBnMnRHWDFxYlZSZ3BVbl9VRy1Dc0h0QzItZEhMUTJQTDFZcTlhUnpkUGhzel95UTlaY2N1eU1wa1Q2UnJ2RVdfT1gycTJaRlFoUUpzQkhEM3ZhSTljb2pwaDQ2RmpNUDJSbnBiOTJRWUlwR0MyV1ZYQVlOVjlQYkkwSkpwTm9TbEFrdGhiRGs2NA?oc=5"
+  },
+  {
+   "category": "results",
+   "company": "JSW Steel Stock Gets",
+   "fact": "JSW Steel Stock Gets Buy Rating From Jefferies After Strong Results: Check Target Price",
+   "source": "Trade Brains",
+   "materiality": 1,
+   "link": "https://news.google.com/rss/articles/CBMixgFBVV95cUxONkR6aGZMczhfWDU3dXZFT2xsdEpzdW1ncm5jMi1Ma243R1hJSHU1QnBGYTFkbGtTQ3NOQkprUzNnbjgzN0I4TmxFSFRacmthUzBIMDFhVzZWbUVNdFdrLVFxM1lHRmQtOXVHblhhV1pUSlBtRU81Uy1KQUl0TkVzTEdmcVN4dG5NYV9UYUVDRTlrbEpfelZCZ3pTaDhRdWtwbHRtaWtDbDdPcDdUNWVpSU1GeXZVcWMwRUt2SWZYbmgzVjhiVFE?oc=5"
+  },
+  {
+   "category": "results",
+   "company": "Ather Energy Reports",
+   "fact": "Ather Energy Reports ₹1.26 Crore Profit In Q2 FY27, Plans 2.25 Lakh Units Capacity Expansion By FY28",
+   "source": "Free Press Journal",
+   "materiality": 1,
+   "link": "https://news.google.com/rss/articles/CBMi0wFBVV95cUxNRG5CWVRZVE1PVGlMZkZUUWdsWl9scWcxTEFGaGtZVTgzZ3dXc0ZUZWhtandremNac1hzYmRjQXpndGZRTDdCSzFkeENBR0VtTXBramFmRmZnZTA1OFItbVFYV3BpZWczaXFuOWZYcUU4Z21EWlN1RGNFUldQWS1DN2VwbXFzbXZ2WWpFbHYtNDY3QTdtMlBqcGgxcWR1MTNiZEJUNDVWWk9PTG9KNnZDTENhVzlWY0xBcmtibGdadUxjRFByOVpkbndvQjhELWllNkZZ0gHYAUFVX3lxTE1lZGFNelZzYnMzeGd2ckhKVWw1YVZaZHFCOFNTUDBXeHBGMXhvandnMlhLUlJEWV9iNGNOVERQLW5kZ2R0XzRzNllKN1RQa1NOZnhMVWVQTFhGRURxaHN0bjUwdkpLZzRUOTh6T0RxcVpKZjlvRmM3MG95QVBtS3E5bklYQmkydHQydGxvVVBQQklNTnBrdzcwWTZlZWhuZzZWOEE1Q0E1bHBiRkI2V09FemRadkZjZlRyUUVjWFd0MHZqYmdVRTQ3T0o3UDZYY1RJWThhUFdSTw?oc=5"
+  },
+  {
+   "category": "results",
+   "company": "Mankind Pharma Jumps",
+   "fact": "Mankind Pharma Jumps 5% to Day High as Q2 Profit Rises 39%",
+   "source": "Equitypandit",
+   "materiality": 1,
+   "link": "https://news.google.com/rss/articles/CBMijwFBVV95cUxNaDBaRTd2V3JTWVF4aGJ2T3VZdGRFYnVGeGMxcmRBODFLUWR3LWNNTXNXSi1nTW5nSUZQTUpubjFBU01KU0Jua3RfbmlpWFNEbG9TOWZWRmFEOUwxejRnQ1JmOXV0MnFuclFLNVE0cXRFcFo3Q2wwZXBMNWpzR1F0dmxqNXhNU3pYYmhJdWQ2UQ?oc=5"
+  },
+  {
+   "category": "results",
+   "company": "ITC Hotels Jumps",
+   "fact": "ITC Hotels Jumps 8% to Day High as Q2 Profit Rises 51%",
+   "source": "Equitypandit",
+   "materiality": 1,
+   "link": "https://news.google.com/rss/articles/CBMiigFBVV95cUxOSm94QzlMZ0Zpd3JRVFZYeHpHTGkwV2xJNk43aFlycFc3d1NJejJ5VEZkR3N2MFl4XzFDeEUtZkJqOFhWQmdGVVdNbXhhLVZSWVotZ2tValFYWElIOTByWE0xOWJ4a1ZNb3lVcDdFV0lsNVFwNFI0cFg1emhjdUVNZVRzUWhzYV9KM0E?oc=5"
+  },
+  {
+   "category": "results",
+   "company": "Edelweiss MF",
+   "fact": "Edelweiss MF - Edelweiss BSE LargeMid (60:40) Stable Dividend 50 ETF: ELMDIV : Edelweiss Asset Management Limited has informed the Exchange that the Net Asset Value (per unit) of E",
+   "source": "NSE filing",
+   "materiality": 1,
+   "link": ""
+  }
+ ],
+ "sources": [
+  "https://economictimes.indiatimes.com/markets/bonds/chinas-central-bank-sets-up-non-bank-financial-institution-bond-market-swap-facility/articleshow/135210676.cms",
+  "https://economictimes.indiatimes.com/markets/bonds/india-bonds-give-up-gains-as-high-oil-prices-weigh/articleshow/135211224.cms",
+  "https://economictimes.indiatimes.com/markets/forex/rupee-slips-below-to-95-18-against-dollar-on-elevated-oil-prices/articleshow/135222166.cms",
+  "https://economictimes.indiatimes.com/markets/forex/rupee-weakens-for-third-session-as-importers-step-up-dollar-bids-foreign-outflows-bite/articleshow/135208766.cms",
+  "https://economictimes.indiatimes.com/markets/ipos/fpos/can-sfc-environmental-technologies-ipo-deliver-long-term-growth-for-high-risk-investors/articleshow/135222205.cms",
+  "https://economictimes.indiatimes.com/markets/stocks/earnings/bank-of-maharashtra-q2-profit-jumps-41-5-as-bad-loans-decline/articleshow/135214440.cms",
+  "https://economictimes.indiatimes.com/markets/stocks/earnings/dalmia-bharat-posts-rs-205-crore-q2-loss-on-exceptional-hit/articleshow/135217688.cms",
+  "https://economictimes.indiatimes.com/markets/stocks/earnings/itc-hotels-reports-revenues-of-rs-1054-cr-for-q2-pat-at-rs-203-cr/articleshow/135210456.cms",
+  "https://economictimes.indiatimes.com/markets/stocks/earnings/mmt-reports-net-profit-of-1-8-million-in-q2-revenues-at-235-2-million/articleshow/135214497.cms",
+  "https://economictimes.indiatimes.com/markets/stocks/earnings/paytm-q2-results-profit-rockets-976-yoy-to-rs-226-crore-revenue-jumps-28/articleshow/135214973.cms",
+  "https://economictimes.indiatimes.com/markets/stocks/earnings/sunteck-realty-h1fy27-net-profit-rises-20-pre-sales-up-19/articleshow/135217893.cms",
+  "https://economictimes.indiatimes.com/markets/stocks/earnings/tamilnad-mercantile-bank-q2-results-net-profit-rises-42-to-record-rs-451-crore-on-high-net-interest-income/articleshow/135214844.cms",
+  "https://economictimes.indiatimes.com/markets/stocks/earnings/tata-consumer-q2-results-net-profit-rises-16-yoy-to-rs-470-crore-revenue-up-14/articleshow/135211637.cms",
+  "https://economictimes.indiatimes.com/markets/stocks/news/ahead-of-market-10-things-that-will-decide-stock-market-action-on-tuesday/articleshow/135215629.cms",
+  "https://economictimes.indiatimes.com/markets/stocks/news/ather-energy-shares-skyrocket-19-after-ev-maker-swings-to-rs-1-26-crore-profit-in-q2/articleshow/135209355.cms",
+  "https://economictimes.indiatimes.com/markets/stocks/news/d-st-makes-a-comeback-after-weeks-of-decline-yet-investors-remain-cautious-amid-ongoing-market-concerns/articleshow/135221724.cms",
+  "https://economictimes.indiatimes.com/markets/stocks/news/govt-seeks-investor-and-expert-views-on-ltcg-and-stt-as-it-reviews-capital-market-levies-amid-fpi-exodus/articleshow/135222361.cms",
+  "https://economictimes.indiatimes.com/markets/stocks/news/india-earns-nearly-50-more-from-fuel-exports-in-april-september-as-costlier-oil-and-weak-rupee-outweigh-lower-volumes/articleshow/135222347.cms",
+  "https://economictimes.indiatimes.com/markets/stocks/news/indian-overseas-bank-to-raise-500-million-as-q2-profit-jumps-56/articleshow/135214567.cms",
+  "https://economictimes.indiatimes.com/markets/stocks/news/jio-ipo-brings-a-smaller-payday-for-bankers-than-other-large-offers/articleshow/135222126.cms",
+  "https://economictimes.indiatimes.com/markets/stocks/news/market-wrap-dr-reddys-jsw-steel-shriram-finance-tata-consumer-top-gainers-and-losers-on-nifty-and-sensex-on-monday/articleshow/135209828.cms",
+  "https://economictimes.indiatimes.com/markets/stocks/news/pre-market-action-heres-the-trade-setup-for-todays-session/articleshow/135217191.cms",
+  "https://economictimes.indiatimes.com/markets/stocks/news/rising-concentration-in-ai-stocks-poses-a-risk-kunal-kapoor-morningstar-ceo/articleshow/135221935.cms",
+  "https://economictimes.indiatimes.com/markets/stocks/news/sbi-chairman-cs-setty-sees-discretionary-credit-demand-moderating-expects-50-bps-rate-hike-in-december/articleshow/135222275.cms",
+  "https://economictimes.indiatimes.com/markets/stocks/news/softbank-sells-1-21-crore-ola-electric-rights-entitlements-as-ev-maker-seeks-to-raise-rs-1000-crore/articleshow/135209308.cms",
+  "https://economictimes.indiatimes.com/markets/stocks/news/stocks-in-news-paytm-tata-consumer-dalmia-bharat-rec-and-dcm-shriram/articleshow/135216594.cms",
+  "https://economictimes.indiatimes.com/markets/stocks/news/the-rs-1-5-lakh-crore-mtf-problem-how-shrinking-leveraged-positions-are-deepening-indias-smallcap-sell-off/articleshow/135214401.cms",
+  "https://economictimes.indiatimes.com/markets/stocks/news/yes-bank-among-6-stocks-to-hit-52-week-lows-and-fall-up-to-32-in-a-month/slideshow/135212417.cms",
+  "https://economictimes.indiatimes.com/markets/us-stocks/news/anthropics-filing-for-blockbuster-us-ipo-shows-key-executives-and-board/articleshow/135213686.cms",
+  "https://economictimes.indiatimes.com/markets/us-stocks/news/global-market-today-wall-street-gains-lift-asian-stocks-as-fed-decision-looms/articleshow/135222218.cms",
+  "https://economictimes.indiatimes.com/markets/us-stocks/wall-street-guide/anthropic-ipo-5-jaw-dropping-numbers-investors-need-to-know-about-1-5-trillion-public-offer/articleshow/135214380.cms",
+  "https://economictimes.indiatimes.com/markets/us-stocks/wall-street-guide/anthropic-ipo-halts-ai-training-for-over-a-month-over-security-concerns-as-models-breach-testing-systems/articleshow/135218073.cms",
+  "https://economictimes.indiatimes.com/markets/us-stocks/wall-street-guide/anthropic-ipo-rising-costs-risks-rapid-growth-market-ai-frontrunner/articleshow/135213738.cms",
+  "https://economictimes.indiatimes.com/markets/us-stocks/wall-street-guide/anthropic-opens-books-on-ais-explosive-growth-and-staggering-costs/articleshow/135212999.cms",
+  "https://economictimes.indiatimes.com/markets/us-stocks/wall-street-guide/anthropic-vs-openai-how-claude-makers-growth-is-challenging-chatgpt-ahead-of-ipo/articleshow/135215446.cms",
+  "https://economictimes.indiatimes.com/markets/us-stocks/wall-street-guide/asia-focused-banks-face-bond-market-risks-ahead-of-q3-earnings/articleshow/135209404.cms",
+  "https://economictimes.indiatimes.com/markets/us-stocks/wall-street-guide/stock-market-live-updates-dow-jones-nasdaq-sp-500-meta-tesla-earnings-fed-rate-decision-treasury-yields-oil-prices-alphabet-microsoft-amazon-coreweave-nebius-news-26th-october-2026/liveblog/135211801.cms",
+  "https://economictimes.indiatimes.com/markets/us-stocks/wall-street-guide/us-markets-today-us-stocks-end-higher-as-anthropic-ipo-filing-revives-ai-optimism-tesla-hits-3-month-high/articleshow/135219329.cms",
+  "https://economictimes.indiatimes.com/markets/us-stocks/wall-street-guide/us-stocks-today-us-stocks-open-higher-as-anthropics-ipo-filing-sharpens-ai-focus/articleshow/135213224.cms",
+  "https://news.google.com/rss/articles/CBMi-gFBVV95cUxPZzg5TFI4Q2RGOXZuMjdGUGsyRjVoUzJKZHRZaVlVeldvd1EzdU9BYnlnQnZaRy15RkRkR25Pa2hRdUozb0owemViV21hYlFUQTZPSVp5TVRaMlpoUHFZTHJvc3o3RXM1X0FuUjZBTUl1Q3hpWUxuREpsR0o3ck1DeklfdW41RVo0djRWTEt1SVVTX0JiYk5KZkI5dnZCWEs0MHRsaXBqYWpkbDVnUFpKMGFqblJnUlpPYXRrMHBXa1BUcnpOaWxOQ3lkU1JRb09Pb0lUVzd5cGpSNjZsbTZZcTUwcURCUmtLeEpkLU5MdlA5eXpkYUF4OXFR?oc=5",
+  "https://news.google.com/rss/articles/CBMi-wFBVV95cUxPY0RIdzhqd2JHcXBTRjJEcEhoc1dVb24ybFBHRmxhX0liVEFYQnNGOG5SSTZ6eFVGOWVPSnZWOWJodmg0OGVRWTl3M2JNZWlCUGpwSHhGWUNCSWdmQ3kyNGlCd1JrSXRHWXJFSnVwVVBlRlZVNDlpRGJoUnJaWEU0aS1DWkdKVFp1VTZXbmdaNFRSb1JMOHJvMEZxaG1TNUszVGE0S2lUckNfTjFKX3hKREhaNEhRWWd1Ry10WDIxRUhuaURQcV9WZlNYXzNjUGdkUEhfR3hvRUxoT2E0Wkg3QngySWV1UHF3RWpPZnF2dHpOU1hvUjFCYk9hd9IB-wFBVV95cUxPY0RIdzhqd2JHcXBTRjJEcEhoc1dVb24ybFBHRmxhX0liVEFYQnNGOG5SSTZ6eFVGOWVPSnZWOWJodmg0OGVRWTl3M2JNZWlCUGpwSHhGWUNCSWdmQ3kyNGlCd1JrSXRHWXJFSnVwVVBlRlZVNDlpRGJoUnJaWEU0aS1DWkdKVFp1VTZXbmdaNFRSb1JMOHJvMEZxaG1TNUszVGE0S2lUckNfTjFKX3hKREhaNEhRWWd1Ry10WDIxRUhuaURQcV9WZlNYXzNjUGdkUEhfR3hvRUxoT2E0Wkg3QngySWV1UHF3RWpPZnF2dHpOU1hvUjFCYk9hdw?oc=5",
+  "https://news.google.com/rss/articles/CBMi0gFBVV95cUxQazBfSE9oS2FMUFdUQ3ctaVVoeW54OHg3aEdva1EzM0dzTEJZS2JBYkJTel9CQnlWaDQwMGZQVm5qQWhjczhSclAzZnNkdFprclB6eFZzWTR5WUhfMVVYLVlZdXhNN1V2dHlacUtNOFNDclVCc2tQR3owdU55RTZSMmYteG9xRWZIVFdYb0JDeDUydHRrSDZuNE9INkJfX3B2TXZ4eWZaYUJzVWtpeGpPc1JpQVlLbFAzYXZSMnIxZVZWNzhaXzZpR2QzSERBdzNEalHSAdcBQVVfeXFMTm9VZktQUnBKV1NfZEpucHB2WEh6aUtUSFk4MnRHVHhRb285YU1TZlUxRGRQU3l0VHFsdUFvUEZyYmQ4REhNSnBUMW1RMVFvUm9zYWlqVXFSMEZRM0J5N2E2WTRGdHYwN1JpdjZ1eVRuTGNUNTFIWU1sRnZ6ZXlfTkVHdElYb1VRWmZIRTl6VkFscjNzaEJEZ19UQXl3VUFXOUtieXlEb0VKT2s4Smd2MVdTTXN2ejQwdmk2dlpYU3NMY0VNZmc3SWdUaEVGcEs5X2FDSVFDa2c?oc=5",
+  "https://news.google.com/rss/articles/CBMi0wFBVV95cUxNRG5CWVRZVE1PVGlMZkZUUWdsWl9scWcxTEFGaGtZVTgzZ3dXc0ZUZWhtandremNac1hzYmRjQXpndGZRTDdCSzFkeENBR0VtTXBramFmRmZnZTA1OFItbVFYV3BpZWczaXFuOWZYcUU4Z21EWlN1RGNFUldQWS1DN2VwbXFzbXZ2WWpFbHYtNDY3QTdtMlBqcGgxcWR1MTNiZEJUNDVWWk9PTG9KNnZDTENhVzlWY0xBcmtibGdadUxjRFByOVpkbndvQjhELWllNkZZ0gHYAUFVX3lxTE1lZGFNelZzYnMzeGd2ckhKVWw1YVZaZHFCOFNTUDBXeHBGMXhvandnMlhLUlJEWV9iNGNOVERQLW5kZ2R0XzRzNllKN1RQa1NOZnhMVWVQTFhGRURxaHN0bjUwdkpLZzRUOTh6T0RxcVpKZjlvRmM3MG95QVBtS3E5bklYQmkydHQydGxvVVBQQklNTnBrdzcwWTZlZWhuZzZWOEE1Q0E1bHBiRkI2V09FemRadkZjZlRyUUVjWFd0MHZqYmdVRTQ3T0o3UDZYY1RJWThhUFdSTw?oc=5",
+  "https://news.google.com/rss/articles/CBMi0wFBVV95cUxOZ0hyQVhiNTFHNnk2VW1qWWpOMXRtaGIzSWQ1WFBIdkVYZXpLU3FNUWZLQjZvWnRIQ2pyNk9HU2ZtalNMNGJJMEZNLWZlZGVCeU9URjJLUy1yTnYwX0ZFcUNabGwyb21GTktST1RUbnlld0ZsR2ZqbEYwN2V2QmtRbEJIY05GSUZBelR4dDVKci1QLUlBR1pLaDEwNkJqaUc5RkdhNzRUNE1LVDE1YVBqWE9LdldSejY0UFIzbnZ3VW1GYmR5WnYtOVVNY3c0YVNJeFNB?oc=5",
+  "https://news.google.com/rss/articles/CBMi0wFBVV95cUxQT0swMlA2X2VCSnBhN3BWQWtiY3RuRG5TaE9PNHZiZGpuTWRQc1I4S1ZWRmpucDJpdEkzdDFXdVlCTk40RVpoanE1aC1vLTIta0ZTdGlsQjVDNGVNMGhCME4yak1PVUN0NUZMcmFUWk4tZ2FTWEdwa2JxbDFrY0JVa09tdE10XzBvV2NHYnhnVkxUczUycWVNNGpwbzdSNy1QYTIyWW40MmprTHRabkRXazRRLXVkMngwVGVKLWVCVFVGN2k4Vi1fVGxsVXVfYUNid29R?oc=5",
+  "https://news.google.com/rss/articles/CBMi1AFBVV95cUxNNTNHV2tqOENBWndZSmJxRGVZUVRCT1FaYXgzakNYQkNkNTFicWNWdXJMcWJJV0NTbDUtcjZWaG5wdUlJY19OUXJ2QmpTRkc5TzJRbURjVDdVeWpfZi1OdVZJTHFkM2x1UlA2aXFZSldWamdIOUdGSHlMUHNGY0dSeHRWWFAwRnNEZUZxWEpzbjh1cmJsNTNCd1hMT0VOdjZpaHJqdko5azRDWk1RaVZ6TmUyaGROVDhDa1RPQXNWVm9kTmQ2UE1WYTZfeW4taXpKWVFNU9IB2gFBVV95cUxOREJ1V2NOMUFWOW54Q01NNFRJLVV2Rk1IaVNXMzFpMEJLaFMyU2RvY09FZFItRHIweVFQblNRYnlLeFVtWkU4c1h6RXJPZkdQY0wwZmJqTU5TWE9SZjAteFhMOGdacnoxZTczdnotc3ZNNTBfR1gxTVFSYnJPUm5EekltdXN4LTRlNDZ6RWpHamYzV0wtRzFEamxwdi1Ybl9TYW5aNGhaRUl2U0hSdEFJWDhrZDFyWGRmelNwa2R0eFhKb01QZERsZFBoN2Z3dm5WMk5pdHVHQ05WUQ?oc=5",
+  "https://news.google.com/rss/articles/CBMi1AFBVV95cUxPZjl0TDlnd241UFNvcmdodjQtYVEwWFNhdlBXNmdmZGNFSDlOSlE1elFVLWVSMUVUaVVmdVRMdkRlMmxUSnlaUFlqRmZuRm1qQVd5cWt2VzhodjBxVl8zVV9DaWIycjViOUNIbTJMQ3BiR0VRVFU0SS1mV2NYajg3WXFGWU5QZnZudHo4RU1SX3FCTXBmVC04WTVmUUNzd3RVVk0tTV9SZVYycDJBYW5tQTNKQ3Z4WWlhTDNybk9LUkdOUXUzU0pWT2gzdGRUNW8wWExwSNIB4gFBVV95cUxQU0gtdGQ5SHdiNEx3alFZRXBxYU5Od0dXcDFQNzJoSzNRSEc5Nm44WUpCdWFvV1h1WndtZFBuUEg5dHlxSnZ6YTdmMHdhbEdvWng2Nm5pMHhJVlVCN2VzTkRUbk1KYXpGdFRndF9DWVlzSWtWem0wS240ZVYta1FBMTBlM1NGNUZzZkdXekpPVGxjbTA1QzlfSHg0RzdDTVZHQlNzcVFral96OFAxQjgzdXZDYjlnZWY3WkMweFBLVnAtVGZnRUx4RXlCa3Y1N3FRTC05eHJlX1ppdHJWY2p4cUJR?oc=5",
+  "https://news.google.com/rss/articles/CBMi1AFBVV95cUxPd0NKLTM5X21WN3VYMGhnT0s2bTdwX1dkSC0zcHV0S2RfczhuNnBtaElJWjVMejVfZXo3eVRlclptdGtPcmsxQlVYcTNuRHpjQURuLW9DWG8tcXQ2M0FkTU8xa2NQajBDNV9lbDhxbzU5al9DaGNLNWlsZ0FYQkZwRkVwdW1iNmVXMDZzclpweFN2Q0NKVmNmV2NjdFdieHFTT0NpVm5ib0RmcGJOdDlVbldONUtwMVo0aXc4NjBJUG54R0RPT3A1dVIzV0RIRFNBNUxGOA?oc=5",
+  "https://news.google.com/rss/articles/CBMi1AFBVV95cUxQZGpUVjJFcm56YlFqZl90NmpvUVlnQWd6ZXNCTHZ4aTd3Y01wLWpKZVljcmR5Q19pLXRfNTdkRGNBUEd5MTJscW5zQmRGSEpWdXN6OTVPWEJwQ1FVMjJ3Q1l4WTZycGg5ZWZHMWpmM0R1TFRlczVUMGRlZUJnRTRZRnZkSW9JZFlaS21ORGtPRUhHVHgtQmVPdExVNHl2Q3VjNlBpNmVxbnJ5VGM1NjdqUkdySVQ2Y2xkb0ZtVE80cmhXV0lMenJkbnhmdDBHbFcwRHh1Y9IB4gFBVV95cUxPSFN0WU5kMkxON3lVQlJtSHRPVEpQTS1yOEEtRnJNODVfc09lYmxlZkxzNWVSaFZCQTA5WHhOX3ZfNG14b1ZVMmRlNTZpdUF2cFhlY1BTdC1YbHZ5NXdHbkJxam5QWWtnUzVxR2otR0FjRjJuWWxfU0F0Y3dnZHZfSG5YUmVEeFNYMU5NamJadlhLQ29jRF9QMGFySTh0VGZZNGI0T0JOU2tnekZaVW5wa3JETWpvejAxbGd0LWw4QlZhWlQ5SVVSQ3RsNE54SDRFR0d0Z1EtOURGRUpJc2tpS19n?oc=5",
+  "https://news.google.com/rss/articles/CBMi1AFBVV95cUxQcVZkYXQtOVFMWWlabFBVd3p0UWhSWUVNWWV5c3dSakZHMlFTN3FkQm5oOVoxc19nXzVWajY5Rk91VmNtSEJrNU45cldtSE0wNk5XaUJxSmdwTGg3aHZGdkdhd29hMnJNWlBiS3N0eUE5Vm4ycmxIOFgtTnNZbnhITHpqdzJnUy1tZVZETkxWUVJGemRCM0VyYUtUd3ZfOGxxSlVPd25DVXBxMDdseERCYnFVdmFkeEM0WktQYVNXZGE4ZW9KY0h4U0xUNVBoaUxSZjdXQQ?oc=5",
+  "https://news.google.com/rss/articles/CBMi1AFBVV95cUxQem9CbDhnM0pya3ljb3E0QU55RmRIUmhyTU5Qb0pkWnREWlVkQlFoVTZHdld0YWVYcjlvZnBYUjNxN294ak9tVTNDbnJZSTBQTUdVNmVqZmFnanFOTTg0ekRrUUtiX2ZFVVZ6QU5PWU5TcHV6NHhmY1E1SFJzZFozME1KY2JlSmFYMXhzdVo1VENJUUx6Sm1zbG9SS2Z0Mm5xdHNPUlVQWnZZNzNMcWc1SWc1SVZ0QW44WUpCekdpVC1zVk91YlV2WDd6amVtOVZqQUREWNIB1wFBVV95cUxQSHVReDk4Q0o0Z0pmTUpnejB5UFlIQXVNeVh1S1hfcFE3aVI1c2FDYV9WSmxFdVRYYkRMREt0ZUVTYkhiRGhrTDRseHNPZkVhaFMzZUNDOUdkeFFaQzR6dGREUk5YSlFWYVBGMzcya3RUTUR6RGRESWVGUHhJVjZwV0d5Q0hRN1VjbFBkZ1dBMkJYMHU5T3BoZ2l1cjh3NFhDaTlzTHh6ZUp0NE5UeWl1TW1CbXV2NzNkdnlnMDNVSURRVUNkbWdaWFpUcFp5SGpmUlBOMnlESQ?oc=5",
+  "https://news.google.com/rss/articles/CBMi1gFBVV95cUxNQy1TRFdKTUJ4Z3RNWUN1UW1BYlpFb0hJNzdXNWkzZi1aTWU4TllmZVlGaEJUaW96cHprZHlnRXdPNG1WTjZDZTI1Rkl2eEk3N0c1R1lTajBIVVBmVFFLSmRxVy03NV8ycFR5Z3g5SWR3QVd5RDZXQVg0eXl1WnNfcEV6NjQ4cmcwZjM0eFNhcTE1elJsRDdDck9wQXZLQnJFa1V2LThFaUVxdE9zd1E1WG90TkN4UmM1cGZPRGZ4UWZhdHlPNW1QU050a1I3X2FTbU9wbjJR0gHbAUFVX3lxTE1vZ1JXaHBidzNhdjA3S3llSTFBMm1qTDI5T3NvWEV2WmQtdnJzMXNkZS05VjlrQlRYdVQ3WDVyQ1N2cWdtQ2dPOWlSNmNVYWhabjBnMnRHWDFxYlZSZ3BVbl9VRy1Dc0h0QzItZEhMUTJQTDFZcTlhUnpkUGhzel95UTlaY2N1eU1wa1Q2UnJ2RVdfT1gycTJaRlFoUUpzQkhEM3ZhSTljb2pwaDQ2RmpNUDJSbnBiOTJRWUlwR0MyV1ZYQVlOVjlQYkkwSkpwTm9TbEFrdGhiRGs2NA?oc=5",
+  "https://news.google.com/rss/articles/CBMi1gFBVV95cUxNWHl1OUFJSmtiR3hKMDhRd2gtQnBaZUxyY1VaUjJmUWFhOG54cE5YWl94VENHY3dwVXVEMWZ0aEhERkRnME5rb1pDUXBwbGJYRi12SVFGOGFfUDdSQ1ozVUppaFJEaTcwRkl3SVpVOWZfV1JRY1VmaWVEQll5dlJxN3lIQnVjRm5EWE0wRjBEY2NZWE9sQUpjeTJYM2ZKV3pRekJ2UkFpS2R0cGhtYkJ5RWtidXhYT05mTXFpNmd4VWhKTExXRWdabVh4MEJSMVhjRnJSRk1B0gHbAUFVX3lxTE1tN2FuN3NIMS0xMnczYzN4LTRlck80MjZQOEN4S1dRQTdBNzhISld0OU5RQk1EVy1Fd2g3alN6WkE0d25RQkZfdTlGNnVnZGtIWV9PVllTcW91VXJReldBakp5M0lmRVFJcWoxMUNlcG0tR3JNZHk0OXBuSFNqazZ5TFV3Q0VBX2lpb2pxSkhheFhFUDlfcHh5eUJoNXF2WVBRVHN6d1BMMldRQnNvYXNZd2hDZ1BKRFpfbHVZaWRzTVFjZlpVYVJJY0owRno0SnIxWEJhUWNPUEFUNA?oc=5",
+  "https://news.google.com/rss/articles/CBMi1gFBVV95cUxQMDJpSzEwNEpEZDVGSkdya2t3Z1BzUDBuVjZmc2pseGE3ZWFMODRZYk9EdkVCaVJKdkUzb2xHTV9JOWVNMEF0QVQ4M1hrLU5jWkhscVZ0VXdja05BTmZ4M2tlSzJubHBHcno2ejlaZ0ZHMXlLeFBHdVR4ai1qSmpHaWtRNHFHMnRuUjlybDRwdFpmaFBvanBJbDBZa2Vxek5zUkUyZWVDRUkxdl93UFY3MEM1eDdlcHMwN3N0a3dnSGpQWG9uaFNFdGFvTUxnMjFoNDVOWmdn0gHbAUFVX3lxTFBaOGZIN0M5X0liVEpPcHNGVEJTV1AzOWY1UXExaWNrbnFvQWdHd1dCd3hNd2FhQlM4NnlmQldjbHZGTnFwNE02S0dUYjdfNmswSGV0Qmh2TmwyVkNQR1BlTnhtNlhYeXhYT3BOcFBSWmVxbzlNMFBvWVBXVVdwQlhFbVNtaWpCRkVCdlNtR1ZmaGczVDlTaE9VVGtBSUJwd1ZGX3lpdTVKcjRrUFJUYXVZY2lYLUI5emw2UXoyZTFtd2hTOEs0QXpGNktfdHNVQ09EeTZLR3IwQVRHbw?oc=5",
+  "https://news.google.com/rss/articles/CBMi1gFBVV95cUxQd25TMUNfZmYwaV9iRDdRSThuYWJTSGdUVU9HMl94WVFjRm1TVDdSd09JdVpvemxESi1Db0hvc0RXZDFCNy1YdWp3Skcxc1BPQ01VclE0UHBRdVloZnNVN0dPWXVNMVUyclM5OWNrYzBacnpZaklIUDFLMVJLSFR3U1ZfSWNrSkl1MkhyanJtVUMyOWFuOW15VEdHd1JINWlCOTZ3cGFIOUI3a2R2OXljMThMTElSVW42VVRzUkZrZFctaUJCb0RKUHlBdG9CVEhzYndtcTB30gHbAUFVX3lxTFBvR3JjWUp4WlhFSE40V1J4bERvQ3p1SXRPUzd3TWk1UTI4X1U5eWJ3THltWlhzVDlmRXJWMmw5dFBJLTdEYktlcDVkcnlwc3pWckhOZnhCSm1DVENJaEpmdUlUaWNjWlFQb2hOaVMyd0FXYjFiaTd2ZTF0U2Y5XzBPMGtCeWE3NkxrX1FyMkRHZzdCX0tHWGZjRTVOSlBQOUxxbUtqR0xIRmNlNTNKV0xIeHlvUEZQV0JzT01QQ0FEeEt0bzgydjZ0STN5aGRVTDJWUW54QnBFSnM4RQ?oc=5",
+  "https://news.google.com/rss/articles/CBMi1wFBVV95cUxNRUFMQ01xTmxIR0Q3ZmExR05XeXdzRmEtUEM5cVR3UmwxV1pKOVA1RWNQUXN2UzRvbnFJVFUwd0V4SkthYno4aHViMFZqcllXbzIzNlR6Tl9UNlhPNXZLSmU4cHE1QjloVm9UUzA0RUh6Q2pod1V6QVdRV1dIZ05oTm9zSTEzYVNGbTJtUGxNTXlMRWxFbndVUXI2TVF1T25PbmpJR2o1bms2MVJzRTFxcjZIQWZzRDRHVnRDeUZ3NzJDaDBVM1k2WTFaS2FmT25Na2VFeXAxQdIB1wFBVV95cUxNRUFMQ01xTmxIR0Q3ZmExR05XeXdzRmEtUEM5cVR3UmwxV1pKOVA1RWNQUXN2UzRvbnFJVFUwd0V4SkthYno4aHViMFZqcllXbzIzNlR6Tl9UNlhPNXZLSmU4cHE1QjloVm9UUzA0RUh6Q2pod1V6QVdRV1dIZ05oTm9zSTEzYVNGbTJtUGxNTXlMRWxFbndVUXI2TVF1T25PbmpJR2o1bms2MVJzRTFxcjZIQWZzRDRHVnRDeUZ3NzJDaDBVM1k2WTFaS2FmT25Na2VFeXAxQQ?oc=5",
+  "https://news.google.com/rss/articles/CBMi1wFBVV95cUxOcm00Zl9MbkdZSWxpRF9NVm41U0xDRUpqaHRVWDN3MjNYeUJZYTQ4WExLQVJ4N1lyRXlnTGhqeDVBNk5OOWctVXgxRzZGdGEteFM0OUtrYlU0ajRCajJKWVdwWHduWHRISGRVNkpTMnFBYmREdi1jTW81b3JtRVJscUpNcGJzSGdnNVU4REFBWDVoZHNtSFY3VDBMaS0xb1hKX3ZQZ2ktOTdqenV6TFFTcV94R240c25YTXlZTU5RSVZ6ZG1hY19nVnFJQV9IcWl4Ym5UZ1d6WQ?oc=5",
+  "https://news.google.com/rss/articles/CBMi2AFBVV95cUxNS1FUS0RXSHVvWjRrb3R5Vm9wM2R4SVdkZklrZmVaa0l1YXQ2bmVMNkdJVjFxdkFaMHpkSjUwSjRwekd6dVVJX0puX2RhSndnQUlzNTE3ZnVSWi1hRDFWdkl1RFJNSXdKczVRREh0LXhGQUtPNkx0YTlBUXRya0FHQkdWV2pKc0E5RDBWMVgyblFkODg4LXJRc1gwU290cEFLVVFNSlVlZmtXMFVxVjdfTzJaeGw3bkxCaFNoUnlMQW5RdFFpbC1YTW5oaE45dERaNl9KSUdzUWHSAd4BQVVfeXFMT1hTQ1dPU0F0bklDNERfMVNXX0hQYVNTTy15UC1pTTIxRlVWVUl4TmJvWl9RUno3eGNXQ3ZsMUoyRVNsNDhGWFhSeFRoY0Y1a1JYV3FxbFZiRVMtaXoyc194SGQ3Q2lZQUpBdy0ycW01NkRvT0RSWUktUXVYaW4xcnNIUUVLY0Y2azFEYWxYem1hVUlkRllOSlNzWkFacWdaekVWb0cwUURUYWFsWGVPUk1WOXJMYVBWelV0QlczaFlZUkFjeXdFTDBkZWxMNU9WVXJFS3lGVXd0bWNydE53?oc=5",
+  "https://news.google.com/rss/articles/CBMi2AFBVV95cUxQcEpFVks5QWFQR3hpa2NXQnBJQjdsNF9PaW1uUld4VHItaFB2OGpQRGxmYllKTTB5QmJVLU4wclhmNGJ5ZTlQdnN4SElCMms1Y1R3ZVhRYXA3WWZqYWdYTHphOE5JeklkOHhFSWZVYi00VWZEU1RNQ1N5c2o0SXUzVmZCVEFlaXotYWtEU0doOWZ6MW10QXhIM2JyQ1ptV3NPZDRLWll0dHRJWlF1b0JfODlrQUlwV2lQblVLRXdqYVp1M2RUX09qUm9TTVVFSmo1dVJQRFRjTmk?oc=5",
+  "https://news.google.com/rss/articles/CBMi2AJBVV95cUxQVnZ2WmZZU3VCa1Ayb0JPTjdzeElZVDZIc3llSmJ0VWxTakJNU21ZdUszTmItTUxGUHdUT0dqUW4xbFhyaTA2RjZqMFAyQ0pIYldlQ1J4aTdmV09nQkUwd291MW5DOGtIQ2ZUODRkdlpjRmZHRzNxOXh1aU9paHVZR2huNHowSmJ0VUpkWDJhX0p4SmpwLUNHMGpGNGV0dW5WQkFBTFRhSUY2LXRNUWxoNFF2WllNYXEzTEt1Z1hVQ195T3phM3lxT1Bfc0ZJUUJkZjN1NGZRRndLTWxPVFA4RDMwcEEyMlpJQ0pLRHQ3TEEzcXlRajQ1TVpPNUQ3WVlNUk50Qjl6RGNtRGY2eFJ4VWo3WEtWV0dZbEkyR0hQXzJpaDhFZnZvUElsVklsOWp4c2U3bmxueHNRSG9VVGxPS2p4aWFXRDZsamoyVXFkT2VzWjhJdzUwSw?oc=5",
+  "https://news.google.com/rss/articles/CBMi2gFBVV95cUxOaC1sRVBIdlJKRXRwLVp2Y2RtYjVoUFRoSU00anpHOHdsMzR0ZUJfcmoybHF5UG5PRW1uZVc0VTdIV1hJWVR3R0t0cGljZDlkNGppY0VjaXVmRlBQMWs3alMxS2NCbjRpakVTbzVoOTRZYVdxbmRJVmE0NnZ6MGdHM1VYUmhCMmlERHFrX3BnR1lhSjJFY1htZlhvbWxUWERzWWJCVGh1WEhJeUF2UW8xVm50ME1rNDJ1Y2pjQVp1dG1UTVd4dEp2aHZPdE5jMWI0ekNPNzhnY1V0UQ?oc=5",
+  "https://news.google.com/rss/articles/CBMi2gFBVV95cUxPQ1ctbVB1WXFoWlZWdlUzellJc0l3Zng0WDVkRjZqRm1VY3Zrb0w2WWtZV3lZOTA3Y3ZvWWlRdzRwX1RYSmUwYTIxT2RWbHpwOVlOZi1BYWxYWTRGOGdHbmJ4YjZ5eHVGcGZJaW1KZmdEYzJvMi1GbVpQcFlZRWN4V2w2NGduYTltNVZEei13YkhqdTItYktWNE4wNGRscjk2V05TMXdJUHM5eUhjZWRFMmk2Ym1JU1dES3R6dWVRMV8xakUwaXdXZUVtaHc1c2U1b1pRVVJjM3NXQQ?oc=5",
+  "https://news.google.com/rss/articles/CBMi2wFBVV95cUxPUUVRdWdTMk5LU1p6U3VYM19XMFJ5QVpONHBFWmdtNkNnMTY1UVdjOWZJRjlJRTlEYW8tV3pKbHhrS3h6aEZDcHdvczhmZXdtX1o5MGNXSEZxaTN3Y1Z0WGtqZWp1VkpDZkg0WHlxVGtXUTlpS0d5S29MQUpvTW1PQWQyTy1qVWRpejNwQkRrR2xFV0JpeWVMMGh4V19ReVRXYUd4eW1wNUppVl9HdmpQU0FMZVZISG41Ujl3TjF1X2RkYUJXZ0tXZV9xWTdMcVpDRFNQQ3FyQ2FMM2vSAdsBQVVfeXFMT1FFUXVnUzJOS1NaelN1WDNfVzBSeUFaTjRwRVpnbTZDZzE2NVFXYzlmSUY5SUU5RGFvLVd6Smx4a0t4emhGQ3B3b3M4ZmV3bV9aOTBjV0hGcWkzd2NWdFhramVqdVZKQ2ZINFh5cVRrV1E5aUtHeUtvTEFKb01tT0FkMk8talVkaXozcEJEa0dsRVdCaXllTDBoeFdfUXlUV2FHeHltcDVKaVZfR3ZqUFNBTGVWSEhuNVI5d04xdV9kZGFCV2dLV2VfcVk3THFaQ0RTUENxckNhTDNr?oc=5",
+  "https://news.google.com/rss/articles/CBMi3gFBVV95cUxPUmxiZF9qaklLTDEwM2JfbkN2WWZOaWpMb1hUSXl2SEhEQ1piUnEtQkkxVzFzNU1IQm5ZMFZBNTd6bHQ5RlQxdVlYWW1xdzMwVlU2VE5Meldkd0pvMDZhMjFXV2hCT0t4VjlSRmNvNU45WDRjTUZ6NldyRDBsM3hJRmdhVTBsNEVKS0FJdkpjSllseElzcFRIcUIxMFRiQ1p6R2Y2TDRqeHQ4MEpNU0pBQjh4c0lNQlpYMXExYURpdWNrbU1KaTFsX09XT2lfT1haQ19QakRTVlE2Mk1JbmfSAeMBQVVfeXFMT2hzR0dwdF8yVi01d2VoMGhrTm16bGNJOGhTU1I5TVVaWERFQ29QVmNWc1NsNlVoUWl2S2N0ZWRCZmZNQkJSTzV3UDZkRGJROGdlSC1udnYwcUlsLUluYy12NGxSXzdYb0YzZ25UUE95X1NHYmJUajh0Q3lzakR2ckRnaEVWX1I5eU9lNVBweGFJeFAxWENLNGlCX3UwcVJsTUhWakRDWkxrNUoyeHFPODBYMFVUQ2lGYXVQczZlRjA5dGxQZVE0TEFrWkU0YVg3UGZTc2RzeGZDTWhDOU1oWDhEN00?oc=5",
+  "https://news.google.com/rss/articles/CBMi3gFBVV95cUxQWFlwNkJsZlpKOFUtZEpqQ0xlME5KSS1ZcDF3TTdGamtHNDNjRlV0N1YxRTNKWTNIa0JtenRaWVZvNVB1TmxYbW1OTlFQWFhQSGN3MUUyank4QWszUndvZU5wSE4zTjdWcFBhX09MdjFGRG5zWU8yOWJCdlYtTWFDcmU4bzROaXFIYVZ0ZGQwZ21DR25NRDlZcHAxdTdidjhTazNTakV0NVBxNjkwQ09LTGxEMXJ6Q3JrVUZxT28zYmhXSjlpekxlS2JuYUpHaGxhQWNtY0xMWGh5enkxd3fSAeQBQVVfeXFMTkl4UWRRZVBneHNkMnBHYnFJVW5VS0FqcHZiX3ROU0hRaWpqMFNORzZ2ZWFUMFhfSVJjV0lJbFcxd2FlVEJCSW81eDhGbE5tWXE0Ql95eW4tRy1sdlpfZThRa1Q5UFRMS2pWM0tuNUhLYldpTVBJUTRoYlpBRGV4Ymo5WllITjBPb3F4aldQV2RZamY2UWEwbUJWWlZpR29fTFlna1JBNW55Skl6RVJGUzJZa3JJMEdGd3pQTFdTeEF2QkNROUZoWWthM3JrR2Z5T3lTMEYxUkxOaHVxWmM0RkxNd3d3?oc=5",
+  "https://news.google.com/rss/articles/CBMi4AFBVV95cUxNbjJ3U0d2akh5UXo4M2FKY0hiTVY4TEFwNkxFMnVDcG4zNnI0T0J1ME1jSktZOWlLWmdVYkJxMWFSVTItYTRCNXo1RGc1SlVfdW9fcXJHaFl6QV8zdEhzcUI5b3c2Nzd4b2FqQjF3LU5zMlpmN1Q0T1JFN2p3SldGMmNYaEhNMHhQcElLTmJyLTN2d3BxVUFZOHlhYXN1QjhpTkZ2WkhxdThGUzdESmM3S1pORXh2NUtJakFlQ1hGWUViY3k1dlFKLXlZYzRGUFFSdDJGS3cyV3YwSVNDYjlXRQ?oc=5",
+  "https://news.google.com/rss/articles/CBMi4AFBVV95cUxQSFZfTVJlbVBHSzdMVUtfSGdJdTl0OTJnamJRekZMTVZuLXg0Q01MRXZUYjVsY3pQMHo1azFCVVhBRy12T0tod3RXTVNscGdQM041RHFGOWpsa2Rhd0Zzck5WdzkxeW9uQmZZMVY1Q1AtcEFNWHV4ZlpYSWUtb0h3Mi1VRlhqZzhxNW5NaXB2MGE4RXNEQXJFeDBxVGNfTVlSNDFWQTBOMV9ycXdBZmhTMC1mWGk1MnItNUtrNHpSVzdDcTVuMDdNY0NtLVlZS3E2X2VUYzJCLWxaWlhVbDJWT9IB5gFBVV95cUxPYl9oWmZaSjJ0WG1MVDlEdVdXOGRFVkRta1BzRURhQVJpZ1dyX0NwM1dYc2pEa08waS1hRE1kU01WY1ZOd2ROd1hlWVdLT2ZLdWpQNWIwOU5IQTk4VWxDd0lLMjRia1hqenNMeGI0eXU0QzU2bkRhRFIxZ2MwVnlUcnpMaGtZWFhOT2NlNmtZVXNLS1VHLVNjWTlvQTFOenB0Q0lUcW5DMEtrUUlXLVRrVFhvMTd1b1VmS0RHeUxlYU94OGJwamUwa3dXOGxDekU3UDRhbUtQWlV0bGRBQ1ZiZU9RcnJCQQ?oc=5",
+  "https://news.google.com/rss/articles/CBMi4gFBVV95cUxQMHltOFhHZGl4am9tODNTR2ptYkM4UE9aVC1ZNnpiaHU3T1NqZGJCSkFseEVPR3RtU01ReHBqVFdRVndHbHpTVWxjNDFva0xTQUZkbVJkMjZIdzdoaWFGeHVKb3lsSlFKT1o1STMxN2ZmSF9hcTFWY0Zhc0YtVUtZN0owMDlrWnJTczRGZTJJazhwQkxibms1WVVKQWF4OF96TW9mVTJGUkNnVE9SdDF2SXRFblotTHY1QWhJZkp2UWRobzlsU2R0SmkwdUZaUm5sdF82SW9hUnZ4anZRR0hVZjJB0gHnAUFVX3lxTE96WXMxaHJwd3l3dnd2Tlc2ZVdyTjdyU1UtUFZlb0JIMUpIVV94b3ZnWERtRzBDZl9YTmVvUzBsaHczUGhiblgtMURKaUVtN1JCT3NaLUtodzZ4T0lZdC1LcHM3dzN4YXpEdVU3bTJJYjlYT0Zyc1h1V0hpOWZwYkluZkpyZkJUcnBKTEV3bTdaamc4UjlsNlA5emNvS29ab25WYXh1TGlSdThhT0NnSWpiSzl3NzBtV0l5MjMwMUlMRmMzcWJpWDlhVEY5WnNyX3dUa29MendNcVh1NmNuSklxM1ROSXBXaw?oc=5",
+  "https://news.google.com/rss/articles/CBMi4wFBVV95cUxNNC1rWmgyOFRRUVdkRmZOTGhTRzAxR1Y3YXMwZXQtTXFhR1lLLTRoc1VRSzRVSXQtYWpGUEIyRHRGZzJxR1g4OTdVeVVQMWdFRlBDT0c4VlI3UFIzYXpNcHhGRzRad0RYTEhsa2pMM3dNZEt2OHQxd05KMVVJWGd1OWRselg1ZEJOMmx0QkpQRGhlZlQ2VFE2cGNrU3d5UjQzbkdxZGNlR2FDZ2hSNTNzclZZdGVSMzRZWm1nWlpIejFpcVNseUFqaDBQVDN4TXh1YUpOcWdDQ3U2SG0ybXJDOE5ha9IB6AFBVV95cUxOczM5TjdaNDRldU45a2p4OVRaanBKVjhNZ3k3ZmlVemhURFVDT1AzMW5fYktweDl5TW5JQVZZN0NubHhWanBpMzV0dDVRNG1LQVRGMWpoVkdoeW01ZmxtZ21Cc3hJZ2dsWFk5bkJiYzZaSTFDbnZrdEdZYVNxT053N0l5UTAtRzVSRUNxVEhHSDZpNFNaajBxM1Y2LVBDT2RnblhGb3dxYkdrZXNoZldDVzA4a1IydWtRQk1PeXQxbHM3NDZBbmRJb19udnNsNUhwcngtVWRaQWFuTEktNmkySzlzU2p6bHFq?oc=5",
+  "https://news.google.com/rss/articles/CBMi4wFBVV95cUxNeVZuZFhicGdKVkV3MERIZnhfeFZxZmlneVhhY0FiS2trTGZZSmNYbnhmWGhfM3BJN3V6eEFBVlRIXzMyXzhXVTIxQlRGRk1vaHVTXzJrTzg5ZEhzV3J4QjdUR0t5OEQxUWZ0MDlxbWlVWld5SDVUQUNpZlZlbnhOcWtnNTZXNDhYZHBmX3F3R3FiUl8xMU9Vbm54UG1TNEpySjdNWEsyV0NZUlE4UjFCaDBGbFo0V3I5cUhPaDFmblE1WmZPZHlYTDZ3dnB5aDJ5cUNaT2RDY2NNdzdJNk5tcUtNZ9IB6AFBVV95cUxQN2xuYUtSVzlqRVRIU08xQWYwOUNXbkcteUVkVzI2ci1UMEpBUEQzRGgzcFI2NWNPR2hoTTBvUjFqam5Wb0p4NzI1SGNWWVRXZnpPZGFmTWI2ZEdWaU1iN3A4OUdLODVLcEFzdjN3LTVNdDlYSnY1dmd5dU9US1pBR3JQc1A3blNLZkNHQVk0Zm5UamNROEpJWmphSzZiR1lDTGRST0FHNkdBX1NLdnJhSG1sWHluVm1IbXhEQWNzODhIMGxRSWZsb2pNOTFHeXVpbklTeDVRbzFHWE1JMkxaSElQdTl6cXBo?oc=5",
+  "https://news.google.com/rss/articles/CBMi5AFBVV95cUxNZ00zRE1SQ1FtUmJxNHIyMEJmckRrUFhBNzZHZHNDT2lnZFhhQTB6YkUwNTlGbFptQXRLMl9PclB5VS1BUFo1bnZvSl9fWUwyOWE4NENvWGMyaDFoNHlZRmlKMTJRcUE0YWZuV3hrMmpwWm16WFlvem1td3pVeGd4VUVrSU9rc2FxSlV3R3NsdHpiTDcxMlp6Y3hWd1RWRkJlRVM5Q21rX1BxcFZ4TWh5cldXTE9JZ3ktVFJIanMwT2FnUVEzMUZ3YnE2RGtkbXlYY2hDeUI5NmROZkFCZWtyNWNVQm7SAeQBQVVfeXFMTWdNM0RNUkNRbVJicTRyMjBCZnJEa1BYQTc2R2RzQ09pZ2RYYUEwemJFMDU5RmxabUF0SzJfT3JQeVUtQVBaNW52b0pfX1lMMjlhODRDb1hjMmgxaDR5WUZpSjEyUXFBNGFmbld4azJqcFptelhZb3ptbXd6VXhneFVFa0lPa3NhcUpVd0dzbHR6Ykw3MTJaemN4VndUVkZCZUVTOUNta19QcXBWeE1oeXJXV0xPSWd5LVRSSGpzME9hZ1FRMzFGd2JxNkRrZG15WGNoQ3lCOTZkTmZBQmVrcjVjVUJu?oc=5",
+  "https://news.google.com/rss/articles/CBMi5AFBVV95cUxQNXRCTkRnYmp5N0hIMTZYUlpObVVuQ2pIQmpTcWlsLTR5by01a2VpRm1JQ2oyOXg1dWpNVDZXaG81RGF6eVNibXF6ZnUxSWhfM2RKNjk1VUdtcmx0WHdGY2Jic1hPUUxnSUNnUWpGcTU5ZXA3ZjQ3Ml9aWnc4N3BzOWVzX2stS0hpMG1YZjNNbDFPcHMyZ2M5WXJfbXVUcmY3cGdlNUhoRFFSVFo3ZTZuRDcxRng2MzJIcjcyZlR1OXJxelZ6bTJfM21hSTJEVy16QlJZc0pyQy1rQndSRnNWS2czTWY?oc=5",
+  "https://news.google.com/rss/articles/CBMi5gFBVV95cUxOWXdMY2MxRlZWZEVEQWxTbjh6dXUxUXV3LVRoN2FmbDl5M0t3UjJ4WFRIal85WG5nQjlKd3VtS0tKLWF4a2pmank0eFdxX1RXblZHZ1A2S21RcndadUU2MVoxYzZYRDQ2a2JGclFfelZqZ1lueUk0ei1pQkZBRHl0S2RJcVRCYlRheGVjcngxMHBkQUFQN08zb25xRVhRVVVReUNUX1NLOWo2eks2aVVEWUxTSVBjN2xGZEphbHJITnhfYlBtdXBub1lhQld2QVhxX29wZnBxUXpfcFdVWlpXWTg4dWRFdw?oc=5",
+  "https://news.google.com/rss/articles/CBMi5gFBVV95cUxOdXkzZDJPUTQ5VWpxUnQyZzRJb25MdWpFejVOdjQzTVpieWhYeUd6VVdtcTd1eGtEZU8yNWt5NTd2Q3JRd18zQVg3YU9BdFduelNWSDVYVkt1QVN0ZmlHZXVEdGxwWk1qZ0VqM05lcmJPeUpFYm1YYlJjT0RsQ1RiXzFmLXBoblFzUHFOTXprWVlTTzdSQmJLbk5rejZHZzVkNXMxMTg4RW9fM2M3Rkx5Q0p2UHRSQmRTMjktUHVmYll2TmVhX3lLc1VRVUtLYk1NTFQ3SlE4WXhEalZjb3czeHJMaXlnd9IB6wFBVV95cUxQZ0NVMTVUU3M1STlMQmtkNi12R1pTUnpmMG00d00xakFNRk1ickFCSDJTZHVxQS1hZGJOdmUxSVk2MnpxbmhwdERmZVlERzdLdUVKMFFlbG04bWp2elA5UVU2WEM2UnhRSkFzV1NYWkdUZWRldUtFY0ZFYUpqMHhfeXNWemhHa2pvdFE1eVh6aTZYYUZ4SzZwT2QxZU5yQlpkQ1RBLU5OVkJjRUV1R0VXbHNISEZpeXpYSmhwaFFYZVBnT0NpSVV6c29wanNLVy1kYjZhdHVMbEtPUmk3azFBZncwWXhzT0h0SVFV?oc=5",
+  "https://news.google.com/rss/articles/CBMi5wFBVV95cUxONFJpUEpsMEI3elN2QUhQQk5sYUU2cUl1MVlhNTc2UDFmaEh4Wm11TWNCUnNoc2JnakhYTEJqNjhfWFBOUHNkLTBRcGRiOWRLT2pvQlgwdXhhV0xOQWdWcFhWeWh5QlZYbzdzSmR5UzR1MmdUbTdjeWo5aTVJSlh5QzVlaFBoTXhTZTdjUGpVSi1maWxwXzZlMWlYSm54SUduZFNwNUtrRVRPbmF5ckFRVnhscDU0WmpVbFBvblB3V2prNUxpdkhUZ2Jtd2h5UGhjTHFidmFpeUliSVhqWnJ2WGU2bHRlaVnSAe8BQVVfeXFMTUx6eURFbXRlcmd6QkV2dnhCZDgzdTJSV0ZISGxWSTMyNlE3VHdhejhneE5qejdZVG5nZWxGdFNWTldmMVVVeVZlc1BNMUFHSU9oalNGU1czYzRyZXRoUXZ3TGhPVlZTd2p0UVB4VS1xNGY1VXprUjJOd3ZjMUlrQk1GcS05SnZQWjNwVEYzSUgtU2dxVWs0dS1ZR2hPb3pFUjF1UHl5eThIdlhPeDhRcDVYRHhKbWptLW1nbEJZbVRlRWRoV2JiWnBVekhqN0VuUnlPdFhpNTgzWFNseTRydWFJZXgybjVSVGsxTkNYWEk?oc=5",
+  "https://news.google.com/rss/articles/CBMi6AFBVV95cUxNWUM0a1dlS20xNTRlZ1QxSmZEMnlJQ0pBUmxIclh1alBzUVVJcUFfSC1pd1FydWs2U2Vnd19XRFFlSFlxdzdGY25FQU1vSzJvVkdSdnFOQmpsU25zck9GTTlMeWM2V082amNwNDVCRV9uWmFyamhJbm1IcnNCN2pSWGNmUzlpV0N3T0xVRTIwUFFqRXJlb3Q0a2RGRWVUM3RVSGNBOE9Ub2x6ZmpON0tsOTg4al9yMV9OWXpScnpMeDQxSW1OVURuU1hXNVljSF9zLXZvV1FYT3RSc0s5OWFIU3g0X0ptQWJh0gHuAUFVX3lxTE5WOGFwTmdyRnZCalp2ZlZsdHNxbTdpczlad0Ftb1ZtTG16emJ2VEFwc3d2MnVGa3Vxekk0NWNTQ2Q2aVA0QzZIWXh6a0E0SWJhdG5ZbmU3TF80dVBsQXFISFdyZmNLbUtfU1JvZ3VzWEhVU1dmMnM5clI0bzZyd3dWcDVsYWFndzNxZDFacl9EeEpDcF9KOXdTZlZYQ3h2S3FpSTJncHBqeTFETHUtUlh4bVQ1RmUwNFI1MzQxd2hBaFRDWk5wejlGNWR1NUZsRjNzUzcwZlpwWlYyUjBySTZaRnRka1BXenc3RjF1QlE?oc=5",
+  "https://news.google.com/rss/articles/CBMi6AFBVV95cUxOSVVLTEZ3a3pEdnROREx2QUNsSl92ZXNnenF0NTJ5UGR2dmZfbmY3Y1JONmFjTlFnejRyNEk1TF9Qa3VqNUVFQW1xcVYtVGEyaEZlSFZDUUlyckJDODlBNzBqX3VzWUlUQ1pzT2pqY0d5MTdPbUQwUEJsandjcTI0R1VmcXE4bnp6eUR6OUsyQnZnRXJhdlFCWnJCWGxPVkZ6ZE1xVFRWUFhIWGlFUXk2VjNhaTktV0FvVzFjV3pnVGpMTlFOaVpGQnRlS2ZGeV9vT3B0aGkzZHFhUENsOFN0eGFJRW5ORkts0gHuAUFVX3lxTE83WFZZRkxYVVdERVJ4QVNVRzJfVWVCWTM3eTNudGNwdDV3UkVwQl9BWVFtd1N3V29WNG53RzhqQXNBeFM4WGd4ZnhSREU4RkhTVEZ6Ni1UYWlsVTB6dVJtYmVGdUhORnlBam4yOXUxckNRZDZkakZPeUpUUm1ubkt0Z2E3T0dNcldjY2l2dlpRYnozYnl1Q25jRUd3ZElLRjc2V2VoYzF5UF9yb0lRUnhPWUtxb25ReHFOd0VYbXN4TzJXU1IybVF0TU9lR2JTUkxuQ2xyRTV6QklLSzVUdmJldXkzMnFwbWVpTjhVdFE?oc=5",
+  "https://news.google.com/rss/articles/CBMi6gFBVV95cUxNLVdmY2FkSG5EaWNzeFFmTy1TdGxjdG5NaWlrb01pUGdNZHkybWFyUFJzWGptbFRWUEJOdTBPbUx3MXJ5Z2JFU0hJTXNVbVZ2bTFzZmx0dXZLTGtTbGVHdUFzeEZyaGw1TVhWQTd1SkNzdzN4WWV4dVU5Z0h2dlVHSHN0NmtLMkRDb01sMnNmamg5SFcxOVhSdGZuZlprT00ya0dLS1pTX21tdVNfQTdYUkNEZzU2VUJtYzVzcm1WLUwwOXFtVXdaR3g0eUluaGRDVkQ1SUJTOWplMXNBQ1N5ckUwRi1ZbFg4VVE?oc=5",
+  "https://news.google.com/rss/articles/CBMi6wFBVV95cUxPR1plOEc0TVljaHhHZ1dlX1c2aVc1dmZGQ09WcjFIUlkzU0ZiSWtuUG0zc05ET1ZVMUZqcXJKd0RsRm82YXRUUXBrNlNORzN3bkI1NnVwcllfMnRwcW9JUUJqU2ZvWHdzSmJWSDFvREFvajJ0SWZBb0ZvU2Rjd0ZYRlhXTVA5WE5la2o1LXBvSjFCZk9UQVNRX2VmakZuc3paSy14dEFHUFZuTllZalVQQkg4WE1hUWY3SVEwRWhQWXVkakJydzhRSHZ2dWlseXFfSnFRNV9fZXBacTRmWWFHcEotNzhEdjBhM0ZN0gHrAUFVX3lxTE9HWmU4RzRNWWNoeEdnV2VfVzZpVzV2ZkZDT1ZyMUhSWTNTRmJJa25QbTNzTkRPVlUxRmpxckp3RGxGbzZhdFRRcGs2U05HM3duQjU2dXByWV8ydHBxb0lRQmpTZm9Yd3NKYlZIMW9EQW9qMnRJZkFvRm9TZGN3RlhGWFdNUDlYTmVrajUtcG9KMUJmT1RBU1FfZWZqRm5zelpLLXh0QUdQVm5OWVlqVVBCSDhYTWFRZjdJUTBFaFBZdWRqQnJ3OFFIdnZ1aWx5cV9KcVE1X19lcFpxNGZZYUdwSi03OER2MGEzRk0?oc=5",
+  "https://news.google.com/rss/articles/CBMi7gFBVV95cUxOVkdOSGlnYngydE1WVXlxR0c3emJ3UFo4WmdaUTBuVFJKWkFsTDFjNmVwRFBIUjNUZnpVRmpHRG92SkNtWnJIbXRzdlVCejlOZ1dTQnpOSVdpT3pzeEZmS096WWRWWmlwOEUzSU5xV3ZORnp2bFhMV3hMNnNHRE9LTmUtT1BncW9mak9fa05WVGNWVmlhYnVsWFVxeVZ3b0l0ZzBSZlpTeU5sWGFZX2J6NUQtUW9RS0NuTjJMb18xNzRBMGM1ek82d1dveHcySDVreTJPNHdmVWhzY1RtNWZrQVVHd1pKV2ZpYUw4aDNB0gHzAUFVX3lxTE1ucW1adkZhOEpqWHVBdUNNTjhVTlljU3BydFFYY0JhcnVmM01sQkJaS2daVWM2QTd5b2dDdmc3RTBJTjFmbVc5ZVVqbTZCUTVwZFBuYk9MZVZOZFVlMDc0dWNlMU91ZFJOM1JvZC1ETzlHQzAtOTJ5SUswZkR6YXNIZ0doZ25GOUg2Smd5TDBkQmI0UzR3c0F3NnRYQXZydnQxTGRzajdwN2p1UmNCME95ams4bXBaQ1MwcExqQ1J2MGdSbWE5Mm9rWUdHb0xGYXQtNVJjSmkwcDNxR0dYZDN2TEhzMmJRRHVWYXhtOGN6dnpfaw?oc=5"
+ ],
+ "classifier": "groq",
+ "stats": {
+  "Economic Times Markets": {
+   "ok": true,
+   "n": 50,
+   "err": ""
+  },
+  "Economic Times Stocks": {
+   "ok": true,
+   "n": 30,
+   "err": ""
+  },
+  "Moneycontrol": {
+   "ok": true,
+   "n": 0,
+   "err": ""
+  },
+  "Moneycontrol Business": {
+   "ok": true,
+   "n": 0,
+   "err": ""
+  },
+  "Business Standard Markets": {
+   "ok": true,
+   "n": 12,
+   "err": ""
+  },
+  "Business Standard Companies": {
+   "ok": true,
+   "n": 10,
+   "err": ""
+  },
+  "Mint Markets": {
+   "ok": true,
+   "n": 20,
+   "err": ""
+  },
+  "Mint Companies": {
+   "ok": true,
+   "n": 16,
+   "err": ""
+  },
+  "Reuters India (via Google News)": {
+   "ok": true,
+   "n": 31,
+   "err": ""
+  },
+  "Google News · order wins": {
+   "ok": true,
+   "n": 13,
+   "err": ""
+  },
+  "Google News · results": {
+   "ok": true,
+   "n": 77,
+   "err": ""
+  },
+  "Google News · M&A": {
+   "ok": true,
+   "n": 18,
+   "err": ""
+  },
+  "Google News · policy": {
+   "ok": true,
+   "n": 31,
+   "err": ""
+  },
+  "Google News · markets": {
+   "ok": true,
+   "n": 32,
+   "err": ""
+  },
+  "Google News · stocks in focus": {
+   "ok": true,
+   "n": 54,
+   "err": ""
+  },
+  "Google News · ratings": {
+   "ok": true,
+   "n": 4,
+   "err": ""
+  },
+  "Google News · bulk deals": {
+   "ok": true,
+   "n": 7,
+   "err": ""
+  },
+  "Google News · FII DII": {
+   "ok": true,
+   "n": 5,
+   "err": ""
+  },
+  "NSE RSS announcements": {
+   "ok": true,
+   "n": 170,
+   "err": ""
+  },
+  "Groq classifier": {
+   "ok": true,
+   "n": 4,
+   "err": "429: {\"error\":{\"message\":\"Rate limit reached for model `openai/gpt-oss-20b` in organization `org_01kr47nc9regats1w69k2hmzqj` service tier `on_dem; 429: {\"error\""
+  },
+  "NSE RSS board": {
+   "ok": false,
+   "n": 0,
+   "err": ""
+  },
+  "Results calendar": {
+   "ok": false,
+   "n": 0,
+   "err": "BoardMeetings err 403 Client Error: Forbidden for url: https://api.bseindia.co; Corpforthresults err 403 Client Error: Forbidden for url: https://api.bseindia.c"
+  }
+ },
+ "rawCount": 298,
+ "prices": {}
+}
