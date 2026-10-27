@@ -522,31 +522,35 @@ def fetch_deals():
     return out[:40]
 
 def fetch_52w():
-    """Symbols that set a new 52-week high or low in the latest session (NSE file)."""
+    """Symbols at a new 52-week high or low: compare the day's close (from the scan) with NSE's published 52-week levels."""
     import csv, io
     text, d = nse_csv("https://archives.nseindia.com/content/CM_52_wk_High_low_{d:%d%m%Y}.csv")
     if not text:
         stat("52-week lists (NSE)", False, 0, "no file"); return [], []
     highs, lows = [], []
     lines = text.splitlines()
-    # file has a few header lines before the real header
     start = next((i for i, l in enumerate(lines) if l.strip().strip('"').upper().startswith("SYMBOL")), 0)
-    today = d.strftime("%d-%b-%Y") if d else ""
-    header = lines[start] if lines else ""
-    log(f"52w header: {header[:160]}")
-    sample = lines[start + 1][:160] if len(lines) > start + 1 else ""
+    n = 0
     for row in csv.DictReader(io.StringIO("\n".join(lines[start:]))):
-        row = {k.strip().upper(): (v or "").strip() for k, v in row.items() if k}
+        row = {k.strip().strip('"').upper(): (v or "").strip() for k, v in row.items() if k}
         if row.get("SERIES", "EQ") not in ("EQ", "BE", ""):
             continue
         sym = row.get("SYMBOL")
-        hd = next((v for k, v in row.items() if "HIGH" in k and ("DATE" in k or "DT" in k)), "")
-        ld = next((v for k, v in row.items() if "LOW" in k and ("DATE" in k or "DT" in k)), "")
-        if sym and today and hd.lower().startswith(today.lower()[:6]):
+        p = PRICES.get(sym)
+        if not sym or not p:
+            continue
+        try:
+            hi = float(next((v for k, v in row.items() if "HIGH" in k and "DATE" not in k and "DT" not in k), "").replace(",", ""))
+            lo = float(next((v for k, v in row.items() if "LOW" in k and "DATE" not in k and "DT" not in k), "").replace(",", ""))
+        except Exception:
+            continue
+        n += 1
+        px = float(p[1])
+        if hi and px >= hi * 0.995:
             highs.append(sym)
-        if sym and today and ld.lower().startswith(today.lower()[:6]):
+        elif lo and px <= lo * 1.005:
             lows.append(sym)
-    stat("52-week lists (NSE)", len(highs) + len(lows) > 0, len(highs) + len(lows), (f"for {d:%d %b}; " if d else "") + "row: " + sample[:110])
+    stat("52-week lists (NSE)", n > 0, len(highs) + len(lows), f"{n} compared" + (f" for {d:%d %b}" if d else ""))
     return highs, lows
 
 def fetch_flows(raw):
@@ -838,7 +842,7 @@ def pick_groq_models(key, prefer="light"):
 
 def groq_classify(raw, mode, query, key):
     items, errors, calls = [], [], 0
-    budget_end = time.time() + float(os.environ.get("GROQ_BUDGET_SEC", "420"))
+    budget_end = time.time() + float(os.environ.get("GROQ_BUDGET_SEC", "720"))
     provider_used = ""
     batch = 35
     for i in range(0, len(raw), batch):
