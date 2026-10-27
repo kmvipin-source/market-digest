@@ -1,6 +1,28 @@
 {
  "runs": [
   {
+   "id": "2026-10-27-1352-full",
+   "label": "Tue 27 Oct 13:52 IST · Full digest",
+   "date": "2026-10-27",
+   "generatedAt": "2026-10-27T08:25:58Z",
+   "mode": "full",
+   "count": 200,
+   "counts": {
+    "calendar": 31,
+    "deals": 33,
+    "orders": 26,
+    "other": 1,
+    "policy": 25,
+    "global": 29,
+    "ipo": 10,
+    "movers": 16,
+    "results": 6,
+    "volume": 1,
+    "actions": 8,
+    "mna": 14
+   }
+  },
+  {
    "id": "2026-10-27-0859-orders",
    "label": "Tue 27 Oct 08:59 IST · Orders",
    "date": "2026-10-27",
@@ -135,5 +157,5 @@
    }
   }
  ],
- "updatedAt": "2026-10-27T03:29:52Z"
+ "updatedAt": "2026-10-27T08:25:58Z"
 }
