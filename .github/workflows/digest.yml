@@ -51,6 +51,8 @@ jobs:
           CF_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
           GROQ_MODEL: ${{ vars.GROQ_MODEL || 'llama-3.3-70b-versatile' }}
         run: |
+          # Scheduled runs paused until 1 Nov 2026 (manual Run now still works)
+          if [ "${{ github.event_name }}" = "schedule" ] && [ "$(date -u +%Y%m%d)" -lt 20261101 ]; then echo "Scheduled runs paused until 2026-11-01"; exit 0; fi
           python scripts/build_digest.py \
             --mode "${{ github.event.inputs.mode || 'full' }}" \
             --query "${{ github.event.inputs.query || '' }}" \
