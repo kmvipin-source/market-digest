@@ -1,6 +1,28 @@
 {
  "runs": [
   {
+   "id": "2026-11-04-1520-full",
+   "label": "Wed 04 Nov 15:20 IST · Full digest",
+   "date": "2026-11-04",
+   "generatedAt": "2026-11-04T10:01:35Z",
+   "mode": "full",
+   "count": 200,
+   "counts": {
+    "calendar": 1,
+    "deals": 35,
+    "global": 7,
+    "mna": 12,
+    "movers": 6,
+    "orders": 7,
+    "other": 28,
+    "policy": 5,
+    "results": 55,
+    "ratings": 6,
+    "volume": 2,
+    "actions": 36
+   }
+  },
+  {
    "id": "2026-11-03-1646-full",
    "label": "Tue 03 Nov 16:46 IST · Full digest",
    "date": "2026-11-03",
@@ -380,5 +402,5 @@
    }
   }
  ],
- "updatedAt": "2026-11-03T11:28:47Z"
+ "updatedAt": "2026-11-04T10:01:35Z"
 }
